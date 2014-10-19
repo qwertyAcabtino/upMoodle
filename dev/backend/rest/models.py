@@ -13,12 +13,12 @@ class LevelType(models.Model):
 class Level(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    type = models.ForeignKey('LevelType') 
+    type = models.ForeignKey('LevelType')
     visible = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.name
-
+ 
 
 class NoteBoard(models.Model):
     id = models.AutoField(primary_key=True)
