@@ -22,8 +22,8 @@ def noteboard_list(request):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        snippets = NoteBoard.objects.all()
-        serializer = NoteBoardSerializer(snippets, many=True)
+        notes = NoteBoard.objects.all()
+        serializer = NoteBoardSerializer(notes, many=True)
         return JSONResponse(serializer.data)
 
     elif request.method == 'POST':
@@ -34,16 +34,28 @@ def noteboard_list(request):
             return JSONResponse(serializer.data, status=201)
         return JSONResponse(serializer.errors, status=400)
 
+
 @csrf_exempt
 def noteboard_note(request, pk):
     """
     Retrieve, update or delete a code snippet.
     """
     try:
-        snippet = NoteBoard.objects.get(pk=pk)
+        note = NoteBoard.objects.get(pk=pk)
     except NoteBoard.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        serializer = NoteBoardSerializer(snippet)
+        serializer = NoteBoardSerializer(note)
+        return JSONResponse(serializer.data)
+
+
+@csrf_exempt
+def noteboard_level(request, pk):
+    """
+    Retrieves the noteboards from a level.
+    """
+    if request.method == 'GET':
+        notes = NoteBoard.objects.filter(level=pk)
+        serializer = NoteBoardSerializer(notes, many=True)
         return JSONResponse(serializer.data)

@@ -7,5 +7,6 @@ urlpatterns = patterns('rest.views',
     # url(r'^blog/', include('blog.urls')),
     url(r'^noteboards/$', 'noteboard_list'),
     url(r'^noteboards/(?P<pk>[0-9]+)/$', 'noteboard_note'),
+    url(r'^noteboards/level/(?P<pk>[0-9]+)/$', 'noteboard_level'),
     url(r'^admin/', include(admin.site.urls)),
 )
