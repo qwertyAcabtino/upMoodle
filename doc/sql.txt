@@ -1,0 +1,94 @@
+rol
+	id (pk) (fk)
+	name
+
+user
+	id
+	rol
+	email (pk)
+	name
+	profilePic
+	lastTimeActive
+	joined
+	banned (default false)
+	sessionToken
+	sessionDeadline
+
+level (carrer, course, subject )
+	id
+	name
+	status
+
+file
+	id (pk)
+	idSubject
+	hash
+	name
+	idYear
+	fileType
+	uploaded
+	uploader (fk)
+	lastUpdate
+	lastUpdater (fk)
+	visible
+
+fileComments
+	id
+	idFile
+	idAuthor
+	date
+	text
+
+fileAbusiveContentList
+	idFile
+	idReporter
+	comment
+
+year
+	id (pk) (fk)
+	verbose
+
+tag
+	id (pk) (fk)
+	name
+
+fileTags
+	idFile
+	idTag
+
+hashBlackList
+	hash
+
+noteBoard
+	id
+	title
+	text
+	level
+
+calendarSingleEvent
+	id
+	title
+	text
+	created
+	author
+	lastUpdate
+	lastUpdater
+	date
+	level
+
+calendarRegularEvent
+	id
+	title
+	text
+	created
+	author
+	lastUpdate
+	lastUpdater
+	level
+
+calendarRegularEventDates
+	id
+	idEvent
+	date
+
+

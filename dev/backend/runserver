@@ -1,0 +1,2 @@
+./updatedb
+python manage.py runserver &
