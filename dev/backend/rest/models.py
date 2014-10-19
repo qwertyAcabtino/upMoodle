@@ -17,8 +17,8 @@ class Level(models.Model):
     visible = models.BooleanField(default=True)
 
     def __unicode__(self):
-        return self.name
- 
+        return self.name 
+
 
 class NoteBoard(models.Model):
     id = models.AutoField(primary_key=True)
