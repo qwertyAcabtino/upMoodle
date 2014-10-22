@@ -28,3 +28,10 @@ class NoteBoard(models.Model):
 
     def __unicode__(self):
         return self.topic
+
+
+class BannedHash(models.Model):
+    hash = models.CharField(primary_key=True, max_length=65) #SHA1. 64 alphabetical chars
+
+    def __unicode__(self):
+        return self.hash

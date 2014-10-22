@@ -2,8 +2,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from rest.models import NoteBoard
-from rest.serializers import NoteBoardSerializer
+from rest.serializers import *
 
 
 class JSONResponse(HttpResponse):
@@ -17,7 +16,7 @@ class JSONResponse(HttpResponse):
 
 
 @csrf_exempt
-def noteboard_list(request):
+def noteboardList(request):
     """
     List all code snippets, or create a new snippet.
     """
@@ -36,7 +35,7 @@ def noteboard_list(request):
 
 
 @csrf_exempt
-def noteboard_note(request, pk):
+def noteboardNote(request, pk):
     """
     Retrieve, update or delete a code snippet.
     """
@@ -51,7 +50,7 @@ def noteboard_note(request, pk):
 
 
 @csrf_exempt
-def noteboard_level(request, pk):
+def noteboardLevel(request, pk):
     """
     Retrieves the noteboards from a level.
     """
@@ -59,3 +58,15 @@ def noteboard_level(request, pk):
         notes = NoteBoard.objects.filter(level=pk)
         serializer = NoteBoardSerializer(notes, many=True)
         return JSONResponse(serializer.data)
+
+@csrf_exempt
+def bannedhashList(request):
+    """
+    Retrieves the banned file's hash list.
+    """
+    if request.method == 'GET':
+        hashes = BannedHash.objects.all()
+        serializer = BannedHashSerializer(hashes, many=True)
+        return JSONResponse(serializer.data)
+
+

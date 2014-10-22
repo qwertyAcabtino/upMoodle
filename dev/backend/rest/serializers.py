@@ -1,6 +1,7 @@
 from django.forms import widgets
 from rest_framework import serializers
 from rest.models import NoteBoard
+from rest.models import BannedHash
 from rest.models import Level
 
 
@@ -10,3 +11,9 @@ class NoteBoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = NoteBoard
         fields = ('id', 'topic', 'text', 'level')
+
+
+class BannedHashSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BannedHash
+        field = 'hash'

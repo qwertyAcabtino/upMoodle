@@ -56,10 +56,10 @@ fileTags
 	idFile
 	idTag
 
-hashBlackList
+#hashBlackList
 	hash
 
-noteBoard
+#noteBoard
 	id
 	title
 	text

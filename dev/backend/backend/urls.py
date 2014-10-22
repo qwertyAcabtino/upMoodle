@@ -5,8 +5,9 @@ urlpatterns = patterns('rest.views',
     # Examples:
     # url(r'^$', 'backend.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
-    url(r'^noteboards/$', 'noteboard_list'),
-    url(r'^noteboards/(?P<pk>[0-9]+)/$', 'noteboard_note'),
-    url(r'^noteboards/level/(?P<pk>[0-9]+)/$', 'noteboard_level'),
+    url(r'^noteboards/$', 'noteboardList'),
+    url(r'^noteboards/(?P<pk>[0-9]+)/$', 'noteboardNote'),
+    url(r'^noteboards/level/(?P<pk>[0-9]+)/$', 'noteboardLevel'),
+    url(r'^bannedhashes/$', 'bannedhashList'),
     url(r'^admin/', include(admin.site.urls)),
 )
