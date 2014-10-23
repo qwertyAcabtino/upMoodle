@@ -69,4 +69,43 @@ def bannedhashList(request):
         serializer = BannedHashSerializer(hashes, many=True)
         return JSONResponse(serializer.data)
 
+@csrf_exempt
+def usersList(request):
+    """
+    Retrieves an user's list.
+    """
+    if request.method == 'GET':
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return JSONResponse(serializer.data)
 
+@csrf_exempt
+def usersByRol(request, pk):
+    """
+    Retrieves an user's list filtered by rol.
+    """
+    if request.method == 'GET':
+        users = User.objects.filter(rol=pk)
+        serializer = UserSerializer(users, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def rolesList(request):
+    """
+    Retrieves an user's list filtered by rol.
+    """
+    if request.method == 'GET':
+        roles = Rol.objects.all()
+        serializer = RolSerializer(roles, many=True)
+        return JSONResponse(serializer.data)
+
+@csrf_exempt
+def calendarList(request):
+    """
+    Retrieves user's future calendar events.
+    """
+    #Todo. Restrict to logged user.
+    if request.method == 'GET':
+        events = CalendarRegularEvent.objects.all()
+        serializer = CalendarEventSerializer(events, many=True)
+        return JSONResponse(serializer.data)
