@@ -16,5 +16,6 @@ urlpatterns = patterns('rest.views',
     url(r'^files/$', 'filesList'),
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
     url(r'^file/(?P<pk>[0-9]+)/$', 'file'),
+    url(r'^files/subject/(?P<pk>[0-9]+)/$', 'fileListSubject'),
     url(r'^admin/', include(admin.site.urls)),
 )

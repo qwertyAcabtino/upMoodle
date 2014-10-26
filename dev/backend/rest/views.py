@@ -145,3 +145,10 @@ def fileBinary(request, pk):
     response = HttpResponse(file.file)
     response['Content-Disposition'] = 'attachment; filename=' + file.name + '.' + extension
     return response
+
+def fileListSubject(request, pk):
+    level = Level.objects.get(id=pk)
+    if level.is_subject() and request.method == 'GET':
+        files = File.objects.filter(subject=pk)
+        serializer = FileSerializer(files, many=True)
+        return JSONResponse(serializer.data)

@@ -21,6 +21,9 @@ class Level(models.Model):
     def __unicode__(self):
         return self.name
 
+    def is_subject(self):
+        return self.type.name == 'subject'
+
 
 class Rol(models.Model):
     id = models.AutoField(primary_key=True)
