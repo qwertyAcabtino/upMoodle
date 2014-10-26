@@ -1,4 +1,6 @@
 from cherrypy.lib.static import serve_file
+from django.core.exceptions import ObjectDoesNotExist
+from django.utils.importlib import import_module
 import mimetypes
 from django.utils.encoding import smart_str
 import os
@@ -8,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.generics import get_object_or_404
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from backend import settings
 from rest.serializers import *
 
 
@@ -15,6 +18,7 @@ class JSONResponse(HttpResponse):
     """
     An HttpResponse that renders its content into JSON.
     """
+
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
@@ -65,6 +69,7 @@ def noteboardLevel(request, pk):
         serializer = NoteBoardSerializer(notes, many=True)
         return JSONResponse(serializer.data)
 
+
 @csrf_exempt
 def bannedhashList(request):
     """
@@ -74,6 +79,7 @@ def bannedhashList(request):
         hashes = BannedHash.objects.all()
         serializer = BannedHashSerializer(hashes, many=True)
         return JSONResponse(serializer.data)
+
 
 @csrf_exempt
 def usersList(request):
@@ -85,6 +91,7 @@ def usersList(request):
         serializer = UserSerializer(users, many=True)
         return JSONResponse(serializer.data)
 
+
 @csrf_exempt
 def usersByRol(request, pk):
     """
@@ -94,6 +101,7 @@ def usersByRol(request, pk):
         users = User.objects.filter(rol=pk)
         serializer = UserSerializer(users, many=True)
         return JSONResponse(serializer.data)
+
 
 @csrf_exempt
 def rolesList(request):
@@ -105,16 +113,18 @@ def rolesList(request):
         serializer = RolSerializer(roles, many=True)
         return JSONResponse(serializer.data)
 
+
 @csrf_exempt
 def calendarList(request):
     """
     Retrieves user's future calendar events.
     """
-    #Todo. Restrict to logged user.
+    # Todo. Restrict to logged user.
     if request.method == 'GET':
         events = CalendarRegularEvent.objects.all()
         serializer = CalendarEventSerializer(events, many=True)
         return JSONResponse(serializer.data)
+
 
 def filesList(request):
     """
@@ -125,6 +135,7 @@ def filesList(request):
         serializer = FileSerializer(files, many=True)
         return JSONResponse(serializer.data)
 
+
 def file(request, pk):
     """
     Retrieves a file information.
@@ -134,8 +145,8 @@ def file(request, pk):
         serializer = FileSerializer(files, many=True)
         return JSONResponse(serializer.data)
 
-def fileBinary(request, pk):
 
+def fileBinary(request, pk):
     file = File.objects.get(id=pk)
     path_to_file = file.file.path
 
@@ -146,9 +157,40 @@ def fileBinary(request, pk):
     response['Content-Disposition'] = 'attachment; filename=' + file.name + '.' + extension
     return response
 
+
 def fileListSubject(request, pk):
     level = Level.objects.get(id=pk)
     if level.is_subject() and request.method == 'GET':
         files = File.objects.filter(subject=pk)
         serializer = FileSerializer(files, many=True)
         return JSONResponse(serializer.data)
+
+
+@csrf_exempt
+def login(request):
+    # engine = import_module(settings.SESSION_ENGINE)
+    # session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
+
+    if request.method == 'POST':
+        try:
+            session_key = request.session.session_key
+            emailIn = request.POST['email']
+            passwordIn = request.POST['password']
+            try:
+                user = User.objects.get(email=emailIn, password=passwordIn)
+            except ObjectDoesNotExist:
+                raise Exception('Incorrect sign in values')
+            user.sessionToken = session_key
+            user.save()
+            message = Message()
+            message.message = 'Successfully signed in.'
+            serializer = MessageSerializer(message, many=False)
+            jsonResponse = JSONResponse(serializer.data, status=201)
+
+            jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
+            return jsonResponse
+        except Exception as e:
+            error = ErrorMessage(e.message)
+            error.error = e.message
+            serializer = ErrorMessageSerializer(error, many=False)
+            return JSONResponse(serializer.data, status=400)

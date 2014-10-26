@@ -17,13 +17,18 @@ class BannedHashSerializer(serializers.ModelSerializer):
         field = 'hash'
 
 
+class UserLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email', 'password')
+
+
 class UserSerializer(serializers.ModelSerializer):
     rol = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
 
     class Meta:
         model = User
-        fields = (
-            'id', 'rol', 'email', 'nick', 'name', 'profilePic', 'lastTimeActive', 'joined', 'banned', 'sessionToken')
+        fields = ('id', 'rol', 'email', 'nick', 'name', 'profilePic', 'lastTimeActive', 'joined', 'banned', 'sessionToken')
 
 
 class RolSerializer(serializers.ModelSerializer):
@@ -51,3 +56,17 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = ('id', 'subject', 'hash', 'name', 'year', 'fileType', 'uploaded', 'uploader', 'lastUpdate', 'lastUpdater', 'visible')
+
+
+class ErrorMessageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ErrorMessage
+        fields = ('error',)
+
+
+class MessageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Message
+        field = ('message',)

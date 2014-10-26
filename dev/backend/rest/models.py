@@ -39,11 +39,12 @@ class User(models.Model):
     email = models.EmailField(max_length=100)
     nick = models.CharField(max_length=20)
     name = models.CharField(max_length=100)
+    password = models.CharField(max_length=100, default='password')
     profilePic = models.ImageField(upload_to='pics/users', blank=True)
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
     banned = models.BooleanField(default=False)
-    sessionToken = models.CharField(max_length=1000, blank=True)
+    sessionToken = models.CharField(max_length=200, blank=True)
 
     def __unicode__(self):
         return self.nick
@@ -168,3 +169,20 @@ class FileComments(models.Model):
 
     def __unicode__(self):
         return '%s @ %s' % (self.text[0:10], self.idFile)
+
+
+class ErrorMessage(models.Model):
+    error = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.error
+
+    def __init__(self, error=None):
+        self.error = error
+
+
+class Message(models.Model):
+    message = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.message

@@ -54,7 +54,7 @@
 	idEvent
 	date
 
-file
+#file
 	id (pk)
 	idSubject
 	hash
@@ -67,26 +67,26 @@ file
 	lastUpdater (fk)
 	visible
 
-fileComments
+#fileComments
 	id
 	idFile
 	idAuthor
 	date
 	text
 
-fileAbusiveContentList
+#fileAbusiveContentList
 	idFile
 	idReporter
 	comment
 
-year
+#year
 	id (pk) (fk)
 	verbose
 
-tag
+#tag
 	id (pk) (fk)
 	name
 
-fileTags
+#fileTags
 	idFile
 	idTag

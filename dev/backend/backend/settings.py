@@ -70,6 +70,10 @@ DATABASES = {
     }
 }
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_NAME = 'cruasanPlancha'
+SESSION_SAVE_EVERY_REQUEST = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
