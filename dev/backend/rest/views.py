@@ -1,5 +1,11 @@
+from cherrypy.lib.static import serve_file
+import mimetypes
+from django.utils.encoding import smart_str
+import os
+from twisted.internet.protocol import FileWrapper
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.generics import get_object_or_404
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest.serializers import *
@@ -109,3 +115,33 @@ def calendarList(request):
         events = CalendarRegularEvent.objects.all()
         serializer = CalendarEventSerializer(events, many=True)
         return JSONResponse(serializer.data)
+
+def filesList(request):
+    """
+    Retrieves a file's list .
+    """
+    if request.method == 'GET':
+        files = File.objects.all()
+        serializer = FileSerializer(files, many=True)
+        return JSONResponse(serializer.data)
+
+def file(request, pk):
+    """
+    Retrieves a file information.
+    """
+    if request.method == 'GET':
+        files = File.objects.filter(id=pk)
+        serializer = FileSerializer(files, many=True)
+        return JSONResponse(serializer.data)
+
+def fileBinary(request, pk):
+
+    file = File.objects.get(id=pk)
+    path_to_file = file.file.path
+
+    extension = file.extension()
+    f = open(path_to_file, 'r')
+    myfile = File(f)
+    response = HttpResponse(file.file)
+    response['Content-Disposition'] = 'attachment; filename=' + file.name + '.' + extension
+    return response

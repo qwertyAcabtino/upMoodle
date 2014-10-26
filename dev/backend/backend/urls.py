@@ -13,5 +13,8 @@ urlpatterns = patterns('rest.views',
     url(r'^users/rol/(?P<pk>[0-9]+)/$', 'usersByRol'),
     url(r'^roles/$', 'rolesList'),
     url(r'^calendar/$', 'calendarList'),
+    url(r'^files/$', 'filesList'),
+    url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
+    url(r'^file/(?P<pk>[0-9]+)/$', 'file'),
     url(r'^admin/', include(admin.site.urls)),
 )

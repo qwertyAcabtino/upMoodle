@@ -1,4 +1,6 @@
 from django.db import models
+from rest.exceptions import ExtensionError
+from rest.finals import *
 
 
 # Carrer, course, subject
@@ -54,7 +56,7 @@ class NoteBoard(models.Model):
         return self.topic
 
 
-#SHA1. 64 alphabetical chars
+# SHA1. 64 alphabetical chars
 class BannedHash(models.Model):
     hash = models.CharField(primary_key=True, max_length=65)
 
@@ -62,7 +64,6 @@ class BannedHash(models.Model):
         return self.hash
 
 
-DEFAULT_FREQUENCY = 4
 class CalendarFrequency(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -96,3 +97,71 @@ class CalendarEventDate(models.Model):
 
     def __unicode__(self):
         return '[%s to %s] %s' % (self.hourStart, self.hourEnd, self.frequency)
+
+
+class Year(models.Model):
+    id = models.AutoField(primary_key=True)
+    verbose = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.verbose
+
+
+class File(models.Model):
+    id = models.AutoField(primary_key=True)
+    subject = models.ForeignKey(Level)
+    hash = models.CharField(max_length=65)
+    name = models.CharField(max_length=100)
+    year = models.ForeignKey(Year)
+    fileType = models.CharField(max_length=50)
+    uploaded = models.DateTimeField(auto_now_add=True)
+    uploader = models.ForeignKey(User, related_name='file_lastUpdater')
+    lastUpdate = models.DateTimeField(auto_now=True)
+    lastUpdater = models.ForeignKey(User, related_name='file_updater')
+    visible = models.BooleanField(default=True)
+    file = models.FileField(upload_to='files')
+
+    def __unicode__(self):
+        return self.name
+
+    def extension(self):
+        index = self.file.name.rfind('.')
+        if index == -1 or ((len(self.file.name) - index - 1) > 4):
+            raise ExtensionError
+        return self.file.name[index+1:]
+
+
+class Tag(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
+
+
+class FileTag(models.Model):
+    idFile = models.ForeignKey(File)
+    idTag = models.ForeignKey(Tag)
+
+    def __unicode__(self):
+        return '%s - %s' % (self.idFile, self.idTag)
+
+
+class FileReportList(models.Model):
+    idFile = models.ForeignKey(File)
+    idReporter = models.ForeignKey(User)
+    comment = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return '%s @ %s' % (self.comment[0:10], self.idFile)
+
+
+class FileComments(models.Model):
+    id = models.AutoField(primary_key=True)
+    idFile = models.ForeignKey(File)
+    idAuthor = models.ForeignKey(User)
+    date = models.DateTimeField(auto_now_add=True)
+    text = models.CharField(max_length=1000)
+
+    def __unicode__(self):
+        return '%s @ %s' % (self.text[0:10], self.idFile)
