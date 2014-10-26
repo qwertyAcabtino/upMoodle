@@ -1,8 +1,8 @@
-rol
+#rol
 	id (pk) (fk)
 	name
 
-user
+#user
 	id
 	rol
 	email (pk)
@@ -14,10 +14,45 @@ user
 	sessionToken
 	sessionDeadline
 
-level (carrer, course, subject )
+#level (carrer, course, subject )
 	id
 	name
 	status
+
+#hashBlackList
+	hash
+
+#noteBoard
+	id
+	title
+	text
+	level
+
+#calendarSingleEvent
+	id
+	title
+	text
+	created
+	author
+	lastUpdate
+	lastUpdater
+	date
+	level
+
+#calendarRegularEvent
+	id
+	title
+	text
+	created
+	author
+	lastUpdate
+	lastUpdater
+	level
+
+#calendarRegularEventDates
+	id
+	idEvent
+	date
 
 file
 	id (pk)
@@ -55,40 +90,3 @@ tag
 fileTags
 	idFile
 	idTag
-
-#hashBlackList
-	hash
-
-#noteBoard
-	id
-	title
-	text
-	level
-
-calendarSingleEvent
-	id
-	title
-	text
-	created
-	author
-	lastUpdate
-	lastUpdater
-	date
-	level
-
-calendarRegularEvent
-	id
-	title
-	text
-	created
-	author
-	lastUpdate
-	lastUpdater
-	level
-
-calendarRegularEventDates
-	id
-	idEvent
-	date
-
-

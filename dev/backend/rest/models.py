@@ -34,7 +34,7 @@ class User(models.Model):
     email = models.EmailField(max_length=100)
     nick = models.CharField(max_length=20)
     name = models.CharField(max_length=100)
-    profilePic = models.ImageField(upload_to='users', blank=True)
+    profilePic = models.ImageField(upload_to='pics/users', blank=True)
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
     banned = models.BooleanField(default=False)
@@ -62,6 +62,15 @@ class BannedHash(models.Model):
         return self.hash
 
 
+DEFAULT_FREQUENCY = 4
+class CalendarFrequency(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
+
+
 class CalendarRegularEvent(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
@@ -71,30 +80,19 @@ class CalendarRegularEvent(models.Model):
     author = models.ForeignKey(User, null=False, related_name='regular_lastUpdated')
     lastUpdated = models.ForeignKey(User, null=False, related_name='regular_author')
     level = models.ForeignKey('Level')
-    regular = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.title
 
 
-class CalendarSingleEvent(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
-    text = models.CharField(max_length=2000)
-    created = models.DateField(auto_now_add=True)
-    lastUpdate = models.DateField(auto_now=True)
-    author = models.ForeignKey(User, null=False, related_name='single_lastUpdated')
-    lastUpdated = models.ForeignKey(User, null=False, related_name='single_author')
-    level = models.ForeignKey('Level')
-
-    def __unicode__(self):
-        return self.title
-
-
-class CalendarRegularEventDate(models.Model):
+class CalendarEventDate(models.Model):
     id = models.AutoField(primary_key=True)
     idEvent = models.ForeignKey(CalendarRegularEvent, related_name='dates')
-    date = models.DateField()
+    index = models.IntegerField(default=1)
+    hourStart = models.TimeField(null=True)
+    hourEnd = models.TimeField(null=True)
+    allDay = models.BooleanField(default=False)
+    frequency = models.ForeignKey('CalendarFrequency', default=DEFAULT_FREQUENCY)
 
     def __unicode__(self):
-        return self.date
+        return '[%s to %s] %s' % (self.hourStart, self.hourEnd, self.frequency)

@@ -8,6 +8,6 @@ admin.site.register(BannedHash)
 admin.site.register(Rol)
 admin.site.register(User)
 admin.site.register(CalendarRegularEvent)
-admin.site.register(CalendarRegularEventDate)
-admin.site.register(CalendarSingleEvent)
+admin.site.register(CalendarEventDate)
+admin.site.register(CalendarFrequency)
 # Register your models here.
