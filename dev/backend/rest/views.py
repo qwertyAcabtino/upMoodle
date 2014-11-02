@@ -1,3 +1,5 @@
+from django.utils.datastructures import MultiValueDictKeyError
+
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 from django.http import HttpResponse
@@ -5,9 +7,9 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
 from backend import settings
+from rest.ERROR_MESSAGE_ID import INCORRECT_DATA, REQUEST_CANNOT
 
 from rest.JSONResponse import JSONResponse
-from rest.requestException import INCORRECT_DATA, REQUEST_CANNOT
 from rest.requestException import RequestExceptionByMessage, RequestExceptionByCode
 from rest.serializers import *
 from rest.unserializers import unserialize_user
@@ -201,3 +203,5 @@ def signup(request):
     except ValidationError as v:
         r = RequestExceptionByMessage(v)
         return r.jsonResponse
+    except MultiValueDictKeyError as m:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

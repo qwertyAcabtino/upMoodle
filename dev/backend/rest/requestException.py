@@ -1,19 +1,7 @@
+from rest.ERROR_MESSAGE_ID import INCORRECT_DATA
 from rest.JSONResponse import JSONResponse
 from rest.models import ErrorMessage
 from rest.serializers import ErrorMessageSerializer
-
-#ERRORS
-REQUEST_CANNOT = 1
-INCORRECT_DATA = 2
-DISABLED_COOKIES = 3
-ALREADY_CONFIRMED = 4
-INVALID_TOKEN = 5
-USER_IN_USE = 6
-UNAUTHORIZED = 7
-INCORRECT_FILE_DATA = 8
-PASSWORD_LENGTH = 9
-NICK_LENGTH = 10
-
 
 class RequestException(Exception):
     jsonResponse = None
@@ -39,7 +27,7 @@ class RequestExceptionByMessage(RequestException):
             if len(validationError.message):
                 error.error += ". "+validationError.message
             else:
-                error.error += ". "+' '.join(validationError.messages)
+                error.error += ". "+'\n. '.join(validationError.messages)
             super(RequestExceptionByMessage, self).__init__(error)
 
 

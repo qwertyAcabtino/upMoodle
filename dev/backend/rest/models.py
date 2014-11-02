@@ -58,10 +58,10 @@ class Rol(models.Model):
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     rol = models.ForeignKey('Rol', default=STUDENT)
-    email = models.EmailField(max_length=100, validators=[validate_email], unique=True)
-    nick = models.CharField(max_length=20, validators=[validate_nick], unique=True)
+    email = models.EmailField(max_length=100, validators=[validate_email], unique=True, error_messages={'blank':'Email field cannot be empty'})
+    nick = models.CharField(max_length=20, validators=[validate_nick], unique=True, error_messages={'blank':'Nick field cannot be empty'})
     name = models.CharField(max_length=100, blank=True)
-    password = models.CharField(max_length=100, default='password', validators=[validate_password])
+    password = models.CharField(max_length=100, validators=[validate_password], error_messages={'blank':'Password field cannot be empty'})
     profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
