@@ -4,8 +4,18 @@ from rest.models import ErrorMessage
 from rest.serializers import ErrorMessageSerializer
 
 
-class RequestExceptionByMessage(Exception):
+class RequestException(Exception):
     jsonResponse = None
+
+    def __init__(self, errorMessage):
+        serializer = ErrorMessageSerializer(errorMessage, many=False)
+        self.jsonResponse = JSONResponse(serializer.data, status=400)
+
+    def __str__(self):
+        return repr(self)
+
+
+class RequestExceptionByMessage(RequestException):
 
     def __init__(self, validationError):
 
@@ -19,20 +29,11 @@ class RequestExceptionByMessage(Exception):
             else:
                 error.error += ". "+' '.join(validationError.messages)
         finally:
-            serializer = ErrorMessageSerializer(error, many=False)
-            self.jsonResponse = JSONResponse(serializer.data, status=400)
-
-    def __str__(self):
-        return repr(self)
+            super(RequestExceptionByMessage, self).__init__(error)
 
 
-class RequestExceptionByCode(Exception):
-    jsonResponse = None
+class RequestExceptionByCode(RequestException):
 
     def __init__(self, code):
         error = ErrorMessage.objects.get(pk=code)
-        serializer = ErrorMessageSerializer(error, many=False)
-        self.jsonResponse = JSONResponse(serializer.data, status=400)
-
-    def __str__(self):
-        return repr(self)
+        super(RequestExceptionByMessage, self).__init__(error)
