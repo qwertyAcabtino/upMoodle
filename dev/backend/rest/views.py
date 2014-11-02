@@ -11,19 +11,9 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from backend import settings
+from rest.JSONResponse import JSONResponse
+from rest.requestException import RequestException
 from rest.serializers import *
-
-
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
-
 
 @csrf_exempt
 def noteboardList(request):
@@ -170,27 +160,32 @@ def fileListSubject(request, pk):
 def login(request):
     # engine = import_module(settings.SESSION_ENGINE)
     # session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
-
-    if request.method == 'POST':
-        try:
-            session_key = request.session.session_key
-            emailIn = request.POST['email']
-            passwordIn = request.POST['password']
+    try:
+        if request.method == 'POST':
             try:
-                user = User.objects.get(email=emailIn, password=passwordIn)
-            except ObjectDoesNotExist:
-                raise Exception('Incorrect sign in values')
-            user.sessionToken = session_key
-            user.save()
-            message = Message()
-            message.message = 'Successfully signed in.'
-            serializer = MessageSerializer(message, many=False)
-            jsonResponse = JSONResponse(serializer.data, status=201)
+                session_key = request.session.session_key
+                emailIn = request.POST['email']
+                passwordIn = request.POST['password']
+                try:
+                    user = User.objects.get(email=emailIn, password=passwordIn)
+                except ObjectDoesNotExist:
+                    raise Exception('Incorrect sign in values')
+                user.sessionToken = session_key
+                user.save()
+                message = Message()
+                message.message = 'Successfully signed in.'
+                serializer = MessageSerializer(message, many=False)
+                jsonResponse = JSONResponse(serializer.data, status=201)
 
-            jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
-            return jsonResponse
-        except Exception as e:
-            error = ErrorMessage(e.message)
-            error.error = e.message
-            serializer = ErrorMessageSerializer(error, many=False)
-            return JSONResponse(serializer.data, status=400)
+                jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
+                return jsonResponse
+            except Exception as e:
+                error = ErrorMessage()
+                error.error = e.message
+                serializer = ErrorMessageSerializer(error, many=False)
+                return JSONResponse(serializer.data, status=400)
+        else:
+            raise RequestException(INCORRECT_DATA)
+    except RequestException as r:
+        return r.jsonResponse
+

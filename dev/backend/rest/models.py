@@ -172,16 +172,18 @@ class FileComments(models.Model):
 
 
 class ErrorMessage(models.Model):
+    id = models.AutoField(primary_key=True)
     error = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.error
 
-    def __init__(self, error=None):
-        self.error = error
+    # def __init__(self, error=None):
+    #     self.error = error
 
 
 class Message(models.Model):
+    id = models.AutoField(primary_key=True)
     message = models.CharField(max_length=200)
 
     def __unicode__(self):

@@ -16,4 +16,6 @@ admin.site.register(Tag)
 admin.site.register(Year)
 admin.site.register(FileReportList)
 admin.site.register(FileComments)
+admin.site.register(Message)
+admin.site.register(ErrorMessage)
 # Register your models here.

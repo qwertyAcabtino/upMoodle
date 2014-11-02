@@ -1,0 +1,1285 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"load",
+				"loadModelCallback"
+			],
+			[
+				"of",
+				"offlineSetUp"
+			],
+			[
+				"setModel",
+				"setModelOnline"
+			],
+			[
+				"are",
+				"areaEstrella"
+			],
+			[
+				"test",
+				"testAreaEstrella"
+			],
+			[
+				"area",
+				"areaTrianguloEquilatero"
+			],
+			[
+				"print",
+				"printWrongTest"
+			],
+			[
+				"prin",
+				"printSuccessTest"
+			],
+			[
+				"pr",
+				"printEOT"
+			],
+			[
+				"out",
+				"output"
+			],
+			[
+				"a",
+				"assert"
+			],
+			[
+				"STUB",
+				"STUBFOUR"
+			],
+			[
+				"s",
+				"stub"
+			],
+			[
+				"STUBTR",
+				"STUBTHREE"
+			],
+			[
+				"STUBT",
+				"STUBTWO"
+			],
+			[
+				"cate",
+				"catetoMayorTrianguloRectangulo"
+			],
+			[
+				"cha",
+				"chairId"
+			],
+			[
+				"gues",
+				"guest"
+			],
+			[
+				"char",
+				"chairHtml"
+			],
+			[
+				"gete",
+				"getElementById"
+			],
+			[
+				"g",
+				"guests"
+			],
+			[
+				"gue",
+				"guests"
+			],
+			[
+				"pa",
+				"pageX"
+			],
+			[
+				"in",
+				"infoWp"
+			],
+			[
+				"infoDiv",
+				"setInfoDiv"
+			],
+			[
+				"min-",
+				"min-height"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"wai",
+				"waitingId"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"con",
+				"con	console"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"guest",
+				"guests"
+			],
+			[
+				"par",
+				"parseInt"
+			],
+			[
+				"getE",
+				"getEmptyChairs"
+			],
+			[
+				"r",
+				"return"
+			],
+			[
+				"get",
+				"getGuest"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"table",
+				"tableId"
+			],
+			[
+				"gets",
+				"getGuest"
+			],
+			[
+				"max",
+				"max"
+			],
+			[
+				"ge",
+				"getGuestIndex"
+			],
+			[
+				"gu",
+				"guests"
+			],
+			[
+				"ind",
+				"indx"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"set",
+				"setGuestStatus"
+			],
+			[
+				"sele",
+				"selectedIsEmpty"
+			],
+			[
+				"tab",
+				"tableIndex"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"on",
+				"onmouseout"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"do",
+				"document"
+			],
+			[
+				"getCha",
+				"getChairsTable"
+			],
+			[
+				"li",
+				"living"
+			],
+			[
+				"push",
+				"pushGuestToChair"
+			],
+			[
+				"chair",
+				"chairId"
+			],
+			[
+				"chai",
+				"chairId"
+			],
+			[
+				"f",
+				"fun	Function"
+			],
+			[
+				"pop",
+				"popSelected"
+			],
+			[
+				"dom",
+				"domId"
+			],
+			[
+				"se",
+				"selected"
+			],
+			[
+				"_reDr",
+				"_reDrawTables"
+			],
+			[
+				"_re",
+				"_reDrawSelected"
+			],
+			[
+				"guests",
+				"guestsDiv"
+			],
+			[
+				"refer",
+				"reference"
+			],
+			[
+				"item",
+				"itemGoogle"
+			],
+			[
+				"referen",
+				"reference_id"
+			],
+			[
+				"fav",
+				"favoApiService"
+			],
+			[
+				"custom",
+				"customResults"
+			],
+			[
+				"cus",
+				"customResults"
+			],
+			[
+				"fa",
+				"fakeObject"
+			],
+			[
+				"po",
+				"pointerInfo"
+			],
+			[
+				"setS",
+				"setSelectedText"
+			],
+			[
+				"new",
+				"newcustomspot"
+			],
+			[
+				"cu",
+				"customspot"
+			],
+			[
+				"make",
+				"makeUpEditable"
+			],
+			[
+				"link",
+				"linkaddDisabled"
+			],
+			[
+				"lik",
+				"linkaddDisabled"
+			],
+			[
+				"lin",
+				"linkaddDisabled"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"parent",
+				"parentNode"
+			],
+			[
+				"edi",
+				"editable"
+			],
+			[
+				"pointe",
+				"pointerInfo"
+			],
+			[
+				"sel",
+				"selectedTextIsInContentEditable"
+			],
+			[
+				"ancho",
+				"anchorNode"
+			],
+			[
+				"point",
+				"pointerInfo"
+			],
+			[
+				"ta",
+				"tagLabel"
+			],
+			[
+				"tagSa",
+				"tagSpanLabelStart"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"copy",
+				"copyReturnedModel"
+			],
+			[
+				"clean",
+				"cleanTheEditable"
+			],
+			[
+				"retu",
+				"returnedModel"
+			],
+			[
+				"innet",
+				"innerHTML"
+			],
+			[
+				"str",
+				"stripLateralWhiteSpace"
+			],
+			[
+				"inde",
+				"indexOf"
+			],
+			[
+				"nex",
+				"nextSiblingHtml"
+			],
+			[
+				"pre",
+				"previousSiblingHtml"
+			],
+			[
+				"edt",
+				"editableCaret"
+			],
+			[
+				"desc",
+				"description"
+			],
+			[
+				"edita",
+				"editableCaret"
+			],
+			[
+				"te",
+				"textContent"
+			],
+			[
+				"foc",
+				"focusNode"
+			],
+			[
+				"ed",
+				"editableCaret"
+			],
+			[
+				"addBra",
+				"addBracketToEditable_add"
+			],
+			[
+				"addBre",
+				"addBracketToEditable_link"
+			],
+			[
+				"selecte",
+				"selectedText"
+			],
+			[
+				"selec",
+				"selectedText"
+			],
+			[
+				"au",
+				"auxData"
+			],
+			[
+				"selection",
+				"selectionData"
+			],
+			[
+				"open",
+				"openCustomSpot"
+			],
+			[
+				"conten",
+				"contenteditableSelectedText"
+			],
+			[
+				"conte",
+				"contenteditableSelectedText"
+			],
+			[
+				"getSel",
+				"getSelectionHtml"
+			],
+			[
+				"daydes",
+				"daydesc"
+			],
+			[
+				"de",
+				"description"
+			],
+			[
+				"dayde",
+				"daydesc"
+			],
+			[
+				"spot",
+				"spotDetails"
+			],
+			[
+				"spo",
+				"spotDetails"
+			],
+			[
+				"d",
+				"data-gpid"
+			],
+			[
+				"sett",
+				"settingPlace"
+			],
+			[
+				"setV",
+				"setResulsVisibility"
+			],
+			[
+				"compl",
+				"compiled"
+			],
+			[
+				"pac",
+				"pac-item"
+			],
+			[
+				"no",
+				"noquery"
+			],
+			[
+				"pact",
+				"pac-item-query"
+			],
+			[
+				"auto",
+				"autoCompleteResults"
+			],
+			[
+				"ele",
+				"elem"
+			],
+			[
+				"defa",
+				"defaultAutoComplete"
+			],
+			[
+				"own",
+				"ownBox"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "sql.txt",
+			"settings":
+			{
+				"buffer_size": 797,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
+			"settings":
+			{
+				"buffer_size": 960,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/README.txt",
+			"settings":
+			{
+				"buffer_size": 851,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+			"settings":
+			{
+				"buffer_size": 221,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "requisitos.txt",
+			"settings":
+			{
+				"buffer_size": 3463,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "nDisclaimer.\nIn every API call, a sessionID is sent in the requestHeaders, this sessionId is provided by the server at the sign in proccess.\nThis sessionId identifies the user while making any request. This way we are sure the user is allowed to request a certain information (frontend security).\nIt also reduces the amount of information attached to every api's call.\n\n\nGET\n\nuser/{id}\n\nReturns user's info.\nIncludes rol\n\n\nuser/\n\nReturns signed in user's info.\nSame info than 'user/{id}'\n\n\ncareer/{id}\n\nReturns course's list for requested career.\nThrows 401 + message if closed.\n\n\nsubject/{id}\n\nReturns a list of files (within its basic info)\nThrows 401 + message if closed.\n\n\ncouse/{id}\n\nReturns subject's list for requested course\nThrows 401 + message if closed.\n\n\nfile/{id}\n\nReturns file\nIncludes tags, abusive, year and comments\nThrows 401 + message if removed.\n\n\nfileBlackList/\n\nReturns all file's hashs that have been banned.\n\n\nnote/{level}/{page}\n\nReturns all the notes for a certain page. N (undefined yet) items per page.\n\n\ncalendar/{year}-{month}\n\nReturns all the events (regulars and singles) for a certain month (and user).\n\n\ncalendar/{year}-{month}-{day}\n\nReturns all the events (regulars and singles) for a certain day (and user).\n\n\nPOST\n\nuser/add\n\ncalendar/add\n\nnote/add\n\nfileBlackList/add/\n\n(when a file is updated, the information is proccessed in a separated module)\n\nUPDATE\n\nuser/update\n\ncalendar/update\n\nnote/update\n\nfile/update (info)\n\n(using this apicalls, most of the models can be removed)",
+			"file": "APIRest backbone.txt",
+			"file_size": 1512,
+			"file_write_time": 1413136827000000,
+			"settings":
+			{
+				"buffer_size": 1513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "=Processes=\n	[Tpye] Call\n\n=SignIn=\n	[POST] signIn/\n		200 - Redirects to confirm email view\n		40X\n			ErrorMessage(2)\n			ErrorMessage(6)\n\n=Confirm email=\n	[PUT] confirmEmail/\n		200 - Returns userId and redirects\n		40X\n			ErrorMessage(4)\n			ErrorMessage(5)\n\n=Login=\n	[POST] login/\n		200 - Returns userId and redirects\n		40X\n			ErrorMessage(2)\n			ErrorMessage(3)\n			\n=GetUser=\n	[GET] user/get/\n		200 - Returns user's model.\n		400 - ErrorMessage(1) + redirects to login\n\n=DeleteUser=\n	[DELETE] user/remove/\n		200 - Redirects to login.\n		400 - ErrorMessage(1)\n\n=ModifyUser=\n	[PUT] user/update/\n		200 - Returns user's model\n		400 - ErrorMessage(1)\n\n\nErrorMessages\n1. Request cannot be performed\n2. Incorrect data\n3. Cookies disabled\n4. Already confirmed\n5. Invalid token\n6. User already in use",
+			"file": "ApiREST backbone detailed.txt",
+			"file_size": 786,
+			"file_write_time": 1414454630000000,
+			"settings":
+			{
+				"buffer_size": 786,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 243.0,
+		"selected_items":
+		[
+			[
+				"reit",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reint",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinte",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/dimens.csv",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/dossier.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/design.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/.hgignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/layouts/.hidden",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/sizes.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/pics/android/res/drawable-mpdi/1",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/pics/android/res/drawable-xxhdpi/1.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/app/nightingaleInstall.sh",
+		"/home/viperey/Dropbox/BackUp/Linux/app/androidStudioInstall.sh",
+		"/home/viperey/Dropbox/Proyectos/Cores/android/AsynchronousView/README.md",
+		"/home/viperey/Dropbox/Proyectos/Cores/sublime/notes.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/app/echo",
+		"/home/viperey/Dropbox/BackUp/www/dump_backup.sh",
+		"/home/viperey/Dropbox/BackUp/www/frontEnd.sh",
+		"/home/viperey/Dropbox/BackUp/TT.txt",
+		"/home/viperey/Dropbox/BackUp/Cuenta Yoigo.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/Montar remoto.sh",
+		"/home/viperey/Dropbox/BackUp/Linux/ip.sh",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema2.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/app/dev.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/FloatingActionButton/android-floating-action-button/library/build.gradle",
+		"/opt/android-studio/Install-Linux-tar.txt",
+		"/home/viperey/Downloads/Practica 1.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/design.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 1/unitarias.c",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/postmanAPI.json",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 1/unitarias.txt",
+		"/home/viperey/Downloads/JetBrains PyCharm Professional v3.0 Build 131.190 with Key - [MUMBAI]/Readme.txt",
+		"/home/viperey/Downloads/JetBrains PyCharm Professional v3.0 Build 131.190 with Key - [MUMBAI]/License Keys/Key1.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/django.tutorial.mysite/polls/models.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/sql.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest/tutorial/settings.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest/tutorial/urls.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/requisitos.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/install pro.sh",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/pre/python/django.tutorial.mysite/polls/models.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/runserver",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/updatedb.sh",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/admin.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest/tutorial/quickstart/views.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest/tutorial/quickstart/serializers.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/settings.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/quickstart/views.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/quickstart/serializators.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/script.sh",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/diseñoTecnico.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/rest/models.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/urls.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/rest/views.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/rest/serializers.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/sql.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/APIRest backbone.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/note.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/intelliJ.sh",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/urls.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/db.sqlite3",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/quickstart/models.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/quickstart/views.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/urls.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/quickstart/serializers.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/settings.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/django.tutorial.mysite/mysite/settings.py",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/settings.pyc",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/quickstart/serializers.py",
+		"/home/viperey/python/mysite/mysite/settings.py",
+		"/home/viperey/python/mysite/manage.py",
+		"/home/viperey/python/mysite/mysite/urls.py",
+		"/home/viperey/python/mysite/polls/models.py",
+		"/home/viperey/python/mysite/polls/admin.py",
+		"/home/viperey/Downloads/the witcher 2/steam_appid.txt",
+		"/home/viperey/Downloads/the witcher 2/SDLGamepad.config",
+		"/home/viperey/Desktop/proxy.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/src/main/res/values/styles.xml.orig",
+		"/home/viperey/Downloads/The_Witcher_2_Assassins_Of_Kings_Enhanced_Edition_Linux-Razor1911/rzr-w2lx.nfo",
+		"/home/viperey/python/tutorial/tutorial/urls.py",
+		"/home/viperey/python/script.sh",
+		"/home/viperey/python/tutorial/tutorial/quickstart/views.py",
+		"/home/viperey/python/tutorial/tutorial/settings.py",
+		"/home/viperey/python/tutorial/tutorial/quickstart/serializers.py",
+		"/home/viperey/python/tutorial/tutorial/settings.pyc",
+		"/home/viperey/python/tutorial/manage.py",
+		"/home/viperey/python/tutorial/tutorial/quickstart/models.py",
+		"/home/viperey/Games/Bioshock/#README#/READ_ME.txt",
+		"/home/viperey/Games/Bioshock/ReadMe.txt",
+		"/home/viperey/python/tutorial/quickstart/views.py",
+		"/home/viperey/python/tutorial/urls.py",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/notes.txt",
+		"/home/viperey/python/tutorial/quickstart/serializers.py",
+		"/home/viperey/python/tutorial/settings.py",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/mysite/settings.py",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/mysite/urls.py",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/script.sh",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/bin/easy_install",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/manage.py",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/diseñoTecnico.txt",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/sql.txt",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/requisitos.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/nvidiaSettings.sh",
+		"/home/viperey/Downloads/House.Of.Cards.2013.S01.Season.1.720p.BluRay.x264.anoXmous/House.of.Cards.2013.S01E08.720p.BluRay.x264-Green.srt",
+		"/home/viperey/Dropbox/Proyectos/Propio/juegosparabeber/estructure.json",
+		"/home/viperey/Dropbox/Universidad/4º de Software/Q1 VV/Apuntes/Tema1.txt",
+		"/home/viperey/Dropbox/Universidad/4º de Software/Q1 VV/Apuntes/Tema0.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/PspEWC/PSP-Easy-Wireless-Controller/src/PC/linux/README.txt",
+		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/Propuesta.txt",
+		"/home/viperey/Downloads/snes9x-1.53/docs/gtk/lgpl.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 1 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 2 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 4 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 5  - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 6 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 8 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 7 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 GP/Teoria/Agiles/Tema 2 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 GP/Teoria/Agiles/Tema 2 - Inception deck.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Calidad/Teoria/Tema 4 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica5/dev/views/layout.php",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica5/dev/index.php",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica 4 - DHTML/index.html",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica 4 - DHTML/style.css",
+		"/var/www/tdw/index.html",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Calidad/Actividades/Actividad 13/Decalogo.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Calidad/Actividades/Actividad 13/Actividad 13.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Seguridad II/Teoria/Tema 2 - Apuntes.txt",
+		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 3 - Apuntes.txt"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial",
+			"/home/viperey/code/favoroute/code/apps/app/src/js",
+			"/home/viperey/code/favoroute/code/apps/app/src/",
+			"/home/viperey/code/favoroute/code/apps/app/src/js/directives",
+			"/home/viperey/code/favoroute/code/apps/app/",
+			"/media/data/Dropbox/Proyectos/Propio/DuermeTu/dev/DuermeTu/src",
+			"/media/data/Dropbox/Proyectos/Asalariado/Welvi/welvifrontend"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"@[",
+			"[X] ",
+			"-[X]",
+			"ic_*\n\n	mdpi\n	hdpi 72\n	xhdpi\n	xxhdpi\n	xdxhdpi\n\n",
+			"ab_search",
+			"\n			",
+			")\n",
+			",",
+			"<dimen name=\"",
+			"\">",
+			"</dimen>",
+			">@",
+			"android",
+			"=\"",
+			"\"\n",
+			"ab_guide",
+			"Text",
+			"Text ",
+			"abtab_trending",
+			"background",
+			"customRaisedButton",
+			"android",
+			"=\"",
+			"\"\n",
+			"android",
+			"=\"",
+			"\"\n",
+			"android",
+			"=\"",
+			"\"\n",
+			"android",
+			"=\"",
+			"\"\n",
+			"android",
+			"=\"",
+			"\"\n",
+			"android",
+			"=\"",
+			"\"\n",
+			"android",
+			"=\"",
+			"\"\n",
+			"android",
+			"=\"",
+			"\"\n",
+			"android:",
+			"	",
+			"=\"",
+			"\"\n",
+			"            ",
+			"            android",
+			"=\"",
+			"\"\n",
+			"            android",
+			"=\"",
+			"\"\n",
+			"            android",
+			"            ",
+			"=\"",
+			"            ",
+			"        android",
+			"=\"",
+			"        ",
+			"=\"",
+			"        ",
+			"	fprintf( f,\"\\n=== TEST %s ===\\n\", title );\n	fprintf( f,\"a value: %.2f\\n\", foo);\n	fprintf( f,\"b value: %.2f\\n\", faa);\n	fprintf( f,\"expected value: %.2f\\n\", expected);\n	fprintf( f,\"obtained value: %.2f\\n\", output);\n",
+			");	",
+			"%f.2",
+			"printTestHeader",
+			"void printTestHeader( float foo, float faa, float expected, float output, char title[] ){\n	printf(\"\\n=== TEST %s ===\\n\", title );\n	printf(\"a value: %f\\n\", foo);\n	printf(\"b value: %f\\n\", faa);\n	printf(\"expected value: %f\\n\", expected);\n	printf(\"obtained value: %f\\n\", output);\n}",
+			"char[] title",
+			"str",
+			");\n",
+			"foo",
+			"printSuccessOutput",
+			"'\n",
+			"	strcpy(stub, \"X0XXX\");\n	printf(\"Salida: %f\\n\", areaTrianguloRectangulo(1,5) );\n\n",
+			"STUBTHREE",
+			"0",
+			"makemigrations",
+			"django.contrib.auth.middleware",
+			"hg remove ",
+			"? Favoroute/",
+			"! Favoroute",
+			"rest",
+			"secuen",
+			"hill",
+			"epica",
+			"historias de usuario",
+			">",
+			"historias de usuario",
+			"8",
+			"Actividad",
+			" ",
+			"showTableSittedGuestInfo",
+			"changeTableStatus",
+			"changeChairStatus",
+			"consol",
+			"src",
+			"consol",
+			"_sittedGuestToWaiting",
+			"getGuestIndex",
+			"chairBelongsToTable",
+			"changeTableStatus",
+			"setGuestStatus",
+			"getGuestIndex",
+			"changeTableStatus",
+			"showFloatingMessage",
+			"getChairInfo",
+			"showChairInfo",
+			"h4",
+			"span",
+			"showTableSittedGuestInfo",
+			"showFloatingMessage",
+			"conso",
+			"showFloatingMessage",
+			"showChairInfo",
+			"info",
+			"setInfoDiv",
+			"showTableSittedGuestInfo",
+			"InfoDiv",
+			"infoDiv",
+			"InfoDiv",
+			"infoDiv",
+			"InfoDiv",
+			"infoDiv",
+			"InfoDiv",
+			"infoDiv"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "sql.txt",
+					"settings":
+					{
+						"buffer_size": 797,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								517,
+								517
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
+					"settings":
+					{
+						"buffer_size": 960,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								241,
+								241
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/README.txt",
+					"settings":
+					{
+						"buffer_size": 851,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+					"settings":
+					{
+						"buffer_size": 221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								146,
+								146
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "requisitos.txt",
+					"settings":
+					{
+						"buffer_size": 3463,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								387,
+								387
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 15.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "APIRest backbone.txt",
+					"settings":
+					{
+						"buffer_size": 1513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								732,
+								732
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "ApiREST backbone detailed.txt",
+					"settings":
+					{
+						"buffer_size": 786,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								563,
+								563
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"url",
+				"mysite/mysite/urls.py"
+			],
+			[
+				"mode",
+				"mysite/polls/models.py"
+			],
+			[
+				"se",
+				"mysite/mysite/settings.py"
+			],
+			[
+				"see",
+				"mysite/manage.py"
+			],
+			[
+				"sett",
+				"tutorial/tutorial/settings.py"
+			],
+			[
+				"setti",
+				"tutorial/tutorial/settings.py"
+			],
+			[
+				"urls",
+				"tutorial/tutorial/urls.py"
+			],
+			[
+				"vies",
+				"tutorial/tutorial/quickstart/views.py"
+			],
+			[
+				"seria",
+				"tutorial/tutorial/quickstart/serializers.py"
+			],
+			[
+				"deber",
+				"Deberes.txt"
+			],
+			[
+				"tema4p",
+				"2o de Software/Q2 Seguridad/Practicas/Practica 2/tema4p2.txt"
+			],
+			[
+				"httpda",
+				"3o de Software/Q2 Seguridad II/Practicas/Practica 1/httpdA.conf"
+			],
+			[
+				"auto",
+				"code/apps/app/src/js/directives/fvAutocomplete.js"
+			],
+			[
+				"favoap",
+				"code/apps/app/src/js/services/favoapi.js"
+			],
+			[
+				"edit",
+				"code/apps/app/views/favoroute-edit.html"
+			],
+			[
+				"controller",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"edital",
+				"code/apps/app/src/js/directives/contenteditable.js"
+			],
+			[
+				"edit.",
+				"code/apps/app/views/favoroute-edit.html"
+			],
+			[
+				"routeedi",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"routec",
+				"code/apps/app/src/js/controllers/RouteCreateController.js"
+			],
+			[
+				"favoma",
+				"code/apps/app/src/js/services/favomap.js"
+			],
+			[
+				"route",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"routeed",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"favoroute-ed",
+				"code/apps/app/views/favoroute-edit.html"
+			],
+			[
+				"main.",
+				"code/apps/app/src/less/main.less"
+			],
+			[
+				"requ",
+				"app/lib/require.js"
+			],
+			[
+				"ind",
+				"app/index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 200.0,
+	"status_bar_visible": true
+}
