@@ -2,7 +2,7 @@
 
 =SignUp=
 	[POST] signUp/
-		200 - Redirects to confirm email view
+		200 - Returns userId.
 		40X
 			ErrorMessage(2)
 			ErrorMessage(6)
@@ -18,8 +18,8 @@
 	[POST] login/
 		200 - Returns userId and redirects
 		40X
-			ErrorMessage(2)
-			ErrorMessage(3)
+			ErrorMessage(2
+)			ErrorMessage(3)
 
 =Recover password=
 	[POST] recoverPass/

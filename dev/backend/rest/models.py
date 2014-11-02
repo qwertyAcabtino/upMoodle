@@ -1,9 +1,31 @@
+from django.core.validators import validate_email
 from django.db import models
 from rest.exceptions import ExtensionError
 from rest.finals import *
 
-
 # Carrer, course, subject
+from rest.validators import validate_password, validate_nick
+
+
+class ErrorMessage(models.Model):
+    id = models.AutoField(primary_key=True)
+    error = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.error
+
+    # def __init__(self, error=None):
+    #     self.error = error
+
+
+class Message(models.Model):
+    id = models.AutoField(primary_key=True)
+    message = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.message
+
+
 class LevelType(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -35,12 +57,12 @@ class Rol(models.Model):
 
 class User(models.Model):
     id = models.AutoField(primary_key=True)
-    rol = models.ForeignKey('Rol')
-    email = models.EmailField(max_length=100)
-    nick = models.CharField(max_length=20)
-    name = models.CharField(max_length=100)
-    password = models.CharField(max_length=100, default='password')
-    profilePic = models.ImageField(upload_to='pics/users', blank=True)
+    rol = models.ForeignKey('Rol', default=STUDENT)
+    email = models.EmailField(max_length=100, validators=[validate_email], unique=True)
+    nick = models.CharField(max_length=20, validators=[validate_nick], unique=True)
+    name = models.CharField(max_length=100, blank=True)
+    password = models.CharField(max_length=100, default='password', validators=[validate_password])
+    profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
     banned = models.BooleanField(default=False)
@@ -48,6 +70,11 @@ class User(models.Model):
 
     def __unicode__(self):
         return self.nick
+
+    def save(self, *args, **kwargs):
+        self.clean_fields()
+        self.validate_unique()
+        super(User, self).save(*args, **kwargs)
 
 
 class NoteBoard(models.Model):
@@ -96,6 +123,7 @@ class CalendarEventDate(models.Model):
     index = models.IntegerField(default=1)
     hourStart = models.TimeField(null=True)
     hourEnd = models.TimeField(null=True)
+    firstDate = models.DateField(auto_created=False)
     allDay = models.BooleanField(default=False)
     frequency = models.ForeignKey('CalendarFrequency', default=DEFAULT_FREQUENCY)
 
@@ -169,22 +197,3 @@ class FileComments(models.Model):
 
     def __unicode__(self):
         return '%s @ %s' % (self.text[0:10], self.idFile)
-
-
-class ErrorMessage(models.Model):
-    id = models.AutoField(primary_key=True)
-    error = models.CharField(max_length=200)
-
-    def __unicode__(self):
-        return self.error
-
-    # def __init__(self, error=None):
-    #     self.error = error
-
-
-class Message(models.Model):
-    id = models.AutoField(primary_key=True)
-    message = models.CharField(max_length=200)
-
-    def __unicode__(self):
-        return self.message

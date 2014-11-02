@@ -1,19 +1,17 @@
-from cherrypy.lib.static import serve_file
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils.importlib import import_module
-import mimetypes
-from django.utils.encoding import smart_str
-import os
-from twisted.internet.protocol import FileWrapper
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.generics import get_object_or_404
-from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+
 from backend import settings
+
 from rest.JSONResponse import JSONResponse
-from rest.requestException import RequestException
+from rest.exceptions import INCORRECT_DATA, REQUEST_CANNOT
+from rest.requestExceptionByMessage import RequestExceptionByMessage, RequestExceptionByCode
 from rest.serializers import *
+from rest.unserializers import unserialize_user
+
 
 @csrf_exempt
 def noteboardList(request):
@@ -185,7 +183,20 @@ def login(request):
                 serializer = ErrorMessageSerializer(error, many=False)
                 return JSONResponse(serializer.data, status=400)
         else:
-            raise RequestException(INCORRECT_DATA)
-    except RequestException as r:
+            raise RequestExceptionByMessage(INCORRECT_DATA)
+    except RequestExceptionByMessage as r:
         return r.jsonResponse
 
+
+@csrf_exempt
+def signup(request):
+    try:
+        if request.method == 'POST':
+            user = unserialize_user(request.POST)
+            user.save()
+            return JSONResponse({"userId": user.id}, status=200)
+        else:
+            return RequestExceptionByCode(REQUEST_CANNOT).jsonResponse
+    except ValidationError as v:
+        r = RequestExceptionByMessage(v)
+        return r.jsonResponse
