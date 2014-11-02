@@ -22,13 +22,13 @@ class RequestExceptionByMessage(RequestException):
         try:
             code = int(validationError.messages[0])
             error = ErrorMessage.objects.get(pk=code)
+            super(RequestExceptionByMessage, self).__init__(error)
         except ValueError as v:
             error = ErrorMessage.objects.get(pk=INCORRECT_DATA)
             if len(validationError.message):
                 error.error += ". "+validationError.message
             else:
                 error.error += ". "+' '.join(validationError.messages)
-        finally:
             super(RequestExceptionByMessage, self).__init__(error)
 
 
@@ -36,4 +36,4 @@ class RequestExceptionByCode(RequestException):
 
     def __init__(self, code):
         error = ErrorMessage.objects.get(pk=code)
-        super(RequestExceptionByMessage, self).__init__(error)
+        super(RequestExceptionByCode, self).__init__(error)
