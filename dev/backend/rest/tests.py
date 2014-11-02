@@ -87,7 +87,7 @@ class SignUpTestCase(unittest.TestCase):
         self.assertEqual(len(User.objects.all()), 1)
         self.assertEqual(ErrorMessage.objects.get(pk=PASSWORD_LENGTH).error, decoded['error'])
 
-    def test_password_length_2(self):
+    def test_password_length_2(self): 
         c = Client()
         response = c.post('/signup/', {'email': 'viperey@test2.com', 'password': 'qwerwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwqwer', 'nick': 'vipvip'})
         self.assertEqual(response.status_code, 400)
