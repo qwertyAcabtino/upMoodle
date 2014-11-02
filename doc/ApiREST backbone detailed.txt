@@ -1,0 +1,232 @@
+==LOGIN==
+
+=SignUp=
+	[POST] signUp/
+		200 - Redirects to confirm email view
+		40X
+			ErrorMessage(2)
+			ErrorMessage(6)
+
+=Confirm email=
+	[POST] confirmEmail/
+		200 - Returns userId and redirects
+		40X
+			ErrorMessage(4)
+			ErrorMessage(5)
+
+=SignIn=
+	[POST] login/
+		200 - Returns userId and redirects
+		40X
+			ErrorMessage(2)
+			ErrorMessage(3)
+
+=Recover password=
+	[POST] recoverPass/
+		200 - Returns true (nothing else if necessary)
+		40X
+			ErrorMessage(2)
+			
+
+==USER==
+
+=GetUser=
+	[GET] user/{id}
+		200 - Returns user's model.
+		400 - ErrorMessage(1) + redirects to login
+
+=Get user by level=
+	[GET] users/level/{id}
+		200 - Returns user's model.
+		400 - ErrorMessage(1) + redirects to login
+
+=DeleteUser=
+	[DELETE] user/remove/
+		200 - Redirects to login.
+		400 - ErrorMessage(1)
+
+=ModifyUser=
+	[PUT] user/update/
+		200 - Returns user's model
+		400 - ErrorMessage(1)
+
+
+==NOTE==
+
+=Post note=
+	[PUT] note/
+		200 - Returns note's id.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+
+=Edit note=
+	[POST] note/{id}
+		200 - Returns new note.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Remove note=
+	[DELETE] note/{id}
+		200 - Returns true and redirects
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Authorize note=
+	[POST] note/authorize/{id}
+		200 - Returns true
+		40X			
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Get note=
+	[GET] note/{id}
+		200 - Returns note.
+		40X
+			ErrorMessage(7)
+			ErrorMessage(1)
+
+=Get notes by level=
+	[GET] notes/level/{id}
+		200 - Returns notes.
+		40X
+			ErrorMessage(7)
+			ErrorMessage(1)
+
+
+==CALENDAR==
+
+=Post event=
+	[PUT] calendar/
+		200 - Returns event's id
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+
+=Edit event=
+	[POST] calendar/{id}
+		200 - Returns new event.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Remove event=
+	[DELETE] calendar/{id}
+		200 - Returns true and redirects
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Authorize event=
+	[POST] event/authorize/{id}
+		200 - Returns true
+		40X			
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Get event=
+	[GET] calendar/{id}
+		200 - Returns event.
+		40X
+			ErrorMessage(7)
+			ErrorMessage(1)
+
+=Get event by range=
+	[GET] calendar/?frequency={frequency}&start={yearStart}-{monthStart}-{dayStart}&end={yearEnd}-{monthEnd}-{dayEnd}&level={level}
+		-level is optional.
+		200 - Returns events.
+		40X
+			ErrorMessage(7)
+			ErrorMessage(1)
+			ErrorMessage(2)
+
+==FILES==
+
+=Post file=
+	[PUT] file/level/{id}
+		200 - Returns file's info.
+		40X
+			ErrorMessage(7)
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(8)
+
+=Edit file info=
+	[POST] file/{id}
+		200 - Returns new file's info.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Edit file's data=
+	[POST] file/b/{id}
+		200 - Returns new file's info.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+			ErrorMessage(8)
+
+=Remove file=
+	[DELETE] file/{id}
+		200 - Returns true and redirects
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Get file data=
+	[GET] file/b/{id}
+		200 - Returns file
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+
+=Get file info=
+	[GET] file/{id}
+		200 - Returns file's info.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+
+=Get files' info by level=
+	[GET] files/level/{level}
+		200 - Returns files' infoss.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+
+=Post comment=
+	[POST] file/{id}/comment
+		200 - Returns true.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Post blackflag=
+	[POST] file/{id}/blackflag
+		200 - Returns true.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+ErrorMessages
+1. Request cannot be performed
+2. Incorrect data
+3. Cookies disabled
+4. Already confirmed
+5. Invalid token
+6. User already in use
+7. Unauthorized
+8. Incorrect file data.
