@@ -2,14 +2,49 @@ from rest.JSONResponse import JSONResponse
 from rest.models import ErrorMessage
 from rest.serializers import ErrorMessageSerializer
 
+#ERRORS
+REQUEST_CANNOT = 1
+INCORRECT_DATA = 2
+DISABLED_COOKIES = 3
+ALREADY_CONFIRMED = 4
+INVALID_TOKEN = 5
+USER_IN_USE = 6
+UNAUTHORIZED = 7
+INCORRECT_FILE_DATA = 8
+PASSWORD_LENGTH = 9
+NICK_LENGTH = 10
+
 
 class RequestException(Exception):
     jsonResponse = None
-    def __init__(self, code):
-        error = ErrorMessage()
-        error.error = ErrorMessage.objects.get(pk=code)
-        serializer = ErrorMessageSerializer(error, many=False)
+
+    def __init__(self, errorMessage):
+        serializer = ErrorMessageSerializer(errorMessage, many=False)
         self.jsonResponse = JSONResponse(serializer.data, status=400)
 
     def __str__(self):
         return repr(self)
+
+
+class RequestExceptionByMessage(RequestException):
+
+    def __init__(self, validationError):
+
+        try:
+            code = int(validationError.messages[0])
+            error = ErrorMessage.objects.get(pk=code)
+            super(RequestExceptionByMessage, self).__init__(error)
+        except ValueError as v:
+            error = ErrorMessage.objects.get(pk=INCORRECT_DATA)
+            if len(validationError.message):
+                error.error += ". "+validationError.message
+            else:
+                error.error += ". "+' '.join(validationError.messages)
+            super(RequestExceptionByMessage, self).__init__(error)
+
+
+class RequestExceptionByCode(RequestException):
+
+    def __init__(self, code):
+        error = ErrorMessage.objects.get(pk=code)
+        super(RequestExceptionByCode, self).__init__(error)

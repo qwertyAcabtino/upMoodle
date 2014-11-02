@@ -7,8 +7,8 @@ from rest_framework.parsers import JSONParser
 from backend import settings
 
 from rest.JSONResponse import JSONResponse
-from rest.exceptions import INCORRECT_DATA, REQUEST_CANNOT
-from rest.requestExceptionByMessage import RequestExceptionByMessage, RequestExceptionByCode
+from rest.requestException import INCORRECT_DATA, REQUEST_CANNOT
+from rest.requestException import RequestExceptionByMessage, RequestExceptionByCode
 from rest.serializers import *
 from rest.unserializers import unserialize_user
 
@@ -187,6 +187,7 @@ def login(request):
     except RequestExceptionByMessage as r:
         return r.jsonResponse
 
+#Final APIS.
 
 @csrf_exempt
 def signup(request):
