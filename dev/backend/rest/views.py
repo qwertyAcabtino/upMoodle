@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.utils.datastructures import MultiValueDictKeyError
 
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
@@ -7,12 +8,13 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
 from backend import settings
-from rest.ERROR_MESSAGE_ID import INCORRECT_DATA, REQUEST_CANNOT
+from rest.ERROR_MESSAGE_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED
 
 from rest.JSONResponse import JSONResponse
 from rest.requestException import RequestExceptionByMessage, RequestExceptionByCode
 from rest.serializers import *
 from rest.unserializers import unserialize_user
+from rest.utils import get_email_confirmation_message
 
 
 @csrf_exempt
@@ -189,13 +191,20 @@ def login(request):
     except RequestExceptionByMessage as r:
         return r.jsonResponse
 
-#Final APIS.
+
+# Final APIS.
 
 @csrf_exempt
 def signup(request):
     try:
-        if request.method == 'POST':
-            user = unserialize_user(request.POST)
+        if not request.session.test_cookie_worked():
+            return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
+        elif request.method == 'POST':
+            user = unserialize_user(request.POST, request.COOKIES['cruasanPlancha'])
+            send_mail('Email confirmation',
+                      get_email_confirmation_message(request),
+                      'info@upmoodle.com', [user.email],
+                      fail_silently=False)
             user.save()
             return JSONResponse({"userId": user.id}, status=200)
         else:
@@ -205,3 +214,19 @@ def signup(request):
         return r.jsonResponse
     except MultiValueDictKeyError as m:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+def confirmEmail(request, cookie):
+    try:
+        if request.method == 'GET':
+            user = User.objects.get(sessionToken=cookie)
+            if not user.banned:
+                return RequestExceptionByCode(ALREADY_CONFIRMED).jsonResponse
+            else:
+                user.banned = False
+                user.save()
+                return JSONResponse({"userId": user.id}, status=200)
+        else:
+            return RequestExceptionByCode(REQUEST_CANNOT).jsonResponse
+    except ObjectDoesNotExist as o:
+        return RequestExceptionByCode(INVALID_TOKEN).jsonResponse

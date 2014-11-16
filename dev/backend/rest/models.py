@@ -66,8 +66,8 @@ class User(models.Model):
     profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
-    banned = models.BooleanField(default=False)
-    sessionToken = models.CharField(max_length=200, blank=True)
+    banned = models.BooleanField(default=True)
+    sessionToken = models.CharField(max_length=256, blank=True)
 
     def __unicode__(self):
         return self.nick

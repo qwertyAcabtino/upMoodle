@@ -22,5 +22,6 @@ urlpatterns = patterns('rest.views',
 
     #APIs
     url(r'^signup/$', 'signup'),
+    url(r'^confirm_email/(?P<cookie>.*)/$', 'confirmEmail'),
 
 )
