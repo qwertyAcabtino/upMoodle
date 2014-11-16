@@ -1,7 +1,7 @@
 from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.JSONResponse import JSONResponse
 from rest.models import ErrorMessage
-from rest.serializers import ErrorMessageSerializer
+from rest.orm.serializers import ErrorMessageSerializer
 
 class RequestException(Exception):
     jsonResponse = None

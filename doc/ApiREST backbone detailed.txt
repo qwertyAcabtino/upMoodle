@@ -21,17 +21,18 @@ DONE =SignIn=
 			ErrorMessage(2
 			ErrorMessage(3)
 
-=Logout=
+DONE =Logout=
 	[POST] logout/
 		200 - Returns true
 		Doesn't provide any error message, this way information is not revealed
 
-=Recover password=
+DONE =Recover password=
 	[POST] recoverPass/
-		200 - Returns true (nothing else if necessary)
+		200 - Returns Message(RECOVER_PASS_EMAIL)
 		40X
-			ErrorMessage(2)
-			
+			ErrorMessage(INCORRECT_DATA)
+			ErrorMessage(UNAUTHORIZED)
+			ErrorMessage(UNCONFIRMED_EMAIL)
 
 ==USER==
 

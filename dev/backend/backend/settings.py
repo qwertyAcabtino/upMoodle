@@ -72,6 +72,7 @@ DATABASES = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_NAME = 'cruasanPlancha'
+SESSION_COOKIE_NAME_BIS = 'session_cookie'
 SESSION_SAVE_EVERY_REQUEST = True
 
 # Internationalization

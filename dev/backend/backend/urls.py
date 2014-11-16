@@ -14,7 +14,6 @@ urlpatterns = patterns('rest.views',
     url(r'^roles/$', 'rolesList'),
     url(r'^calendar/$', 'calendarList'),
     url(r'^files/$', 'filesList'),
-    url(r'^login/$', 'login'),
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
     url(r'^file/(?P<pk>[0-9]+)/$', 'file'),
     url(r'^files/subject/(?P<pk>[0-9]+)/$', 'fileListSubject'),
@@ -23,5 +22,7 @@ urlpatterns = patterns('rest.views',
     #APIs
     url(r'^signup/$', 'signup'),
     url(r'^confirm_email/(?P<cookie>.*)/$', 'confirmEmail'),
-
+    url(r'^login/$', 'login'),
+    url(r'^logout/$', 'logout'),
+    url(r'^recover_password/$', 'recoverPassword'),
 )

@@ -1,22 +1,21 @@
 from django.core.mail import send_mail
+
 from django.utils.datastructures import MultiValueDictKeyError
-
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
 from backend import settings
-from backend.settings import SESSION_COOKIE_NAME
-from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
-    SUCCESS_LOGIN, UNCONFIRMED_EMAIL
 
+from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
+from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
+    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED
 from rest.JSONResponse import JSONResponse
-from rest.requestException import RequestExceptionByMessage, RequestExceptionByCode, RequestException
-from rest.serializers import *
-from rest.unserializers import unserialize_user
-from rest.utils import get_email_confirmation_message
+from rest.controllers.Exceptions.requestException import RequestExceptionByMessage, RequestExceptionByCode, RequestException
+from rest.orm.serializers import *
+from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, get_random_password
+from rest.orm.unserializers import unserialize_user
 
 
 @csrf_exempt
@@ -165,7 +164,7 @@ def fileListSubject(request, pk):
 @csrf_exempt
 def signup(request):
     try:
-        if not request.session.test_cookie_worked():
+        if not cookies_are_ok(request):
             return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
             user = unserialize_user(request.POST, request.COOKIES[SESSION_COOKIE_NAME])
@@ -180,7 +179,7 @@ def signup(request):
     except ValidationError as v:
         r = RequestExceptionByMessage(v)
         return r.jsonResponse
-    except MultiValueDictKeyError as m:
+    except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
@@ -196,17 +195,17 @@ def confirmEmail(request, cookie):
                 return JSONResponse({"userId": user.id}, status=200)
         else:
             return RequestExceptionByCode(REQUEST_CANNOT).jsonResponse
-    except ObjectDoesNotExist as o:
+    except ObjectDoesNotExist:
         return RequestExceptionByCode(INVALID_TOKEN).jsonResponse
 
 
 @csrf_exempt
 def login(request):
     try:
-        if not request.session.test_cookie_worked() or not request.COOKIES[SESSION_COOKIE_NAME] or len(request.COOKIES[SESSION_COOKIE_NAME]) == 0:
+        if not cookies_are_ok(request):
             return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
-            session_key = request.session.session_key
+            session_key = request.COOKIES[SESSION_COOKIE_NAME]
             emailIn = request.POST['email']
             passwordIn = request.POST['password']
             user = User.objects.get(email=emailIn, password=passwordIn)
@@ -218,14 +217,62 @@ def login(request):
                 message = Message.objects.get(pk=SUCCESS_LOGIN)
                 serializer = MessageSerializer(message, many=False)
                 jsonResponse = JSONResponse(serializer.data, status=200)
-
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
+                jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME_BIS, session_key)
                 return jsonResponse
+
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)
     except ObjectDoesNotExist:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except MultiValueDictKeyError as m:
+    except MultiValueDictKeyError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except RequestException as r:
+        return r.jsonResponse
+
+
+@csrf_exempt
+def logout(request):
+    try:
+        if not cookies_are_ok(request):
+            return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
+        elif request.method == 'POST':
+            session_key = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+            user = User.objects.get(sessionToken=session_key)
+            user.sessionToken = ''
+            user.save()
+            jsonResponse = JSONResponse({"null"}, status=200)
+            jsonResponse.delete_cookie(SESSION_COOKIE_NAME)
+            jsonResponse.delete_cookie(SESSION_COOKIE_NAME_BIS)
+            return jsonResponse
+        else:
+            raise RequestExceptionByCode(REQUEST_CANNOT)
+    except Exception:
+        return JSONResponse({"null"}, status=200)
+
+
+@csrf_exempt
+def recoverPassword(request):
+    try:
+        if request.method == 'POST':
+            emailRequest = request.POST['email']
+            user = User.objects.get(email=emailRequest)
+            if not user.confirmedEmail:
+                raise RequestExceptionByCode(UNCONFIRMED_EMAIL)
+            elif user.banned:
+                raise RequestExceptionByCode(UNAUTHORIZED)
+            else:
+                password = get_random_password()
+                send_recover_password_email(user.email, password)
+                user.password = password
+                user.save()
+                message = Message.objects.get(pk=RECOVER_PASS_EMAIL)
+                serializer = MessageSerializer(message, many=False)
+                jsonResponse = JSONResponse(serializer.data, status=200)
+                return jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except RequestException as r:
         return r.jsonResponse

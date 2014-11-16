@@ -1,8 +1,8 @@
-from django.core.exceptions import ValidationError
 from django.db import models
-from rest.MESSAGES_ID import PASSWORD_LENGTH
-from rest.exceptions import ExtensionError
+
+from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
+
 
 # Carrer, course, subject
 from rest.validators import validate_password, validate_nick, validate_email
@@ -65,7 +65,7 @@ class User(models.Model):
     joined = models.DateField(auto_now_add=True)
     banned = models.BooleanField(default=False)
     confirmedEmail = models.BooleanField(default=False)
-    sessionToken = models.CharField(max_length=256, blank=True)
+    sessionToken = models.CharField(max_length=256, blank=True, unique=True)
 
     def __unicode__(self):
         return self.nick

@@ -3,9 +3,9 @@ import json
 from django.test import Client, RequestFactory
 from django.utils import unittest
 from backend import settings
-from backend.settings import SESSION_COOKIE_NAME
+from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, INVALID_TOKEN, UNCONFIRMED_EMAIL, \
-    INCORRECT_DATA, DISABLED_COOKIES
+    INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED
 from rest.models import Rol, LevelType, ErrorMessage, User, Message
 from rest.views import login
 
@@ -37,9 +37,10 @@ class A2_MessageTestCase(unittest.TestCase):
     def setUp(self):
         Message.objects.create(message="Successfully signed in")
         Message.objects.create(message="Email is now confirmed")
+        Message.objects.create(message="A new password has been sent to your email adress. Check your inbox")
 
     def test_messages_exists_in_db(self):
-        self.assertEqual(len(Message.objects.all()), 2)
+        self.assertEqual(len(Message.objects.all()), 3)
 
 
 class B_RolTestCase(unittest.TestCase):
@@ -290,4 +291,78 @@ class F_LoginTestCase(unittest.TestCase):
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
 
+
+class G_LogoutTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        engine = import_module(settings.SESSION_ENGINE)
+        session = self.client.session
+        session = engine.SessionStore()
+        session[SESSION_COOKIE_NAME_BIS] = '.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70'
+        session[SESSION_COOKIE_NAME] = '.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70'
+        session.save()
+        cookies = self.client.cookies
+        cookies[SESSION_COOKIE_NAME_BIS] = '.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70'
+        cookies[SESSION_COOKIE_NAME] = '.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70'
+
+    def test_1_logout_basic(self):
+        response = self.client.post('/logout/')
+        self.assertEqual(response.status_code, 200)
+
+
+class H_RecoverPasswordTestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.client = Client()
+
+    def test_1_basic_recover(self):
+        email = 'viperey@test.com'
+        user = User.objects.get(email=email)
+        passOld = user.password
+        response = self.client.post('/recover_password/', {'email': email})
+        self.assertEqual(response.status_code, 200)
+        userNew = User.objects.get(email=email)
+        passNew = userNew.password
+        self.assertNotEqual(passNew, passOld)
+        decoded = json.loads(response.content)
+        self.assertEqual(Message.objects.get(pk=RECOVER_PASS_EMAIL).message, decoded['message'])
+
+    def test_2_unexisting_email(self):
+        email = 'notExisting@test.com'
+        response = self.client.post('/recover_password/', {'email': email})
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    def test_3_empty_email(self):
+        email = ''
+        response = self.client.post('/recover_password/', {'email': email})
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    def test_4_banned_user(self):
+        email = 'viperey@test.com'
+        user = User.objects.get(email=email)
+        user.banned = True
+        user.save()
+        response = self.client.post('/recover_password/', {'email': email})
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=UNAUTHORIZED).error, decoded['error'])
+        user.banned = False
+        user.save()
+
+    def test_5_unconfirmed_user(self):
+        email = 'viperey@test.com'
+        user = User.objects.get(email=email)
+        user.confirmedEmail = False
+        user.save()
+        response = self.client.post('/recover_password/', {'email': email})
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=UNCONFIRMED_EMAIL).error, decoded['error'])
+        user.confirmedEmail = True
+        user.save()
 
