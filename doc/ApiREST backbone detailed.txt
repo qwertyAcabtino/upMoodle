@@ -7,19 +7,24 @@ DONE =SignUp=
 			ErrorMessage(2)
 			ErrorMessage(6)
 
-=Confirm email=
+DONE =Confirm email=
 	[POST] confirmEmail/
 		200 - Returns userId and redirects
 		40X
 			ErrorMessage(4)
 			ErrorMessage(5)
 
-=SignIn=
+DONE =SignIn=
 	[POST] login/
 		200 - Returns userId and redirects
 		40X
 			ErrorMessage(2
-)			ErrorMessage(3)
+			ErrorMessage(3)
+
+=Logout=
+	[POST] logout/
+		200 - Returns true
+		Doesn't provide any error message, this way information is not revealed
 
 =Recover password=
 	[POST] recoverPass/

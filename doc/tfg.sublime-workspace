@@ -531,42 +531,10 @@
 			}
 		},
 		{
-			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
+			"contents": "Hola Kata.\n\nVoy a hacer esto rápido y sencillo.\nFinalmente he asumido que no soy una buena persona, de hecho me he dado cuenta de que soy una persona bastante deplorable.\nNo voy a hacerte ningún bien si permanezco cerca tuyo, por tanto, como no deseo hacerte ningún mal, estas son las últimas líneas que te escribiré hasta que consiga solucionar mis problemas y deje de ser un foco de riesgo para otras personas.\n\nCuídate.",
 			"settings":
 			{
-				"buffer_size": 476,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema5.txt",
-			"settings":
-			{
-				"buffer_size": 826,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema6.txt",
-			"settings":
-			{
-				"buffer_size": 576,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema7.txt",
-			"settings":
-			{
-				"buffer_size": 174,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Hola Kata.\n\nVoy a hacer esto rápido y sencillo.\nFinalmente he asumido que no soy una buena persona, de hecho me he dado cuenta de que soy una persona bastante deplorable.\nNo voy a hacerte ningún bien si permanezco cerca tuyo, por tanto, como no deseo hacerte ningún mal, estas son las últimas líneas que te escribiré hasta que consiga solucionar mis problemas y deje de ser un foco de riesgo para otras.\n\nCuídate.",
-			"settings":
-			{
-				"buffer_size": 413,
+				"buffer_size": 422,
 				"line_ending": "Unix",
 				"name": "Hola Kata."
 			}
@@ -593,6 +561,15 @@
 			{
 				"buffer_size": 3616,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": ".eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt38y8F9vcPuK2d2pbdD2yMwNLSigTNGjlpUVY0KhFohBaUljB2tUo6wI7sUF9-Fpzotk9a8uEc_25BOczFZwU767cKve1jJaAfxV-0M6vFelxOdy_gzRb-f4A8_04kw:1Xpov9:VIjXJBEDXzKMLOFQLOotGn1xPDw",
+			"settings":
+			{
+				"buffer_size": 210,
+				"line_ending": "Unix",
+				"name": ".eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt3"
 			}
 		}
 	],
@@ -640,10 +617,13 @@
 	},
 	"file_history":
 	[
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema7.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema6.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema5.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema4.txt",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema3.txt",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema2.txt",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
 		"/home/viperey/Dropbox/BackUp/Linux/app/sdedit-4.01-bin/sdedit.sh",
 		"/home/viperey/Dropbox/BackUp/Linux/app/argouml-0.32.1/argouml2.sh",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/APIRest backbone.txt",
@@ -764,10 +744,7 @@
 		"/home/viperey/python/tutorial/tutorial/quickstart/models.py",
 		"/home/viperey/Games/Bioshock/#README#/READ_ME.txt",
 		"/home/viperey/Games/Bioshock/ReadMe.txt",
-		"/home/viperey/python/tutorial/quickstart/views.py",
-		"/home/viperey/python/tutorial/urls.py",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/notes.txt",
-		"/home/viperey/python/tutorial/quickstart/serializers.py"
+		"/home/viperey/python/tutorial/quickstart/views.py"
 	],
 	"find":
 	{
@@ -792,6 +769,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"c = Client()\n        response = c",
 			"hash(",
 			"hash",
 			"admin",
@@ -918,8 +896,7 @@
 			"info",
 			"setInfoDiv",
 			"showTableSittedGuestInfo",
-			"InfoDiv",
-			"infoDiv"
+			"InfoDiv"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -937,7 +914,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -969,121 +946,17 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
 					"settings":
 					{
-						"buffer_size": 476,
+						"buffer_size": 422,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								476,
-								476
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema5.txt",
-					"settings":
-					{
-						"buffer_size": 826,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								757,
-								757
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema6.txt",
-					"settings":
-					{
-						"buffer_size": 576,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								576,
-								576
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema7.txt",
-					"settings":
-					{
-						"buffer_size": 174,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								174,
-								174
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"settings":
-					{
-						"buffer_size": 413,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								270,
-								270
+								411,
+								411
 							]
 						],
 						"settings":
@@ -1098,7 +971,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 2,
 					"file": "requisitos.txt",
 					"settings":
 					{
@@ -1124,7 +997,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 3,
 					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/memoryAnalisys.txt",
 					"settings":
 					{
@@ -1150,7 +1023,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 4,
 					"file": "ApiREST backbone detailed.txt",
 					"settings":
 					{
@@ -1171,7 +1044,33 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 15.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"settings":
+					{
+						"buffer_size": 210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								210,
+								210
+							]
+						],
+						"settings":
+						{
+							"auto_name": ".eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt3",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -203,7 +203,7 @@ def confirmEmail(request, cookie):
 @csrf_exempt
 def login(request):
     try:
-        if not request.session.test_cookie_worked():
+        if not request.session.test_cookie_worked() or not request.COOKIES[SESSION_COOKIE_NAME] or len(request.COOKIES[SESSION_COOKIE_NAME]) == 0:
             return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
             session_key = request.session.session_key

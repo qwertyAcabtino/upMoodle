@@ -268,4 +268,26 @@ class F_LoginTestCase(unittest.TestCase):
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
 
+    def test_8_login_disabled_cookies_2(self):
+
+        request = RequestFactory().post('/login/', {'email': 'viperey@test.com', 'password': 'qwerqwere'})
+        request.session = self.client.session
+        request.COOKIES[SESSION_COOKIE_NAME] = None
+
+        response = login(request)
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
+
+    def test_8_login_disabled_cookies_3(self):
+
+        request = RequestFactory().post('/login/', {'email': 'viperey@test.com', 'password': 'qwerqwere'})
+        request.session = self.client.session
+        request.COOKIES[SESSION_COOKIE_NAME] = ''
+
+        response = login(request)
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
+
 
