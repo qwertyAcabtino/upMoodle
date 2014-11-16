@@ -1,6 +1,6 @@
 ==LOGIN==
 
-=SignUp=
+DONE =SignUp=
 	[POST] signUp/
 		200 - Returns userId.
 		40X
@@ -220,13 +220,3 @@
 			ErrorMessage(1)
 			ErrorMessage(2)
 			ErrorMessage(7)
-
-ErrorMessages
-1. Request cannot be performed
-2. Incorrect data
-3. Cookies disabled
-4. Already confirmed
-5. Invalid token
-6. User already in use
-7. Unauthorized
-8. Incorrect file data.

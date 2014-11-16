@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"java",
+				"javac"
+			],
+			[
 				"load",
 				"loadModelCallback"
 			],
@@ -510,45 +514,61 @@
 			[
 				"defa",
 				"defaultAutoComplete"
-			],
-			[
-				"own",
-				"ownBox"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"contents": "#rol\n	id (pk) (fk)\n	name\n\n#user\n	id\n	rol\n	email (pk)\n	name\n	profilePic\n	lastTimeActive\n	joined\n	banned (default false)\n	sessionToken\n	sessionDeadline\n\n#level (carrer, course, subject )\n	id\n	name\n	status\n\n#hashBlackList\n	hash\n\n#noteBoard                                                                        \n	id\n	title\n	text\n	level\n\n#calendarSingleEvent\n	id\n	title\n	text\n	created\n	author\n	lastUpdate\n	lastUpdater\n	date\n	level\n\n#calendarRegularEvent\n	id\n	title\n	text\n	created\n	author\n	lastUpdate\n	lastUpdater\n	level\n\n#calendarRegularEventDates\n	id\n	idEvent\n	date\n\n#file\n	id (pk)\n	idSubject\n	hash\n	name\n	idYear\n	fileType\n	uploaded\n	uploader (fk)\n	lastUpdate\n	lastUpdater (fk)\n	visible\n\n#fileComments\n	id\n	idFile\n	idAuthor\n	date\n	text\n\n#fileAbusiveContentList\n	idFile\n	idReporter\n	comment\n\n#year\n	id (pk) (fk)\n	verbose\n\n#tag\n	id (pk) (fk)\n	name\n\n#fileTags\n	idFile\n	idTag\n",
 			"file": "sql.txt",
+			"file_size": 797,
+			"file_write_time": 1414939593000000,
 			"settings":
 			{
-				"buffer_size": 797,
+				"buffer_size": 869,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
+			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
 			"settings":
 			{
-				"buffer_size": 960,
+				"buffer_size": 476,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/README.txt",
+			"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema5.txt",
 			"settings":
 			{
-				"buffer_size": 851,
+				"buffer_size": 826,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+			"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema6.txt",
 			"settings":
 			{
-				"buffer_size": 221,
+				"buffer_size": 576,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema7.txt",
+			"settings":
+			{
+				"buffer_size": 174,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Hola Kata.\n\nVoy a hacer esto rápido y sencillo.\nFinalmente he asumido que no soy una buena persona, de hecho me he dado cuenta de que soy una persona bastante deplorable.\nNo voy a hacerte ningún bien si permanezco cerca tuyo, por tanto, como no deseo hacerte ningún mal, estas son las últimas líneas que te escribiré hasta que consiga solucionar mis problemas y deje de ser un foco de riesgo para otras.\n\nCuídate.",
+			"settings":
+			{
+				"buffer_size": 413,
+				"line_ending": "Unix",
+				"name": "Hola Kata."
 			}
 		},
 		{
@@ -560,24 +580,18 @@
 			}
 		},
 		{
-			"contents": "nDisclaimer.\nIn every API call, a sessionID is sent in the requestHeaders, this sessionId is provided by the server at the sign in proccess.\nThis sessionId identifies the user while making any request. This way we are sure the user is allowed to request a certain information (frontend security).\nIt also reduces the amount of information attached to every api's call.\n\n\nGET\n\nuser/{id}\n\nReturns user's info.\nIncludes rol\n\n\nuser/\n\nReturns signed in user's info.\nSame info than 'user/{id}'\n\n\ncareer/{id}\n\nReturns course's list for requested career.\nThrows 401 + message if closed.\n\n\nsubject/{id}\n\nReturns a list of files (within its basic info)\nThrows 401 + message if closed.\n\n\ncouse/{id}\n\nReturns subject's list for requested course\nThrows 401 + message if closed.\n\n\nfile/{id}\n\nReturns file\nIncludes tags, abusive, year and comments\nThrows 401 + message if removed.\n\n\nfileBlackList/\n\nReturns all file's hashs that have been banned.\n\n\nnote/{level}/{page}\n\nReturns all the notes for a certain page. N (undefined yet) items per page.\n\n\ncalendar/{year}-{month}\n\nReturns all the events (regulars and singles) for a certain month (and user).\n\n\ncalendar/{year}-{month}-{day}\n\nReturns all the events (regulars and singles) for a certain day (and user).\n\n\nPOST\n\nuser/add\n\ncalendar/add\n\nnote/add\n\nfileBlackList/add/\n\n(when a file is updated, the information is proccessed in a separated module)\n\nUPDATE\n\nuser/update\n\ncalendar/update\n\nnote/update\n\nfile/update (info)\n\n(using this apicalls, most of the models can be removed)",
-			"file": "APIRest backbone.txt",
-			"file_size": 1512,
-			"file_write_time": 1413136827000000,
+			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/memoryAnalisys.txt",
 			"settings":
 			{
-				"buffer_size": 1513,
+				"buffer_size": 503,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "=Processes=\n	[Tpye] Call\n\n=SignIn=\n	[POST] signIn/\n		200 - Redirects to confirm email view\n		40X\n			ErrorMessage(2)\n			ErrorMessage(6)\n\n=Confirm email=\n	[PUT] confirmEmail/\n		200 - Returns userId and redirects\n		40X\n			ErrorMessage(4)\n			ErrorMessage(5)\n\n=Login=\n	[POST] login/\n		200 - Returns userId and redirects\n		40X\n			ErrorMessage(2)\n			ErrorMessage(3)\n			\n=GetUser=\n	[GET] user/get/\n		200 - Returns user's model.\n		400 - ErrorMessage(1) + redirects to login\n\n=DeleteUser=\n	[DELETE] user/remove/\n		200 - Redirects to login.\n		400 - ErrorMessage(1)\n\n=ModifyUser=\n	[PUT] user/update/\n		200 - Returns user's model\n		400 - ErrorMessage(1)\n\n\nErrorMessages\n1. Request cannot be performed\n2. Incorrect data\n3. Cookies disabled\n4. Already confirmed\n5. Invalid token\n6. User already in use",
 			"file": "ApiREST backbone detailed.txt",
-			"file_size": 786,
-			"file_write_time": 1414454630000000,
 			"settings":
 			{
-				"buffer_size": 786,
+				"buffer_size": 3616,
 				"line_ending": "Unix"
 			}
 		}
@@ -585,15 +599,15 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 243.0,
+		"height": 159.0,
 		"selected_items":
 		[
 			[
-				"reit",
+				"reint",
 				"Indentation: Reindent Lines"
 			],
 			[
-				"reint",
+				"reit",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -609,7 +623,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -626,8 +640,46 @@
 	},
 	"file_history":
 	[
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/dimens.csv",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema4.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema3.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema2.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
+		"/home/viperey/Dropbox/BackUp/Linux/app/sdedit-4.01-bin/sdedit.sh",
+		"/home/viperey/Dropbox/BackUp/Linux/app/argouml-0.32.1/argouml2.sh",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/APIRest backbone.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 2/integDescProfPro.c",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_includes/aboutme.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_layouts/default.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/index.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_posts/2014-11-09-Hello-world.textile",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_posts/2014-11-09-How-to-make-your-first-post.textile",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_layouts/post.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_includes/post_header.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_site/2014/11/09/Hello-world.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_posts/2014-11-09-Hello world.textile",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/memoryAnalisys.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_includes/navigation.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_site/index.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_configure.yml",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_post/2014-11-09-Hello world.textile",
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/Gemfile",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 2/integdescprofnopro.c",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 1/unitarias.c",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 2/run",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 1/run",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 2/integDescProf.txt",
+		"/home/viperey/Dropbox/BackUp/Linux/doc/Cambiar MAC.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/colors.csv",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/src/ColorsParser.java",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values/colors.xml",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/methaphores/colors.csv",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/sprints.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/db.sqlite3",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/manage.py",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/README.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/dimens.csv",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/dossier.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/design.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/.hgignore",
@@ -646,13 +698,11 @@
 		"/home/viperey/Dropbox/BackUp/Cuenta Yoigo.txt",
 		"/home/viperey/Dropbox/BackUp/Linux/Montar remoto.sh",
 		"/home/viperey/Dropbox/BackUp/Linux/ip.sh",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema2.txt",
 		"/home/viperey/Dropbox/BackUp/Linux/app/dev.txt",
 		"/home/viperey/Dropbox/Proyectos/Propio/FloatingActionButton/android-floating-action-button/library/build.gradle",
 		"/opt/android-studio/Install-Linux-tar.txt",
 		"/home/viperey/Downloads/Practica 1.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/design.txt",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 1/unitarias.c",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/postmanAPI.json",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 1/unitarias.txt",
 		"/home/viperey/Downloads/JetBrains PyCharm Professional v3.0 Build 131.190 with Key - [MUMBAI]/Readme.txt",
@@ -717,43 +767,7 @@
 		"/home/viperey/python/tutorial/quickstart/views.py",
 		"/home/viperey/python/tutorial/urls.py",
 		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/notes.txt",
-		"/home/viperey/python/tutorial/quickstart/serializers.py",
-		"/home/viperey/python/tutorial/settings.py",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/mysite/settings.py",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/mysite/urls.py",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/script.sh",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/bin/easy_install",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/python/mysite/manage.py",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/diseñoTecnico.txt",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/sql.txt",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/requisitos.txt",
-		"/home/viperey/Dropbox/BackUp/Linux/nvidiaSettings.sh",
-		"/home/viperey/Downloads/House.Of.Cards.2013.S01.Season.1.720p.BluRay.x264.anoXmous/House.of.Cards.2013.S01E08.720p.BluRay.x264-Green.srt",
-		"/home/viperey/Dropbox/Proyectos/Propio/juegosparabeber/estructure.json",
-		"/home/viperey/Dropbox/Universidad/4º de Software/Q1 VV/Apuntes/Tema1.txt",
-		"/home/viperey/Dropbox/Universidad/4º de Software/Q1 VV/Apuntes/Tema0.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/PspEWC/PSP-Easy-Wireless-Controller/src/PC/linux/README.txt",
-		"/home/viperey/Dropbox/Universidad/4º de Software/TFG/Propuesta.txt",
-		"/home/viperey/Downloads/snes9x-1.53/docs/gtk/lgpl.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 1 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 2 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 4 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 5  - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 6 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 8 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 7 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 GP/Teoria/Agiles/Tema 2 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 GP/Teoria/Agiles/Tema 2 - Inception deck.txt",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Calidad/Teoria/Tema 4 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica5/dev/views/layout.php",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica5/dev/index.php",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica 4 - DHTML/index.html",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 TDW/Practicas/Practica 4 - DHTML/style.css",
-		"/var/www/tdw/index.html",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Calidad/Actividades/Actividad 13/Decalogo.txt",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Calidad/Actividades/Actividad 13/Actividad 13.txt",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q2 Seguridad II/Teoria/Tema 2 - Apuntes.txt",
-		"/home/viperey/Dropbox/Universidad/2o de Software/Q2 Seguridad/Teoria/Tema 3 - Apuntes.txt"
+		"/home/viperey/python/tutorial/quickstart/serializers.py"
 	],
 	"find":
 	{
@@ -778,6 +792,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"hash(",
+			"hash",
+			"admin",
+			",",
+			"=GetUser=\n	[GET] user/get/\n		200 - Returns user's model.\n		400 - ErrorMessage(1) + redirects to login\n",
+			"Start",
 			"@[",
 			"[X] ",
 			"-[X]",
@@ -899,12 +919,6 @@
 			"setInfoDiv",
 			"showTableSittedGuestInfo",
 			"InfoDiv",
-			"infoDiv",
-			"InfoDiv",
-			"infoDiv",
-			"InfoDiv",
-			"infoDiv",
-			"InfoDiv",
 			"infoDiv"
 		],
 		"highlight": true,
@@ -923,7 +937,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -931,15 +945,15 @@
 					"file": "sql.txt",
 					"settings":
 					{
-						"buffer_size": 797,
+						"buffer_size": 869,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								517,
-								517
+								308,
+								308
 							]
 						],
 						"settings":
@@ -955,24 +969,23 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
+					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
 					"settings":
 					{
-						"buffer_size": 960,
+						"buffer_size": 476,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								241,
-								241
+								476,
+								476
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -982,24 +995,23 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/README.txt",
+					"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema5.txt",
 					"settings":
 					{
-						"buffer_size": 851,
+						"buffer_size": 826,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								757,
+								757
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1009,24 +1021,23 @@
 				},
 				{
 					"buffer": 3,
-					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+					"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema6.txt",
 					"settings":
 					{
-						"buffer_size": 221,
+						"buffer_size": 576,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								146,
-								146
+								576,
+								576
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1036,18 +1047,18 @@
 				},
 				{
 					"buffer": 4,
-					"file": "requisitos.txt",
+					"file": "/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema7.txt",
 					"settings":
 					{
-						"buffer_size": 3463,
+						"buffer_size": 174,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								387,
-								387
+								174,
+								174
 							]
 						],
 						"settings":
@@ -1055,29 +1066,29 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 15.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "APIRest backbone.txt",
 					"settings":
 					{
-						"buffer_size": 1513,
+						"buffer_size": 413,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								732,
-								732
+								270,
+								270
 							]
 						],
 						"settings":
 						{
+							"auto_name": "Hola Kata.",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -1088,18 +1099,70 @@
 				},
 				{
 					"buffer": 6,
-					"file": "ApiREST backbone detailed.txt",
+					"file": "requisitos.txt",
 					"settings":
 					{
-						"buffer_size": 786,
+						"buffer_size": 3463,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								563,
-								563
+								1559,
+								1559
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/memoryAnalisys.txt",
+					"settings":
+					{
+						"buffer_size": 503,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								503,
+								503
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "ApiREST backbone detailed.txt",
+					"settings":
+					{
+						"buffer_size": 3616,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								464,
+								464
 							]
 						],
 						"settings":
@@ -1108,7 +1171,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 45.0,
+						"translation.y": 15.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1280,6 +1343,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 200.0,
+	"side_bar_width": 50.0,
 	"status_bar_visible": true
 }
