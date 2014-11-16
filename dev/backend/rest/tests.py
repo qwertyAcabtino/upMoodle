@@ -3,7 +3,7 @@ import json
 from django.test import Client
 from django.utils import unittest
 from backend import settings
-from rest.ERROR_MESSAGE_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED
+from rest.ERROR_MESSAGE_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, INVALID_TOKEN
 from rest.models import Rol, LevelType, ErrorMessage, User
 
 """
@@ -165,8 +165,23 @@ class E_ConfirmEmailTestCase(unittest.TestCase):
         user = User.objects.get(id=1)
         self.assertFalse(user.banned)
 
-    def test_2_basic_already_confirmed(self):
+    def test_2_already_confirmed(self):
         user = User.objects.get(id=1)
         response = self.client.get('/confirm_email/' + user.sessionToken + '/')
+        self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=ALREADY_CONFIRMED).error, decoded['error'])
+
+    def test_3_invalid_token(self):
+        user = User.objects.get(id=1)
+        response = self.client.get('/confirm_email/randomdata/')
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INVALID_TOKEN).error, decoded['error'])
+
+    def test_4_long_token(self):
+        user = User.objects.get(id=1)
+        response = self.client.get('/confirm_email/.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70adfsalsldflkasdjflaksjdflkasdjfkasdasdfhasdfasjdfijaosdifjaosidff/')
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INVALID_TOKEN).error, decoded['error'])
