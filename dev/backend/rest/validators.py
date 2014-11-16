@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
-from rest.ERROR_MESSAGE_ID import PASSWORD_LENGTH, NICK_LENGTH, EMAIL_EMPTY
+from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, EMAIL_EMPTY
 
 
 def validate_password(value, lengthMin=8, lengthMax=100, ):

@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
-from rest.ERROR_MESSAGE_ID import PASSWORD_LENGTH
+from rest.MESSAGES_ID import PASSWORD_LENGTH
 from rest.exceptions import ExtensionError
 from rest.finals import *
 
@@ -14,9 +14,6 @@ class ErrorMessage(models.Model):
 
     def __unicode__(self):
         return self.error
-
-        # def __init__(self, error=None):
-        # self.error = error
 
 
 class Message(models.Model):
@@ -66,7 +63,8 @@ class User(models.Model):
     profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
-    banned = models.BooleanField(default=True)
+    banned = models.BooleanField(default=False)
+    confirmedEmail = models.BooleanField(default=False)
     sessionToken = models.CharField(max_length=256, blank=True)
 
     def __unicode__(self):

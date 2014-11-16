@@ -8,10 +8,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
 from backend import settings
-from rest.ERROR_MESSAGE_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED
+from backend.settings import SESSION_COOKIE_NAME
+from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
+    SUCCESS_LOGIN, UNCONFIRMED_EMAIL
 
 from rest.JSONResponse import JSONResponse
-from rest.requestException import RequestExceptionByMessage, RequestExceptionByCode
+from rest.requestException import RequestExceptionByMessage, RequestExceptionByCode, RequestException
 from rest.serializers import *
 from rest.unserializers import unserialize_user
 from rest.utils import get_email_confirmation_message
@@ -158,40 +160,6 @@ def fileListSubject(request, pk):
         return JSONResponse(serializer.data)
 
 
-@csrf_exempt
-def login(request):
-    # engine = import_module(settings.SESSION_ENGINE)
-    # session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME, None)
-    try:
-        if request.method == 'POST':
-            try:
-                session_key = request.session.session_key
-                emailIn = request.POST['email']
-                passwordIn = request.POST['password']
-                try:
-                    user = User.objects.get(email=emailIn, password=passwordIn)
-                except ObjectDoesNotExist:
-                    raise Exception('Incorrect sign in values')
-                user.sessionToken = session_key
-                user.save()
-                message = Message()
-                message.message = 'Successfully signed in.'
-                serializer = MessageSerializer(message, many=False)
-                jsonResponse = JSONResponse(serializer.data, status=201)
-
-                jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
-                return jsonResponse
-            except Exception as e:
-                error = ErrorMessage()
-                error.error = e.message
-                serializer = ErrorMessageSerializer(error, many=False)
-                return JSONResponse(serializer.data, status=400)
-        else:
-            raise RequestExceptionByMessage(INCORRECT_DATA)
-    except RequestExceptionByMessage as r:
-        return r.jsonResponse
-
-
 # Final APIS.
 
 @csrf_exempt
@@ -200,7 +168,7 @@ def signup(request):
         if not request.session.test_cookie_worked():
             return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
-            user = unserialize_user(request.POST, request.COOKIES['cruasanPlancha'])
+            user = unserialize_user(request.POST, request.COOKIES[SESSION_COOKIE_NAME])
             send_mail('Email confirmation',
                       get_email_confirmation_message(request),
                       'info@upmoodle.com', [user.email],
@@ -220,13 +188,44 @@ def confirmEmail(request, cookie):
     try:
         if request.method == 'GET':
             user = User.objects.get(sessionToken=cookie)
-            if not user.banned:
+            if user.confirmedEmail:
                 return RequestExceptionByCode(ALREADY_CONFIRMED).jsonResponse
             else:
-                user.banned = False
+                user.confirmedEmail = True
                 user.save()
                 return JSONResponse({"userId": user.id}, status=200)
         else:
             return RequestExceptionByCode(REQUEST_CANNOT).jsonResponse
     except ObjectDoesNotExist as o:
         return RequestExceptionByCode(INVALID_TOKEN).jsonResponse
+
+
+@csrf_exempt
+def login(request):
+    try:
+        if not request.session.test_cookie_worked():
+            return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
+        elif request.method == 'POST':
+            session_key = request.session.session_key
+            emailIn = request.POST['email']
+            passwordIn = request.POST['password']
+            user = User.objects.get(email=emailIn, password=passwordIn)
+            if not user.confirmedEmail:
+                return RequestExceptionByCode(UNCONFIRMED_EMAIL).jsonResponse
+            else:
+                user.sessionToken = session_key
+                user.save()
+                message = Message.objects.get(pk=SUCCESS_LOGIN)
+                serializer = MessageSerializer(message, many=False)
+                jsonResponse = JSONResponse(serializer.data, status=200)
+
+                jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
+                return jsonResponse
+        else:
+            raise RequestExceptionByCode(REQUEST_CANNOT)
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except MultiValueDictKeyError as m:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except RequestException as r:
+        return r.jsonResponse
