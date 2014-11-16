@@ -1,10 +1,12 @@
 from rest.models import User
 
+
 def get_value(form, key):
     try:
         return form[key]
     except KeyError as k:
         return ''
+
 
 def unserialize_user(form):
     user = User()

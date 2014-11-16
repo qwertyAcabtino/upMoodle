@@ -1,10 +1,11 @@
-from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from django.db import models
+from rest.ERROR_MESSAGE_ID import PASSWORD_LENGTH
 from rest.exceptions import ExtensionError
 from rest.finals import *
 
 # Carrer, course, subject
-from rest.validators import validate_password, validate_nick
+from rest.validators import validate_password, validate_nick, validate_email
 
 
 class ErrorMessage(models.Model):
@@ -14,8 +15,8 @@ class ErrorMessage(models.Model):
     def __unicode__(self):
         return self.error
 
-    # def __init__(self, error=None):
-    #     self.error = error
+        # def __init__(self, error=None):
+        # self.error = error
 
 
 class Message(models.Model):
@@ -58,10 +59,10 @@ class Rol(models.Model):
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     rol = models.ForeignKey('Rol', default=STUDENT)
-    email = models.EmailField(max_length=100, validators=[validate_email], unique=True, error_messages={'blank':'Email field cannot be empty'})
-    nick = models.CharField(max_length=20, validators=[validate_nick], unique=True, error_messages={'blank':'Nick field cannot be empty'})
+    email = models.EmailField(max_length=100, validators=[validate_email], unique=True)
+    nick = models.CharField(max_length=20, validators=[validate_nick], unique=True)
     name = models.CharField(max_length=100, blank=True)
-    password = models.CharField(max_length=100, validators=[validate_password], error_messages={'blank':'Password field cannot be empty'})
+    password = models.CharField(max_length=100, validators=[validate_password])
     profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
@@ -72,9 +73,15 @@ class User(models.Model):
         return self.nick
 
     def save(self, *args, **kwargs):
+        self.clean()  # Custom field validation.
         self.clean_fields()
         self.validate_unique()
         super(User, self).save(*args, **kwargs)
+
+    def clean(self):
+        validate_email(self.email)
+        validate_password(self.password)
+        validate_nick(self.nick)
 
 
 class NoteBoard(models.Model):
@@ -160,7 +167,7 @@ class File(models.Model):
         index = self.file.name.rfind('.')
         if index == -1 or ((len(self.file.name) - index - 1) > 4):
             raise ExtensionError
-        return self.file.name[index+1:]
+        return self.file.name[index + 1:]
 
 
 class Tag(models.Model):
