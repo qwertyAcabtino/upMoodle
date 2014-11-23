@@ -1,9 +1,13 @@
 import datetime
 from random import randrange
 import string
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils.crypto import random
-from backend.settings import SESSION_COOKIE_NAME
+from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
+from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT
+from rest.controllers.Exceptions.requestException import RequestExceptionByCode
+from rest.models import User
 
 
 def get_email_confirmation_message(request):
@@ -37,7 +41,42 @@ def get_random_password():
     return password
 
 
+def get_random_email():
+    length = 10
+    email = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
+    return email
+
+
 def cookies_are_ok(request):
     return request.session.test_cookie_worked() \
            and request.COOKIES[SESSION_COOKIE_NAME] \
            and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
+
+
+def is_signed_in(request):
+    try:
+        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+        user = User.objects.get(sessionToken=sessionToken)
+        if user.banned:
+            return False
+        else:
+            return True
+    except ObjectDoesNotExist:
+        return False
+    except KeyError as k:
+        return False
+
+
+def check_cookies(request):
+    if not cookies_are_ok(request):
+        raise RequestExceptionByCode(DISABLED_COOKIES)
+
+
+def check_signed_in(request):
+    if not is_signed_in(request):
+        raise RequestExceptionByCode(NOT_SIGNED_IN)
+
+
+def check_request_method(request, method):
+    if not request.method == method:
+        raise RequestExceptionByCode(REQUEST_CANNOT)

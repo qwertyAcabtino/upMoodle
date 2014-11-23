@@ -520,23 +520,11 @@
 	"buffers":
 	[
 		{
-			"contents": "#rol\n	id (pk) (fk)\n	name\n\n#user\n	id\n	rol\n	email (pk)\n	name\n	profilePic\n	lastTimeActive\n	joined\n	banned (default false)\n	sessionToken\n	sessionDeadline\n\n#level (carrer, course, subject )\n	id\n	name\n	status\n\n#hashBlackList\n	hash\n\n#noteBoard                                                                        \n	id\n	title\n	text\n	level\n\n#calendarSingleEvent\n	id\n	title\n	text\n	created\n	author\n	lastUpdate\n	lastUpdater\n	date\n	level\n\n#calendarRegularEvent\n	id\n	title\n	text\n	created\n	author\n	lastUpdate\n	lastUpdater\n	level\n\n#calendarRegularEventDates\n	id\n	idEvent\n	date\n\n#file\n	id (pk)\n	idSubject\n	hash\n	name\n	idYear\n	fileType\n	uploaded\n	uploader (fk)\n	lastUpdate\n	lastUpdater (fk)\n	visible\n\n#fileComments\n	id\n	idFile\n	idAuthor\n	date\n	text\n\n#fileAbusiveContentList\n	idFile\n	idReporter\n	comment\n\n#year\n	id (pk) (fk)\n	verbose\n\n#tag\n	id (pk) (fk)\n	name\n\n#fileTags\n	idFile\n	idTag\n",
 			"file": "sql.txt",
-			"file_size": 797,
-			"file_write_time": 1414939593000000,
 			"settings":
 			{
-				"buffer_size": 869,
+				"buffer_size": 797,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Hola Kata.\n\nVoy a hacer esto rápido y sencillo.\nFinalmente he asumido que no soy una buena persona, de hecho me he dado cuenta de que soy una persona bastante deplorable.\nNo voy a hacerte ningún bien si permanezco cerca tuyo, por tanto, como no deseo hacerte ningún mal, estas son las últimas líneas que te escribiré hasta que consiga solucionar mis problemas y deje de ser un foco de riesgo para otras personas.\n\nCuídate.",
-			"settings":
-			{
-				"buffer_size": 422,
-				"line_ending": "Unix",
-				"name": "Hola Kata."
 			}
 		},
 		{
@@ -556,20 +544,57 @@
 			}
 		},
 		{
+			"contents": "Nothing - 18megas\nCover page - 32 megas\nDisable the service, just for knowing",
+			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/guide memory test.txt",
+			"file_size": 39,
+			"file_write_time": 1416579900000000,
+			"settings":
+			{
+				"buffer_size": 77,
+				"line_ending": "Unix",
+				"name": "Nothing - 18megas"
+			}
+		},
+		{
+			"contents": "Hola Kata.\n\nSupongo que te preguntarás donde ando o en qué ando que no doy señales de vida desde hace días...\nLo cierto es que desde el Domingo estaba intentando ordenar ciertas ideas.\n\nMe alegra haber retomado el contacto de la forma en que lo hemos hecho estos días, me ha recordado un montón a la primavera, demasiado.\nY ese es el problema, que todo parece igual que antes y todo sigue ahí (para mí, para ti no). \nHa cambiado una cosa, estoy harto. Estoy cansando de sentirme mal cuando me refreno e intento mantener en los límites de una amistad, pero si hago lo contrario, si me dejo llevar por lo que siento me siento estúpido por no aprender de los errores. \nEstoy harto de sentir que te engaño en mis intentciones si me refreno, de sentirme que te acoso.\nEstoy cansando de sentir que no aprendo, de sentirme idiota, de darme una y otra vez contra el suelo.\nNo es bueno estar así. \n\nY claro, en estas hay 3 opciones.\nO me dejo llevar, no aprendo nada del pasado, lo ignoro y dentro de unos meses me vuelvo a dar una hostia emocional tremenda, me tiro otros tantos meses maldiciendo mi estupidez y al final me vuelvo más cínico y amargo.\nO me callo todo, hago como que todo esta bien, me mantengo en los límites que propones y me sigo llamando idiota a cada minuto por prestarme a una situación que no deseo.\nO...me doy mus, me borro, hago que caiga el telón hasta que los pasos de cada uno queden sincronizados y ambos esperemos lo mismo el uno del otro, que en tanto tú ya no vas a cambiar de opinión (ese tren ya partió para no regresar), ese momento llegará para cuando yo sea capaz de asumir la realidad.\n\nEntonces, teniendo estas tres opciones, me doy cuenta de que:\nNo puedo dejarme llevar, porque dejarme llevar implicaría que en vez de hacer chistes sobre enviarte comida a casa por correos cuando estás de bajona, lo suyo sería llevártela. No puedo dejarme llevar, porque lo importante de estas situaciones que es el estímulo de los sentidos, yo estoy reducido a una visión pixelada y un sonido de baja calidad y con reverberación, sin gusto, ni olor, ni tacto.\nNo puedo dejarme llevar porque mientras que me gustaría pasar tiempo contigo, lo máximo a lo que puedo aspirar es a visitarte por espacios de tiempo fugaces.\nYa sabes, a los conocidos y familia se les visita, a los amigos se les a ver y a las personas especiales se va a estar con ellas.\nNo puedo dejarme llevar porque no puedo llevarte de escapada a ningún lado, no puedo proporcionarte el picnic que tanto te mereces, ni tengo los medios para que vengas aquí a estar (ni tú las ganas).\n\nNo puedo callarme y hacer como que está todo bien, porque decidí hace tiempo no vivir de esa forma, porque no va conmigo, porque mentir o engañar (sea a mí o a tí) no es lo que quiero.\nNo puedo ignorarlo todo porque al final todo el bien que me generas, si me callo, se convierte en veneno y al final terminará salpicándote e hiriéndote. Y no quiero hacerte eso.\n\nAsi que como creo que ya imaginas, me voy a borrar por un tiempo. ¿Que otra alternativa tengo?\nHe intentado mirarlo desde todos los puntos de vista posibles, he intentado ver más opciones, pero o no las hay o no consigo verlas.\nCon todo el dolor que ello me supone tengo que decir adiós a una de las mejores personas que he conocido, que más me ha enseñado, que más me ha retado como persona y que despierta en mí una serie de sentimientos que cuando se sienten de forma positiva me hacen sentir extremadamente feliz.\n\nSi eres capaz de entenderlo, cuando sea el momento, cuando sea apropiado, volveré a escribirte o llamarte para retomar el contacto.\n\nY poco más que decir Kata.\nCuídate.\n",
+			"settings":
+			{
+				"buffer_size": 3619,
+				"line_ending": "Unix",
+				"name": "Hola Kata."
+			}
+		},
+		{
+			"contents": "** MEMINFO in pid 4008 [nl.favoThings.favoroute] **\nTotal PSS by process:\nDUMP OF SERVICE procstats",
+			"settings":
+			{
+				"buffer_size": 99,
+				"line_ending": "Unix",
+				"name": "** MEMINFO in pid 4008 [nl.favoThings.favoroute] *"
+			}
+		},
+		{
+			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/dump2.txt",
+			"settings":
+			{
+				"buffer_size": 4733862,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "ApiREST backbone detailed.txt",
 			"settings":
 			{
-				"buffer_size": 3616,
+				"buffer_size": 4049,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": ".eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt38y8F9vcPuK2d2pbdD2yMwNLSigTNGjlpUVY0KhFohBaUljB2tUo6wI7sUF9-Fpzotk9a8uEc_25BOczFZwU767cKve1jJaAfxV-0M6vFelxOdy_gzRb-f4A8_04kw:1Xpov9:VIjXJBEDXzKMLOFQLOotGn1xPDw",
+			"file": "/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_posts/2014-11-09-Hello-world (copy).textile",
 			"settings":
 			{
-				"buffer_size": 210,
-				"line_ending": "Unix",
-				"name": ".eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt3"
+				"buffer_size": 0,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -617,7 +642,17 @@
 	},
 	"file_history":
 	[
+		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_posts/2014-11-22-android-custom-drawable-size.textile",
+		"/media/viperey/PSP/en_recovery.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/dump.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/dump2.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Examenes/Parcial 2 - Solucion.txt",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema7.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Examenes/Parcial 2.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/.hgignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/ghostColums.dat",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema6.txt",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema5.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
@@ -656,7 +691,6 @@
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/sprints.txt",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/db.sqlite3",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/manage.py",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/README.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/dimens.csv",
@@ -735,16 +769,7 @@
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/src/main/res/values/styles.xml.orig",
 		"/home/viperey/Downloads/The_Witcher_2_Assassins_Of_Kings_Enhanced_Edition_Linux-Razor1911/rzr-w2lx.nfo",
 		"/home/viperey/python/tutorial/tutorial/urls.py",
-		"/home/viperey/python/script.sh",
-		"/home/viperey/python/tutorial/tutorial/quickstart/views.py",
-		"/home/viperey/python/tutorial/tutorial/settings.py",
-		"/home/viperey/python/tutorial/tutorial/quickstart/serializers.py",
-		"/home/viperey/python/tutorial/tutorial/settings.pyc",
-		"/home/viperey/python/tutorial/manage.py",
-		"/home/viperey/python/tutorial/tutorial/quickstart/models.py",
-		"/home/viperey/Games/Bioshock/#README#/READ_ME.txt",
-		"/home/viperey/Games/Bioshock/ReadMe.txt",
-		"/home/viperey/python/tutorial/quickstart/views.py"
+		"/home/viperey/python/script.sh"
 	],
 	"find":
 	{
@@ -769,6 +794,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"<br>",
+			"wishButton",
+			"setWished",
+			"wish",
+			"h3",
+			"wish_",
+			"setWished()",
+			"dropbox",
+			"[nl.favoThings.favoroute] **",
+			"** MEMINFO in pid 4008 [nl.favoThings.favoroute] **",
+			".favoroute",
+			".GuidesPager",
+			".favoroute",
+			"favoroute",
+			"favo",
+			"INCORRECT_DATA",
 			"c = Client()\n        response = c",
 			"hash(",
 			"hash",
@@ -880,23 +921,7 @@
 			"getGuestIndex",
 			"chairBelongsToTable",
 			"changeTableStatus",
-			"setGuestStatus",
-			"getGuestIndex",
-			"changeTableStatus",
-			"showFloatingMessage",
-			"getChairInfo",
-			"showChairInfo",
-			"h4",
-			"span",
-			"showTableSittedGuestInfo",
-			"showFloatingMessage",
-			"conso",
-			"showFloatingMessage",
-			"showChairInfo",
-			"info",
-			"setInfoDiv",
-			"showTableSittedGuestInfo",
-			"InfoDiv"
+			"setGuestStatus"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -914,7 +939,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -922,15 +947,15 @@
 					"file": "sql.txt",
 					"settings":
 					{
-						"buffer_size": 869,
+						"buffer_size": 797,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								308,
-								308
+								236,
+								236
 							]
 						],
 						"settings":
@@ -939,39 +964,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 45.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"settings":
-					{
-						"buffer_size": 422,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								411,
-								411
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Hola Kata.",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "requisitos.txt",
 					"settings":
 					{
@@ -997,7 +996,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/memoryAnalisys.txt",
 					"settings":
 					{
@@ -1023,25 +1022,51 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "ApiREST backbone detailed.txt",
+					"buffer": 3,
+					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/guide memory test.txt",
 					"settings":
 					{
-						"buffer_size": 3616,
+						"buffer_size": 77,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								464,
-								464
+								12,
+								12
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_name": "Nothing - 18megas",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"settings":
+					{
+						"buffer_size": 3619,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3618,
+								3618
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Hola Kata.",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1053,21 +1078,102 @@
 					"buffer": 5,
 					"settings":
 					{
-						"buffer_size": 210,
+						"buffer_size": 99,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								210,
-								210
+								99,
+								99
 							]
 						],
 						"settings":
 						{
-							"auto_name": ".eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt3",
+							"auto_name": "** MEMINFO in pid 4008 [nl.favoThings.favoroute] *",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/dump2.txt",
+					"settings":
+					{
+						"buffer_size": 4733862,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2943419,
+								2943419
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 640283.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "ApiREST backbone detailed.txt",
+					"settings":
+					{
+						"buffer_size": 4049,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								222,
+								222
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_posts/2014-11-09-Hello-world (copy).textile",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Textile/Textile.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

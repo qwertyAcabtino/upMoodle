@@ -10,11 +10,14 @@ from backend import settings
 
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
-    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED
+    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED
 from rest.JSONResponse import JSONResponse
-from rest.controllers.Exceptions.requestException import RequestExceptionByMessage, RequestExceptionByCode, RequestException
+from rest.controllers.Exceptions.requestException import RequestExceptionByMessage, RequestExceptionByCode, \
+    RequestException
 from rest.orm.serializers import *
-from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, get_random_password
+from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, \
+    get_random_password, \
+    is_signed_in, check_cookies, check_signed_in, check_request_method, get_random_email
 from rest.orm.unserializers import unserialize_user
 
 
@@ -81,17 +84,6 @@ def usersList(request):
     """
     if request.method == 'GET':
         users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return JSONResponse(serializer.data)
-
-
-@csrf_exempt
-def usersByRol(request, pk):
-    """
-    Retrieves an user's list filtered by rol.
-    """
-    if request.method == 'GET':
-        users = User.objects.filter(rol=pk)
         serializer = UserSerializer(users, many=True)
         return JSONResponse(serializer.data)
 
@@ -274,5 +266,63 @@ def recoverPassword(request):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except RequestException as r:
+        return r.jsonResponse
+
+
+@csrf_exempt
+def getUser(request, pk):
+    try:
+        check_cookies(request)
+        check_signed_in(request)
+        check_request_method(request, 'GET')
+        users = User.objects.get(id=pk)
+        serializer = UserSerializer(users, many=False)
+        return JSONResponse(serializer.data)
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValueError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+@csrf_exempt
+def usersByRol(request, pk):
+    try:
+        check_cookies(request)
+        check_signed_in(request)
+        check_request_method(request, 'GET')
+        users = User.objects.filter(rol=pk)
+        serializer = UserSerializer(users, many=True)
+        return JSONResponse(serializer.data)
+    except RequestException as r:
+        return r.jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+@csrf_exempt
+def userRemove(request):
+    try:
+        check_cookies(request)
+        check_signed_in(request)
+        check_request_method(request, 'DELETE')
+        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+        user = User.objects.get(sessionToken=sessionToken)
+        user.name = 'Removed user'
+        user.nick = 'RemovedUser' + str(user.id)
+        user.email = get_random_email() + '@upMoodle.com'
+        user.password = get_random_password()
+        user.profilePic = '_default.png'
+        user.banned = True
+        user.confirmedEmail = False
+        user.save()
+        message = Message.objects.get(pk=USER_REMOVED)
+        serializer = MessageSerializer(message, many=False)
+        jsonResponse = JSONResponse(serializer.data, status=200)
+        return jsonResponse
     except RequestException as r:
         return r.jsonResponse
