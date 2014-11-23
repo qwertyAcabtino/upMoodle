@@ -6,7 +6,6 @@ urlpatterns = patterns('rest.views',
     # url(r'^$', 'backend.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^noteboards/$', 'noteboardList'),
-    url(r'^noteboards/(?P<pk>[0-9]+)/$', 'noteboardNote'),
     url(r'^noteboards/level/(?P<pk>[0-9]+)/$', 'noteboardLevel'),
     url(r'^bannedhashes/$', 'bannedhashList'),
     # url(r'^users/$', 'usersList'),
@@ -18,13 +17,18 @@ urlpatterns = patterns('rest.views',
     url(r'^files/subject/(?P<pk>[0-9]+)/$', 'fileListSubject'),
     url(r'^admin/', include(admin.site.urls)),
 
+
     #APIs
+
     url(r'^signup/$', 'signup'),
     url(r'^confirm_email/(?P<cookie>.*)/$', 'confirmEmail'),
     url(r'^login/$', 'login'),
     url(r'^logout/$', 'logout'),
     url(r'^recover_password/$', 'recoverPassword'),
-    url(r'^user/(?P<pk>[0-9]+)/$', 'getUser'),
     url(r'^user/$', 'user'),
-    url(r'^users/rol/(?P<pk>[0-9]+)/$', 'usersByRol')
+    url(r'^user/(?P<pk>[0-9]+)/$', 'getUser'),
+    url(r'^users/rol/(?P<pk>[0-9]+)/$', 'usersByRol'),
+
+    url(r'^note/(?P<pk>[0-9]+)/$', 'noteboardNote')
+
 )

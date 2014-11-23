@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.http import HttpResponse, QueryDict
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
@@ -16,7 +16,7 @@ from rest.orm.serializers import *
 from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, \
     get_random_password, \
     get_random_email, check_signed_in_request
-from rest.orm.unserializers import unserialize_user, unserialize_user_2
+from rest.orm.unserializers import unserialize_user_2
 
 
 @csrf_exempt
@@ -36,21 +36,6 @@ def noteboardList(request):
             serializer.save()
             return JSONResponse(serializer.data, status=201)
         return JSONResponse(serializer.errors, status=400)
-
-
-@csrf_exempt
-def noteboardNote(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        note = NoteBoard.objects.get(pk=pk)
-    except NoteBoard.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == 'GET':
-        serializer = NoteBoardSerializer(note)
-        return JSONResponse(serializer.data)
 
 
 @csrf_exempt
@@ -157,7 +142,7 @@ def signup(request):
         if not cookies_are_ok(request):
             return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
-            user = unserialize_user(request.POST, request.COOKIES[SESSION_COOKIE_NAME])
+            user = unserialize_user_2(request.POST, sessionToken=request.COOKIES[SESSION_COOKIE_NAME], fields=['email', 'password', 'nick'])
             send_mail('Email confirmation',
                       get_email_confirmation_message(request),
                       'info@upmoodle.com', [user.email],
@@ -377,3 +362,47 @@ def user(request):
             return userUpdate(request)
     except RequestException as r:
         return r.jsonResponse
+
+
+# Notes
+@csrf_exempt
+def noteboardNote(request, pk):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return note_get(request, pk)
+        # elif request.method == 'DELETE':
+        #     return note_remove(request)
+        # elif request.method == 'POST':
+        #     return note_update(request)
+    except RequestException as r:
+        return r.jsonResponse
+
+
+def note_get(request, pk):
+    try:
+        check_signed_in_request(request, 'GET')
+        note = NoteBoard.objects.get(id=pk)
+        serializer = NoteBoardSerializer(note, many=False)
+        return JSONResponse(serializer.data)
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValueError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+# """
+#     Retrieve, update or delete a code snippet.
+#     """
+#     try:
+#         note = NoteBoard.objects.get(pk=pk)
+#     except NoteBoard.DoesNotExist:
+#         return HttpResponse(status=404)
+#
+#     if request.method == 'GET':
+#         serializer = NoteBoardSerializer(note)
+#         return JSONResponse(serializer.data)
+#

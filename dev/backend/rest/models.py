@@ -92,6 +92,7 @@ class NoteBoard(models.Model):
     topic = models.CharField(max_length=100)
     text = models.CharField(max_length=2000)
     level = models.ForeignKey('Level')
+    author = models.ForeignKey(User, related_name='publisher')
 
     def __unicode__(self):
         return self.topic
