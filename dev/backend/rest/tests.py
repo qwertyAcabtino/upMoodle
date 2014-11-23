@@ -96,10 +96,11 @@ class A2_MessageTestCase(unittest.TestCase):
         Message.objects.create(message="Successfully signed in")
         Message.objects.create(message="Email is now confirmed")
         Message.objects.create(message="A new password has been sent to your email adress. Check your inbox")
-        Message.objects.create(message="Your user account has been removed..")
+        Message.objects.create(message="Your user account has been removed.")
+        Message.objects.create(message="Your profile has been updated")
 
     def test_messages_exists_in_db(self):
-        self.assertEqual(len(Message.objects.all()), 4)
+        self.assertEqual(len(Message.objects.all()), 5)
 
 
 class B_RolTestCase(unittest.TestCase):
@@ -453,7 +454,7 @@ class J_userTestCase(SignedTestCase):
 
     def test_7_userRemove_basic(self):
         self.login()
-        response = self.client.delete('/user/remove/')
+        response = self.client.delete('/user/')
         self.assertEqual(response.status_code, 200)
         user = User.objects.get(id=1)
         self.assertEqual(user.nick, 'RemovedUser' + str(user.id))
@@ -462,7 +463,24 @@ class J_userTestCase(SignedTestCase):
 
     def test_8_userRemove_not_signedIn(self):
         self.logout()
-        response = self.client.delete('/user/remove/')
+        response = self.client.delete('/user/')
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=NOT_SIGNED_IN).error, decoded['error'])
+
+    def test_9_userUpdate_basic(self):
+        self.login()
+        newEmail = 'email@new.es'
+        response = self.client.post('/user/', {'email': newEmail})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(userUpdated.email, newEmail)
+
+    def test_10_userUpdate_change_forbidden_field(self):
+        self.login()
+        sessionToken = 'kaasdfbqwbiqwebibiweibef'
+        response = self.client.post('/user/', {'sessionToken': sessionToken})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertNotEqual(userUpdated.sessionToken, sessionToken)
+

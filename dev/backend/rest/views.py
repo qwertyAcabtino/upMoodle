@@ -1,24 +1,22 @@
 from django.core.mail import send_mail
-
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.http import HttpResponse
+from django.http import HttpResponse, QueryDict
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
 from backend import settings
-
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
-    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED
+    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED, USER_REMOVED, USER_UPDATED
 from rest.JSONResponse import JSONResponse
 from rest.controllers.Exceptions.requestException import RequestExceptionByMessage, RequestExceptionByCode, \
     RequestException
 from rest.orm.serializers import *
 from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, \
     get_random_password, \
-    is_signed_in, check_cookies, check_signed_in, check_request_method, get_random_email
-from rest.orm.unserializers import unserialize_user
+    get_random_email, check_signed_in_request
+from rest.orm.unserializers import unserialize_user, unserialize_user_2
 
 
 @csrf_exempt
@@ -206,6 +204,7 @@ def login(request):
             else:
                 user.sessionToken = session_key
                 user.save()
+                # TODO. Update lastTimeActive
                 message = Message.objects.get(pk=SUCCESS_LOGIN)
                 serializer = MessageSerializer(message, many=False)
                 jsonResponse = JSONResponse(serializer.data, status=200)
@@ -273,10 +272,26 @@ def recoverPassword(request):
 @csrf_exempt
 def getUser(request, pk):
     try:
-        check_cookies(request)
-        check_signed_in(request)
-        check_request_method(request, 'GET')
+        check_signed_in_request(request, 'GET')
         users = User.objects.get(id=pk)
+        serializer = UserSerializer(users, many=False)
+        return JSONResponse(serializer.data)
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValueError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+@csrf_exempt
+def getUserSelf(request):
+    try:
+        check_signed_in_request(request, 'GET')
+        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+        users = User.objects.get(sessionToken=sessionToken)
         serializer = UserSerializer(users, many=False)
         return JSONResponse(serializer.data)
     except RequestException as r:
@@ -292,9 +307,7 @@ def getUser(request, pk):
 @csrf_exempt
 def usersByRol(request, pk):
     try:
-        check_cookies(request)
-        check_signed_in(request)
-        check_request_method(request, 'GET')
+        check_signed_in_request(request, 'GET')
         users = User.objects.filter(rol=pk)
         serializer = UserSerializer(users, many=True)
         return JSONResponse(serializer.data)
@@ -307,22 +320,57 @@ def usersByRol(request, pk):
 @csrf_exempt
 def userRemove(request):
     try:
-        check_cookies(request)
-        check_signed_in(request)
-        check_request_method(request, 'DELETE')
+        check_signed_in_request(request, method='DELETE')
         sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
-        user = User.objects.get(sessionToken=sessionToken)
-        user.name = 'Removed user'
-        user.nick = 'RemovedUser' + str(user.id)
-        user.email = get_random_email() + '@upMoodle.com'
-        user.password = get_random_password()
-        user.profilePic = '_default.png'
-        user.banned = True
-        user.confirmedEmail = False
-        user.save()
+        userSigned = User.objects.get(sessionToken=sessionToken)
+        userSigned.name = 'Removed userSigned'
+        userSigned.nick = 'RemovedUser' + str(userSigned.id)
+        userSigned.email = get_random_email() + '@upMoodle.com'
+        userSigned.password = get_random_password()
+        userSigned.profilePic = '_default.png'
+        userSigned.banned = True
+        userSigned.confirmedEmail = False
+        userSigned.save()
         message = Message.objects.get(pk=USER_REMOVED)
         serializer = MessageSerializer(message, many=False)
         jsonResponse = JSONResponse(serializer.data, status=200)
         return jsonResponse
+    except RequestException as r:
+        return r.jsonResponse
+
+
+@csrf_exempt
+def userUpdate(request):
+    try:
+        check_signed_in_request(request, 'POST')
+        form = request.POST
+        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        password = getattr(form, 'password', None)
+        if password and not userSigned.password == form['oldPassword']:
+            raise RequestExceptionByCode(INCORRECT_DATA)
+        fields = ['nick', 'name', 'password', 'email']
+        userUpdated = unserialize_user_2(form, fields=fields, optional=True)
+        userSigned.update(userUpdated, fields)
+        userSigned.save()
+        message = Message.objects.get(pk=USER_UPDATED)
+        serializer = MessageSerializer(message, many=False)
+        jsonResponse = JSONResponse(serializer.data, status=200)
+        return jsonResponse
+    except RequestException as r:
+        return r.jsonResponse
+    except MultiValueDictKeyError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+@csrf_exempt
+def user(request):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return getUserSelf(request)
+        elif request.method == 'DELETE':
+            return userRemove(request)
+        elif request.method == 'POST':
+            return userUpdate(request)
     except RequestException as r:
         return r.jsonResponse

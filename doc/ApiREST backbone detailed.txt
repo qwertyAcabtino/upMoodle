@@ -1,3 +1,8 @@
+//TODO
+Control de overflow en el formulario
+Clase padre para el control de casos basicos
+Se puede reventar la aplicacion si intento registrar un usuario con una clave de session ya existente y es un ataque que puede darse.
+
 ==LOGIN==
 
 DONE =SignUp=
@@ -36,22 +41,22 @@ DONE =Recover password=
 
 ==USER==
 
-=GetUser=
+DONE =GetUser=
 	[GET] user/{id}
 		200 - Returns user's model.
 		400 - ErrorMessage(1) + redirects to login
 
-=Get user by level=
+DONE =Get user by level=
 	[GET] users/level/{id}
 		200 - Returns user's model.
 		400 - ErrorMessage(1) + redirects to login
 
-=DeleteUser=
+DONE =DeleteUser=
 	[DELETE] user/remove/
 		200 - Redirects to login.
 		400 - ErrorMessage(1)
 
-=ModifyUser=
+DONE =ModifyUser=
 	[PUT] user/update/
 		200 - Returns user's model
 		400 - ErrorMessage(1)

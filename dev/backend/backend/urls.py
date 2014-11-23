@@ -25,6 +25,6 @@ urlpatterns = patterns('rest.views',
     url(r'^logout/$', 'logout'),
     url(r'^recover_password/$', 'recoverPassword'),
     url(r'^user/(?P<pk>[0-9]+)/$', 'getUser'),
-    url(r'^user/remove/$', 'userRemove'),
+    url(r'^user/$', 'user'),
     url(r'^users/rol/(?P<pk>[0-9]+)/$', 'usersByRol')
 )

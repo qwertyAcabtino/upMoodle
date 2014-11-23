@@ -81,6 +81,11 @@ class User(models.Model):
         validate_password(self.password)
         validate_nick(self.nick)
 
+    def update(self, userUpdate, fields):
+        if fields:
+            for field in fields:
+                setattr(self, field, getattr(userUpdate, field))
+
 
 class NoteBoard(models.Model):
     id = models.AutoField(primary_key=True)

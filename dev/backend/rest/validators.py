@@ -18,3 +18,4 @@ def validate_email(value):
         raise ValidationError(EMAIL_EMPTY)
     else:
         emailValidator = EmailValidator()
+    # TODO. Email is upm.es type

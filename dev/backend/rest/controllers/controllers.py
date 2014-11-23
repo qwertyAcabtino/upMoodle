@@ -80,3 +80,11 @@ def check_signed_in(request):
 def check_request_method(request, method):
     if not request.method == method:
         raise RequestExceptionByCode(REQUEST_CANNOT)
+
+
+def check_signed_in_request(request, *args, **kwargs):
+    check_cookies(request)
+    check_signed_in(request)
+    method = kwargs.get('method', None)
+    if method:
+        check_request_method(request, method)
