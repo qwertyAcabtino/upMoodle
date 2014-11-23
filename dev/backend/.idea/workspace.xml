@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
+    <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="Security things">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../pre/python/minimal-django-file-upload-example" afterPath="$PROJECT_DIR$/../../pre/python/minimal-django-file-upload-example" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/tests.py" afterPath="$PROJECT_DIR$/rest/tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/views.py" afterPath="$PROJECT_DIR$/rest/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/settings.py" afterPath="$PROJECT_DIR$/backend/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="backend.iws" />
@@ -32,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3068182" vertical-offset="6138" max-vertical-offset="6930">
-              <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+            <state vertical-scroll-proportion="-81.0" vertical-offset="6138" max-vertical-offset="6930">
+              <caret line="350" column="60" selection-start-line="349" selection-start-column="62" selection-end-line="350" selection-end-column="60" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -83,6 +82,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="860" max-vertical-offset="1566">
               <caret line="84" column="35" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.796034" vertical-offset="1310" max-vertical-offset="2034">
+              <caret line="104" column="34" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -157,7 +166,6 @@
         <option value="$PROJECT_DIR$/rest/ERROR_MESSAGE_ID.py" />
         <option value="$PROJECT_DIR$/rest/unserializers.py" />
         <option value="$PROJECT_DIR$/rest/utils.py" />
-        <option value="$PROJECT_DIR$/backend/settings.py" />
         <option value="$PROJECT_DIR$/rest/orm/serializers.py" />
         <option value="$PROJECT_DIR$/rest/controllers/controllers.py" />
         <option value="$PROJECT_DIR$/backend/urls.py" />
@@ -167,6 +175,7 @@
         <option value="$PROJECT_DIR$/rest/orm/unserializers.py" />
         <option value="$PROJECT_DIR$/rest/views.py" />
         <option value="$PROJECT_DIR$/rest/tests.py" />
+        <option value="$PROJECT_DIR$/backend/settings.py" />
       </list>
     </option>
   </component>
@@ -326,7 +335,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="unser&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/orm/unserializers.py&#10;mode&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/models.py&#10;test&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/tests.py&#10;mors&#9;null&#9;null&#10;sorted&#9;null&#9;null&#10;urls&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/urls.py&#10;json&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/JSONResponse.py&#10;view&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/views.py&#10;sett&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py&#10;url&#9;null&#9;null&#10;admin&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/admin.py" />
+    <property name="SearchEverywhereHistoryKey" value="setting&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py&#10;unser&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/orm/unserializers.py&#10;mode&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/models.py&#10;test&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/tests.py&#10;mors&#9;null&#9;null&#10;sorted&#9;null&#9;null&#10;urls&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/urls.py&#10;json&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/JSONResponse.py&#10;view&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/views.py&#10;sett&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py&#10;url&#9;null&#9;null&#10;admin&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/admin.py" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -990,10 +999,14 @@
       <created>1416776484852</created>
       <updated>1416776484852</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update user's tests">
+      <created>1416778042092</created>
+      <updated>1416778042092</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
-  <component name="TodoView" selected-index="0">
+  <component name="TodoView" selected-index="5">
     <todo-panel id="selected-file">
       <are-packages-shown value="false" />
       <are-modules-shown value="false" />
@@ -1018,7 +1031,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32742155" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33560708" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33424285" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32469305" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42564803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1060,7 +1073,9 @@
     <MESSAGE value="Recover password, its testcases, some project's hierarchy" />
     <MESSAGE value="Test's hierarchy.&#10; Users by rol&#10; Remove user" />
     <MESSAGE value="Update user" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update user" />
+    <MESSAGE value="Update user's tests" />
+    <MESSAGE value="Security things" />
+    <option name="LAST_COMMIT_MESSAGE" value="Security things" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1311,14 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3711048" vertical-offset="188" max-vertical-offset="1998">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/rest_framework/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33286119" vertical-offset="11069" max-vertical-offset="20736">
@@ -1475,11 +1482,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3068182" vertical-offset="6138" max-vertical-offset="6930">
-          <caret line="353" column="0" selection-start-line="353" selection-start-column="0" selection-end-line="353" selection-end-column="0" />
+        <state vertical-scroll-proportion="-81.0" vertical-offset="6138" max-vertical-offset="6930">
+          <caret line="350" column="60" selection-start-line="349" selection-start-column="62" selection-end-line="350" selection-end-column="60" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.796034" vertical-offset="1310" max-vertical-offset="2034">
+          <caret line="104" column="34" selection-start-line="104" selection-start-column="34" selection-end-line="104" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
