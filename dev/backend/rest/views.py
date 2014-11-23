@@ -345,9 +345,12 @@ def userUpdate(request):
         check_signed_in_request(request, 'POST')
         form = request.POST
         userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
-        password = getattr(form, 'password', None)
-        if password and not userSigned.password == form['oldPassword']:
-            raise RequestExceptionByCode(INCORRECT_DATA)
+        try:
+            password = form['password']
+            if not userSigned.password == form['oldPassword']:
+                raise RequestExceptionByCode(INCORRECT_DATA)
+        except MultiValueDictKeyError:
+            pass
         fields = ['nick', 'name', 'password', 'email']
         userUpdated = unserialize_user_2(form, fields=fields, optional=True)
         userSigned.update(userUpdated, fields)

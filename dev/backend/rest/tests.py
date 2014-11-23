@@ -73,6 +73,7 @@ class SignedTestCase(CookiesEnabled):
         user.confirmedEmail = True
         user.save()
 
+
 class A1_ErrorMessageTestCase(unittest.TestCase):
     def test_errormessages_exists_in_db(self):
         ErrorMessage.objects.create(error="Request cannot be performed")
@@ -484,3 +485,30 @@ class J_userTestCase(SignedTestCase):
         userUpdated = User.objects.get(id=1)
         self.assertNotEqual(userUpdated.sessionToken, sessionToken)
 
+    def test_11_userUpdate_change_password(self):
+        self.login()
+        newPassword = 'qwerqwer'
+        response = self.client.post('/user/', {'oldPassword': defPassword, 'password': newPassword})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(userUpdated.password, newPassword)
+
+    def test_12_userUpdate_change_password_bad(self):
+        self.login()
+        newPassword = 'qwerqwer'
+        response = self.client.post('/user/', {'oldPassword': newPassword, 'password': newPassword})
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    def test_13_userUpdate_basic_several(self):
+        self.login()
+        newEmail = 'email@new.es'
+        newName = 'Victor Perez rey'
+        newNick = 'newNick'
+        response = self.client.post('/user/', {'email': newEmail, 'name': newName, 'nick': newNick})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(userUpdated.name, newName)
+        self.assertEqual(userUpdated.email, newEmail)
+        self.assertEqual(userUpdated.nick, newNick)
