@@ -64,7 +64,14 @@ DONE =ModifyUser=
 
 ==NOTE==
 
-=Post note=
+DONE =Get note=
+	[GET] note/{id}
+		200 - Returns note.
+		40X
+			ErrorMessage(7)
+			ErrorMessage(1)
+
+DONE =Post note=
 	[PUT] note/
 		200 - Returns note's id.
 		40X
@@ -94,13 +101,6 @@ DONE =ModifyUser=
 			ErrorMessage(1)
 			ErrorMessage(2)
 			ErrorMessage(7)
-
-=Get note=
-	[GET] note/{id}
-		200 - Returns note.
-		40X
-			ErrorMessage(7)
-			ErrorMessage(1)
 
 =Get notes by level=
 	[GET] notes/level/{id}

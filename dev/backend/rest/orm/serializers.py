@@ -8,7 +8,7 @@ class NoteBoardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NoteBoard
-        fields = ('id', 'topic', 'text', 'level')
+        fields = ('id', 'topic', 'text', 'level', 'author')
 
 
 class BannedHashSerializer(serializers.ModelSerializer):

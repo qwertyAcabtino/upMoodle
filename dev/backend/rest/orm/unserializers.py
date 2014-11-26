@@ -3,7 +3,7 @@ from django.http.request import QueryDict
 from django.utils.datastructures import MultiValueDictKeyError
 from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
-from rest.models import User
+from rest.models import User, NoteBoard
 
 
 def get_value(form, key):
@@ -13,16 +13,7 @@ def get_value(form, key):
         return ''
 
 
-# def unserialize_user(form, cookie):
-#     user = User()
-#     user.email = get_value(form, 'email')
-#     user.password = get_value(form, 'password')
-#     user.nick = get_value(form, 'nick')
-#     user.sessionToken = cookie
-#     return user
-
-
-def unserialize_user_2(form, *args, **kwargs):
+def unserialize_user(form, *args, **kwargs):
     fields = kwargs.get('fields', None)
     fieldsCopy = copy(fields)
     sessionToken = kwargs.get('sessionToken', None)
@@ -30,7 +21,7 @@ def unserialize_user_2(form, *args, **kwargs):
     if fields:
         user = User()
         for field in fieldsCopy:
-            #If the field doesnt exists raises an MultiValueDictKeyError
+            # If the field doesnt exists raises an MultiValueDictKeyError
             try:
                 setattr(user, field, form[field])
             except MultiValueDictKeyError as m:
@@ -43,3 +34,28 @@ def unserialize_user_2(form, *args, **kwargs):
         return user
     else:
         raise RequestExceptionByCode(INCORRECT_DATA)
+
+
+def unserialize_note(form, *args, **kwargs):
+    fields = kwargs.get('fields', None)
+    optional = kwargs.get('optional', False)
+    if fields:
+        note = NoteBoard()
+        return unserialize(note, fields, form, optional=optional)
+    else:
+        raise RequestExceptionByCode(INCORRECT_DATA)
+
+def unserialize(model, fields, form, *args, **kwargs):
+    fieldsCopy = copy(fields)
+    optional = kwargs.get('optional', False)
+
+    for field in fieldsCopy:
+        # If the field doesnt exists raises an MultiValueDictKeyError
+        try:
+            setattr(model, field, form[field])
+        except MultiValueDictKeyError as m:
+            if not optional:
+                raise m
+            else:
+                fields.remove(field)
+    return model

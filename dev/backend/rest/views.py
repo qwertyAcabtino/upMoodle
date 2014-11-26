@@ -8,7 +8,7 @@ from rest_framework.parsers import JSONParser
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
-    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED, USER_REMOVED, USER_UPDATED
+    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED, USER_REMOVED, USER_UPDATED, NOTE_UPDATED
 from rest.JSONResponse import JSONResponse
 from rest.controllers.Exceptions.requestException import RequestExceptionByMessage, RequestExceptionByCode, \
     RequestException
@@ -16,7 +16,7 @@ from rest.orm.serializers import *
 from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, \
     get_random_password, \
     get_random_email, check_signed_in_request
-from rest.orm.unserializers import unserialize_user_2
+from rest.orm.unserializers import unserialize_user, unserialize_note
 
 
 @csrf_exempt
@@ -142,7 +142,8 @@ def signup(request):
         if not cookies_are_ok(request):
             return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
-            user = unserialize_user_2(request.POST, sessionToken=request.COOKIES[SESSION_COOKIE_NAME], fields=['email', 'password', 'nick'])
+            user = unserialize_user(request.POST, sessionToken=request.COOKIES[SESSION_COOKIE_NAME],
+                                    fields=['email', 'password', 'nick'])
             send_mail('Email confirmation',
                       get_email_confirmation_message(request),
                       'info@upmoodle.com', [user.email],
@@ -337,7 +338,7 @@ def userUpdate(request):
         except MultiValueDictKeyError:
             pass
         fields = ['nick', 'name', 'password', 'email']
-        userUpdated = unserialize_user_2(form, fields=fields, optional=True)
+        userUpdated = unserialize_user(form, fields=fields, optional=True)
         userSigned.update(userUpdated, fields)
         userSigned.save()
         message = Message.objects.get(pk=USER_UPDATED)
@@ -372,9 +373,9 @@ def noteboardNote(request, pk):
         if request.method == 'GET':
             return note_get(request, pk)
         # elif request.method == 'DELETE':
-        #     return note_remove(request)
-        # elif request.method == 'POST':
-        #     return note_update(request)
+        # return note_remove(request)
+        elif request.method == 'POST':
+            return note_update(request, pk)
     except RequestException as r:
         return r.jsonResponse
 
@@ -394,8 +395,33 @@ def note_get(request, pk):
     except ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
+
+@csrf_exempt
+def note_update(request, pk):
+    try:
+        check_signed_in_request(request, 'POST')
+        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        form = request.POST
+        fields = ['topic', 'text', 'level_id']
+        noteUpdated = unserialize_note(form, fields=fields, optional=True)
+        noteOriginal = NoteBoard.objects.get(id=pk)
+        if noteOriginal.author_id == userSigned.id:
+            noteOriginal.update(noteUpdated, fields)
+            noteOriginal.save()
+            message = Message.objects.get(pk=NOTE_UPDATED)
+            serializer = MessageSerializer(message, many=False)
+            jsonResponse = JSONResponse(serializer.data, status=200)
+            return jsonResponse
+        else:
+            raise RequestExceptionByCode(UNAUTHORIZED)
+    except RequestException as r:
+        return r.jsonResponse
+    except MultiValueDictKeyError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
 # """
-#     Retrieve, update or delete a code snippet.
+# Retrieve, update or delete a code snippet.
 #     """
 #     try:
 #         note = NoteBoard.objects.get(pk=pk)

@@ -6,7 +6,7 @@ from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, INVALID_TOKEN, UNCONFIRMED_EMAIL, \
     INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED
-from rest.models import Rol, LevelType, ErrorMessage, User, Message
+from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard
 from rest.views import login
 
 """
@@ -22,6 +22,10 @@ defUser.email = 'test@test.com'
 defUser.password = defPassword
 defUser.sessionToken = sessionCookie
 
+defNote = NoteBoard()
+defNote.text = 'Bla bla'
+defNote.topic = 'Topic'
+defNote.author_id = 1
 
 class CookiesEnabled(unittest.TestCase):
     def setUp(self):
@@ -73,6 +77,11 @@ class SignedTestCase(CookiesEnabled):
         user.confirmedEmail = True
         user.save()
 
+    def addDefaultNote(self):
+        note = defNote
+        note.author_id = 1
+        note.level_id = 1
+        note.save()
 
 class A1_ErrorMessageTestCase(unittest.TestCase):
     def test_errormessages_exists_in_db(self):
@@ -99,9 +108,10 @@ class A2_MessageTestCase(unittest.TestCase):
         Message.objects.create(message="A new password has been sent to your email adress. Check your inbox")
         Message.objects.create(message="Your user account has been removed.")
         Message.objects.create(message="Your profile has been updated")
+        Message.objects.create(message="Note updated")
 
     def test_messages_exists_in_db(self):
-        self.assertEqual(len(Message.objects.all()), 5)
+        self.assertEqual(len(Message.objects.all()), 6)
 
 
 class B_RolTestCase(unittest.TestCase):
@@ -512,3 +522,34 @@ class J_userTestCase(SignedTestCase):
         self.assertEqual(userUpdated.name, newName)
         self.assertEqual(userUpdated.email, newEmail)
         self.assertEqual(userUpdated.nick, newNick)
+
+
+class H_noteTestCase(SignedTestCase):
+
+    def test_1_basic_note_get(self):
+        self.login()
+        self.addDefaultNote()
+        pk = '1'
+        response = self.client.get('/note/' + pk + '/')
+        self.assertEqual(response.status_code, 200)
+        decoded = json.loads(response.content)
+        self.assertIsNotNone(decoded['id'])
+        self.assertEqual(decoded['topic'], defNote.topic)
+
+    def test_2_getNote_not_signed_in(self):
+        self.logout()
+        pk = '1'
+        response = self.client.get('/note/' + pk + '/')
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=NOT_SIGNED_IN).error, decoded['error'])
+
+    def test_3_getNote_id_overflow(self):
+        self.login()
+        pk = '191289347901273481236498712634971234123481263984'
+        response = self.client.get('/note/' + pk + '/')
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+

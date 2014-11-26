@@ -88,6 +88,7 @@ class User(models.Model):
 
 
 class NoteBoard(models.Model):
+    # TODO. Validate lengths
     id = models.AutoField(primary_key=True)
     topic = models.CharField(max_length=100)
     text = models.CharField(max_length=2000)
@@ -96,6 +97,11 @@ class NoteBoard(models.Model):
 
     def __unicode__(self):
         return self.topic
+
+    def update(self, userUpdate, fields):
+        if fields:
+            for field in fields:
+                setattr(self, field, getattr(userUpdate, field))
 
 
 # SHA1. 64 alphabetical chars
