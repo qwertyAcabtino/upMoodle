@@ -1,3 +1,5 @@
+from django.utils.datastructures import MultiValueDictKeyError
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 from rest.controllers.Exceptions.exceptions import ExtensionError
@@ -44,6 +46,15 @@ class Level(models.Model):
     def is_subject(self):
         return self.type.name == 'subject'
 
+    @staticmethod
+    def validate_exists(form):
+        try:
+            fk = form['level_id']
+            Level.objects.get(id=fk)
+        except MultiValueDictKeyError:
+            pass
+        except ObjectDoesNotExist:
+            raise ObjectDoesNotExist
 
 class Rol(models.Model):
     id = models.AutoField(primary_key=True)

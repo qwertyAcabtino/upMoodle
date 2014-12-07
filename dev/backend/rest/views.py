@@ -402,6 +402,7 @@ def note_update(request, pk):
         check_signed_in_request(request, 'POST')
         userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
         form = request.POST
+        Level.validate_exists(form)
         fields = ['topic', 'text', 'level_id']
         noteUpdated = unserialize_note(form, fields=fields, optional=True)
         noteOriginal = NoteBoard.objects.get(id=pk)
@@ -416,13 +417,15 @@ def note_update(request, pk):
             raise RequestExceptionByCode(UNAUTHORIZED)
     except RequestException as r:
         return r.jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
 # """
 # Retrieve, update or delete a code snippet.
-#     """
+# """
 #     try:
 #         note = NoteBoard.objects.get(pk=pk)
 #     except NoteBoard.DoesNotExist:

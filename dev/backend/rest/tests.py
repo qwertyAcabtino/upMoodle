@@ -33,16 +33,12 @@ class CookiesEnabled(unittest.TestCase):
         engine = import_module(settings.SESSION_ENGINE)
         session = self.client.session
         session = engine.SessionStore()
-        session[
-            SESSION_COOKIE_NAME_BIS] = sessionCookie
-        session[
-            SESSION_COOKIE_NAME] = sessionCookie
+        session[SESSION_COOKIE_NAME_BIS] = sessionCookie
+        session[SESSION_COOKIE_NAME] = sessionCookie
         session.save()
         cookies = self.client.cookies
-        cookies[
-            SESSION_COOKIE_NAME_BIS] = sessionCookie
-        cookies[
-            SESSION_COOKIE_NAME] = sessionCookie
+        cookies[SESSION_COOKIE_NAME_BIS] = sessionCookie
+        cookies[SESSION_COOKIE_NAME] = sessionCookie
 
 
 class SignedTestCase(CookiesEnabled):
@@ -82,6 +78,7 @@ class SignedTestCase(CookiesEnabled):
         note.author_id = 1
         note.level_id = 1
         note.save()
+
 
 class A1_ErrorMessageTestCase(unittest.TestCase):
     def test_errormessages_exists_in_db(self):
@@ -137,18 +134,7 @@ class C_LevelTestCase(unittest.TestCase):
         self.assertEqual(len(LevelType.objects.all()), 3)
 
 
-class D_SignUpTestCase(unittest.TestCase):
-    def setUp(self):
-        self.client = Client()
-        engine = import_module(settings.SESSION_ENGINE)
-        session = self.client.session
-        session = engine.SessionStore()
-        session[
-            'cruasanPlancha'] = sessionCookie
-        session.save()
-        cookies = self.client.cookies
-        cookies[
-            'cruasanPlancha'] = sessionCookie
+class D_SignUpTestCase(CookiesEnabled):
 
     def test_basic_signup(self):
         response = self.client.post('/signup/',
@@ -282,6 +268,7 @@ class E_ConfirmEmailTestCase(unittest.TestCase):
 
 
 class F_LoginTestCase(CookiesEnabled):
+
     def test_1_basic_login(self):
         response = self.client.post('/login/', {'email': 'test@test.com', 'password': '12341234'})
         self.assertEqual(response.status_code, 200)
@@ -525,7 +512,6 @@ class J_userTestCase(SignedTestCase):
 
 
 class H_noteTestCase(SignedTestCase):
-
     def test_1_basic_note_get(self):
         self.login()
         self.addDefaultNote()
@@ -551,5 +537,11 @@ class H_noteTestCase(SignedTestCase):
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    # def test_4_postNote_basic(self):
+    #     self.login()
+    #     pk = 1
+    #     response = self.client.post('/note/' + pk + '/', {'topic': 'topic', 'text': 'text', 'level_id': '1'})
+    #     self.assertEqual(response.status_code, 200)
 
 

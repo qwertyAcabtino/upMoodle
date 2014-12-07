@@ -536,44 +536,13 @@
 			}
 		},
 		{
-			"contents": "** MEMINFO in pid 4008 [nl.favoThings.favoroute] **\nTotal PSS by process:\nDUMP OF SERVICE procstats",
-			"settings":
-			{
-				"buffer_size": 99,
-				"line_ending": "Unix",
-				"name": "** MEMINFO in pid 4008 [nl.favoThings.favoroute] *"
-			}
-		},
-		{
+			"contents": "//TODO\nControl de overflow en el formulario\nClase padre para el control de casos basicos\nSe puede reventar la aplicacion si intento registrar un usuario con una clave de session ya existente y es un ataque que puede darse.\n\n\n==LOGIN==\n\nDONE =SignUp=\n	[POST] signUp/\n		200 - Returns userId.\n		40X\n			ErrorMessage(2)\n			ErrorMessage(6)\n\nDONE =Confirm email=\n	[POST] confirmEmail/\n		200 - Returns userId and redirects\n		40X\n			ErrorMessage(4)\n			ErrorMessage(5)\n\nDONE =SignIn=\n	[POST] login/\n		200 - Returns userId and redirects\n		40X\n			ErrorMessage(2\n			ErrorMessage(3)\n\nDONE =Logout=\n	[POST] logout/\n		200 - Returns true\n		Doesn't provide any error message, this way information is not revealed\n\nDONE =Recover password=\n	[POST] recoverPass/\n		200 - Returns Message(RECOVER_PASS_EMAIL)\n		40X\n			ErrorMessage(INCORRECT_DATA)\n			ErrorMessage(UNAUTHORIZED)\n			ErrorMessage(UNCONFIRMED_EMAIL)\n\n==USER==\n\nDONE =GetUser=\n	[GET] user/{id}\n		200 - Returns user's model.\n		400 - ErrorMessage(1) + redirects to login\n\nDONE =Get user by level=\n	[GET] users/level/{id}\n		200 - Returns user's model.\n		400 - ErrorMessage(1) + redirects to login\n\nDONE =DeleteUser=\n	[DELETE] user/remove/\n		200 - Redirects to login.\n		400 - ErrorMessage(1)\n\nDONE =ModifyUser=\n	[PUT] user/update/\n		200 - Returns user's model\n		400 - ErrorMessage(1)\n\n\n==NOTE==\n\nDONE =Get note=\n	[GET] note/{id}\n		200 - Returns note.\n		40X\n			ErrorMessage(7)\n			ErrorMessage(1)\n\nDONE =Post note=\n	[PUT] note/\n		200 - Returns note's id.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n\n=Edit note=\n	[POST] note/{id}\n		200 - Returns new note.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Remove note=\n	[DELETE] note/{id}\n		200 - Returns true and redirects\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Authorize note=\n	[POST] note/authorize/{id}\n		200 - Returns true\n		40X			\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Get notes by level=\n	[GET] notes/level/{id}\n		200 - Returns notes.\n		40X\n			ErrorMessage(7)\n			ErrorMessage(1)\n\n\n==CALENDAR==\n\n=Post event=\n	[PUT] calendar/\n		200 - Returns event's id\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n\n=Edit event=\n	[POST] calendar/{id}\n		200 - Returns new event.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Remove event=\n	[DELETE] calendar/{id}\n		200 - Returns true and redirects\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Authorize event=\n	[POST] event/authorize/{id}\n		200 - Returns true\n		40X			\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Get event=\n	[GET] calendar/{id}\n		200 - Returns event.\n		40X\n			ErrorMessage(7)\n			ErrorMessage(1)\n\n=Get event by range=\n	[GET] calendar/?frequency={frequency}&start={yearStart}-{monthStart}-{dayStart}&end={yearEnd}-{monthEnd}-{dayEnd}&level={level}\n		-level is optional.\n		200 - Returns events.\n		40X\n			ErrorMessage(7)\n			ErrorMessage(1)\n			ErrorMessage(2)\n\n==FILES==\n\n=Post file=\n	[PUT] file/level/{id}\n		200 - Returns file's info.\n		40X\n			ErrorMessage(7)\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(8)\n\n=Edit file info=\n	[POST] file/{id}\n		200 - Returns new file's info.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Edit file's data=\n	[POST] file/b/{id}\n		200 - Returns new file's info.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n			ErrorMessage(8)\n\n=Remove file=\n	[DELETE] file/{id}\n		200 - Returns true and redirects\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Get file data=\n	[GET] file/b/{id}\n		200 - Returns file\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n\n=Get file info=\n	[GET] file/{id}\n		200 - Returns file's info.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n\n=Get files' info by level=\n	[GET] files/level/{level}\n		200 - Returns files' infoss.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n\n=Post comment=\n	[POST] file/{id}/comment\n		200 - Returns true.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n\n=Post blackflag=\n	[POST] file/{id}/blackflag\n		200 - Returns true.\n		40X\n			ErrorMessage(1)\n			ErrorMessage(2)\n			ErrorMessage(7)\n",
 			"file": "ApiREST backbone detailed.txt",
+			"file_size": 4079,
+			"file_write_time": 1416960595000000,
 			"settings":
 			{
-				"buffer_size": 4069,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/subsidy.txt",
-			"settings":
-			{
-				"buffer_size": 8773,
-				"line_ending": "Unix",
-				"name": "Ad 1."
-			}
-		},
-		{
-			"file": "/home/viperey/Dropbox/Proyectos/Empresas/_Creania/OpWelvi/Logs/script.sh",
-			"settings":
-			{
-				"buffer_size": 554,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/viperey/Dropbox/Proyectos/Empresas/_Creania/Denuncias/Direcciones.txt",
-			"settings":
-			{
-				"buffer_size": 262,
+				"buffer_size": 4080,
 				"line_ending": "Unix"
 			}
 		}
@@ -622,6 +591,10 @@
 	},
 	"file_history":
 	[
+		"/home/viperey/Desktop/a.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/subsidy.txt",
+		"/home/viperey/Dropbox/Proyectos/Empresas/_Creania/OpWelvi/Logs/script.sh",
+		"/home/viperey/Dropbox/Proyectos/Empresas/_Creania/Denuncias/Direcciones.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/memoryAnalisys.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/guide memory test.txt",
 		"/home/viperey/Documents/Hola Kata.txt",
@@ -745,11 +718,7 @@
 		"/home/viperey/python/mysite/manage.py",
 		"/home/viperey/python/mysite/mysite/urls.py",
 		"/home/viperey/python/mysite/polls/models.py",
-		"/home/viperey/python/mysite/polls/admin.py",
-		"/home/viperey/Downloads/the witcher 2/steam_appid.txt",
-		"/home/viperey/Downloads/the witcher 2/SDLGamepad.config",
-		"/home/viperey/Desktop/proxy.txt",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/src/main/res/values/styles.xml.orig"
+		"/home/viperey/python/mysite/polls/admin.py"
 	],
 	"find":
 	{
@@ -774,6 +743,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"&amp;",
+			"\"}}",
 			"\n",
 			"	",
 			"	Butterknife",
@@ -899,9 +870,7 @@
 			" ",
 			"showTableSittedGuestInfo",
 			"changeTableStatus",
-			"changeChairStatus",
-			"consol",
-			"src"
+			"changeChairStatus"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -919,7 +888,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -977,129 +946,24 @@
 				},
 				{
 					"buffer": 2,
-					"settings":
-					{
-						"buffer_size": 99,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								99,
-								99
-							]
-						],
-						"settings":
-						{
-							"auto_name": "** MEMINFO in pid 4008 [nl.favoThings.favoroute] *",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "ApiREST backbone detailed.txt",
 					"settings":
 					{
-						"buffer_size": 4069,
+						"buffer_size": 4080,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1379,
-								1379
+								440,
+								440
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 885.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/doc/subsidy.txt",
-					"settings":
-					{
-						"buffer_size": 8773,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8772,
-								8772
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Ad 1.",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 180.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/home/viperey/Dropbox/Proyectos/Empresas/_Creania/OpWelvi/Logs/script.sh",
-					"settings":
-					{
-						"buffer_size": 554,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
-						},
-						"translation.x": 798.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/home/viperey/Dropbox/Proyectos/Empresas/_Creania/Denuncias/Direcciones.txt",
-					"settings":
-					{
-						"buffer_size": 262,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

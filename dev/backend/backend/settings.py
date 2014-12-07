@@ -102,6 +102,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 # TODO. Get any random email account
 EMAIL_HOST_USER = 'viperey@gmail.com'
-EMAIL_HOST_PASSWORD = 'qwerqwer'  # No, this is not my real password
+EMAIL_HOST_PASSWORD = 'tstddxre0'  # No, this is not my real password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
