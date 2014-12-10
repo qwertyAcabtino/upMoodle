@@ -1,26 +1,9 @@
 from django.core.exceptions import ValidationError
-from django.core.validators import EmailValidator
-from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, EMAIL_EMPTY, INCORRECT_DATA
+from rest.MESSAGES_ID import INCORRECT_DATA
 
 
-def validate_password(value, lengthMin=8, lengthMax=100, ):
-    if len(str(value)) < lengthMin or len(str(value)) > lengthMax:
-        raise ValidationError(PASSWORD_LENGTH)
-
-
-def validate_nick(value, lengthMin=4, lengthMax=20):
-    if len(str(value)) < lengthMin or len(str(value)) > lengthMax:
-        raise ValidationError(NICK_LENGTH)
-
-
-def validate_email(value):
-    if len(value) == 0:
-        raise ValidationError(EMAIL_EMPTY)
-    else:
-        emailValidator = EmailValidator()
-    # TODO. Email is upm.es type
-
-
-def validate_length(value, length, code=INCORRECT_DATA):
-    if len(str(value)) > length:
+def validate_length(value, lengthMax, lengthMin=0, code=INCORRECT_DATA):
+    if lengthMin > 0 and len(str(value)) < lengthMin:
+        raise ValidationError(code)
+    if len(str(value)) > lengthMax:
         raise ValidationError(code)

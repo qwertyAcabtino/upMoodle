@@ -5,8 +5,8 @@ from django.utils import unittest
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, INVALID_TOKEN, UNCONFIRMED_EMAIL, \
-    INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED
-from rest.controllers.controllers import get_random_string
+    INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED, EMAIL_INVALID
+from rest.controllers.controllers import get_random_string, get_random_email
 from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level
 from rest.views import login
 
@@ -19,7 +19,7 @@ sessionCookie = '.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7Z
 defUser = User()
 defUser.name = 'Test user'
 defUser.nick = 'Testuser'
-defUser.email = 'test@test.com'
+defUser.email = 'test@eui.upm.es'
 defUser.password = defPassword
 defUser.sessionToken = sessionCookie
 
@@ -70,6 +70,7 @@ class SignedTestCase(CookiesEnabled):
         user.nick = defUser.nick
         user.email = defUser.email
         user.password = defUser.password
+        user.sessionToken = sessionCookie
         user.banned = False
         user.confirmedEmail = True
         user.save()
@@ -151,7 +152,7 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_basic_signup(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test@test.com', 'password': '12341234', 'nick': 'vipvip'})
+                                    {'email': 'test@eui.upm.es', 'password': '12341234', 'nick': 'vipvip'})
         decoded = json.loads(response.content)
         defaultUser = User.objects.get(id=1)
         defaultUser.save()
@@ -162,22 +163,31 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_duplicate_email(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test@test.com', 'password': 'qqwerwerqwere', 'nick': 'vqweripvip'})
+                                    {'email': 'test112312@eui.upm.es', 'password': 'qqwerwerqwere', 'nick': 'vqweripasdfvip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
         self.assertEqual(len(User.objects.all()), 1)
 
+    def test_1_invalid_email(self):
+        response = self.client.post('/signup/',
+                                    {'email': 'test112@google.com', 'password': 'qqwerwerqwere', 'nick': 'vqwsdfsdferipvip'})
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertIsNotNone(decoded['error'])
+        self.assertEqual(len(User.objects.all()), 0)
+        self.assertEqual(ErrorMessage.objects.get(pk=EMAIL_INVALID).error, decoded['error'])
+
     def test_duplicate_nick(self):
         response = self.client.post('/signup/',
-                                    {'email': 'viperey@test2.com', 'password': '12341234', 'nick': 'vipvip'})
+                                    {'email': 'viperey@eui.upm.es', 'password': '12341234', 'nick': 'vipvip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
         self.assertEqual(len(User.objects.all()), 1)
 
     def test_password_length(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com', 'password': 'qwer', 'nick': 'vipvip'})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwer', 'nick': 'vipvip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -185,7 +195,7 @@ class D_SignUpTestCase(CookiesEnabled):
         self.assertEqual(ErrorMessage.objects.get(pk=PASSWORD_LENGTH).error, decoded['error'])
 
     def test_password_length_2(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com',
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es',
                                                  'password': 'qwerwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwqwer',
                                                  'nick': 'vipvip'})
         self.assertEqual(response.status_code, 400)
@@ -197,7 +207,7 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_nick_length(self):
         response = self.client.post('/signup/',
-                                    {'email': 'viperey@test2.com', 'password': 'qwerqwerqwer', 'nick': 'qwe'})
+                                    {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer', 'nick': 'qwe'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -205,7 +215,7 @@ class D_SignUpTestCase(CookiesEnabled):
         self.assertEqual(ErrorMessage.objects.get(pk=NICK_LENGTH).error, decoded['error'])
 
     def test_nick_length_2(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com', 'password': 'qwerqwerqwer',
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer',
                                                  'nick': 'qweqweqweqweqweqweqweqwe'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
@@ -222,23 +232,23 @@ class D_SignUpTestCase(CookiesEnabled):
         self.assertEqual(response.status_code, 400)
 
     def test_none_field_password(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com', 'password': '', 'nick': 'qweqweqwer'})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': '', 'nick': 'qweqweqwer'})
         self.assertEqual(response.status_code, 400)
 
     def test_none_field_password_2(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com', 'nick': 'qweqweqwer'})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'nick': 'qweqweqwer'})
         self.assertEqual(response.status_code, 400)
 
     def test_none_field_nick(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com', 'password': 'qwerqwerqwer', 'nick': ''})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer', 'nick': ''})
         self.assertEqual(response.status_code, 400)
 
     def test_none_field_nick_2(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com', 'password': 'qwerqwerqwer'})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer'})
         self.assertEqual(response.status_code, 400)
 
     def test_none_field_2(self):
-        response = self.client.post('/signup/', {'email': 'viperey@test2.com'})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es'})
         self.assertEqual(response.status_code, 400)
 
     def test_none_field_3(self):
@@ -283,20 +293,20 @@ class E_ConfirmEmailTestCase(unittest.TestCase):
 class F_LoginTestCase(CookiesEnabled):
 
     def test_1_basic_login(self):
-        response = self.client.post('/login/', {'email': 'test@test.com', 'password': '12341234'})
+        response = self.client.post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         self.assertEqual(response.status_code, 200)
-        user = User.objects.get(email='test@test.com')
+        user = User.objects.get(email='test@eui.upm.es')
         self.assertTrue(user.confirmedEmail)
 
     def test_2_login_unconfirmed_email(self):
-        user = User.objects.get(email='test@test.com')
+        user = User.objects.get(email='test@eui.upm.es')
         user.confirmedEmail = False
         user.save()
-        response = self.client.post('/login/', {'email': 'test@test.com', 'password': '12341234'})
+        response = self.client.post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=UNCONFIRMED_EMAIL).error, decoded['error'])
-        user = User.objects.get(email='test@test.com')
+        user = User.objects.get(email='test@eui.upm.es')
         user.confirmedEmail = True
         user.save()
 
@@ -313,20 +323,20 @@ class F_LoginTestCase(CookiesEnabled):
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
     def test_5_login_empty_password(self):
-        response = self.client.post('/login/', {'email': 'test@test.com', 'password': ''})
+        response = self.client.post('/login/', {'email': 'test@eui.upm.es', 'password': ''})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
     def test_6_login_empty_password_2(self):
-        response = self.client.post('/login/', {'email': 'test@test.com'})
+        response = self.client.post('/login/', {'email': 'test@eui.upm.es'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
     # In this case, for testing the behaviour when having cookies disabled, the request has to be made in a special way.
     def test_7_login_disabled_cookies(self):
-        request = RequestFactory().post('/login/', {'email': 'test@test.com', 'password': '12341234'})
+        request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         request.COOKIES[SESSION_COOKIE_NAME_BIS] = None
         request.session = self.client.session
         request.session.TEST_COOKIE_VALUE = None
@@ -337,7 +347,7 @@ class F_LoginTestCase(CookiesEnabled):
         self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
 
     def test_8_login_disabled_cookies_2(self):
-        request = RequestFactory().post('/login/', {'email': 'test@test.com', 'password': '12341234'})
+        request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         request.session = self.client.session
         request.COOKIES[SESSION_COOKIE_NAME_BIS] = None
 
@@ -347,7 +357,7 @@ class F_LoginTestCase(CookiesEnabled):
         self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
 
     def test_8_login_disabled_cookies_3(self):
-        request = RequestFactory().post('/login/', {'email': 'test@test.com', 'password': '12341234'})
+        request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         request.session = self.client.session
         request.COOKIES[SESSION_COOKIE_NAME_BIS] = ''
 
@@ -368,7 +378,7 @@ class H_RecoverPasswordTestCase(unittest.TestCase):
         self.client = Client()
 
     def test_1_basic_recover(self):
-        email = 'test@test.com'
+        email = 'test@eui.upm.es'
         user = User.objects.get(email=email)
         passOld = user.password
         response = self.client.post('/recover_password/', {'email': email})
@@ -394,7 +404,7 @@ class H_RecoverPasswordTestCase(unittest.TestCase):
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
     def test_4_banned_user(self):
-        email = 'test@test.com'
+        email = 'test@eui.upm.es'
         user = User.objects.get(email=email)
         user.banned = True
         user.save()
@@ -406,7 +416,7 @@ class H_RecoverPasswordTestCase(unittest.TestCase):
         user.save()
 
     def test_5_unconfirmed_user(self):
-        email = 'test@test.com'
+        email = 'test@eui.upm.es'
         user = User.objects.get(email=email)
         user.confirmedEmail = False
         user.save()
@@ -481,7 +491,7 @@ class I_userTestCase(SignedTestCase):
 
     def test_9_userUpdate_basic(self):
         self.login()
-        newEmail = 'email@new.es'
+        newEmail = get_random_email()
         response = self.client.post('/user/', {'email': newEmail})
         self.assertEqual(response.status_code, 200)
         userUpdated = User.objects.get(id=1)
@@ -513,7 +523,7 @@ class I_userTestCase(SignedTestCase):
 
     def test_13_userUpdate_basic_several(self):
         self.login()
-        newEmail = 'email@new.es'
+        newEmail = 'email@upm.es'
         newName = 'Victor Perez rey'
         newNick = 'newNick'
         response = self.client.post('/user/', {'email': newEmail, 'name': newName, 'nick': newNick})

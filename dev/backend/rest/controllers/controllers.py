@@ -44,7 +44,7 @@ def get_random_password():
 def get_random_email():
     length = 10
     email = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
-    return email
+    return email + '@upm.es'
 
 
 def get_random_string(length):

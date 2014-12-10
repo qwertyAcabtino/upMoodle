@@ -1,14 +1,16 @@
+from django.core.validators import EmailValidator, validate_email
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
-from rest.MESSAGES_ID import NICK_LENGTH
 
+from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID
 from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
 
 
+
 # Carrer, course, subject
-from rest.validators import validate_password, validate_nick, validate_email, validate_length
+from rest.validators import validate_length
 
 
 class ErrorMessage(models.Model):
@@ -68,11 +70,12 @@ class Rol(models.Model):
 class User(models.Model):
     id = models.AutoField(primary_key=True)
     rol = models.ForeignKey('Rol', default=STUDENT)
-    email = models.EmailField(max_length=100, validators=[validate_email], unique=True)
-    nick = models.CharField(max_length=20, validators=[validate_nick], unique=True)
+    email = models.EmailField(max_length=100, unique=True)
+    nick = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=100, blank=True)
-    password = models.CharField(max_length=100, validators=[validate_password])
+    password = models.CharField(max_length=100)
     profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
+    # TODO. DateTimeField & Update @Sigin
     lastTimeActive = models.DateField(auto_now=True)
     joined = models.DateField(auto_now_add=True)
     banned = models.BooleanField(default=False)
@@ -89,9 +92,25 @@ class User(models.Model):
         super(User, self).save(*args, **kwargs)
 
     def clean(self):
-        validate_email(self.email)
-        validate_password(self.password)
-        validate_nick(self.nick)
+        self.validate_email()
+        self.validate_password()
+        self.validate_nick()
+
+    def validate_email(self):
+        try:
+            validate_email(self.email)
+            if not "@eui.upm.es" in self.email and not "@upm.es" in self.email:
+                raise ValidationError(EMAIL_INVALID)
+        except ValidationError as v:
+            raise ValidationError(EMAIL_INVALID)
+
+    def validate_password(self):
+        lengthMax = User._meta.get_field('password').max_length
+        validate_length(self.password, lengthMax, 8, PASSWORD_LENGTH)
+
+    def validate_nick(self):
+        lengthMax = User._meta.get_field('nick').max_length
+        validate_length(self.nick, lengthMax, 4, NICK_LENGTH)
 
     def update(self, userUpdate, fields):
         if fields:
@@ -116,14 +135,14 @@ class NoteBoard(models.Model):
         super(NoteBoard, self).save(*args, **kwargs)
 
     def clean(self):
-        self.validate_topic_length()
-        self.validate_text_length()
+        self.validate_topic()
+        self.validate_text()
 
-    def validate_topic_length(self):
+    def validate_topic(self):
         length = NoteBoard._meta.get_field('topic').max_length
         validate_length(self.topic, length)
 
-    def validate_text_length(self):
+    def validate_text(self):
         length = NoteBoard._meta.get_field('text').max_length
         validate_length(self.text, length)
 

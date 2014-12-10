@@ -1,6 +1,4 @@
 from django.core.mail import send_mail
-from django.utils.datastructures import MultiValueDictKeyError
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -17,7 +15,6 @@ from rest.controllers.controllers import get_email_confirmation_message, cookies
     get_random_password, \
     get_random_email, check_signed_in_request, check_cookies
 from rest.orm.unserializers import unserialize_user, unserialize_note
-
 
 @csrf_exempt
 def noteboardList(request):
@@ -190,7 +187,6 @@ def login(request):
             else:
                 user.sessionToken = session_key
                 user.save()
-                # TODO. Update lastTimeActive
                 message = Message.objects.get(pk=SUCCESS_LOGIN)
                 serializer = MessageSerializer(message, many=False)
                 jsonResponse = JSONResponse(serializer.data, status=200)
@@ -312,7 +308,7 @@ def userRemove(request):
         userSigned = User.objects.get(sessionToken=sessionToken)
         userSigned.name = 'RemovedUser ' + str(userSigned.id)
         userSigned.nick = 'RemovedUser ' + str(userSigned.id)
-        userSigned.email = get_random_email() + '@upMoodle.com'
+        userSigned.email = get_random_email()
         userSigned.password = get_random_password()
         userSigned.profilePic = '_default.png'
         userSigned.banned = True
