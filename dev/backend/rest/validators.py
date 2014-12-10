@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
-from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, EMAIL_EMPTY
+from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, EMAIL_EMPTY, INCORRECT_DATA
 
 
 def validate_password(value, lengthMin=8, lengthMax=100, ):
@@ -19,3 +19,8 @@ def validate_email(value):
     else:
         emailValidator = EmailValidator()
     # TODO. Email is upm.es type
+
+
+def validate_length(value, length, code=INCORRECT_DATA):
+    if len(str(value)) > length:
+        raise ValidationError(code)

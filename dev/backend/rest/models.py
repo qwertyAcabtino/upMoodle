@@ -8,7 +8,7 @@ from rest.finals import *
 
 
 # Carrer, course, subject
-from rest.validators import validate_password, validate_nick, validate_email
+from rest.validators import validate_password, validate_nick, validate_email, validate_length
 
 
 class ErrorMessage(models.Model):
@@ -100,7 +100,6 @@ class User(models.Model):
 
 
 class NoteBoard(models.Model):
-    # TODO. Validate lengths
     id = models.AutoField(primary_key=True)
     topic = models.CharField(max_length=100)
     text = models.CharField(max_length=2000)
@@ -114,14 +113,19 @@ class NoteBoard(models.Model):
         self.clean()
         self.clean_fields()
         self.validate_unique()
+        super(NoteBoard, self).save(*args, **kwargs)
 
     def clean(self):
-        length = NoteBoard._meta.get_field('topic').max_length
-        self.validate_length(self.topic)
+        self.validate_topic_length()
+        self.validate_text_length()
 
-    def validate_length(value, length):
-        if len(str(value)) > length:
-            raise ValidationError(NICK_LENGTH)
+    def validate_topic_length(self):
+        length = NoteBoard._meta.get_field('topic').max_length
+        validate_length(self.topic, length)
+
+    def validate_text_length(self):
+        length = NoteBoard._meta.get_field('text').max_length
+        validate_length(self.text, length)
 
     def update(self, userUpdate, fields):
         if fields:

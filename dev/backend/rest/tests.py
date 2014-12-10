@@ -6,6 +6,7 @@ from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, INVALID_TOKEN, UNCONFIRMED_EMAIL, \
     INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED
+from rest.controllers.controllers import get_random_string
 from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level
 from rest.views import login
 
@@ -580,3 +581,18 @@ class J_noteTestCase(SignedTestCase):
         pk = 1
         response = self.client.post('/note/' + str(pk) + '/', {})
         self.assertEqual(response.status_code, 200)
+
+    def test_8_postNote_length_overflows(self):
+        self.login()
+        pk = 1
+        # Topic
+        response = self.client.post('/note/' + str(pk) + '/', {'topic': sessionCookie, 'text': 'text', 'level_id': 1})
+        decoded = json.loads(response.content)
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        # Text
+        response = self.client.post('/note/' + str(pk) + '/', {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
+        decoded = json.loads(response.content)
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+

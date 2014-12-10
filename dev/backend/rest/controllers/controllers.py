@@ -47,6 +47,10 @@ def get_random_email():
     return email
 
 
+def get_random_string(length):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
+
+
 def cookies_are_ok(request):
     return request.COOKIES[SESSION_COOKIE_NAME_BIS] \
            and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0

@@ -422,6 +422,9 @@ def note_update(request, pk):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValidationError as v:
+        return RequestExceptionByMessage(v).jsonResponse
+
 
 
 @csrf_exempt
