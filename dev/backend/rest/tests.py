@@ -6,7 +6,7 @@ from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, INVALID_TOKEN, UNCONFIRMED_EMAIL, \
     INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED
-from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard
+from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level
 from rest.views import login
 
 """
@@ -84,7 +84,7 @@ class A1_ErrorMessageTestCase(unittest.TestCase):
     def test_errormessages_exists_in_db(self):
         ErrorMessage.objects.create(error="Request cannot be performed")
         ErrorMessage.objects.create(error="Incorrect data")
-        ErrorMessage.objects.create(error="Cookies disabled")
+        ErrorMessage.objects.create(error="Cookies are disabled")
         ErrorMessage.objects.create(error="Already confirmed")
         ErrorMessage.objects.create(error="Invalid token")
         ErrorMessage.objects.create(error="User already in use")
@@ -124,15 +124,27 @@ class B_RolTestCase(unittest.TestCase):
         self.assertEqual(len(Rol.objects.all()), 6)
 
 
-class C_LevelTestCase(unittest.TestCase):
+class C1_LevelTypeTestCase(unittest.TestCase):
     def setUp(self):
         LevelType.objects.create(name="carrer")
         LevelType.objects.create(name="course")
         LevelType.objects.create(name="subject")
 
-    def test_levels_exits_in_db(self):
+    def test_leveltypes_exits_in_db(self):
         self.assertEqual(len(LevelType.objects.all()), 3)
 
+
+class C2_LevelTypeTestCase(unittest.TestCase):
+
+    def setUp(self):
+        level = Level()
+        level.name = "Level 1"
+        level.visible = True
+        level.type = LevelType.objects.get(id=1)
+        level.save()
+
+    def test_levels_exists_in_db(self):
+        self.assertEqual(len(Level.objects.all()), 1)
 
 class D_SignUpTestCase(CookiesEnabled):
 
@@ -314,7 +326,7 @@ class F_LoginTestCase(CookiesEnabled):
     # In this case, for testing the behaviour when having cookies disabled, the request has to be made in a special way.
     def test_7_login_disabled_cookies(self):
         request = RequestFactory().post('/login/', {'email': 'test@test.com', 'password': '12341234'})
-        request.COOKIES['testcookie'] = None
+        request.COOKIES[SESSION_COOKIE_NAME_BIS] = None
         request.session = self.client.session
         request.session.TEST_COOKIE_VALUE = None
 
@@ -326,7 +338,7 @@ class F_LoginTestCase(CookiesEnabled):
     def test_8_login_disabled_cookies_2(self):
         request = RequestFactory().post('/login/', {'email': 'test@test.com', 'password': '12341234'})
         request.session = self.client.session
-        request.COOKIES[SESSION_COOKIE_NAME] = None
+        request.COOKIES[SESSION_COOKIE_NAME_BIS] = None
 
         response = login(request)
         self.assertEqual(response.status_code, 400)
@@ -336,7 +348,7 @@ class F_LoginTestCase(CookiesEnabled):
     def test_8_login_disabled_cookies_3(self):
         request = RequestFactory().post('/login/', {'email': 'test@test.com', 'password': '12341234'})
         request.session = self.client.session
-        request.COOKIES[SESSION_COOKIE_NAME] = ''
+        request.COOKIES[SESSION_COOKIE_NAME_BIS] = ''
 
         response = login(request)
         self.assertEqual(response.status_code, 400)
@@ -405,7 +417,7 @@ class H_RecoverPasswordTestCase(unittest.TestCase):
         user.save()
 
 
-class J_userTestCase(SignedTestCase):
+class I_userTestCase(SignedTestCase):
     def test_1_basic_getUser(self):
         self.login()
         pk = '1'
@@ -455,7 +467,7 @@ class J_userTestCase(SignedTestCase):
         response = self.client.delete('/user/')
         self.assertEqual(response.status_code, 200)
         user = User.objects.get(id=1)
-        self.assertEqual(user.nick, 'RemovedUser' + str(user.id))
+        self.assertEqual(user.nick, 'RemovedUser ' + str(user.id))
         decoded = json.loads(response.content)
         self.assertEqual(Message.objects.get(pk=USER_REMOVED).message, decoded['message'])
 
@@ -511,7 +523,7 @@ class J_userTestCase(SignedTestCase):
         self.assertEqual(userUpdated.nick, newNick)
 
 
-class H_noteTestCase(SignedTestCase):
+class J_noteTestCase(SignedTestCase):
     def test_1_basic_note_get(self):
         self.login()
         self.addDefaultNote()
@@ -538,10 +550,33 @@ class H_noteTestCase(SignedTestCase):
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
-    # def test_4_postNote_basic(self):
-    #     self.login()
-    #     pk = 1
-    #     response = self.client.post('/note/' + pk + '/', {'topic': 'topic', 'text': 'text', 'level_id': '1'})
-    #     self.assertEqual(response.status_code, 200)
+    def test_4_postNote_basic(self):
+        self.login()
+        pk = 1
+        topic = 'topic'
+        response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'level_id': 1})
+        self.assertEqual(response.status_code, 200)
+        note = NoteBoard.objects.get(id=1)
+        self.assertEqual(topic, note.topic)
 
+    def test_5_postNote_signedOut(self):
+        self.logout()
+        pk = 1
+        topic = 'topic'
+        response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'level_id': 1})
+        self.assertEqual(response.status_code, 400)
 
+    def test_6_postNote_forbiddenFields(self):
+        self.login()
+        pk = 1
+        topic = 'topic'
+        response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'author_id': 2})
+        self.assertEqual(response.status_code, 200)
+        note = NoteBoard.objects.get(id=1)
+        self.assertEqual(note.author_id, User.objects.get(id=1).id)
+
+    def test_7_postNote_emptyQuery(self):
+        self.login()
+        pk = 1
+        response = self.client.post('/note/' + str(pk) + '/', {})
+        self.assertEqual(response.status_code, 200)

@@ -48,9 +48,11 @@ def get_random_email():
 
 
 def cookies_are_ok(request):
-    return request.session.test_cookie_worked() \
-           and request.COOKIES[SESSION_COOKIE_NAME] \
-           and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
+    return request.COOKIES[SESSION_COOKIE_NAME_BIS] \
+           and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
+    # return request.session.test_cookie_worked() \
+    #        and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
+    #        and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
 
 
 def is_signed_in(request):

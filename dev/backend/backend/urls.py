@@ -25,8 +25,8 @@ urlpatterns = patterns('rest.views',
     url(r'^login/$', 'login'),
     url(r'^logout/$', 'logout'),
     url(r'^recover_password/$', 'recoverPassword'),
-    url(r'^user/$', 'user'),
-    url(r'^user/(?P<pk>[0-9]+)/$', 'getUser'),
+    url(r'^user/$', 'user'), # GET, POST, DELETE
+    url(r'^user/(?P<pk>[0-9]+)/$', 'userThird'),
     url(r'^users/rol/(?P<pk>[0-9]+)/$', 'usersByRol'),
 
     url(r'^note/(?P<pk>[0-9]+)/$', 'noteboardNote')

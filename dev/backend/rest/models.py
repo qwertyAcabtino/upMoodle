@@ -1,6 +1,7 @@
 from django.utils.datastructures import MultiValueDictKeyError
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
+from rest.MESSAGES_ID import NICK_LENGTH
 
 from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
@@ -108,6 +109,19 @@ class NoteBoard(models.Model):
 
     def __unicode__(self):
         return self.topic
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        self.clean_fields()
+        self.validate_unique()
+
+    def clean(self):
+        length = NoteBoard._meta.get_field('topic').max_length
+        self.validate_length(self.topic)
+
+    def validate_length(value, length):
+        if len(str(value)) > length:
+            raise ValidationError(NICK_LENGTH)
 
     def update(self, userUpdate, fields):
         if fields:

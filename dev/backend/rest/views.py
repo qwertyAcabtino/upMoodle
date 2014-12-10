@@ -15,7 +15,7 @@ from rest.controllers.Exceptions.requestException import RequestExceptionByMessa
 from rest.orm.serializers import *
 from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, \
     get_random_password, \
-    get_random_email, check_signed_in_request
+    get_random_email, check_signed_in_request, check_cookies
 from rest.orm.unserializers import unserialize_user, unserialize_note
 
 
@@ -139,9 +139,8 @@ def fileListSubject(request, pk):
 @csrf_exempt
 def signup(request):
     try:
-        if not cookies_are_ok(request):
-            return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
-        elif request.method == 'POST':
+        check_cookies(request)
+        if request.method == 'POST':
             user = unserialize_user(request.POST, sessionToken=request.COOKIES[SESSION_COOKIE_NAME],
                                     fields=['email', 'password', 'nick'])
             send_mail('Email confirmation',
@@ -157,7 +156,8 @@ def signup(request):
         return r.jsonResponse
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-
+    except RequestException as r:
+        return r.jsonResponse
 
 def confirmEmail(request, cookie):
     try:
@@ -255,8 +255,9 @@ def recoverPassword(request):
         return r.jsonResponse
 
 
+#TODO. POST and DELETE USER if permission
 @csrf_exempt
-def getUser(request, pk):
+def userThird(request, pk):
     try:
         check_signed_in_request(request, 'GET')
         users = User.objects.get(id=pk)
@@ -294,7 +295,7 @@ def getUserSelf(request):
 def usersByRol(request, pk):
     try:
         check_signed_in_request(request, 'GET')
-        users = User.objects.filter(rol=pk)
+        users = User.objects.filter(rol=pk, banned=False)
         serializer = UserSerializer(users, many=True)
         return JSONResponse(serializer.data)
     except RequestException as r:
@@ -309,8 +310,8 @@ def userRemove(request):
         check_signed_in_request(request, method='DELETE')
         sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
         userSigned = User.objects.get(sessionToken=sessionToken)
-        userSigned.name = 'Removed userSigned'
-        userSigned.nick = 'RemovedUser' + str(userSigned.id)
+        userSigned.name = 'RemovedUser ' + str(userSigned.id)
+        userSigned.nick = 'RemovedUser ' + str(userSigned.id)
         userSigned.email = get_random_email() + '@upMoodle.com'
         userSigned.password = get_random_password()
         userSigned.profilePic = '_default.png'
@@ -372,14 +373,14 @@ def noteboardNote(request, pk):
         check_signed_in_request(request)
         if request.method == 'GET':
             return note_get(request, pk)
-        # elif request.method == 'DELETE':
-        # return note_remove(request)
+        elif request.method == 'DELETE':
+            return note_remove(request)
         elif request.method == 'POST':
             return note_update(request, pk)
     except RequestException as r:
         return r.jsonResponse
 
-
+@csrf_exempt
 def note_get(request, pk):
     try:
         check_signed_in_request(request, 'GET')
@@ -422,6 +423,14 @@ def note_update(request, pk):
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
+
+@csrf_exempt
+def note_remove(request, pk):
+    try:
+        check_signed_in_request(request, method='DELETE')
+        note = NoteBoard.objects.get(id=pk)
+    except RequestException as r:
+        return r.jsonResponse
 
 # """
 # Retrieve, update or delete a code snippet.
