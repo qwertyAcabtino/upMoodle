@@ -193,7 +193,6 @@ def login(request):
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME_BIS, session_key)
                 return jsonResponse
-
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)
     except ObjectDoesNotExist:
