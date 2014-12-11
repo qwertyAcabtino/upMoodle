@@ -15,6 +15,9 @@ from rest.controllers.controllers import get_email_confirmation_message, cookies
     get_random_password, \
     get_random_email, check_signed_in_request, check_cookies, check_authorized_author
 from rest.orm.unserializers import unserialize_user, unserialize_note
+from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post
+from rest.viewsPackage.users import user_get, user_delete, user_put
+
 
 @csrf_exempt
 def noteboardList(request):
@@ -245,9 +248,21 @@ def recoverPassword(request):
         return r.jsonResponse
 
 
-#TODO. POST and DELETE USER if permission
 @csrf_exempt
-def userThird(request, pk):
+def user(request):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return user_get(request)
+        elif request.method == 'DELETE':
+            return user_delete(request)
+        elif request.method == 'POST':
+            return user_put(request)
+    except RequestException as r:
+        return r.jsonResponse
+
+@csrf_exempt
+def userById(request, pk):
     try:
         check_signed_in_request(request, 'GET')
         users = User.objects.get(id=pk)
@@ -262,25 +277,6 @@ def userThird(request, pk):
     except ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
-
-@csrf_exempt
-def getUserSelf(request):
-    try:
-        check_signed_in_request(request, 'GET')
-        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
-        users = User.objects.get(sessionToken=sessionToken)
-        serializer = UserSerializer(users, many=False)
-        return JSONResponse(serializer.data)
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-
-
 @csrf_exempt
 def usersByRol(request, pk):
     try:
@@ -294,136 +290,25 @@ def usersByRol(request, pk):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
-@csrf_exempt
-def userRemove(request):
-    try:
-        check_signed_in_request(request, method='DELETE')
-        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
-        userSigned = User.objects.get(sessionToken=sessionToken)
-        userSigned.name = 'RemovedUser ' + str(userSigned.id)
-        userSigned.nick = 'RemovedUser ' + str(userSigned.id)
-        userSigned.email = get_random_email()
-        userSigned.password = get_random_password()
-        userSigned.profilePic = '_default.png'
-        userSigned.banned = True
-        userSigned.confirmedEmail = False
-        userSigned.save()
-        return JSONResponseID(USER_REMOVED)
-    except RequestException as r:
-        return r.jsonResponse
-
-
-@csrf_exempt
-def userUpdate(request):
-    try:
-        check_signed_in_request(request, 'POST')
-        form = request.POST
-        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
-        try:
-            password = form['password']
-            if not userSigned.password == form['oldPassword']:
-                raise RequestExceptionByCode(INCORRECT_DATA)
-        except MultiValueDictKeyError:
-            pass
-        fields = ['nick', 'name', 'password', 'email']
-        userUpdated = unserialize_user(form, fields=fields, optional=True)
-        userSigned.update(userUpdated, fields)
-        userSigned.save()
-        return JSONResponseID(USER_UPDATED)
-    except RequestException as r:
-        return r.jsonResponse
-    except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-
-
-@csrf_exempt
-def user(request):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'GET':
-            return getUserSelf(request)
-        elif request.method == 'DELETE':
-            return userRemove(request)
-        elif request.method == 'POST':
-            return userUpdate(request)
-    except RequestException as r:
-        return r.jsonResponse
-
-
 # == Notes ==
 @csrf_exempt
-def noteboardNote(request, pk):
+def noteById(request, pk):
     try:
         check_signed_in_request(request)
         if request.method == 'GET':
             return note_get(request, pk)
         elif request.method == 'DELETE':
-            return note_remove(request)
+            return note_delete(request)
         elif request.method == 'POST':
-            return note_update(request, pk)
+            return note_put(request, pk)
     except RequestException as r:
         return r.jsonResponse
 
 @csrf_exempt
-def note_get(request, pk):
+def note(request):
     try:
-        check_signed_in_request(request, 'GET')
-        note = NoteBoard.objects.get(id=pk)
-        serializer = NoteBoardSerializer(note, many=False)
-        return JSONResponse(serializer.data)
+        check_signed_in_request(request)
+        if request.method == 'POST':
+            return note_post(request)
     except RequestException as r:
         return r.jsonResponse
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-
-
-@csrf_exempt
-def note_update(request, pk):
-    try:
-        noteOriginal = NoteBoard.objects.get(id=pk)
-
-        check_signed_in_request(request, 'POST')
-        check_authorized_author(request, noteOriginal.author_id)
-
-        form = request.POST
-        Level.validate_exists(form)
-        fields = ['topic', 'text', 'level_id']
-        noteUpdated = unserialize_note(form, fields=fields, optional=True)
-        noteOriginal.update(noteUpdated, fields)
-        noteOriginal.save()
-        return JSONResponseID(NOTE_UPDATED)
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except ValidationError as v:
-        return RequestExceptionByMessage(v).jsonResponse
-
-
-
-@csrf_exempt
-def note_remove(request, pk):
-    try:
-        check_signed_in_request(request, method='DELETE')
-        note = NoteBoard.objects.get(id=pk)
-    except RequestException as r:
-        return r.jsonResponse
-
-# """
-# Retrieve, update or delete a code snippet.
-# """
-#     try:
-#         note = NoteBoard.objects.get(pk=pk)
-#     except NoteBoard.DoesNotExist:
-#         return HttpResponse(status=404)
-#
-#     if request.method == 'GET':
-#         serializer = NoteBoardSerializer(note)
-#         return JSONResponse(serializer.data)
-#
