@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils.crypto import random
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
-from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT
+from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT, UNAUTHORIZED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.models import User
 
@@ -94,3 +94,10 @@ def check_signed_in_request(request, *args, **kwargs):
     method = kwargs.get('method', None)
     if method:
         check_request_method(request, method)
+
+
+def check_authorized_author(request, author_id, level=False,same=True):
+    # TODO. Level.
+    userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+    if same and not author_id == userSigned.id:
+        raise RequestExceptionByCode(UNAUTHORIZED)

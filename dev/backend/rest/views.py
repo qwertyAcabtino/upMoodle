@@ -13,7 +13,7 @@ from rest.controllers.Exceptions.requestException import RequestExceptionByMessa
 from rest.orm.serializers import *
 from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, \
     get_random_password, \
-    get_random_email, check_signed_in_request, check_cookies
+    get_random_email, check_signed_in_request, check_cookies, check_authorized_author
 from rest.orm.unserializers import unserialize_user, unserialize_note
 
 @csrf_exempt
@@ -84,7 +84,6 @@ def calendarList(request):
     """
     Retrieves user's future calendar events.
     """
-    # Todo. Restrict to logged user.
     if request.method == 'GET':
         events = CalendarRegularEvent.objects.all()
         serializer = CalendarEventSerializer(events, many=True)
@@ -362,7 +361,7 @@ def user(request):
         return r.jsonResponse
 
 
-# Notes
+# == Notes ==
 @csrf_exempt
 def noteboardNote(request, pk):
     try:
@@ -396,22 +395,21 @@ def note_get(request, pk):
 @csrf_exempt
 def note_update(request, pk):
     try:
+        noteOriginal = NoteBoard.objects.get(id=pk)
+
         check_signed_in_request(request, 'POST')
-        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        check_authorized_author(request, noteOriginal.author_id)
+
         form = request.POST
         Level.validate_exists(form)
         fields = ['topic', 'text', 'level_id']
         noteUpdated = unserialize_note(form, fields=fields, optional=True)
-        noteOriginal = NoteBoard.objects.get(id=pk)
-        if noteOriginal.author_id == userSigned.id:
-            noteOriginal.update(noteUpdated, fields)
-            noteOriginal.save()
-            message = Message.objects.get(pk=NOTE_UPDATED)
-            serializer = MessageSerializer(message, many=False)
-            jsonResponse = JSONResponse(serializer.data, status=200)
-            return jsonResponse
-        else:
-            raise RequestExceptionByCode(UNAUTHORIZED)
+        noteOriginal.update(noteUpdated, fields)
+        noteOriginal.save()
+        message = Message.objects.get(pk=NOTE_UPDATED)
+        serializer = MessageSerializer(message, many=False)
+        jsonResponse = JSONResponse(serializer.data, status=200)
+        return jsonResponse
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist:
