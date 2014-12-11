@@ -120,6 +120,9 @@ class User(models.Model):
             for field in fields:
                 setattr(self, field, getattr(userUpdate, field))
 
+    @staticmethod
+    def get_signed_user_id(sessionToken):
+        return User.objects.get(sessionToken=sessionToken).id
 
 class NoteBoard(models.Model):
     id = models.AutoField(primary_key=True)
