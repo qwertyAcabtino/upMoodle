@@ -7,7 +7,7 @@ from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
     SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED, USER_REMOVED, USER_UPDATED, NOTE_UPDATED
-from rest.JSONResponse import JSONResponse
+from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.controllers.Exceptions.requestException import RequestExceptionByMessage, RequestExceptionByCode, \
     RequestException
 from rest.orm.serializers import *
@@ -406,10 +406,7 @@ def note_update(request, pk):
         noteUpdated = unserialize_note(form, fields=fields, optional=True)
         noteOriginal.update(noteUpdated, fields)
         noteOriginal.save()
-        message = Message.objects.get(pk=NOTE_UPDATED)
-        serializer = MessageSerializer(message, many=False)
-        jsonResponse = JSONResponse(serializer.data, status=200)
-        return jsonResponse
+        return JSONResponseID(NOTE_UPDATED)
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist:
