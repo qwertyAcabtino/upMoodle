@@ -4,9 +4,8 @@
     <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../doc/ApiREST backbone detailed.txt" afterPath="$PROJECT_DIR$/../../doc/ApiREST backbone detailed.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/models.py" afterPath="$PROJECT_DIR$/rest/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/viewsPackage/notes.py" afterPath="$PROJECT_DIR$/rest/viewsPackage/notes.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../doc/tfg.sublime-workspace" afterPath="$PROJECT_DIR$/../../doc/tfg.sublime-workspace" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/urls.py" afterPath="$PROJECT_DIR$/backend/urls.py" />
     </list>
     <ignored path="backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,8 +80,8 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
-              <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+              <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -91,8 +90,8 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2703" max-vertical-offset="5760">
-              <caret line="170" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4849" max-vertical-offset="5760">
+              <caret line="298" column="24" selection-start-line="298" selection-start-column="24" selection-end-line="298" selection-end-column="24" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -112,11 +111,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notes.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="validators.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest/validators.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
+              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notes.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest/viewsPackage/notes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71291864" vertical-offset="939" max-vertical-offset="1566">
-              <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="655" max-vertical-offset="1566">
+              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
               <folding>
                 <element signature="e#0#62#0" expanded="true" />
               </folding>
@@ -124,21 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="validators.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest/validators.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
-              <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controllers.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="817" max-vertical-offset="1782">
-              <caret line="63" column="63" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.17782657" vertical-offset="0" max-vertical-offset="1782">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -179,12 +178,12 @@
         <option value="$PROJECT_DIR$/rest/controllers/controllers.py" />
         <option value="$PROJECT_DIR$/rest/JSONResponse.py" />
         <option value="$PROJECT_DIR$/rest/views/notes.py" />
-        <option value="$PROJECT_DIR$/backend/urls.py" />
         <option value="$PROJECT_DIR$/rest/viewsPackage/users.py" />
         <option value="$PROJECT_DIR$/rest/tests.py" />
         <option value="$PROJECT_DIR$/rest/views.py" />
         <option value="$PROJECT_DIR$/rest/models.py" />
         <option value="$PROJECT_DIR$/rest/viewsPackage/notes.py" />
+        <option value="$PROJECT_DIR$/backend/urls.py" />
       </list>
     </option>
   </component>
@@ -380,7 +379,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="test&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/tests.py&#10;notes&#9;null&#9;null&#10;setting&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py&#10;unser&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/orm/unserializers.py&#10;mode&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/models.py&#10;mors&#9;null&#9;null&#10;sorted&#9;null&#9;null&#10;urls&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/urls.py&#10;json&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/JSONResponse.py&#10;view&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/views.py&#10;sett&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py&#10;url&#9;null&#9;null&#10;admin&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/admin.py" />
+    <property name="SearchEverywhereHistoryKey" value="vali&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/validators.py&#10;test&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/tests.py&#10;notes&#9;null&#9;null&#10;setting&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py&#10;unser&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/orm/unserializers.py&#10;mode&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/models.py&#10;mors&#9;null&#9;null&#10;sorted&#9;null&#9;null&#10;urls&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/urls.py&#10;json&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/JSONResponse.py&#10;view&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/views.py&#10;sett&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py&#10;url&#9;null&#9;null&#10;admin&#9;FILE&#9;file:///home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/rest/admin.py" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -1128,7 +1127,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.42324093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="166" y="1080" width="1596" height="875" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33992094" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30277187" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30277187" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1175,11 +1174,6 @@
           <url>file://$PROJECT_DIR$/rest/tests.py</url>
           <line>569</line>
           <option name="timeStamp" value="287" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/rest/viewsPackage/notes.py</url>
-          <line>70</line>
-          <option name="timeStamp" value="292" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1496,14 +1490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/validators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
-          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/django/conf/urls/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33223686" vertical-offset="482" max-vertical-offset="1206">
@@ -1522,14 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
-          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1393" max-vertical-offset="4968">
@@ -1537,14 +1515,6 @@
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="817" max-vertical-offset="1782">
-          <caret line="63" column="63" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1558,10 +1528,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rest/validators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="756">
+          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rest/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2703" max-vertical-offset="5760">
-          <caret line="170" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4849" max-vertical-offset="5760">
+          <caret line="298" column="24" selection-start-line="298" selection-start-column="24" selection-end-line="298" selection-end-column="24" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -1570,11 +1556,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/viewsPackage/notes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71291864" vertical-offset="939" max-vertical-offset="1566">
-          <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="655" max-vertical-offset="1566">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding>
             <element signature="e#0#62#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17782657" vertical-offset="0" max-vertical-offset="1782">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
