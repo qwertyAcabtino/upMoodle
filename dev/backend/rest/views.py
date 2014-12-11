@@ -187,9 +187,7 @@ def login(request):
                 user.sessionToken = session_key
                 user.lastTimeActive = timezone.now()
                 user.save()
-                message = Message.objects.get(pk=SUCCESS_LOGIN)
-                serializer = MessageSerializer(message, many=False)
-                jsonResponse = JSONResponse(serializer.data, status=200)
+                jsonResponse = JSONResponseID(SUCCESS_LOGIN)
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME_BIS, session_key)
                 return jsonResponse
@@ -238,10 +236,7 @@ def recoverPassword(request):
                 send_recover_password_email(user.email, password)
                 user.password = password
                 user.save()
-                message = Message.objects.get(pk=RECOVER_PASS_EMAIL)
-                serializer = MessageSerializer(message, many=False)
-                jsonResponse = JSONResponse(serializer.data, status=200)
-                return jsonResponse
+        return JSONResponseID(RECOVER_PASS_EMAIL)
     except ObjectDoesNotExist:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except MultiValueDictKeyError:
@@ -313,10 +308,7 @@ def userRemove(request):
         userSigned.banned = True
         userSigned.confirmedEmail = False
         userSigned.save()
-        message = Message.objects.get(pk=USER_REMOVED)
-        serializer = MessageSerializer(message, many=False)
-        jsonResponse = JSONResponse(serializer.data, status=200)
-        return jsonResponse
+        return JSONResponseID(USER_REMOVED)
     except RequestException as r:
         return r.jsonResponse
 
@@ -337,10 +329,7 @@ def userUpdate(request):
         userUpdated = unserialize_user(form, fields=fields, optional=True)
         userSigned.update(userUpdated, fields)
         userSigned.save()
-        message = Message.objects.get(pk=USER_UPDATED)
-        serializer = MessageSerializer(message, many=False)
-        jsonResponse = JSONResponse(serializer.data, status=200)
-        return jsonResponse
+        return JSONResponseID(USER_UPDATED)
     except RequestException as r:
         return r.jsonResponse
     except MultiValueDictKeyError:
