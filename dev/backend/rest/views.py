@@ -186,6 +186,7 @@ def login(request):
                 return RequestExceptionByCode(UNCONFIRMED_EMAIL).jsonResponse
             else:
                 user.sessionToken = session_key
+                user.lastTimeActive = timezone.now()
                 user.save()
                 message = Message.objects.get(pk=SUCCESS_LOGIN)
                 serializer = MessageSerializer(message, many=False)

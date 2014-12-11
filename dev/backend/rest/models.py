@@ -1,3 +1,5 @@
+import datetime
+from django.utils import timezone
 from django.core.validators import EmailValidator, validate_email
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
@@ -75,9 +77,8 @@ class User(models.Model):
     name = models.CharField(max_length=100, blank=True)
     password = models.CharField(max_length=100)
     profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
-    # TODO. DateTimeField & Update @Sigin
-    lastTimeActive = models.DateField(auto_now=True)
-    joined = models.DateField(auto_now_add=True)
+    lastTimeActive = models.DateTimeField(default=timezone.now, null=False, editable=True)
+    joined = models.DateTimeField(default=timezone.now, editable=True, null=False)
     banned = models.BooleanField(default=False)
     confirmedEmail = models.BooleanField(default=False)
     sessionToken = models.CharField(max_length=256, blank=True, unique=True)
@@ -89,7 +90,9 @@ class User(models.Model):
         self.clean()  # Custom field validation.
         self.clean_fields()
         self.validate_unique()
-        super(User, self).save(*args, **kwargs)
+        if not self.joined:
+            self.joined = timezone.now()
+        return super(User, self).save(*args, **kwargs)
 
     def clean(self):
         self.validate_email()
