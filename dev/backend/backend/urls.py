@@ -3,10 +3,6 @@ from django.contrib import admin
 
 urlpatterns = patterns('rest.router',
     # Examples:
-    # url(r'^$', 'backend.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-    url(r'^noteboards/$', 'noteboardList'),
-    url(r'^noteboards/level/(?P<pk>[0-9]+)/$', 'noteboardLevel'),
     url(r'^bannedhashes/$', 'bannedhashList'),
     # url(r'^users/$', 'usersList'),
     url(r'^roles/$', 'rolesList'),

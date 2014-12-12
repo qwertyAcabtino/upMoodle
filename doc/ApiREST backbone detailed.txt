@@ -2,6 +2,7 @@
 Control de overflow en el formulario
 Clase padre para el control de casos basicos
 Se puede reventar la aplicacion si intento registrar un usuario con una clave de session ya existente y es un ataque que puede darse.
+Las cosas no se eliminan como tal, simplemente se ocultan.
 
 ==LOGIN==
 
@@ -64,6 +65,13 @@ DONE =ModifyUser=
 
 ==NOTE==
 
+ DONE =Post note=
+	[POST] note/
+		200 - Returns note's id.
+		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			
 DONE =Get note=
 	[GET] note/{id}
 		200 - Returns note.
@@ -71,14 +79,7 @@ DONE =Get note=
 			ErrorMessage(7)
 			ErrorMessage(1)
 
-DONE =Post note=
-	[PUT] note/
-		200 - Returns note's id.
-		40X
-			ErrorMessage(1)
-			ErrorMessage(2)
-
-=Edit note=
+DONE =Edit note=
 	[POST] note/{id}
 		200 - Returns new note.
 		40X
@@ -86,7 +87,7 @@ DONE =Post note=
 			ErrorMessage(2)
 			ErrorMessage(7)
 
-=Remove note=
+DONE =Remove note= 
 	[DELETE] note/{id}
 		200 - Returns true and redirects
 		40X
@@ -94,15 +95,8 @@ DONE =Post note=
 			ErrorMessage(2)
 			ErrorMessage(7)
 
-=Authorize note=
-	[POST] note/authorize/{id}
-		200 - Returns true
-		40X			
-			ErrorMessage(1)
-			ErrorMessage(2)
-			ErrorMessage(7)
 
-=Get notes by level=
+DONE =Get notes by level=
 	[GET] notes/level/{id}
 		200 - Returns notes.
 		40X
@@ -131,14 +125,6 @@ DONE =Post note=
 	[DELETE] calendar/{id}
 		200 - Returns true and redirects
 		40X
-			ErrorMessage(1)
-			ErrorMessage(2)
-			ErrorMessage(7)
-
-=Authorize event=
-	[POST] event/authorize/{id}
-		200 - Returns true
-		40X			
 			ErrorMessage(1)
 			ErrorMessage(2)
 			ErrorMessage(7)
@@ -228,6 +214,25 @@ DONE =Post note=
 	[POST] file/{id}/blackflag
 		200 - Returns true.
 		40X
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+
+==DELAYED==
+Until i have enough techinical experience or the rest of the structure is advanced enough, this calls are not going to be implemented.
+=Authorize note=
+	[POST] note/authorize/{id}
+		200 - Returns true
+		40X			
+			ErrorMessage(1)
+			ErrorMessage(2)
+			ErrorMessage(7)
+
+=Authorize event=
+	[POST] event/authorize/{id}
+		200 - Returns true
+		40X			
 			ErrorMessage(1)
 			ErrorMessage(2)
 			ErrorMessage(7)

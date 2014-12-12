@@ -167,14 +167,6 @@ class NoteBoard(models.Model):
                 setattr(self, field, getattr(userUpdate, field))
 
 
-# SHA1. 64 alphabetical chars
-class BannedHash(models.Model):
-    hash = models.CharField(primary_key=True, max_length=65)
-
-    def __unicode__(self):
-        return self.hash
-
-
 class CalendarFrequency(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -217,6 +209,13 @@ class Year(models.Model):
 
     def __unicode__(self):
         return self.verbose
+
+# SHA1. 64 alphabetical chars
+class BannedHash(models.Model):
+    hash = models.CharField(primary_key=True, max_length=65)
+
+    def __unicode__(self):
+        return self.hash
 
 
 class File(models.Model):
