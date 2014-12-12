@@ -86,6 +86,7 @@ def note_post(request):
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
 
+
 def note_get_by_level(request, level):
     try:
         check_signed_in_request(request, 'GET')

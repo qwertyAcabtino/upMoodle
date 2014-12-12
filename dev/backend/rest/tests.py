@@ -672,3 +672,16 @@ class J_noteTestCase(SignedTestCase):
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    def test_16_getNote_level_basic(self):
+        self.login()
+        pk = 1
+        response = self.client.get('/note/level/' + str(pk) + '/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_17_getNote_level_notExisting(self):
+        self.login()
+        pk = 200
+        response = self.client.get('/note/level/' + str(pk) + '/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, '[]')

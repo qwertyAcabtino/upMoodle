@@ -214,6 +214,7 @@ def note(request):
     except RequestException as r:
         return r.jsonResponse
 
+
 def noteByLevel(request, level):
     try:
         check_signed_in_request(request)
