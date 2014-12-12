@@ -1,4 +1,3 @@
-#TODO. POST and DELETE USER if permission
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import csrf_exempt
@@ -11,6 +10,7 @@ from rest.models import User
 from rest.orm.serializers import UserSerializer
 from rest.orm.unserializers import unserialize_user
 
+# == Signed in user ==
 
 @csrf_exempt
 def user_get(request):
@@ -69,6 +69,23 @@ def user_put(request):
     except RequestException as r:
         return r.jsonResponse
     except MultiValueDictKeyError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+# == Any other user ==
+#TODO. POST and DELETE USER if permission
+def user_get_id(request, pk):
+    try:
+        check_signed_in_request(request, 'GET')
+        users = User.objects.get(id=pk)
+        serializer = UserSerializer(users, many=False)
+        return JSONResponse(serializer.data)
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 

@@ -8,7 +8,7 @@ from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, IN
     INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED, EMAIL_INVALID
 from rest.controllers.controllers import get_random_string, get_random_email
 from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level
-from rest.views import login
+from rest.router import login
 
 """
 unittest and not the django one for having persistency all along the *TestCase's
