@@ -61,9 +61,11 @@ class Level(models.Model):
         except ObjectDoesNotExist:
             raise ObjectDoesNotExist
 
+
 class Rol(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
+    priority = models.IntegerField(default=0)  # The more high is the value, the more priority.
 
     def __unicode__(self):
         return self.name
@@ -123,6 +125,7 @@ class User(models.Model):
     @staticmethod
     def get_signed_user_id(sessionToken):
         return User.objects.get(sessionToken=sessionToken).id
+
 
 class NoteBoard(models.Model):
     id = models.AutoField(primary_key=True)

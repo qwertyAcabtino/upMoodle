@@ -116,12 +116,12 @@ class A2_MessageTestCase(unittest.TestCase):
 
 class B_RolTestCase(unittest.TestCase):
     def setUp(self):
-        Rol.objects.create(name="g0d")
-        Rol.objects.create(name="Alumno")
-        Rol.objects.create(name="Profesor")
-        Rol.objects.create(name="Coordinador de asignatura")
-        Rol.objects.create(name="Delegado de curso")
-        Rol.objects.create(name="Adminstrador")
+        Rol.objects.create(name="Alumno", priority=0)
+        Rol.objects.create(name="Profesor", priority=1)
+        Rol.objects.create(name="Coordinador de asignatura", priority=2)
+        Rol.objects.create(name="Delegado de curso", priority=3)
+        Rol.objects.create(name="Adminstrador", priority=4)
+        Rol.objects.create(name="g0d", priority=5)
 
     def test_roles_exits_in_db(self):
         self.assertEqual(len(Rol.objects.all()), 6)

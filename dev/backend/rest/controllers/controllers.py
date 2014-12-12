@@ -101,7 +101,11 @@ def check_signed_in_request(request, *args, **kwargs):
 
 
 def check_authorized_author(request, author_id, level=False, same=True):
-    # TODO. Level.
     userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+    userAuthor = User.objects.get(id=author_id)
+    rolAuthor = userAuthor.rol
+    rolSigned = userSigned.rol
     if same and not author_id == userSigned.id:
         raise RequestExceptionByCode(UNAUTHORIZED)
+    elif level and rolSigned.priority > rolAuthor.priority:
+            raise RequestExceptionByCode(UNAUTHORIZED)
