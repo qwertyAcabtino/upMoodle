@@ -108,9 +108,10 @@ class A2_MessageTestCase(unittest.TestCase):
         Message.objects.create(message="Your user account has been removed.")
         Message.objects.create(message="Your profile has been updated")
         Message.objects.create(message="Note updated")
+        Message.objects.create(message="The note is been removed")
 
     def test_messages_exists_in_db(self):
-        self.assertEqual(len(Message.objects.all()), 6)
+        self.assertEqual(len(Message.objects.all()), 7)
 
 
 class B_RolTestCase(unittest.TestCase):
@@ -535,7 +536,8 @@ class I_userTestCase(SignedTestCase):
 
 
 class J_noteTestCase(SignedTestCase):
-    def test_1_basic_note_get(self):
+
+    def test_01_basic_note_get(self):
         self.login()
         self.addDefaultNote()
         pk = '1'
@@ -545,7 +547,7 @@ class J_noteTestCase(SignedTestCase):
         self.assertIsNotNone(decoded['id'])
         self.assertEqual(decoded['topic'], defNote.topic)
 
-    def test_2_getNote_not_signed_in(self):
+    def test_02_getNote_not_signed_in(self):
         self.logout()
         pk = '1'
         response = self.client.get('/note/' + pk + '/')
@@ -553,7 +555,7 @@ class J_noteTestCase(SignedTestCase):
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=NOT_SIGNED_IN).error, decoded['error'])
 
-    def test_3_getNote_id_overflow(self):
+    def test_03_getNote_id_overflow(self):
         self.login()
         pk = '191289347901273481236498712634971234123481263984'
         response = self.client.get('/note/' + pk + '/')
@@ -561,7 +563,7 @@ class J_noteTestCase(SignedTestCase):
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
-    def test_4_postNote_basic(self):
+    def test_04_postNote_basic(self):
         self.login()
         pk = 1
         topic = 'topic'
@@ -570,14 +572,14 @@ class J_noteTestCase(SignedTestCase):
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(topic, note.topic)
 
-    def test_5_postNote_signedOut(self):
+    def test_05_postNote_signedOut(self):
         self.logout()
         pk = 1
         topic = 'topic'
         response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'level_id': 1})
         self.assertEqual(response.status_code, 400)
 
-    def test_6_postNote_forbiddenFields(self):
+    def test_06_postNote_forbiddenFields(self):
         self.login()
         pk = 1
         topic = 'topic'
@@ -586,13 +588,13 @@ class J_noteTestCase(SignedTestCase):
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(note.author_id, User.objects.get(id=1).id)
 
-    def test_7_postNote_emptyQuery(self):
+    def test_07_postNote_emptyQuery(self):
         self.login()
         pk = 1
         response = self.client.post('/note/' + str(pk) + '/', {})
         self.assertEqual(response.status_code, 200)
 
-    def test_8_postNote_length_overflows(self):
+    def test_08_postNote_length_overflows(self):
         self.login()
         pk = 1
         # Topic
@@ -602,6 +604,51 @@ class J_noteTestCase(SignedTestCase):
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
         # Text
         response = self.client.post('/note/' + str(pk) + '/', {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
+        decoded = json.loads(response.content)
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    def test_09_createNote_basic(self):
+        self.login()
+        pk = 1
+        topic = 'Create'
+        response = self.client.post('/note/', {'topic': topic, 'text': 'text', 'level_id': 1})
+        self.assertEqual(response.status_code, 200)
+        note = NoteBoard.objects.get(id=2)
+        self.assertEqual(topic, note.topic)
+
+    def test_10_createNote_signedOut(self):
+        self.logout()
+        pk = 1
+        topic = 'topic'
+        response = self.client.post('/note/', {'topic': topic, 'text': 'text', 'level_id': 1})
+        self.assertEqual(response.status_code, 400)
+
+    def test_11_createNote_forbiddenFields(self):
+        self.login()
+        pk = 1
+        topic = 'topic'
+        response = self.client.post('/note/', {'topic': topic, 'text': 'text', 'level_id': 1, 'author_id': 2})
+        self.assertEqual(response.status_code, 200)
+        note = NoteBoard.objects.get(id=2)
+        self.assertEqual(note.author_id, User.objects.get(id=1).id)
+
+    def test_12_createNote_emptyQuery(self):
+        self.login()
+        pk = 1
+        response = self.client.post('/note/', {})
+        self.assertEqual(response.status_code, 400)
+
+    def test_13_createNote_length_overflows(self):
+        self.login()
+        pk = 1
+        # Topic
+        response = self.client.post('/note/', {'topic': sessionCookie, 'text': 'text', 'level_id': 1})
+        decoded = json.loads(response.content)
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        # Text
+        response = self.client.post('/note/', {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
         decoded = json.loads(response.content)
         self.assertEqual(response.status_code, 400)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])

@@ -130,6 +130,7 @@ class NoteBoard(models.Model):
     text = models.CharField(max_length=2000)
     level = models.ForeignKey('Level')
     author = models.ForeignKey(User, related_name='publisher')
+    visible = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.topic

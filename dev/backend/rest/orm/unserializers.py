@@ -45,6 +45,7 @@ def unserialize_note(form, *args, **kwargs):
     else:
         raise RequestExceptionByCode(INCORRECT_DATA)
 
+
 def unserialize(model, fields, form, *args, **kwargs):
     fieldsCopy = copy(fields)
     optional = kwargs.get('optional', False)

@@ -11,7 +11,7 @@ from rest.models import User
 
 
 def get_email_confirmation_message(request):
-    cookie = request.COOKIES[SESSION_COOKIE_NAME]
+    cookie = request.COOKIES[SESSION_COOKIE_NAME_BIS]
     host = request.META['SERVER_NAME'] + ':' + request.META['SERVER_PORT']
     message = 'Please confirm your account at upMoodle.\n'
     message += 'http://' + host + '/confirm_email/' + cookie
@@ -52,8 +52,12 @@ def get_random_string(length):
 
 
 def cookies_are_ok(request):
-    return request.COOKIES[SESSION_COOKIE_NAME_BIS] \
-           and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
+    try:
+        return request.COOKIES[SESSION_COOKIE_NAME_BIS] \
+               and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
+    except KeyError:
+        return request.COOKIES[SESSION_COOKIE_NAME] \
+               and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
     # return request.session.test_cookie_worked() \
     #        and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
     #        and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
@@ -96,7 +100,7 @@ def check_signed_in_request(request, *args, **kwargs):
         check_request_method(request, method)
 
 
-def check_authorized_author(request, author_id, level=False,same=True):
+def check_authorized_author(request, author_id, level=False, same=True):
     # TODO. Level.
     userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
     if same and not author_id == userSigned.id:

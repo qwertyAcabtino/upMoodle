@@ -206,7 +206,7 @@ def noteById(request, pk):
         if request.method == 'GET':
             return note_get(request, pk)
         elif request.method == 'DELETE':
-            return note_delete(request)
+            return note_delete(request, pk)
         elif request.method == 'POST':
             return note_put(request, pk)
     except RequestException as r:

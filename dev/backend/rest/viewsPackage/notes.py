@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 import time
 from backend.settings import SESSION_COOKIE_NAME_BIS
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_UPDATED
+from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_UPDATED, NOTE_REMOVED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
@@ -17,7 +17,7 @@ from rest.orm.unserializers import unserialize_note
 def note_get(request, pk):
     try:
         check_signed_in_request(request, 'GET')
-        note = NoteBoard.objects.get(id=pk)
+        note = NoteBoard.objects.get(id=pk, visible=True)
         serializer = NoteBoardSerializer(note, many=False)
         return JSONResponse(serializer.data)
     except RequestException as r:
@@ -56,11 +56,14 @@ def note_put(request, pk):
 
 
 @csrf_exempt
-# TODO.
 def note_delete(request, pk):
     try:
         check_signed_in_request(request, method='DELETE')
         note = NoteBoard.objects.get(id=pk)
+        check_authorized_author(request, note.author_id, same=True)
+        note.visible = False
+        note.save()
+        return JSONResponseID(NOTE_REMOVED)
     except RequestException as r:
         return r.jsonResponse
 
@@ -79,3 +82,5 @@ def note_post(request):
         return JSONResponse({"noteId": note.id}, status=200)
     except RequestException as r:
         return r.jsonResponse
+    except ValidationError as v:
+        return RequestExceptionByMessage(v).jsonResponse
