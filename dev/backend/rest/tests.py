@@ -653,3 +653,22 @@ class J_noteTestCase(SignedTestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
+    def test_14_deleteNote_wrong_id(self):
+        self.login()
+        pk = 4
+        response = self.client.delete('/note/' + str(pk) + '/')
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    def test_15_deleteNote_basic(self):
+        self.login()
+        pk = 3
+        response = self.client.delete('/note/' + str(pk) + '/')
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(NoteBoard.objects.get(id=pk).visible)
+
+        response = self.client.get('/note/' + str(pk) + '/')
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])

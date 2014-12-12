@@ -72,7 +72,6 @@ def user_put(request):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 # == Any other user ==
-#TODO. POST and DELETE USER if permission
 def user_get_id(request, pk):
     try:
         check_signed_in_request(request, 'GET')

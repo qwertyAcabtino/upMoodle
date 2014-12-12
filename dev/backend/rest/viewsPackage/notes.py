@@ -36,7 +36,7 @@ def note_put(request, pk):
         noteOriginal = NoteBoard.objects.get(id=pk)
 
         check_signed_in_request(request, 'POST')
-        check_authorized_author(request, noteOriginal.author_id)
+        check_authorized_author(request, noteOriginal.author_id, level=True)
 
         form = request.POST
         Level.validate_exists(form)
@@ -66,7 +66,8 @@ def note_delete(request, pk):
         return JSONResponseID(NOTE_REMOVED)
     except RequestException as r:
         return r.jsonResponse
-
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 @csrf_exempt
 def note_post(request):
