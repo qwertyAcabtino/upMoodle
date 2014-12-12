@@ -133,21 +133,23 @@ class C1_LevelTypeTestCase(unittest.TestCase):
         LevelType.objects.create(name="course")
         LevelType.objects.create(name="subject")
 
-    def test_leveltypes_exits_in_db(self):
+    def test_levelTypes_exits_in_db(self):
         self.assertEqual(len(LevelType.objects.all()), 3)
 
 
 class C2_LevelTypeTestCase(unittest.TestCase):
 
     def setUp(self):
-        level = Level()
-        level.name = "Level 1"
-        level.visible = True
-        level.type = LevelType.objects.get(id=1)
-        level.save()
+        # level = Level()
+        # level.name = "Level 1"
+        # level.visible = True
+        # level.type = LevelType.objects.get(id=1)
+        # level.save()
+        Level.objects.create(name="Software", visible=True, type_id=1)
+        Level.objects.create(name="Computadores", visible=True, type_id=1)
 
     def test_levels_exists_in_db(self):
-        self.assertEqual(len(Level.objects.all()), 1)
+        self.assertEqual(len(Level.objects.all()), 2)
 
 class D_SignUpTestCase(CookiesEnabled):
 
@@ -682,6 +684,14 @@ class J_noteTestCase(SignedTestCase):
     def test_17_getNote_level_notExisting(self):
         self.login()
         pk = 200
+        response = self.client.get('/note/level/' + str(pk) + '/')
+        self.assertEqual(response.status_code, 400)
+        decoded = json.loads(response.content)
+        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+
+    def test_18_getNote_level_empty(self):
+        self.login()
+        pk = 2
         response = self.client.get('/note/level/' + str(pk) + '/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, '[]')

@@ -90,6 +90,7 @@ def note_post(request):
 def note_get_by_level(request, level):
     try:
         check_signed_in_request(request, 'GET')
+        Level.validate_exists_level(level)
         note = NoteBoard.objects.filter(level_id=level, visible=True)
         serializer = NoteBoardSerializer(note, many=True)
         return JSONResponse(serializer.data)

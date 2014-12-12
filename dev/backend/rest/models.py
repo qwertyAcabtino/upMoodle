@@ -56,11 +56,16 @@ class Level(models.Model):
         try:
             fk = form['level_id']
             Level.objects.get(id=fk)
+            Level.validate_exists_level(fk)
         except MultiValueDictKeyError:
             pass
+
+    @staticmethod
+    def validate_exists_level(fk):
+        try:
+            Level.objects.get(id=fk)
         except ObjectDoesNotExist:
             raise ObjectDoesNotExist
-
 
 class Rol(models.Model):
     id = models.AutoField(primary_key=True)
