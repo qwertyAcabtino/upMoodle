@@ -71,6 +71,7 @@ def user_put(request):
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
+
 # == Any other user ==
 def user_get_id(request, pk):
     try:
@@ -87,4 +88,14 @@ def user_get_id(request, pk):
     except ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
-
+# == Rol ==
+def user_get_rol(request, rol):
+    try:
+        check_signed_in_request(request, 'GET')
+        users = User.objects.filter(rol=rol, banned=False)
+        serializer = UserSerializer(users, many=True)
+        return JSONResponse(serializer.data)
+    except RequestException as r:
+        return r.jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

@@ -85,3 +85,18 @@ def note_post(request):
         return r.jsonResponse
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
+
+def note_get_by_level(request, level):
+    try:
+        check_signed_in_request(request, 'GET')
+        note = NoteBoard.objects.filter(level_id=level, visible=True)
+        serializer = NoteBoardSerializer(note, many=True)
+        return JSONResponse(serializer.data)
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValueError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

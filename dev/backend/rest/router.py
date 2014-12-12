@@ -15,9 +15,9 @@ from rest.controllers.controllers import get_email_confirmation_message, cookies
     get_random_password, \
     get_random_email, check_signed_in_request, check_cookies, check_authorized_author
 from rest.orm.unserializers import unserialize_user, unserialize_note
-from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post
+from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys
-from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id
+from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol
 
 
 @csrf_exempt
@@ -187,16 +187,7 @@ def userById(request, pk):
 
 @csrf_exempt
 def usersByRol(request, pk):
-    try:
-        check_signed_in_request(request, 'GET')
-        users = User.objects.filter(rol=pk, banned=False)
-        serializer = UserSerializer(users, many=True)
-        return JSONResponse(serializer.data)
-    except RequestException as r:
-        return r.jsonResponse
-    except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-
+    return user_get_rol(request, pk)
 
 # == Notes ==
 @csrf_exempt
@@ -211,6 +202,8 @@ def noteById(request, pk):
             return note_put(request, pk)
     except RequestException as r:
         return r.jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 @csrf_exempt
 def note(request):
@@ -220,3 +213,13 @@ def note(request):
             return note_post(request)
     except RequestException as r:
         return r.jsonResponse
+
+def noteByLevel(request, level):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return note_get_by_level(request, level)
+    except RequestException as r:
+        return r.jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

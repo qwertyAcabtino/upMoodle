@@ -32,6 +32,7 @@ urlpatterns = patterns('rest.router',
     url(r'^users/rol/(?P<pk>[0-9]+)/$', 'usersByRol'),
 
     # Notes
+    url(r'^note/level/(?P<level>[0-9]+)/$', 'noteByLevel'),
     url(r'^note/(?P<pk>[0-9]+)/$', 'noteById'),
     url(r'^note/$', 'note')
 )
