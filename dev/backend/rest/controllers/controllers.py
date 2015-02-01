@@ -114,21 +114,24 @@ def check_authorized_author(request, author_id, level=False, same=True):
 
 def is_valid_month_initDate(initDate):
     values = initDate.split('-')
-    return 0 < values[0] < 13 and 2010 < values[1] < 2100
+    return 0 < int(values[0]) < 13 and 2010 < int(values[1]) < 2100
 
 
 def is_valid_day_initDate(initDate):
-    dateRegex = "^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
-    return re.match(dateRegex, initDate) is not None
+    values = initDate.split('-')
+    return 0 < int(values[0]) < 32 and 0 < int(values[1]) < 13 and 2010 < int(values[2]) < 2100
 
 
 def is_valid_initDate_by_period(period, initDate):
-    validators = {
-        'month': is_valid_month_initDate(initDate),
-        'day': is_valid_day_initDate(initDate),
-    }
-    validDate = validators.get(period)
-    if not validDate:
+    try:
+        validDate = True;
+        if period == "month":
+            validDate = is_valid_month_initDate(initDate)
+        elif period == "day":
+            validDate = is_valid_day_initDate(initDate)
+        if not validDate:
+            raise RequestExceptionByCode(INCORRECT_DATA)
+        else:
+            return True
+    except ValueError:
         raise RequestExceptionByCode(INCORRECT_DATA)
-    else:
-        return True
