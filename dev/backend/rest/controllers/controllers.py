@@ -4,6 +4,7 @@ import string
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils.crypto import random
+import re
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT, UNAUTHORIZED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
@@ -58,9 +59,9 @@ def cookies_are_ok(request):
     except KeyError:
         return request.COOKIES[SESSION_COOKIE_NAME] \
                and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
-    # return request.session.test_cookie_worked() \
-    #        and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
-    #        and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
+        # return request.session.test_cookie_worked() \
+        # and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
+        #        and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
 
 
 def is_signed_in(request):
@@ -108,4 +109,26 @@ def check_authorized_author(request, author_id, level=False, same=True):
     if same and not author_id == userSigned.id:
         raise RequestExceptionByCode(UNAUTHORIZED)
     elif level and rolSigned.priority > rolAuthor.priority:
-            raise RequestExceptionByCode(UNAUTHORIZED)
+        raise RequestExceptionByCode(UNAUTHORIZED)
+
+
+def is_valid_month_initDate(initDate):
+    values = initDate.split('-')
+    return 0 < values[0] < 13 and 2010 < values[1] < 2100
+
+
+def is_valid_day_initDate(initDate):
+    dateRegex = "^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
+    return re.match(dateRegex, initDate) is not None
+
+
+def is_valid_initDate_by_period(period, initDate):
+    validators = {
+        'month': is_valid_month_initDate(initDate),
+        'day': is_valid_day_initDate(initDate),
+    }
+    validDate = validators.get(period)
+    if not validDate:
+        raise RequestExceptionByCode(INCORRECT_DATA)
+    else:
+        return True

@@ -15,6 +15,7 @@ from rest.controllers.controllers import get_email_confirmation_message, cookies
     get_random_password, \
     get_random_email, check_signed_in_request, check_cookies, check_authorized_author
 from rest.orm.unserializers import unserialize_user, unserialize_note
+from rest.viewsPackage.calendar import calendar_get_by_period
 from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys
 from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol
@@ -231,7 +232,7 @@ def calendarByPeriod(request, period, initDate):
     try:
         check_signed_in_request(request)
         if request.method == 'GET':
-            return calendar_get_by_period( period, initDate)
+            return calendar_get_by_period(request, period, initDate)
     except RequestException as r:
         return r.jsonResponse
     except OverflowError:
