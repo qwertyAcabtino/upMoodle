@@ -118,13 +118,16 @@ def is_valid_month_initDate(initDate):
 
 
 def is_valid_day_initDate(initDate):
-    values = initDate.split('-')
-    return 0 < int(values[0]) < 32 and 0 < int(values[1]) < 13 and 2010 < int(values[2]) < 2100
+    try:
+        datetime.datetime.strptime(initDate, '%d-%m-%Y')
+        return True
+    except ValueError:
+        return False
 
 
 def is_valid_initDate_by_period(period, initDate):
     try:
-        validDate = True;
+        validDate = True
         if period == "month":
             validDate = is_valid_month_initDate(initDate)
         elif period == "day":
