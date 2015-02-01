@@ -224,3 +224,15 @@ def noteByLevel(request, level):
         return r.jsonResponse
     except OverflowError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+# == Calendar ==
+def calendarByPeriod(request, period, initDate):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return calendar_get_by_period( period, initDate)
+    except RequestException as r:
+        return r.jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

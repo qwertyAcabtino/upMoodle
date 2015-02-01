@@ -528,10 +528,26 @@
 			}
 		},
 		{
+			"file": "ghostColums.dat",
+			"settings":
+			{
+				"buffer_size": 128,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "requisitos.txt",
 			"settings":
 			{
 				"buffer_size": 3463,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ApiREST backbone detailed.txt",
+			"settings":
+			{
+				"buffer_size": 4308,
 				"line_ending": "Unix"
 			}
 		}
@@ -580,6 +596,14 @@
 	},
 	"file_history":
 	[
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteEpub/javaMd",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteEpub/ch11.html",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteEpub/curlway.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteEpub/wgetWay.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteEpub/static-guide.php?routeID=103",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/diseñoTecnico.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/sprints.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/APIRest backbone.txt",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/ApiREST backbone detailed.txt",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/ghostColums.dat",
 		"/home/viperey/Downloads/changes.txt",
@@ -609,7 +633,6 @@
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema2.txt",
 		"/home/viperey/Dropbox/BackUp/Linux/app/sdedit-4.01-bin/sdedit.sh",
 		"/home/viperey/Dropbox/BackUp/Linux/app/argouml-0.32.1/argouml2.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/APIRest backbone.txt",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Practicas/Practica 2/integDescProfPro.c",
 		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_includes/aboutme.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/viperey.github.io/_layouts/default.html",
@@ -635,7 +658,6 @@
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/src/ColorsParser.java",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values/colors.xml",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/methaphores/colors.csv",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/sprints.txt",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/db.sqlite3",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/manage.py",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/README.txt",
@@ -701,13 +723,7 @@
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/quickstart/views.py",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/urls.py",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/quickstart/serializers.py",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/settings.py",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/django.tutorial.mysite/mysite/settings.py",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial/tutorial/settings.pyc",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/quickstart/serializers.py",
-		"/home/viperey/python/mysite/mysite/settings.py",
-		"/home/viperey/python/mysite/manage.py",
-		"/home/viperey/python/mysite/mysite/urls.py"
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/djangorest.tutorial/tutorial/settings.py"
 	],
 	"find":
 	{
@@ -732,6 +748,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"1105.",
+			"section",
+			"noticias",
+			"nota",
 			"favoroute.com/api/?page=0&extern_id=82f7fa74fa79c2145836610b587ede933432640f&method=routes():search:(town,country,spot)",
 			"&amp;",
 			"\"}}",
@@ -855,11 +875,7 @@
 			"historias de usuario",
 			">",
 			"historias de usuario",
-			"8",
-			"Actividad",
-			" ",
-			"showTableSittedGuestInfo",
-			"changeTableStatus"
+			"8"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -877,7 +893,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -909,6 +925,32 @@
 				},
 				{
 					"buffer": 1,
+					"file": "ghostColums.dat",
+					"settings":
+					{
+						"buffer_size": 128,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "requisitos.txt",
 					"settings":
 					{
@@ -919,8 +961,8 @@
 						"selection":
 						[
 							[
-								1559,
-								1559
+								7,
+								7
 							]
 						],
 						"settings":
@@ -929,6 +971,33 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "ApiREST backbone detailed.txt",
+					"settings":
+					{
+						"buffer_size": 4308,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1282,
+								1282
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 150.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

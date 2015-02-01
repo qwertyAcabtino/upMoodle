@@ -30,5 +30,9 @@ urlpatterns = patterns('rest.router',
     # Notes
     url(r'^note/level/(?P<level>[0-9]+)/$', 'noteByLevel'),
     url(r'^note/(?P<pk>[0-9]+)/$', 'noteById'),
-    url(r'^note/$', 'note')
+    url(r'^note/$', 'note'),
+
+    # Calendar
+    url(r'^calendar/(?P<period>(month|day))/(?P<initDate>([0-9]|-)*)/$', 'calendarByPeriod'),
+
 )

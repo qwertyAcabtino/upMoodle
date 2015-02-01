@@ -37,18 +37,12 @@ class RolSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class CalendarEventDateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CalendarEventDate
-        fields = ('index', 'hourStart', 'hourEnd', 'allDay', 'frequency')
-
-
 class CalendarEventSerializer(serializers.ModelSerializer):
-    dates = CalendarEventDateSerializer(many=True)
+    author = UserSerializer(many=False)
 
     class Meta:
         model = CalendarRegularEvent
-        fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level', 'dates')
+        fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level')
 
 
 class FileSerializer(serializers.ModelSerializer):

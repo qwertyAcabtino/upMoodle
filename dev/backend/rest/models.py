@@ -184,23 +184,15 @@ class CalendarRegularEvent(models.Model):
     author = models.ForeignKey(User, null=False, related_name='regular_lastUpdated')
     lastUpdated = models.ForeignKey(User, null=False, related_name='regular_author')
     level = models.ForeignKey('Level')
-
-    def __unicode__(self):
-        return self.title
-
-
-class CalendarEventDate(models.Model):
-    id = models.AutoField(primary_key=True)
-    idEvent = models.ForeignKey(CalendarRegularEvent, related_name='dates')
-    index = models.IntegerField(default=1)
     hourStart = models.TimeField(null=True)
     hourEnd = models.TimeField(null=True)
     firstDate = models.DateField(auto_created=False)
+    lastDate = models.DateField(auto_created=False, null=True)
     allDay = models.BooleanField(default=False)
     frequency = models.ForeignKey('CalendarFrequency', default=DEFAULT_FREQUENCY)
 
     def __unicode__(self):
-        return '[%s to %s] %s' % (self.hourStart, self.hourEnd, self.frequency)
+        return self.title
 
 
 class Year(models.Model):
@@ -209,6 +201,7 @@ class Year(models.Model):
 
     def __unicode__(self):
         return self.verbose
+
 
 # SHA1. 64 alphabetical chars
 class BannedHash(models.Model):
