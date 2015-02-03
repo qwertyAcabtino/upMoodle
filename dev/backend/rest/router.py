@@ -90,7 +90,7 @@ def calendarList(request):
     Retrieves user's future calendar events.
     """
     if request.method == 'GET':
-        events = CalendarRegularEvent.objects.all()
+        events = Calendar.objects.all()
         serializer = CalendarEventSerializer(events, many=True)
         return JSONResponse(serializer.data)
 

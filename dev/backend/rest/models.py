@@ -1,3 +1,4 @@
+import calendar
 import datetime
 from django.utils import timezone
 from django.core.validators import EmailValidator, validate_email
@@ -66,6 +67,7 @@ class Level(models.Model):
             Level.objects.get(id=fk)
         except ObjectDoesNotExist:
             raise ObjectDoesNotExist
+
 
 class Rol(models.Model):
     id = models.AutoField(primary_key=True)
@@ -175,7 +177,7 @@ class CalendarFrequency(models.Model):
         return self.name
 
 
-class CalendarRegularEvent(models.Model):
+class Calendar(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     text = models.CharField(max_length=2000)
@@ -184,15 +186,77 @@ class CalendarRegularEvent(models.Model):
     author = models.ForeignKey(User, null=False, related_name='regular_lastUpdated')
     lastUpdated = models.ForeignKey(User, null=False, related_name='regular_author')
     level = models.ForeignKey('Level')
-    hourStart = models.TimeField(null=True)
-    hourEnd = models.TimeField(null=True)
+    hourStart = models.TimeField(blank=True)
+    hourEnd = models.TimeField(blank=True)
     firstDate = models.DateField(auto_created=False)
-    lastDate = models.DateField(auto_created=False, null=True)
+    lastDate = models.DateField(auto_created=False, blank=True)
     allDay = models.BooleanField(default=False)
     frequency = models.ForeignKey('CalendarFrequency', default=DEFAULT_FREQUENCY)
 
     def __unicode__(self):
         return self.title
+
+    def delete(self, *args, **kwargs):
+        CalendarDate.objects.filter(id=self.id).delete()
+        return super(Calendar, self).delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        # TODO. Validate. 'Uniqueness', firstDate < lastDate, allDay.
+        self.clean()  # Custom field validation.
+        self.clean_fields()
+        self.validate_unique()
+        returnValue = super(Calendar, self).save(*args, **kwargs)
+        CalendarDate.objects.filter(id=self.id).delete()
+        if self.frequency != FREQUENCY_UNIQUE:
+            self.setCalendarDates()
+        else:
+            self.setCalendarDate(self.firstDate)
+        return returnValue
+
+    def setCalendarDates(self):
+        initValue = self.firstDate
+        while True:
+            if initValue <= self.lastDate:
+                self.setCalendarDate(initValue)
+                initValue = self.getNextValue(initValue)
+            else:
+                break
+
+    def setCalendarDate(self, date):
+        calendarDate = CalendarDate(calendarId=self)
+        calendarDate.date = date
+        calendarDate.save()
+
+    """
+    http://stackoverflow.com/questions/4130922/how-to-increment-datetime-month-in-python
+    http://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python
+    http://www.dotnetperls.com/datetime-python
+    """
+    def getNextValue(self, date):
+        if self.frequency.id == FREQUENCY_DAY:
+            return date + datetime.timedelta(1)
+        elif self.frequency.id == FREQUENCY_WEEK:
+            return date + datetime.timedelta(7)
+        elif self.frequency.id == FREQUENCY_MONTH:
+            return self.iterateMonths(date, 1)
+        return None
+
+    @staticmethod
+    def iterateMonths(sourceDate, months):
+        month = sourceDate.month - 1 + months
+        year = sourceDate.year + month / 12
+        month = month % 12 + 1
+        day = min(sourceDate.day, calendar.monthrange(year, month)[1])
+        return datetime.date(year, month, day)
+
+
+class CalendarDate(models.Model):
+    id = models.AutoField(primary_key=True)
+    calendarId = models.ForeignKey('Calendar')
+    date = models.DateTimeField(null=False)
+
+    def __unicode__(self):
+        return self.date.__str__()
 
 
 class Year(models.Model):

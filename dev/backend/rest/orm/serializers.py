@@ -41,7 +41,7 @@ class CalendarEventSerializer(serializers.ModelSerializer):
     author = UserSerializer(many=False)
 
     class Meta:
-        model = CalendarRegularEvent
+        model = Calendar
         fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level')
 
 
