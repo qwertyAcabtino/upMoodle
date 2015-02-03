@@ -201,7 +201,6 @@ class Calendar(models.Model):
         return super(Calendar, self).delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        # TODO. Validate. 'Uniqueness', firstDate < lastDate, allDay.
         self.clean()  # Custom field validation.
         self.clean_fields()
         self.validate_unique()
@@ -225,6 +224,8 @@ class Calendar(models.Model):
     # TODO. Error message.
     def validateDates(self):
         if self.frequency.id != FREQUENCY_UNIQUE and not self.lastDate:
+            raise ValidationError(INCORRECT_DATA)
+        elif self.firstDate > self.lastDate:
             raise ValidationError(INCORRECT_DATA)
         elif not self.lastDate:
             self.lastDate = self.firstDate

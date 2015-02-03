@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/models.py" afterPath="$PROJECT_DIR$/rest/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -94,8 +93,8 @@
           <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4732272" vertical-offset="3777" max-vertical-offset="6426">
-                  <caret line="228" column="31" selection-start-line="228" selection-start-column="31" selection-end-line="228" selection-end-column="31" />
+                <state vertical-scroll-proportion="0.4732272" vertical-offset="3777" max-vertical-offset="6444">
+                  <caret line="228" column="49" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
                   </folding>
@@ -150,7 +149,7 @@
           <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rest/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.45586106" vertical-offset="1737" max-vertical-offset="6426">
+                <state vertical-scroll-proportion="0.45586106" vertical-offset="1737" max-vertical-offset="6444">
                   <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
                   <folding>
                     <element signature="e#0#15#0" expanded="true" />
@@ -1187,7 +1186,11 @@
       <created>1423003325680</created>
       <updated>1423003325680</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Calendar validator">
+      <created>1423005048374</created>
+      <updated>1423005048374</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="5">
@@ -1269,7 +1272,8 @@
     <MESSAGE value="CalendarDates generation and Calendar leaps" />
     <MESSAGE value="CalendarDates deletion when Calendar deletion" />
     <MESSAGE value="CalendarDate generation when Calendar.save&#10;CalendarDates deletion when Calendar deletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="CalendarDate generation when Calendar.save&#10;CalendarDates deletion when Calendar deletion" />
+    <MESSAGE value="Calendar validator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calendar validator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1675,8 +1679,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4732272" vertical-offset="3777" max-vertical-offset="6426">
-          <caret line="228" column="31" selection-start-line="228" selection-start-column="31" selection-end-line="228" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.4732272" vertical-offset="3777" max-vertical-offset="6444">
+          <caret line="228" column="49" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
