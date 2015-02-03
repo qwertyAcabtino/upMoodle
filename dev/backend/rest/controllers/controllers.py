@@ -115,12 +115,12 @@ def check_authorized_author(request, author_id, level=False, same=True):
 
 def is_valid_month_initDate(initDate):
     values = initDate.split('-')
-    return 0 < int(values[0]) < 13 and 2010 < int(values[1]) < 2100
+    return 0 < int(values[1]) < 13 and 2010 < int(values[0]) < 2100
 
 
 def is_valid_day_initDate(initDate):
     try:
-        datetime.datetime.strptime(initDate, '%d-%m-%Y')
+        datetime.datetime.strptime(initDate, '%Y-%m-%d')
         return True
     except ValueError:
         return False
@@ -139,3 +139,17 @@ def is_valid_initDate_by_period(period, initDate):
             return True
     except ValueError:
         raise RequestExceptionByCode(INCORRECT_DATA)
+
+
+def get_date_range(period, initDate):
+    DATE_FORMAT = '%Y-%m-%d'
+    values = initDate.split('-')
+    day = int(values[2]) if period == "day" else 1
+    date = datetime.datetime(int(values[0]), int(values[1]), day)
+    rangeStart = date.strftime(DATE_FORMAT)
+    if period == "day":
+        return [rangeStart, rangeStart]
+    else:
+        monthsDays = calendar.monthrange(date.year, date.month)[1] -1
+        rangeEnd = (date + datetime.timedelta(monthsDays)).strftime(DATE_FORMAT)
+    return [rangeStart, rangeEnd]
