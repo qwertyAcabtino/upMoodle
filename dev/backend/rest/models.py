@@ -6,7 +6,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 
-from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID
+from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID, INCORRECT_DATA
 from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
 
@@ -189,7 +189,7 @@ class Calendar(models.Model):
     hourStart = models.TimeField(blank=True)
     hourEnd = models.TimeField(blank=True)
     firstDate = models.DateField(auto_created=False)
-    lastDate = models.DateField(auto_created=False, blank=True)
+    lastDate = models.DateField(auto_created=False, blank=True, null=True)
     allDay = models.BooleanField(default=False)
     frequency = models.ForeignKey('CalendarFrequency', default=DEFAULT_FREQUENCY)
 
@@ -206,12 +206,28 @@ class Calendar(models.Model):
         self.clean_fields()
         self.validate_unique()
         returnValue = super(Calendar, self).save(*args, **kwargs)
-        CalendarDate.objects.filter(id=self.id).delete()
-        if self.frequency != FREQUENCY_UNIQUE:
+        CalendarDate.objects.filter(calendarId=self).delete()
+        if self.frequency.id != FREQUENCY_UNIQUE:
             self.setCalendarDates()
         else:
             self.setCalendarDate(self.firstDate)
         return returnValue
+
+    def clean(self):
+        self.validateHours()
+        self.validateDates()
+
+    # TODO. Error message.
+    def validateHours(self):
+        if not self.allDay and (not self.hourStart or not self.hourEnd):
+            raise ValidationError(INCORRECT_DATA)
+
+    # TODO. Error message.
+    def validateDates(self):
+        if self.frequency.id != FREQUENCY_UNIQUE and not self.lastDate:
+            raise ValidationError(INCORRECT_DATA)
+        elif not self.lastDate:
+            self.lastDate = self.firstDate
 
     def setCalendarDates(self):
         initValue = self.firstDate
