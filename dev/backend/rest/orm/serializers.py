@@ -39,10 +39,17 @@ class RolSerializer(serializers.ModelSerializer):
 
 class CalendarEventSerializer(serializers.ModelSerializer):
     author = UserSerializer(many=False)
+    lastUpdated = UserSerializer(many=False)
+    # dates = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    dates = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='date'
+    )
 
     class Meta:
         model = Calendar
-        fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level')
+        fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level', 'dates')
 
 
 class FileSerializer(serializers.ModelSerializer):

@@ -132,9 +132,10 @@ class C1_LevelTypeTestCase(unittest.TestCase):
         LevelType.objects.create(name="carrer")
         LevelType.objects.create(name="course")
         LevelType.objects.create(name="subject")
+        LevelType.objects.create(name="student")
 
     def test_levelTypes_exits_in_db(self):
-        self.assertEqual(len(LevelType.objects.all()), 3)
+        self.assertEqual(len(LevelType.objects.all()), 4)
 
 
 class C2_LevelTypeTestCase(unittest.TestCase):

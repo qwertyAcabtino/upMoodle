@@ -79,7 +79,6 @@ def note_post(request):
         note = unserialize_note(form, fields=fields, optional=True)
         note.author_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
         note.save()
-        time.sleep(1)
         return JSONResponse({"noteId": note.id}, status=200)
     except RequestException as r:
         return r.jsonResponse

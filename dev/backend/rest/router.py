@@ -15,7 +15,8 @@ from rest.controllers.controllers import get_email_confirmation_message, cookies
     get_random_password, \
     get_random_email, check_signed_in_request, check_cookies, check_authorized_author
 from rest.orm.unserializers import unserialize_user, unserialize_note
-from rest.viewsPackage.calendar import calendar_get_by_period
+from rest.viewsPackage.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
+    calendar_post
 from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys
 from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol
@@ -81,17 +82,6 @@ def rolesList(request):
     if request.method == 'GET':
         roles = Rol.objects.all()
         serializer = RolSerializer(roles, many=True)
-        return JSONResponse(serializer.data)
-
-
-@csrf_exempt
-def calendarList(request):
-    """
-    Retrieves user's future calendar events.
-    """
-    if request.method == 'GET':
-        events = Calendar.objects.all()
-        serializer = CalendarEventSerializer(events, many=True)
         return JSONResponse(serializer.data)
 
 
@@ -237,3 +227,28 @@ def calendarByPeriod(request, period, initDate):
         return r.jsonResponse
     except OverflowError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+@csrf_exempt
+def calendarById(request, pk):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return calendar_get(request, pk)
+        elif request.method == 'DELETE':
+            return calendar_delete(request, pk)
+        elif request.method == 'POST':
+            return calendar_put(request, pk)
+    except RequestException as r:
+        return r.jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+@csrf_exempt
+def calendar(request):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'POST':
+            return calendar_post(request)
+    except RequestException as r:
+        return r.jsonResponse

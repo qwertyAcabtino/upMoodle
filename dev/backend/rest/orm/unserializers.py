@@ -3,7 +3,7 @@ from django.http.request import QueryDict
 from django.utils.datastructures import MultiValueDictKeyError
 from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
-from rest.models import User, NoteBoard
+from rest.models import User, NoteBoard, Calendar
 
 
 def get_value(form, key):
@@ -42,6 +42,16 @@ def unserialize_note(form, *args, **kwargs):
     if fields:
         note = NoteBoard()
         return unserialize(note, fields, form, optional=optional)
+    else:
+        raise RequestExceptionByCode(INCORRECT_DATA)
+
+
+def unserialize_calendar(form, *args, **kwargs):
+    fields = kwargs.get('fields', None)
+    optional = kwargs.get('optional', False)
+    if fields:
+        calendar = Calendar()
+        return unserialize(calendar, fields, form, optional=optional)
     else:
         raise RequestExceptionByCode(INCORRECT_DATA)
 

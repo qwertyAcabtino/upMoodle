@@ -4,9 +4,7 @@ from django.contrib import admin
 urlpatterns = patterns('rest.router',
     # Examples:
     url(r'^bannedhashes/$', 'bannedhashList'),
-    # url(r'^users/$', 'usersList'),
     url(r'^roles/$', 'rolesList'),
-    url(r'^calendar/$', 'calendarList'),
     url(r'^files/$', 'filesList'),
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
     url(r'^file/(?P<pk>[0-9]+)/$', 'file'),
@@ -34,5 +32,6 @@ urlpatterns = patterns('rest.router',
 
     # Calendar
     url(r'^calendar/(?P<period>(month|day))/(?P<initDate>([0-9]|-)*)/$', 'calendarByPeriod'),
-
+    url(r'^calendar/(?P<pk>[0-9]+)/$', 'calendarById'),
+    url(r'^calendar/$', 'calendar')
 )

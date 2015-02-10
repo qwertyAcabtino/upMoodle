@@ -217,6 +217,7 @@ class Calendar(models.Model):
         self.validateDates()
 
     # TODO. Error message.
+    # TODO. hourStart > hourEnd.
     def validateHours(self):
         if not self.allDay and (not self.hourStart or not self.hourEnd):
             raise ValidationError(INCORRECT_DATA)
@@ -225,7 +226,7 @@ class Calendar(models.Model):
     def validateDates(self):
         if self.frequency.id != FREQUENCY_UNIQUE and not self.lastDate:
             raise ValidationError(INCORRECT_DATA)
-        elif self.firstDate > self.lastDate:
+        elif self.lastDate and self.firstDate > self.lastDate:
             raise ValidationError(INCORRECT_DATA)
         elif not self.lastDate:
             self.lastDate = self.firstDate
@@ -266,10 +267,15 @@ class Calendar(models.Model):
         day = min(sourceDate.day, calendar.monthrange(year, month)[1])
         return datetime.date(year, month, day)
 
+    def update(self, newModel, fields):
+        if fields:
+            for field in fields:
+                setattr(self, field, getattr(newModel, field))
+
 
 class CalendarDate(models.Model):
     id = models.AutoField(primary_key=True)
-    calendarId = models.ForeignKey('Calendar')
+    calendarId = models.ForeignKey('Calendar', related_name='dates')
     date = models.DateTimeField(null=False)
 
     def __unicode__(self):
