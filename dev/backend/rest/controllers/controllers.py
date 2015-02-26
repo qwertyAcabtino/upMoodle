@@ -55,7 +55,7 @@ def get_random_string(length):
 
 def cookies_are_ok(request):
     try:
-        return request.COOKIES[SESSION_COOKIE_NAME_BIS] \
+        return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
                and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
     except KeyError:
         return request.COOKIES[SESSION_COOKIE_NAME] \

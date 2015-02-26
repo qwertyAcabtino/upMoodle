@@ -17,6 +17,7 @@ from rest.controllers.controllers import get_email_confirmation_message, cookies
 from rest.orm.unserializers import unserialize_user, unserialize_note
 from rest.viewsPackage.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
+from rest.viewsPackage.files import file_get_info, file_get_binary, file_put, file_delete, file_post
 from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys
 from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol
@@ -95,28 +96,6 @@ def filesList(request):
         return JSONResponse(serializer.data)
 
 
-def file(request, pk):
-    """
-    Retrieves a file information.
-    """
-    if request.method == 'GET':
-        files = File.objects.filter(id=pk)
-        serializer = FileSerializer(files, many=True)
-        return JSONResponse(serializer.data)
-
-
-def fileBinary(request, pk):
-    file = File.objects.get(id=pk)
-    path_to_file = file.file.path
-
-    extension = file.extension()
-    f = open(path_to_file, 'r')
-    myfile = File(f)
-    response = HttpResponse(file.file)
-    response['Content-Disposition'] = 'attachment; filename=' + file.name + '.' + extension
-    return response
-
-
 def fileListSubject(request, pk):
     level = Level.objects.get(id=pk)
     if level.is_subject() and request.method == 'GET':
@@ -180,6 +159,7 @@ def userById(request, pk):
 def usersByRol(request, pk):
     return user_get_rol(request, pk)
 
+
 # == Notes ==
 @csrf_exempt
 def noteById(request, pk):
@@ -195,6 +175,7 @@ def noteById(request, pk):
         return r.jsonResponse
     except OverflowError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
 
 @csrf_exempt
 def note(request):
@@ -244,11 +225,45 @@ def calendarById(request, pk):
     except OverflowError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
+
 @csrf_exempt
 def calendar(request):
     try:
         check_signed_in_request(request)
         if request.method == 'POST':
             return calendar_post(request)
+    except RequestException as r:
+        return r.jsonResponse
+
+
+# == Files ==
+@csrf_exempt
+def fileById(request, pk):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return file_get_info(request, pk)
+        if request.method == 'POST':
+            return file_put(request, pk)
+        if request.method == 'DELETE':
+            return file_delete(request, pk)
+    except RequestException as r:
+        return r.jsonResponse
+
+@csrf_exempt
+def fileBinary(request, pk):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'GET':
+            return file_get_binary(request, pk)
+    except RequestException as r:
+        return r.jsonResponse
+
+@csrf_exempt
+def file(request):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'POST':
+            return file_post(request)
     except RequestException as r:
         return r.jsonResponse

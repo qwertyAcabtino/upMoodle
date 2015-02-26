@@ -73,6 +73,7 @@ def login_sys(request):
                 jsonResponse = JSONResponseID(SUCCESS_LOGIN)
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME_BIS, session_key)
+                print str(jsonResponse)
                 return jsonResponse
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)

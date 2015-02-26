@@ -45,6 +45,7 @@ class Level(models.Model):
     name = models.CharField(max_length=50)
     type = models.ForeignKey('LevelType')
     visible = models.BooleanField(default=True)
+    parent = models.ForeignKey('Level', default=None, null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -60,6 +61,7 @@ class Level(models.Model):
             Level.validate_exists_level(fk)
         except MultiValueDictKeyError:
             pass
+            # TODO. Solve
 
     @staticmethod
     def validate_exists_level(fk):
@@ -91,6 +93,7 @@ class User(models.Model):
     banned = models.BooleanField(default=False)
     confirmedEmail = models.BooleanField(default=False)
     sessionToken = models.CharField(max_length=256, blank=True, unique=True)
+    subjects = models.ManyToManyField(Level)
 
     def __unicode__(self):
         return self.nick
@@ -128,6 +131,20 @@ class User(models.Model):
         if fields:
             for field in fields:
                 setattr(self, field, getattr(userUpdate, field))
+
+    def add_subject(self, subjectPk):
+        level = Level.objects.get(id=subjectPk)
+        if level.is_subject():
+            self.subjects.add(level)
+        else:
+            raise ValidationError(INCORRECT_DATA)
+
+    def remove_subject(self, subjectPk):
+        level = Level.objects.get(id=subjectPk)
+        if level.is_subject():
+            self.subjects.remove(level)
+        else:
+            raise ValidationError(INCORRECT_DATA)
 
     @staticmethod
     def get_signed_user_id(sessionToken):

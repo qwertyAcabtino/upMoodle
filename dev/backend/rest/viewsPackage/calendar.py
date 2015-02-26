@@ -13,8 +13,7 @@ from rest.models import CalendarDate, Calendar, Level, User
 
 from rest.orm.serializers import CalendarEventSerializer
 
-# TODO. Check if validators return message.
-# TODO. Return only related events. Authorized author for by level.
+# TODO. Return only related events.
 from rest.orm.unserializers import unserialize_calendar
 
 

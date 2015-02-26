@@ -3,7 +3,7 @@ from django.http.request import QueryDict
 from django.utils.datastructures import MultiValueDictKeyError
 from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
-from rest.models import User, NoteBoard, Calendar
+from rest.models import User, NoteBoard, Calendar, File
 
 
 def get_value(form, key):
@@ -70,3 +70,13 @@ def unserialize(model, fields, form, *args, **kwargs):
             else:
                 fields.remove(field)
     return model
+
+
+def unserialize_file(form, *args, **kwargs):
+    fields = kwargs.get('fields', None)
+    optional = kwargs.get('optional', False)
+    if fields:
+        fily = File()
+        return unserialize(fily, fields, form, optional=optional)
+    else:
+        raise RequestExceptionByCode(INCORRECT_DATA)

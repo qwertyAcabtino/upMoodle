@@ -13,6 +13,8 @@ class JSONResponse(HttpResponse):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
+        self['Access-Control-Expose-Headers'] = '*'
+        self['Access-Control-Allow-Credentials'] = 'true'
 
 
 class JSONResponseID(JSONResponse):

@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest',
 )
@@ -47,6 +48,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,6 +60,12 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'backend.urls'
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+
+# https://github.com/ottoyiu/django-cors-headers
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    '127.0.0.1:3000',
+]
 
 
 # Database

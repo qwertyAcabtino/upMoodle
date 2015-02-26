@@ -1,0 +1,20 @@
+<div class="grid">
+	<div class="col-md-3">
+
+		<div class="container-fluid" >
+			<form class="search-field" ng-submit="searchKeyword()" >
+				<input type="text" ng-model="keyword" />
+				<input value="Find" type="submit" />
+				<span>{{ searchResults.length }} Results of {{keyword}}</span>
+			</form>
+		</div>
+		<div class="container-fluid" id="searchResultsList">
+			<div class="container-fliud" ng-repeat="result in searchResults" >
+				<div class="name" id="{result.id}" ng-class="{active:actives[result.id]}" ng-click="listitemClickEvent(result.id)"  >{{ result.name }}</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-9" id="map-canvas" ></div>
+</div>
+
