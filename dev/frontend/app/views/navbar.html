@@ -1,0 +1,14 @@
+<nav class="navbar navbar-default">
+	<span class="dropdown pull-right" dropdown on-toggle="toggled(open)">
+		<a href class="dropdown-toggle" dropdown-toggle>
+			<span>{{user.name}} ({{user.nick}})</span>
+			<img alt="Brand" src="{{user.profilePic}}">
+		</a>
+		<ul class="dropdown-menu">
+			<li>
+				<a href="#/profile/">See profile</a>
+				<a href ng-click="logout()">Logout</a>
+			</li>
+		</ul>
+	</span>
+</nav>

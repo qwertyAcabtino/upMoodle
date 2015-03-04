@@ -21,6 +21,13 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 			    },
 				data : {email: userEmail, password: userPassword}
 			});
+		},
+
+		logout : function(){
+			return $http({ 
+				method: 'POST', 
+				url:  base_url + 'logout/'
+			});	
 		}
 	}
 });

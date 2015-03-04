@@ -1,14 +1,31 @@
 
-angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', 'api', function($scope, $cookies, api){
+angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', 'api', 'User', '$location', 'snackbar', function($scope, $cookies, api, User, $location, snackbar){
 
 	$scope.text = "Hola mundo";
-	api.login('viperey@eui.upm.es', 'qwerqwer')
-		.success(function(data, status, headers, config) {
-					//TODO. Set user at some place.
-			console.log('ok');
-			console.log(data);
-		})
-		.error(function(data, status, headers, config) {
-			console.log('error');
-		});
+
+	$scope.sendForm = function(user){
+		api.login( user.email, user.password )
+			.success(function(data, status, headers, config) {
+				snackbar.message(data.message);
+				$scope.getUser();
+			})
+			.error(function(data, status, headers, config) {
+				snackbar.error(data.error);
+			});
+	}
+
+	$scope.signIn = function(){
+		$location.path('/signin');
+	}
+
+	$scope.getUser = function(){
+		api.getUser()
+			.success(function(data, status, headers, config){
+				User.update(data);
+				$location.path('/dashboard');
+			})
+			.error(function(data, status, headers, config) {
+				console.log('error');
+			});
+	}
 }]);
