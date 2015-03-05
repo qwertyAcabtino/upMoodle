@@ -12,12 +12,23 @@ app
 			templateUrl: 'views/login.html',
 			controller: 'loginController'
 		})
+		.when('/signup', {
+			templateUrl: 'views/signup.html',
+			controller: 'signUpCtrl',
+		})
+		.when('/recoverPassword', {
+			templateUrl: 'views/recoverPassword.html',
+			controller: 'recoverPasswordCtrl',
+		})
+		.when('/confirm_email/:token', {
+			templateUrl: 'views/confirm_email.html',
+			controller: 'confirmEmailCtrl',
+		})
 		.when('/dashboard', {
 			templateUrl: 'views/dashboard.html',
 			controller: 'dashboardCtrl',
 			resolve : {
 				userModel : userPromise
-
 			}
 		})
 		.otherwise({
@@ -27,9 +38,14 @@ app
 .run(function($location, $http, $cookies, api, User){
 	api.getUser().
 	success(function(data, status, headers, config) {
-		User.update(data);
+		User.set(data);
 	})	
 	.error(function(data, status, headers, config) {
-		$location.path('/login');
+		if( 
+			$location.path().indexOf("recoverPassword")!=-1 &&
+			$location.path().indexOf("confirm_email")!=-1 &&
+			$location.path().indexOf("signup")!=-1 
+		)
+			$location.path('/login');
 	});
 });

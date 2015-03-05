@@ -23,11 +23,48 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 			});
 		},
 
+		signup : function(email, password, nick){
+			return $http({ 
+				method: 'post', 
+				url:  base_url + 'signup/',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				transformRequest: function(obj) {
+				        var str = [];
+				        for(var p in obj)
+				        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+				        return str.join("&");
+			    },
+				data : {email: email, password: password, nick: nick}
+			});
+		},
+
 		logout : function(){
 			return $http({ 
 				method: 'POST', 
 				url:  base_url + 'logout/'
 			});	
+		},
+
+		recoverPassword : function(email){
+			return $http({ 
+				method: 'POST', 
+				url:  base_url + 'recover_password/',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				transformRequest: function(obj) {
+				        var str = [];
+				        for(var p in obj)
+				        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+				        return str.join("&");
+			    },
+				data: {email: email}
+			});	
+		},
+
+		confirmEmail : function(token){
+			return $http({   
+				method: 'GET',     
+				url:  base_url + 'confirm_email/' + token +"/"
+			});
 		}
-	}
-});
+	} 
+});  
