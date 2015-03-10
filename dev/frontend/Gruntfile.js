@@ -19,15 +19,21 @@ module.exports = function(grunt) {
 		watch: {
 			css: {
 				files: '**/*.scss',
-				tasks: ['compass']
+				tasks: ['compass'],
+				options: {
+			      livereload: true,
+			    }			
 			},
 			jsShelf:{
-				files: 'app/libs/*/*.js',
-				tasks: ['uglify']
+				files: 'app/libs/{controllers,services,factories,directives}/*.js',
+				tasks: ['uglify:my_target'],
+				options: {
+			      livereload: true,
+			    }			
 			},
 			jsThid:{
-				files: 'app/libs/third-party/*/*min.js',
-				tasks: ['uglify']
+				files: 'app/libs/third-party/**/*.js',
+				tasks: ['uglify:my_target_third_party']
 			}
 		},
 		uglify: {
@@ -36,7 +42,6 @@ module.exports = function(grunt) {
 			},
 			my_target: {
 				files: {
-					'app/libs/third-party/snackbar/angular.snackbar.min.js': ['app/libs/third-party/snackbar/angular.snackbar.js'],
 					'app/libs/services.min.js': ['app/libs/services/*.js'],
 					'app/libs/factories.min.js': ['app/libs/factories/*.js'],
 					'app/libs/controllers.min.js': ['app/libs/controllers/*.js'],
@@ -45,7 +50,8 @@ module.exports = function(grunt) {
 			},
 			my_target_third_party: {
 				files: {
-					'app/libs/_dependencies.min.js': ['app/libs/third-party/*/*min.js'],
+					'app/libs/third-party/snackbar/angular.snackbar.min.js': ['app/libs/third-party/snackbar/angular.snackbar.js'],
+					'app/libs/_dependencies.min.js': ['app/libs/third-party/**/*min.js']
 				}
 			}
 		}

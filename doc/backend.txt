@@ -1,0 +1,14 @@
+El backend de este proyecto está escrito en python y se apoya en el framework Django así como una librería llamada Djando-Rest.
+
+Hay varios módulos principales que conforman el servidor y una serie de elementos auxiliares que lo dotan de mayor integridad. A saber.
+
+Como elementos principales de nuestro proyecto tenemos usuarios, asignaturas, ficheros, horarios y tablón de noticias.
+Dichos elementos principales tienen su reflejo en los modelos de User, Level, File, Calendar, Notes.
+
+Como elementos auxiliares que están presentes en nuestra base de datos pero no son expuestos como unidades principales tendríamos los roles, los niveles de acceso, los niveles de organización de la universidad, los comentarios de ficheros, las listas negras de ficheros, etc.
+Estos elementos auxiliares permiten cerrar la arquitectura del servidor y dotar de mayor funcionalidad y sentido a nuestro proyecto.
+
+En detalle.
+
+Usuarios.
+Los usuarios son almacenados

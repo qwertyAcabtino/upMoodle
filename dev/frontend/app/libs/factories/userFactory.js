@@ -1,24 +1,9 @@
 angular.module('upmApp').factory('User', ['$location', 'api', function($location, api){
-	return {
+	var returno = {
 		model : undefined, 
-		/*
-		id: -1,
-	    rol: undefined, 
-	    email: undefined,
-	    nick: undefined,
-	    name: undefined,
-	    profilePic: undefined,
-	    lastTimeActive: undefined,
-	    joined: undefined,
-	    banned: false,
-	    */	    
-
-	    update : function(userModelIn){
-	    	this.model = userModelIn;
-	    }, 
 
 	    destroy : function(){
-	    	this.model = undefined;
+	    	returno.model = undefined;
 	    },
 
 	    get : function(){
@@ -26,8 +11,8 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 	    		return api.getUser()
 				.then(
 					function success(response) { 
-						// that.set(response.data);
-						return response.data; 
+						returno.model = response.data;
+						return returno.model; 
 					},
 					function error(reason){
 						$location.path('/login');
@@ -42,4 +27,6 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 	    	this.model = model;
 	    }
 	}
+
+	return returno;
 }]);

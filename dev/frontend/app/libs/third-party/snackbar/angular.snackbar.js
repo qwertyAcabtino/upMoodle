@@ -14,12 +14,14 @@
 	//snackbar service
 	module.factory("snackbar", ['$rootScope', function ($rootScope) {
 
-		return {
+		return { 
 			message : function( content, duration ){
+				content = content.message || content;
 				$rootScope.$broadcast('createSnackbar', { 'content': content, 'duration': duration, 'color': "green" });
-			},
+			}, 
 
 			error : function( content, duration ){
+				content = content.error || content;
 				$rootScope.$broadcast('createSnackbar', { 'content': content, 'duration': duration, 'color': "red" });
 			},
 
@@ -38,7 +40,7 @@
 			var snackbarContainer = angular.element(element);
 
 			//snackbar duration time (ms)
-			var snackbarDuration = attrs.snackbarDuration || 3000;
+			var snackbarDuration = attrs.snackbarDuration || 5000;
 
 			//delay time to remove from DOM after hide (ms)
 			var snackbarRemoveDelay = attrs.snackbarRemoveDelay || 200;

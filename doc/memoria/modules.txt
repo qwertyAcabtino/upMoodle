@@ -1,0 +1,95 @@
+En el presente proyecto existen una serie de funcionalidades principales que pueden ser fácilmente identificadas como las distintas vistas del proyecto web.
+Sin embargo, de forma transversal a dichas vistas y/o funcionalidades principales, encontramos una serie de módulos que bien por interés técnico o por cuestiones de arquitectura, es necesario detallar de forma separada.
+
+<br>
+#### Backend.
+
+<br>
+**Email**.
+ 
+Algunas de las funcionalidades principales anteriormente mencionadas, tales como el registro o la recuperación de contraseñas requieren del uso de comunicación mediante correo.
+Para llevar a cabo dichas comunicaciones es necesario hacer uso de una librería de python capaz de realizar envíos de correos electrónicos.
+
+<br>
+**Serializadores/Deserializar.**
+
+Como ya se ha explicado en el apartado dedicado a la pila tecnológica, en nuestro proyecto, como parte de una serie de componentes que se encargan de proveer un camino entre los datos SQL de nuestra base de datos y las cadenas de texto JSON emitidas por la API, existe un módulo de vital importancia conocida como (des)serizalizadores.
+Estos módulos, que por comportamiento pueden considerarse uno solo, son los encargados de proveer una interfaz de interpretación y traducción entre un objeto diccionario JSON de python y un objeto heredero de models.Model perteneciente a los módulos de mapeo de objetos de Django.
+
+En términos más concretos, este módulo tiene la capacidad de generar un diccionario (pares de clave-valor) a partir de un objeto (incluso compuesto) de tipo Model. 
+Incluso, sin mayores problemas, puede realizarse el paso inverso.
+
+En este punto es necesario explicar que si bien DjandoRest provee opciones de deserialización (unserialization), por cuestiones de composición, complejidad de algunos casos y rigidez general del sistema, se optó por la generación de funciones propias de serialización. 
+Aún más en detalle. En nuestro caso, por cuestiones de seguridad es necesario restringir según casos el acceso a la edición de algunos campos.
+Es por ello que se opta por imitar el estilo del framework DjangoRest, pero implementando unas serie de funcionaliades propias. 
+De esta forma, podemos elegir rápidamente qué campos pueden ser editados o qué campos pueden considerarse opcionales (evitando bajar las últimas capas para descubrir el error y así lanzar mensajes de error personalizado).
+En cualquier caso, no se considera un ejemplo de sobrefactorización/sobreingeniería en tanto que está justificada la sobreescritura de funcionalidades en tanto las mismas por rigidez y falta de madurez no aportan la versatilidad necesaria para nuestra situación.
+
+
+<br>
+**Modelos.**
+Como se apuntó brevemente en el apartado dedicado al stack tecnológico, buena parte del manejo de datos en nuestro proyecto recae en la librería models.Model proporcionada por Django. models como referencia al paquete y Model como referencia de la clase.
+Esta clase nos provee una serie de características, la más reseñable de todas ellas, la posibilidad de que nuestros objetos tengan persistencia en discos a través de una base de datos SQL. Es decir, la mentada clase Model no es sino la interfaz pública que Django provee de su ORM, siendo los métodos de dicha clase los que gestionar el necesario mapeo de los objetos.
+Tal y como se indica en la documentación ofrecida por Djando, la clase Model ofrece una serie de métodos (los cuales pueden ser reescritos para ofrecer características extras a las originales) para la comprobación de valores, el guardado de datos en disco, actualización, etc.
+
+<br>
+**Messages & ErrorMessages. **
+
+En el presente proyecto la información transmitida al usuario es muy importante. Ante ciertos eventos, la información que transmitidos en forma de errores o mensajes positivos recaen como responsabilidad única del servidor. Esto significa que es el servidor quien posee y maneja en solitario todos los errores y mensajes que puedan necesitarse a lo largo del uso de la aplicación. El motivo de este diseño responde a la voluntad de mantener una integridad y control sobre la información mostrada lo más amplio posible. En los casos en que la información se encuentra desacoplada y distribuida entre los dos extremos del sistema, su mantenimiento y actualización puede resultar tedioso sino caótico.
+
+En ciertos casos, dependiendo del nivel de seguridad y en función de la información expuesta a través de los mensajes y errores, es posible e incluso aconsejable el uso de una llamada api que devuelva todos los mensajes que pueda producir el backend, de esta forma, pueden retornarse códigos de mensaje/error en el lugar de mensajes en sí. El objetivo final de este diseño no responde a una necesidad de ahorro de datos (que a nivel teórico sí podría producirse), si no que podría utilizarse para proveer al frontend de un listado de errores y mensajes que pudiera utilizar a discrección, incluso en casos en lo que no existiese comunicación con el servidor. Ejemplo, los mensajes de control de formato de un formulario. De esta forma los mensajes de error ya están disponibles para el cliente web, pero la integridad del sistema permanece.
+
+
+<br>
+<br>
+####FrontEnd
+
+En el apartado frontend de nuestro proyecto encontramos una serie de módulos, que apoyándose módulos pre-existentes en los frameworks utilizados, son dotados de ciertas funcionalidades específicas.
+
+<br>
+**App**
+Es el modulo principal del proyecto en su apartado frontend.
+Este modulo sirve de punto de entrada principal al resto de módulos, así como realiza las tareas de gestión de la enrutación.
+Es decir, en angular en la mayoría de casos, se define un módulo principal de tipo genérico en torno al cual se organizan el resto de módulos de propósito específico.
+Este módulo genérico indica las dependencias/librerías globales de las cuales tendrá capacidad de uso el resto de módulos. 
+
+De igual forma, tal y como se mencionaba anteriormente, es en este módulo de propósito general donde se realizan las tareas de enrutamiento y control de rutas de la webapp.
+Es decir, de acuerdo a las capacidades ofertadas por el framework, las rutas introducidas en nuestro navegador web pueden ser condicionadas a la redirección a una u otras vistas o el envío a una página general de eror.
+
+<br>
+**API**
+Para ofrecer el paquete de llamadas API que permiten la comunicación con el servidor tenemos el módulo api.
+Dicho módulo es una implementación de una factoría angular. Dichas factorias pueden ser consideradas los singletons de Angular y suelen ser utilizadas tanto para proveer módulos orientadas a factorías de métodos como para los casos en que son necesarios un punto acceso modular a variables globales (u objetos globales).
+
+En cualquier caso, como ya se ha descrito anteriormente, el presente módulo es el último punto de comunicación dentro del cliente y es quien es encargará tanto de realizar las pertinentes comunicaciones con el debido servidor como de proveer una API pública dentro del cliente frontend que permita conocer las opciones de comunicación con el servidor.
+
+<br>
+**User**
+De igual forma que sucede con el módulo api, el caso del módulo User es una implementación de la inferfaz factoría que provee Angular.
+En este caso se trata más del modelo de datos del usuario logueado que de las funciones que expone.
+Es decir, si bien la factoría usuario posee una serie de funciones que permiten la manipulación de sus datos, lo reseñable de dicho módulo es la presencia de una variable tipo .model que posee los datos del usuario logueado, los cuales son retornados a través de una llamada API específica.
+Lo interesante y potente de esta factoría es el hecho de que al ser un Singleton, los datos del usuario se encuentran permanentemente actualizados de forma y manera que se garantiza la integridad de los datos a lo largo del frontend.
+
+<br>
+**Snacks**
+Al igual que en el apartado del servidor los mensajes cobraban una especial antención, de forma equivalente y paralela, los mensajes de sistema cobran importancia en el cliente web.
+
+En términos concretos se ha optado por el uso de una librería que imprime snacks en pantalla, el cual ha sido modificado para que mediante el uso de códigos de color, se indique la severidad del mensaje.
+Hay que explicar que los snacks son un concepto moldeado por Google con el motivo del lanzamiento de su lenguaje visual bautizado como Google Material.
+
+Este patrón visual es muy práctico a la hora de desacoplar los mensajes de error de la vista específica en que que produzcan. De esta forma se evita que tengan que realizarse bindings o asociaciones repetidamente a lo largo del código de las vistas para mostrar los distintos mensajes del servidor en nuestra pantalla.
+
+Como curiosidad destacar que para simplificar y hacer más robusto el código de la librería, esta soporta que le sea enviado la totalidad de la respuesta del servidor (y posteriormente busca la clave pertinente en el mensaje), dando como se decía antes un mayor control sobre los posibles casos de error.
+
+<br>
+**NavBar**
+
+En el presente proyecto encontramos que en el apartado frontend algunas vistas poseen una barra de navegación y otras no. En general puede dividirse que aquellas que pertenecen al ámbito de las vistas post-loguin poseen un navbar y el resto no.
+Es por ello que es necesario que exista un módulo específico para la gestión de dicha barra de navegación.
+
+En esta caso particular el tipo de módulo elegido es la directiva. Dichas directivas nos permiten reutilizar vistas html así como sus controladores y algunos datos a lo largo de las vistas principales de nuestro sistema.
+
+Hay que considerar que en Angular, por defecto, la anidación de vistas no está soportado. Es cierto que existen librerías de terceros que permiten esta funcionalidad explotando los límites del sistema, pero en tanto que las directivas suponen una excelente forma de cumplir nuestros objetivos y respetando la arquitectura original del framework, se opta porque esta sea nuestra elección.
+
+Hay que destacar que el controlador de nuestra directiva será mínimo y solo provee una serie de funcionalidades mínimas de navegación, siendo una forma de uso de los controladores bastante más minimalista que en el resto de vistas&controladores.
+

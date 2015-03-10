@@ -12,9 +12,9 @@ from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.models import User
 
 
-def get_email_confirmation_message(request):
-    cookie = request.COOKIES[SESSION_COOKIE_NAME_BIS]
-    host = request.META['SERVER_NAME'] + ':' + request.META['SERVER_PORT']
+def get_email_confirmation_message(request, cookie=None):
+    host = request.META['SERVER_NAME'] + ':3000/#'  # TODO. Not for production.
+    # host = request.META['SERVER_NAME'] + ':' + request.META['SERVER_PORT']
     message = 'Please confirm your account at upMoodle.\n'
     message += 'http://' + host + '/confirm_email/' + cookie
     return message
@@ -23,7 +23,7 @@ def get_email_confirmation_message(request):
 def get_password_recover_message(password):
     message = 'In theory, you\'ve forgotten your password.\n'
     message += 'This is your new password: ' + password + '\n'
-    message += 'For security reasons, please, change this password as soon as posible.'
+    message += 'For security reasons, please, change this password as soon as possible.'
     return message
 
 

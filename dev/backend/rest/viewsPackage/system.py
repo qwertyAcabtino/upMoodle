@@ -7,7 +7,7 @@ from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.MESSAGES_ID import REQUEST_CANNOT, INCORRECT_DATA, ALREADY_CONFIRMED, INVALID_TOKEN, DISABLED_COOKIES, \
-    UNCONFIRMED_EMAIL, SUCCESS_LOGIN, UNAUTHORIZED, RECOVER_PASS_EMAIL
+    UNCONFIRMED_EMAIL, SUCCESS_LOGIN, UNAUTHORIZED, RECOVER_PASS_EMAIL, ACCOUNT_VALIDATED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestExceptionByMessage, \
     RequestException
 from rest.controllers.controllers import check_cookies, get_email_confirmation_message, cookies_are_ok, \
@@ -21,10 +21,14 @@ def signup_sys(request):
     try:
         check_cookies(request)
         if request.method == 'POST':
-            user = unserialize_user(request.POST, sessionToken=request.COOKIES[SESSION_COOKIE_NAME],
+            try:
+                sessionCookie = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+            except KeyError:
+                sessionCookie = request.COOKIES[SESSION_COOKIE_NAME]
+            user = unserialize_user(request.POST, sessionToken=sessionCookie,
                                     fields=['email', 'password', 'nick'])
             send_mail('Email confirmation',
-                      get_email_confirmation_message(request),
+                      get_email_confirmation_message(request, cookie=sessionCookie),
                       'info@upmoodle.com', [user.email],
                       fail_silently=False)
             user.save()
@@ -39,6 +43,7 @@ def signup_sys(request):
     except RequestException as r:
         return r.jsonResponse
 
+
 def confirmEmail_sys(request, cookie):
     try:
         if request.method == 'GET':
@@ -48,7 +53,7 @@ def confirmEmail_sys(request, cookie):
             else:
                 user.confirmedEmail = True
                 user.save()
-                return JSONResponse({"userId": user.id}, status=200)
+                return JSONResponseID(ACCOUNT_VALIDATED)
         else:
             return RequestExceptionByCode(REQUEST_CANNOT).jsonResponse
     except ObjectDoesNotExist:

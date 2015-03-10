@@ -1,0 +1,64 @@
+El proyecto está dividido en dos: servidor y cliente web (o backend y frontend respectivamente).
+La pila técnica del proyecto, es decir, lenguajes, herramientas, frameworks y librerías utilizadas a lo largo del proyecto del proyecto son múltiples y variadas.
+
+###Backend
+
+En nuestro backend el lenguaje principal es Python. Este lenguaje se distingue por ser multiparadigma (se adapta tanto a una estructura tipo script como a OO), por su sencillez y verstailidad y por su potencia.
+
+Por encima de Python se utiliza Django, un framework orientado a facilitar el desarrollo de proyectos web. Si bien puede utilizarse para proyectos fullstack (backend + frontend), en nuestro caso particular solo se utiliza para la parte de servidor.
+Este framework nos provee potentes herramientas tales como un ORM (mapeador de objectos relacionales), enrutador de urls, etc.
+
+Para facilitar la tarea de enrutación y des/serialización de objetos (de base de datos), por encima de Django se encuentra DjandoRestFramework. Este framework nos ayudará a la hora de transformar los datos de entrada de nuestras peticiones HTTP en objetos que nuestra base de datos pueda comprender (y viceversa).
+
+<br>
+**Persistencia de datos**
+
+En el presente proyecto la persistencia de los datos recae en una base de datos (motor sqlite) pero con una serie de particularidades. A nivel real la base de datos es sql, pero sin embargo la capa más alta de acceso a nivel de framework es una base de datos de tipo objeto. Esto significa que es el framework de djando quien se encarga de realizar el mapeo orm para transformar las instancias de nuestros modelos (objetos) a datos sql con persistencia en disco.
+El ORM proporcionado por Djando se podría resumir en que proporciona un objeto base Model de la librería models, todo objeto que en nuestro proyecto haga herencia de dicha clase será susceptible se tener capacidades de mapeo a datos SQL. 
+En el apartado dedicado a los des/serializadores se analiza el módulo encargado de convertir nuestras instancias heredada de Model a texto con formato JSON, preparado de esta forma para que nuestros clientes finales consuman los datos.
+En términos generales puede establecerse el siguiente hilo conductor extremo a extremo de un dato tipo.
+Datos SQL <=Mapeador ORM=> Objeto de una clase heredera de models.Model <=Des/Serializador=> Diccionarios de Python (clave-valor) <=JSONRender=> Cadena de texto con formato JSON que representa pares de clave-valor.
+
+<br>
+**Requests.**
+
+Request es una librería tipo navaja-suiza de Python. Es la librería tipo de PYthon para la comunicación HTTP.
+Esta provee un acceso completo a la totalidad de los campos/cabeceras de una petición HTTP y de igual permite una completa personalización de las mismas.
+De esta forma, nos es posible gestionar de forma propia las cookies/tokens de sesión, los tipos de petición HTTP que realizamos, el contenido de las respuesta, el formato de los datos que se envían en las respuestas, etc.
+
+De forma manual y complementaria a nuestras peticiones HTTP esambladas a través de librerías dependientes de HTTPResponse, tenemos que configurar algunos valores de cabecera de nuestras peticiones para permitir la comunicación entre servidores. Pero estas cuestiones son tratadas en el apartado dedicado a CORS.
+
+<br>
+**HTTP Cors.**
+
+En cuestiones de comunicaciones HTTP, los servidores tienen una serie de reglas para permitir la comunicación con servidores más allá del propio dominio.
+De forma y manera que para poder permitir que nuestra API sea descubrible, no ya por servicios de terceros, sino por nuestro propio frontend, es preciso que ciertas cabeceras sean modificadas para permitir la mentada comunicación "más allá de dominio".
+
+
+
+<br>
+<br>
+###Frontend
+
+Como todo proyecto web basado en páginas dinámicas, nuestro proyecto hace uso de HTML y Javascript. Pero más allá de estas dos tecnologías tan básicas y necesarias hoy en dia en cualquier proyecto web que se precie, por encima de ello tenemos implementado un amplio y rico ecosistemas de frameworks y librerías.
+
+<br>
+**Angular**
+El primero de todos ellos sería Angular. Angular es un framework basado en javascript desarrollado por Google. Como la mayoría de frameworks desarrollados en los últimos años, apuesta por los principios de single-page y por un patrón MVC. Aunque en este aspecto hay que destacar que si bien la mayoría de frameworks webs aseveran apostar por un patrón MVC para organizar los módulos y lógicas, la mayoría de ellos redefinen parcialmente (y de forma interesada) dicho patrón para adaptarlo a sus implementaciones concretas.
+
+<br>
+**SASS**
+Al igual que sucede con javascript, css hoy en día requiere de librerías y frameworks encima del lenguaje para alcanzar cierta potencia. En nuestro caso se apuesta por el uso de SASS como lenguaje de estilo. SASS (junto a LESS) ofrecen grandes ventajas sobre el lenguaje CSS original, siendo la escritura anidada, las metafunciones y las variables algunas de las características ofrecidas mas destacables.
+
+<br>
+**Grunt**
+En la actualidad, nuestros proyectos web requieren de ciertas herramientas de gestión, control y despliegue adicionales que hasta hace unos pocos años no estaban maduras ni al alcance de cualquier desarrollo. En nuestro caso, Grunt es usado como gestor de tareas.
+Grunt nos permitirá automatizar nuestro despliegue durante el desarrollo, pero también puede ser configurado para configurar distintos tipos de compilaciones. Por ejemplo, puede ser configurado para compilar y preparar nuestros ficheros scss. También puede ser utilizado para las tareas de ofuscación o concatenación de código.
+
+
+<br>
+**Gestores de dependencias**
+Por otra parte, gran parte de los desarrollos web actuales, máxime cuando se hace uso de frameworks como angular, el uso de librerías de terceros es una práctica común y necesaria. Partiendo de la lógica de que el uso de librerías de terceros con licencias libres nos permite tener el control del código que asociamos a nuestros proyectos, el carácter abierto de un módulo de código y una comunidad detrás de apoyo nos invita a confiar en la fiabilidad del código (más ojos observando, mejorando y utilizando tienden a encontrar más errores en el código).
+Por tanto, para la gestión automática de dichas librerías, existen algunas librerías gestionadas por programas de gestión de dependencias. En nuestro caso, dependiendo del caso concreto, habremos de utilizar Bower, NPM (node package manager) o gem (gemas de ruby) para la gestión de dichas librerías de terceros.
+
+

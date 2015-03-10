@@ -59,10 +59,10 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 				data: {email: email}
 			});	
 		},
-
-		confirmEmail : function(token){
-			return $http({   
-				method: 'GET',     
+ 
+		confirmEmail : function(token){  
+			return $http({     
+				method: 'GET',      
 				url:  base_url + 'confirm_email/' + token +"/"
 			});
 		}

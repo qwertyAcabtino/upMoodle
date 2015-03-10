@@ -1,9 +1,9 @@
-angular.module('upmApp').directive('navbar', function(User){
+angular.module('upmApp').directive('navbar', function(){
 
 	return {
 		restrict: 'EA',
 		templateUrl: 'views/navbar.html',
-		controller: function($scope, api, $location) {
+		controller: function($scope, api, $location, User) {
 			$scope.user = User.model;
 			$scope.logout = function() {
 				api.logout().

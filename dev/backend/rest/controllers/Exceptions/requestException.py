@@ -3,6 +3,7 @@ from rest.JSONResponse import JSONResponse
 from rest.models import ErrorMessage
 from rest.orm.serializers import ErrorMessageSerializer
 
+
 class RequestException(Exception):
     jsonResponse = None
 

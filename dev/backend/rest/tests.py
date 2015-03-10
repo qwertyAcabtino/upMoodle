@@ -109,9 +109,13 @@ class A2_MessageTestCase(unittest.TestCase):
         Message.objects.create(message="Your profile has been updated")
         Message.objects.create(message="Note updated")
         Message.objects.create(message="The note is been removed")
+        Message.objects.create(message="CEVENT_REMOVED")
+        Message.objects.create(message="CALENDAR_UPDATED")
+        Message.objects.create(message="FILE_REMOVED")
+        Message.objects.create(message="Account successfully validated")
 
     def test_messages_exists_in_db(self):
-        self.assertEqual(len(Message.objects.all()), 7)
+        self.assertEqual(len(Message.objects.all()), 11)
 
 
 class B_RolTestCase(unittest.TestCase):

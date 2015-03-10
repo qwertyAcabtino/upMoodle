@@ -93,7 +93,7 @@ class User(models.Model):
     banned = models.BooleanField(default=False)
     confirmedEmail = models.BooleanField(default=False)
     sessionToken = models.CharField(max_length=256, blank=True, unique=True)
-    subjects = models.ManyToManyField(Level)
+    subjects = models.ManyToManyField(Level, blank=True )
 
     def __unicode__(self):
         return self.nick
@@ -114,7 +114,7 @@ class User(models.Model):
     def validate_email(self):
         try:
             validate_email(self.email)
-            if not "@eui.upm.es" in self.email and not "@upm.es" in self.email:
+            if not "@eui.upm.es" in self.email and not "@upm.es" in self.email and not "@alumnos.upm.es" in self.email:
                 raise ValidationError(EMAIL_INVALID)
         except ValidationError as v:
             raise ValidationError(EMAIL_INVALID)
