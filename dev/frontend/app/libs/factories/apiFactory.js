@@ -1,6 +1,14 @@
 angular.module('upmApp').factory('api', function($http, $cookies){
 	base_url = 'http://127.0.0.1:8000/';
+	media_url = base_url + "media/pics/";
+	user_pics_url = media_url + "users/";
+
 	return {
+
+		getPic : function(url){
+			return user_pics_url + url;			
+		},
+
 		getUser : function(){
 			return $http({ 
 				method: 'GET', 

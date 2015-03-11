@@ -1,5 +1,7 @@
+from django.conf.urls.static import static
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from backend import settings
 
 urlpatterns = patterns('rest.router',
     # Examples:
@@ -37,5 +39,4 @@ urlpatterns = patterns('rest.router',
     url(r'^file/$', 'file'),
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
     url(r'^file/(?P<pk>[0-9]+)/$', 'fileById')
-
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

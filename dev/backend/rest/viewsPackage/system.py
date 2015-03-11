@@ -1,3 +1,4 @@
+from smtplib import SMTPAuthenticationError
 from django.utils import timezone
 from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
@@ -38,10 +39,10 @@ def signup_sys(request):
     except ValidationError as v:
         r = RequestExceptionByMessage(v)
         return r.jsonResponse
-    except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except RequestException as r:
         return r.jsonResponse
+    except Exception:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
 def confirmEmail_sys(request, cookie):
@@ -124,9 +125,7 @@ def recoverPassword_sys(request):
                 user.password = password
                 user.save()
         return JSONResponseID(RECOVER_PASS_EMAIL)
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except RequestException as r:
         return r.jsonResponse
+    except Exception:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

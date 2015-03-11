@@ -59,6 +59,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'backend.urls'
 
+MEDIA_ROOT = '/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend'
+MEDIA_URL = '/media/'
+
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # https://github.com/ottoyiu/django-cors-headers

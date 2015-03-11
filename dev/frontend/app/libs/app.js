@@ -27,6 +27,13 @@ app
 		.when('/dashboard', {
 			templateUrl: 'views/dashboard.html',
 			controller: 'dashboardCtrl',
+			resolve : {  
+				userModel : userPromise
+			}
+		})
+		.when('/profile', {
+			templateUrl: 'views/profile.html',
+			controller: 'profileCtrl',
 			resolve : {
 				userModel : userPromise
 			}
