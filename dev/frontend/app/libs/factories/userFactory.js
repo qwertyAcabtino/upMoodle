@@ -7,14 +7,14 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 	    },
 
 	    get : function(){
-	    	if(this.model==undefined || this.model===undefined)
+	    	if( this.model===undefined )
 	    		return api.getUser()
 				.then(
 					function success(response) { 
 						returno.model = response.data;
 						return returno.model; 
 					},
-					function error(reason){
+					function error(){
 						$location.path('/login');
 						return false; 
 					}
@@ -26,7 +26,7 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 	    set : function(model){
 	    	this.model = model;
 	    }
-	}
+	};
 
 	return returno;
 }]);

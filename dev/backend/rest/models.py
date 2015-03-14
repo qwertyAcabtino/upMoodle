@@ -6,7 +6,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 
-from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID, INCORRECT_DATA
+from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID, INCORRECT_DATA, NAME_LENGTH
 from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
 
@@ -87,7 +87,7 @@ class User(models.Model):
     nick = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=100, blank=True)
     password = models.CharField(max_length=100)
-    profilePic = models.ImageField(upload_to='pics/users', default='_default.png')
+    profilePic = models.ImageField(upload_to='pics/users', default='pics/users/_default.png')
     lastTimeActive = models.DateTimeField(default=timezone.now, null=False, editable=True)
     joined = models.DateTimeField(default=timezone.now, editable=True, null=False)
     banned = models.BooleanField(default=False)
@@ -110,6 +110,7 @@ class User(models.Model):
         self.validate_email()
         self.validate_password()
         self.validate_nick()
+        self.validate_name()
 
     def validate_email(self):
         try:
@@ -126,6 +127,10 @@ class User(models.Model):
     def validate_nick(self):
         lengthMax = User._meta.get_field('nick').max_length
         validate_length(self.nick, lengthMax, 4, NICK_LENGTH)
+
+    def validate_name(self):
+        lengthMax = User._meta.get_field('name').max_length
+        validate_length(self.name, lengthMax, 4, NAME_LENGTH)
 
     def update(self, userUpdate, fields):
         if fields:

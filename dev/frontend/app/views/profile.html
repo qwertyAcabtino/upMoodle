@@ -1,14 +1,41 @@
 <navbar></navbar>
 <div class="container-fluid">
 	<div class="col-md-3 ">
-		<img ng-src="{{profilePic}}" class="center-block"/>
+		<img ng-src="{{profilePic}}" class="center-block" style="max-width: 100%" />
 	</div>
 	<div class="col-md-9">
-		<ul class="list-group">
-		  <li class="list-group-item">{{user.name}}</li>
-		  <li class="list-group-item">{{user.nick}}</li>
-		  <li class="list-group-item">{{user.email}}</li>
-		  <li class="list-group-item">{{user.joined}}</li>
-		</ul>
+		<button ng-click="editMode = !editMode" type="button" class="btn btn-default" aria-label="Left Align"> Edit
+		</button>
+		<div ng-show="editMode" id="replyForm">
+			<form role="form" name="form">
+				<div class="form-group">
+					<label for="email">Name:</label>
+					<input type="text" class="form-control" id="name" placeholder="Whats you name?" ng-model="user.name">
+				</div>
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">
+				</div>
+				<div class="form-group">
+					<label for="text">Nickname:</label>
+					<input type="text" class="form-control" id="text" placeholder="Write a nickname" ng-model="user.nick">
+				</div>
+				<div class="form-group">
+					<label for="text">New Password:</label>
+					<input type="password" class="form-control" id="text" placeholder="Write a password" ng-model="user.password">
+				</div>
+				<button type="submit" class="btn btn-default" ng-click="update(user, password)">
+					Submit
+				</button>
+			</form>
+		</div>
+		<div ng-show="!editMode">
+			<ul class="list-group">
+				<li class="list-group-item">{{user.name}}</li>
+				<li class="list-group-item">{{user.nick}}</li>
+				<li class="list-group-item">{{user.email}}</li>
+				<li class="list-group-item">{{user.joined}}</li>
+			</ul>
+		</div>
 	</div>
 </div>

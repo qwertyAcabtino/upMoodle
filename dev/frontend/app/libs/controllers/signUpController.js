@@ -8,5 +8,5 @@ angular.module('upmApp').controller( 'signUpCtrl', ['$scope', '$cookies', 'api',
 			.error(function(data, status, headers, config) {
 				snackbar.error(data.error, 5000); 
 			});
-	}
+	};
 }]);

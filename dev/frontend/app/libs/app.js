@@ -4,7 +4,7 @@ app
 .config(['$routeProvider', '$locationProvider', '$httpProvider',
 	function($routeProvider, $locationProvider, $httpProvider) {
 
-		userPromise = ['User', function(User){ return User.get(); }];
+		var userPromise = ['User', function(User){ return User.get(); }];
 
 		$httpProvider.defaults.withCredentials = true;
 		$routeProvider

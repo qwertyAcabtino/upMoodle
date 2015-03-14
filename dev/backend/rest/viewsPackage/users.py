@@ -1,10 +1,11 @@
 from django.utils.datastructures import MultiValueDictKeyError
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.views.decorators.csrf import csrf_exempt
 from backend.settings import SESSION_COOKIE_NAME_BIS
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.MESSAGES_ID import INCORRECT_DATA, USER_REMOVED, USER_UPDATED
-from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode
+from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
+    RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, get_random_email, get_random_password
 from rest.models import User
 from rest.orm.serializers import UserSerializer
@@ -70,6 +71,8 @@ def user_put(request):
         return r.jsonResponse
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValidationError as v:
+        return RequestExceptionByMessage(v).jsonResponse
 
 
 # == Any other user ==

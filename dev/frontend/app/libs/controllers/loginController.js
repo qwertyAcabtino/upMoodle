@@ -2,8 +2,8 @@
 angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', 'api', 'User', '$location', 'snackbar', function($scope, $cookies, api, User, $location, snackbar){
 
 	$scope.sendForm = function(user){
-		email = (user && user.email ) ? user.email : null;
-		password = (user && user.password ) ? user.password : null;
+		var email = (user && user.email ) ? user.email : null;
+		var password = (user && user.password ) ? user.password : null;
 		api.login( email, password )
 			.success(function(data, status, headers, config) {
 				snackbar.message(data.message);
@@ -12,15 +12,15 @@ angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', '
 			.error(function(data, status, headers, config) {
 				snackbar.error(data.error);
 			});
-	}
+	};
 
 	$scope.signIn = function(){
 		$location.path('/signup');
-	}
+	};
 
 	$scope.recoverPassword = function(){
 		$location.path('/recoverPassword');
-	}
+	};
 
 	$scope.getUser = function(){
 		api.getUser()
@@ -31,5 +31,5 @@ angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', '
 			.error(function(data, status, headers, config) {
 				snackbar.error(data.error);
 			});
-	}
+	};
 }]);
