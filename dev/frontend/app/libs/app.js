@@ -38,6 +38,13 @@ app
 				userModel : userPromise
 			}
 		})
+		.when('/editSubjects', {
+			templateUrl: 'views/editSubjects.html',
+			controller: 'editSubjectsCtrl',
+			resolve : {  
+				userModel : userPromise
+			}
+		})
 		.when('/profile', {
 			templateUrl: 'views/profile.html',
 			controller: 'profileCtrl',

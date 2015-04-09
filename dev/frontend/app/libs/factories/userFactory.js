@@ -25,6 +25,16 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 
 	    set : function(model){
 	    	this.model = model;
+	    },
+
+	    isSignedInSubject : function(id){
+    		returno = false;
+			angular.forEach(this.model.subjects, function(value,index){
+                if( value.id === id ){
+                	returno = true;
+                }
+            })
+	    	return returno;
 	    }
 	};
 

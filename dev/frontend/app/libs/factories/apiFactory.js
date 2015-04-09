@@ -89,6 +89,13 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 				method: 'GET',      
 				url:  base_url + 'confirm_email/' + token +"/"
 			});
+		},
+
+		subjectsTree : function(){
+			return $http({
+				method: 'GET',
+				url: base_url + 'subjectsTree/'
+			});
 		}
 	} 
 });  
