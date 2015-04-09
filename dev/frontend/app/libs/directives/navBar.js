@@ -5,9 +5,9 @@ angular.module('upmApp').directive('navbar', function(){
 		templateUrl: 'views/navbar.html',
 		controller: function($scope, api, $location, User) {
 			$scope.user = User.model;
-	console.log( "asdfasd" );
-	$scope.profilePic = api.getPic( $scope.user.profilePic );
-	console.log( $scope.profilePic );
+			console.log( "asdfasd" );
+			$scope.profilePic = api.getPic( $scope.user.profilePic );
+			console.log( $scope.profilePic );
 			$scope.logout = function() {
 				api.logout().
 				success(function(data, status, headers, config) {

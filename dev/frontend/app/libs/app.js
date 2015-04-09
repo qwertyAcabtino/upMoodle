@@ -31,6 +31,13 @@ app
 				userModel : userPromise
 			}
 		})
+		.when('/subjects', {
+			templateUrl: 'views/subjects.html',
+			controller: 'subjectsCtrl',
+			resolve : {  
+				userModel : userPromise
+			}
+		})
 		.when('/profile', {
 			templateUrl: 'views/profile.html',
 			controller: 'profileCtrl',

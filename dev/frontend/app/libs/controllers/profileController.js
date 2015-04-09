@@ -16,8 +16,7 @@
 				delete $scope.user.password;
 				User.destroy();
 				User.get().then(function success(response){
-					console.log(response);
-					$scope.user = User.get();			
+					$scope.user = User.get(); //Data gets reseted.			
 				});
 			});
 	};
