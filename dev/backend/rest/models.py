@@ -93,7 +93,7 @@ class User(models.Model):
     banned = models.BooleanField(default=False)
     confirmedEmail = models.BooleanField(default=False)
     sessionToken = models.CharField(max_length=256, blank=True, unique=True)
-    subjects = models.ManyToManyField(Level, blank=True )
+    subjects = models.ManyToManyField(Level, blank=True)
 
     def __unicode__(self):
         return self.nick

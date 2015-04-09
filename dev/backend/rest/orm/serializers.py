@@ -23,12 +23,24 @@ class UserLoginSerializer(serializers.ModelSerializer):
         fields = ('email', 'password')
 
 
+class LevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Level
+        fields = ('id', 'name', 'type')
+
+
 class UserSerializer(serializers.ModelSerializer):
     rol = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
+    subjects = LevelSerializer(many=True, read_only=True)
+    # subjects = serializers.SlugRelatedField(
+    #     many=True,
+    #     read_only=True,
+    #     slug_field='id'
+    # )
 
     class Meta:
         model = User
-        fields = ('id', 'rol', 'email', 'nick', 'name', 'profilePic', 'lastTimeActive', 'joined', 'banned')
+        fields = ('id', 'rol', 'email', 'nick', 'name', 'profilePic', 'lastTimeActive', 'joined', 'banned', 'subjects')
 
 
 class RolSerializer(serializers.ModelSerializer):
