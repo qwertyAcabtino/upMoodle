@@ -13,7 +13,8 @@ from rest.controllers.Exceptions.requestException import RequestExceptionByCode,
     RequestException
 from rest.controllers.controllers import check_cookies, get_email_confirmation_message, cookies_are_ok, \
     get_random_password, send_recover_password_email
-from rest.models import User
+from rest.models import User, Level
+from rest.orm.serializers import LevelSerializer
 from rest.orm.unserializers import unserialize_user
 
 
@@ -129,3 +130,20 @@ def recoverPassword_sys(request):
         return r.jsonResponse
     except Exception:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
+
+def subjectsTree_get(id=None):
+    if not id:
+        subjects = Level.objects.filter(parent=None, visible=True)
+        serializer = LevelSerializer(subjects, many=True)
+        for item in serializer.data:
+            item['children'] = subjectsTree_get(item.get('id'))
+        return JSONResponse(serializer.data)
+    else:
+        subjects = Level.objects.filter(parent=id, visible=True)
+        serializer = LevelSerializer(subjects, many=True)
+        for item in serializer.data:
+            item['children'] = subjectsTree_get(item.get('id'))
+            if not item['children'] or len(item['children']) is 0:
+                del item['children']
+        return serializer.data

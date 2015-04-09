@@ -19,7 +19,8 @@ from rest.viewsPackage.calendar import calendar_get_by_period, calendar_get, cal
     calendar_post
 from rest.viewsPackage.files import file_get_info, file_get_binary, file_put, file_delete, file_post
 from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
-from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys
+from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys, \
+    subjectsTree_get
 from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol
 
 
@@ -259,6 +260,7 @@ def fileBinary(request, pk):
     except RequestException as r:
         return r.jsonResponse
 
+
 @csrf_exempt
 def file(request):
     try:
@@ -267,3 +269,17 @@ def file(request):
             return file_post(request)
     except RequestException as r:
         return r.jsonResponse
+
+
+def subjectsTree(request):
+    try:
+        check_signed_in_request(request, 'GET')
+        return subjectsTree_get()
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except OverflowError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValueError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

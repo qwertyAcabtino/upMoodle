@@ -38,5 +38,8 @@ urlpatterns = patterns('rest.router',
     # Files
     url(r'^file/$', 'file'),
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
-    url(r'^file/(?P<pk>[0-9]+)/$', 'fileById')
+    url(r'^file/(?P<pk>[0-9]+)/$', 'fileById'),
+
+    #SubjectsTree
+    url(r'^subjectsTree/$', 'subjectsTree'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
