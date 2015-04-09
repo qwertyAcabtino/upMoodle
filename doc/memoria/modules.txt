@@ -93,3 +93,15 @@ Hay que considerar que en Angular, por defecto, la anidación de vistas no está
 
 Hay que destacar que el controlador de nuestra directiva será mínimo y solo provee una serie de funcionalidades mínimas de navegación, siendo una forma de uso de los controladores bastante más minimalista que en el resto de vistas&controladores.
 
+
+<br/>
+**Notas sobre como mejorar la memoria.**
+
+Bibliografia y referencias.
+Evitar el spanglish
+Normativa de formateo
+?Limitacion de hojas?
+Introduccion no-tecnica. Vision de conjunto sobre el proyecto. Escribir la motivacion, la importancia del proyecto.
+Incluir las pruebas, hacerlas valer
+
+
