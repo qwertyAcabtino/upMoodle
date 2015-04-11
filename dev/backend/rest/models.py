@@ -151,6 +151,11 @@ class User(models.Model):
         else:
             raise ValidationError(INCORRECT_DATA)
 
+    def update_subjects(self, subjects):
+        self.subjects.clear()
+        for subject in subjects:
+            self.add_subject(subject)
+
     @staticmethod
     def get_signed_user_id(sessionToken):
         return User.objects.get(sessionToken=sessionToken).id
