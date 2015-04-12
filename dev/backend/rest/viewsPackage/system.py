@@ -147,3 +147,20 @@ def subjectsTree_get(id=None):
             if not item['children'] or len(item['children']) is 0:
                 del item['children']
         return serializer.data
+
+
+def subjectsTree_get_ids(id=None):
+    if not id:
+        subjects = Level.objects.filter(parent=None, visible=True)
+        ids = []
+        for subject in subjects:
+            ids.append(subject.id)
+            ids.extend(subjectsTree_get_ids(subject.id))
+        return list(set(ids))
+    else:
+        subjects = Level.objects.filter(parent=id, visible=True)
+        ids = [id]
+        for subject in subjects:
+            ids.append(subject.id)
+            ids.extend(subjectsTree_get_ids(subject.id))
+        return list(set(ids))

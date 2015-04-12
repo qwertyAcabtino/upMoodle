@@ -11,6 +11,7 @@ from rest.controllers.controllers import check_signed_in_request, check_authoriz
 from rest.models import NoteBoard, Level, User
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializers import unserialize_note
+from rest.viewsPackage.system import subjectsTree_get_ids
 
 
 @csrf_exempt
@@ -90,7 +91,13 @@ def note_get_by_level(request, level):
     try:
         check_signed_in_request(request, method='GET')
         Level.validate_exists_level(level)
-        note = NoteBoard.objects.filter(level_id=level, visible=True)
+        level_group = (level, 2)
+        form = request.GET
+        if form['recursive'] and form['recursive']=='true':
+            level_group = subjectsTree_get_ids(level)
+        else:
+            level_group = (level,)
+        note = NoteBoard.objects.filter(level_id__in=level_group, visible=True)
         serializer = NoteBoardSerializer(note, many=True)
         return JSONResponse(serializer.data)
     except RequestException as r:
