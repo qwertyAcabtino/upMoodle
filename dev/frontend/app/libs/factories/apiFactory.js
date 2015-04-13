@@ -15,6 +15,21 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 			});
 		},
 
+		updateUserSubjects : function (subjects) {
+			return $http({ 
+				method: 'post', 
+				url:  base_url + 'user/subjects/',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				transformRequest: function(obj) {
+					var str = [];
+					for(var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data : {ids: subjects || [] }
+			});
+		},
+
 		updateUser : function(user){
 			return $http({ 
 				method: 'POST', 
@@ -95,6 +110,29 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 			return $http({
 				method: 'GET',
 				url: base_url + 'subjectsTree/'
+			});
+		},
+
+		notesByLevelId : function(level, recursive){
+			var recuriveIn = recursive || false;
+			return $http({
+				method: 'GET',
+				url: base_url + 'note/level/' + level +"/" + "?recursive="+recursive
+			});
+		},
+
+		notePost : function(note){
+			return $http({
+				method: 'post', 
+				url:  base_url + 'note/',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				transformRequest: function(obj) {
+					var str = [];
+					for(var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data : {text: note.text, topic: note.topic, level_id: note.level_id}
 			});
 		}
 	} 

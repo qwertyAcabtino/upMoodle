@@ -1,10 +1,11 @@
 var app = angular.module("upmApp", ['ngRoute', 'ngCookies', 'angular.snackbar', 'ui.bootstrap']);
 
 app
-.config(['$routeProvider', '$locationProvider', '$httpProvider',
+.config(['$routeProvider', '$locationProvider', '$httpProvider', 
 	function($routeProvider, $locationProvider, $httpProvider) {
 
 		var userPromise = ['User', function(User){ return User.get(); }];
+		var subjectsTreePromise = ['api', function(api){ return api.subjectsTree(); }];
 
 		$httpProvider.defaults.withCredentials = true;
 		$routeProvider
@@ -50,6 +51,14 @@ app
 			controller: 'profileCtrl',
 			resolve : {
 				userModel : userPromise
+			}
+		})
+		.when('/notes', {
+			templateUrl: 'views/notes.html',
+			controller: 'notesCtrl',
+			resolve : {
+				userModel : userPromise,
+				subjectsTreeModel : subjectsTreePromise,
 			}
 		})
 		.otherwise({
