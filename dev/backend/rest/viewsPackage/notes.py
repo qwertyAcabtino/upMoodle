@@ -4,11 +4,11 @@ from django.views.decorators.csrf import csrf_exempt
 import time
 from backend.settings import SESSION_COOKIE_NAME_BIS
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_UPDATED, NOTE_REMOVED
+from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_UPDATED, NOTE_REMOVED, NOTE_CREATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
-from rest.models import NoteBoard, Level, User
+from rest.models import NoteBoard, Level, User, Message
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializers import unserialize_note
 from rest.viewsPackage.system import subjectsTree_get_ids
@@ -70,6 +70,7 @@ def note_delete(request, pk):
     except ObjectDoesNotExist:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
+
 @csrf_exempt
 def note_post(request):
     try:
@@ -80,20 +81,22 @@ def note_post(request):
         note = unserialize_note(form, fields=fields, optional=True)
         note.author_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
         note.save()
-        return JSONResponse({"noteId": note.id}, status=200)
+        message = Message.objects.get(pk=NOTE_CREATED)
+        return JSONResponse({"noteId": note.id, "message": message.message}, status=200)
     except RequestException as r:
         return r.jsonResponse
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
+    except ObjectDoesNotExist or OverflowError or ValueError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
 def note_get_by_level(request, level):
     try:
         check_signed_in_request(request, method='GET')
         Level.validate_exists_level(level)
-        level_group = (level, 2)
         form = request.GET
-        if form['recursive'] and form['recursive']=='true':
+        if form.get('recursive') and form.get('recursive') == 'true':
             level_group = subjectsTree_get_ids(level)
         else:
             level_group = (level,)
@@ -102,9 +105,5 @@ def note_get_by_level(request, level):
         return JSONResponse(serializer.data)
     except RequestException as r:
         return r.jsonResponse
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except ValueError:
+    except ObjectDoesNotExist or OverflowError or ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

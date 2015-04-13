@@ -3,14 +3,6 @@ from rest_framework import serializers
 from rest.models import *
 
 
-class NoteBoardSerializer(serializers.ModelSerializer):
-    level = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
-
-    class Meta:
-        model = NoteBoard
-        fields = ('id', 'topic', 'text', 'level', 'author')
-
-
 class BannedHashSerializer(serializers.ModelSerializer):
     class Meta:
         model = BannedHash
@@ -33,15 +25,27 @@ class LevelSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     rol = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
     subjects = LevelSerializer(many=True, read_only=True)
-    # subjects = serializers.SlugRelatedField(
-    #     many=True,
-    #     read_only=True,
-    #     slug_field='id'
-    # )
 
     class Meta:
         model = User
         fields = ('id', 'rol', 'email', 'nick', 'name', 'profilePic', 'lastTimeActive', 'joined', 'banned', 'subjects')
+
+
+class UserSimpleSerializer(serializers.ModelSerializer):
+    rol = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
+
+    class Meta:
+        model = User
+        fields = ('id', 'rol', 'email', 'nick', 'name', 'profilePic', 'lastTimeActive', 'joined', 'banned')
+
+
+class NoteBoardSerializer(serializers.ModelSerializer):
+    level = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
+    author = UserSimpleSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = NoteBoard
+        fields = ('id', 'topic', 'text', 'level', 'author', 'created')
 
 
 class RolSerializer(serializers.ModelSerializer):

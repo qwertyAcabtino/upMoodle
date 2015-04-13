@@ -168,6 +168,8 @@ class NoteBoard(models.Model):
     level = models.ForeignKey('Level')
     author = models.ForeignKey(User, related_name='publisher')
     visible = models.BooleanField(default=True)
+    authorized = models.BooleanField(default=True)
+    created = models.DateTimeField(default=timezone.now, editable=True, null=False)
 
     def __unicode__(self):
         return self.topic
