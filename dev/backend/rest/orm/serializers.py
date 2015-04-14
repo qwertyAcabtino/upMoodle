@@ -73,7 +73,7 @@ class FileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = File
-        fields = ('id', 'subject', 'hash', 'name', 'year', 'fileType', 'uploaded', 'uploader', 'lastUpdate', 'lastUpdater', 'visible')
+        fields = ('id', 'subject', 'hash', 'name', 'year', 'fileType', 'uploaded', 'uploader', 'lastUpdate', 'lastUpdater', 'visible', 'file')
 
 
 class ErrorMessageSerializer(serializers.ModelSerializer):

@@ -2,19 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/14-15_apuntes_-moodle.ppt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/14b524ec0c2d444fdd7c28429f25a8ca7beac907e7f4d818a42a1667274b297f.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/7eea5257cb94627cab4bc70b441abc65.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/7eea5257cb94627cab4bc70b441abc65_97ULAER.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/7eea5257cb94627cab4bc70b441abc65_hKALC2j.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/DGT_Madrid_Móstoles_y_Alcorcón.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/Tema_0.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/files/autonomo.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/MESSAGES_ID.py" afterPath="$PROJECT_DIR$/rest/MESSAGES_ID.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/app.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers/editSubjectsController.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers/editSubjectsController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/viewsPackage/files.py" afterPath="$PROJECT_DIR$/rest/viewsPackage/files.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/models.py" afterPath="$PROJECT_DIR$/rest/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/viewsPackage/notes.py" afterPath="$PROJECT_DIR$/rest/viewsPackage/notes.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/router.py" afterPath="$PROJECT_DIR$/rest/router.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/orm/serializers.py" afterPath="$PROJECT_DIR$/rest/orm/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/views/sidebar.html" afterPath="$PROJECT_DIR$/../frontend/app/views/sidebar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/views/subjects.html" afterPath="$PROJECT_DIR$/../frontend/app/views/subjects.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers/subjectsController.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers/subjectsController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/viewsPackage/system.py" afterPath="$PROJECT_DIR$/rest/viewsPackage/system.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/orm/unserializers.py" afterPath="$PROJECT_DIR$/rest/orm/unserializers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/urls.py" afterPath="$PROJECT_DIR$/backend/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="backend.iws" />
@@ -46,35 +50,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2520" max-vertical-offset="6876">
-              <caret line="159" column="41" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializers.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/rest/orm/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38636363" vertical-offset="286" max-vertical-offset="1710">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.9035639" vertical-offset="6373" max-vertical-offset="7398">
+              <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
               <folding>
-                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="router.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest/router.py">
+      <file leaf-file-name="MESSAGES_ID.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest/MESSAGES_ID.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4876" max-vertical-offset="5418">
-              <caret line="286" column="27" selection-start-line="286" selection-start-column="27" selection-end-line="286" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="147" max-vertical-offset="648">
+              <caret line="29" column="13" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest/orm/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1006" max-vertical-offset="1710">
+              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding>
-                <element signature="e#0#38#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,60 +87,20 @@
       <file leaf-file-name="notes.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest/viewsPackage/notes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1132" max-vertical-offset="1836">
-              <caret line="83" column="54" selection-start-line="83" selection-start-column="54" selection-end-line="83" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1171" max-vertical-offset="1836">
+              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requestException.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest/controllers/Exceptions/requestException.py">
+      <file leaf-file-name="files.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="302" max-vertical-offset="756">
-              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JSONResponse.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest/JSONResponse.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="522">
-              <caret line="22" column="46" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="system.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest/viewsPackage/system.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="2790">
-              <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controllers.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1828" max-vertical-offset="2682">
-              <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="users.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest/viewsPackage/users.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1628" max-vertical-offset="2340">
-              <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1269" max-vertical-offset="1908">
+              <caret line="85" column="8" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#62#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,9 +109,53 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="882">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="882">
+              <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest/router.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1083" max-vertical-offset="4932">
+              <caret line="72" column="60" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="60" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="687" max-vertical-offset="2214">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="unserializers.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest/orm/unserializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="988" max-vertical-offset="1692">
+              <caret line="87" column="39" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest/viewsPackage/users.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="621" max-vertical-offset="2340">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -184,21 +192,21 @@
         <option value="$PROJECT_DIR$/rest/admin.py" />
         <option value="$PROJECT_DIR$/rest/finals.py" />
         <option value="$PROJECT_DIR$/rest/viewsPackage/calendar.py" />
-        <option value="$PROJECT_DIR$/rest/viewsPackage/files.py" />
         <option value="$PROJECT_DIR$/rest/tests.py" />
         <option value="$PROJECT_DIR$/rest/controllers/controllers.py" />
         <option value="$PROJECT_DIR$/rest/controllers/Exceptions/requestException.py" />
         <option value="$PROJECT_DIR$/rest/JSONResponse.py" />
-        <option value="$PROJECT_DIR$/backend/settings.py" />
-        <option value="$PROJECT_DIR$/rest/orm/unserializers.py" />
         <option value="$PROJECT_DIR$/rest/viewsPackage/users.py" />
-        <option value="$PROJECT_DIR$/backend/urls.py" />
-        <option value="$PROJECT_DIR$/rest/router.py" />
-        <option value="$PROJECT_DIR$/rest/viewsPackage/system.py" />
-        <option value="$PROJECT_DIR$/rest/MESSAGES_ID.py" />
         <option value="$PROJECT_DIR$/rest/viewsPackage/notes.py" />
-        <option value="$PROJECT_DIR$/rest/models.py" />
         <option value="$PROJECT_DIR$/rest/orm/serializers.py" />
+        <option value="$PROJECT_DIR$/backend/settings.py" />
+        <option value="$PROJECT_DIR$/rest/viewsPackage/system.py" />
+        <option value="$PROJECT_DIR$/backend/urls.py" />
+        <option value="$PROJECT_DIR$/rest/orm/unserializers.py" />
+        <option value="$PROJECT_DIR$/rest/MESSAGES_ID.py" />
+        <option value="$PROJECT_DIR$/rest/viewsPackage/files.py" />
+        <option value="$PROJECT_DIR$/rest/router.py" />
+        <option value="$PROJECT_DIR$/rest/models.py" />
       </list>
     </option>
   </component>
@@ -1181,7 +1189,19 @@
       <created>1428849068589</created>
       <updated>1428849068589</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="More notes structure">
+      <created>1428934931718</created>
+      <updated>1428934931718</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Frontend. Notes view">
+      <created>1428934956507</created>
+      <updated>1428934956507</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Frontend. Files' view&#10;">
+      <created>1429016392058</created>
+      <updated>1429016392058</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1212,11 +1232,11 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22982216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32742155" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32147744" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3114383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31053352" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21116817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5745554" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5225718" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23119015" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4254446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1266,10 +1286,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="VCS integration" />
     <MESSAGE value="More login testCases" />
     <MESSAGE value="Recover password, its testcases, some project's hierarchy" />
     <MESSAGE value="Test's hierarchy.&#10; Users by rol&#10; Remove user" />
@@ -1292,7 +1312,10 @@
     <MESSAGE value="Improvements over obfuscation, redirection.&#10;Recover password and email confirmation" />
     <MESSAGE value="Edit user's subjects" />
     <MESSAGE value="Recursive notes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Recursive notes" />
+    <MESSAGE value="More notes structure" />
+    <MESSAGE value="Frontend. Notes view" />
+    <MESSAGE value="Frontend. Files' view&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Frontend. Files' view&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1301,21 +1324,6 @@
           <url>file://$PROJECT_DIR$/../../../../Asalariado/Favoroute/favorouteEpub/navigation.py</url>
           <line>49</line>
           <option name="timeStamp" value="325" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/rest/models.py</url>
-          <line>258</line>
-          <option name="timeStamp" value="374" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/rest/viewsPackage/users.py</url>
-          <line>86</line>
-          <option name="timeStamp" value="418" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/rest/viewsPackage/users.py</url>
-          <line>83</line>
-          <option name="timeStamp" value="419" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1328,17 +1336,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="428" />
+      <option name="time" value="465" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/lib/python2.7/dist-packages/django/template/context.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40934843" vertical-offset="953" max-vertical-offset="3294">
-          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/django/utils/unittest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28045326" vertical-offset="0" max-vertical-offset="706">
@@ -1364,13 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33286119" vertical-offset="8387" max-vertical-offset="10890">
           <caret line="505" column="8" selection-start-line="505" selection-start-column="8" selection-end-line="505" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm30/system/python_stubs/-1247972723/__builtin__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5084986" vertical-offset="78515" max-vertical-offset="92718">
-          <caret line="4342" column="6" selection-start-line="4342" selection-start-column="6" selection-end-line="4342" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1416,13 +1410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33223686" vertical-offset="482" max-vertical-offset="1206">
           <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.383812" vertical-offset="3389" max-vertical-offset="4392">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1485,13 +1472,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42045453" vertical-offset="606" max-vertical-offset="1134">
-          <caret line="48" column="4" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="706">
@@ -1510,13 +1490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42857143" vertical-offset="765" max-vertical-offset="1692">
           <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="1440">
-          <caret line="35" column="35" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1576,50 +1549,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/orm/unserializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16473317" vertical-offset="919" max-vertical-offset="1476">
-          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="882">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26229507" vertical-offset="1360" max-vertical-offset="2214">
-          <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18969555" vertical-offset="0" max-vertical-offset="854">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1828" max-vertical-offset="2682">
-          <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/system.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="2790">
-          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1632,16 +1565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1628" max-vertical-offset="2340">
-          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/rest_framework/renderers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="337" max-vertical-offset="11088">
@@ -1650,62 +1573,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/MESSAGES_ID.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45038167" vertical-offset="237" max-vertical-offset="630">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rest/JSONResponse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="522">
-          <caret line="22" column="46" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="522">
+          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/router.py">
+    <entry file="file:///usr/lib/python2.7/dist-packages/django/contrib/admin/options.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4984" max-vertical-offset="5418">
-          <caret line="286" column="27" selection-start-line="286" selection-start-column="27" selection-end-line="286" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.5258621" vertical-offset="10250" max-vertical-offset="27540">
+          <caret line="583" column="20" selection-start-line="583" selection-start-column="20" selection-end-line="583" selection-end-column="20" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1607" max-vertical-offset="4392">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7698864" vertical-offset="430" max-vertical-offset="1134">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/controllers/Exceptions/requestException.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="302" max-vertical-offset="756">
-          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.3773585" vertical-offset="0" max-vertical-offset="756">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33229813" vertical-offset="1567" max-vertical-offset="2682">
+          <caret line="104" column="4" selection-start-line="104" selection-start-column="4" selection-end-line="104" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/viewsPackage/notes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1132" max-vertical-offset="1836">
-          <caret line="83" column="54" selection-start-line="83" selection-start-column="54" selection-end-line="83" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1171" max-vertical-offset="1836">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/models.py">
+    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/system.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2520" max-vertical-offset="6876">
-          <caret line="159" column="41" selection-start-line="159" selection-start-column="41" selection-end-line="159" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.16770187" vertical-offset="54" max-vertical-offset="2772">
+          <caret line="23" column="30" selection-start-line="23" selection-start-column="30" selection-end-line="23" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="687" max-vertical-offset="2214">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/orm/unserializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1315" max-vertical-offset="1692">
+          <caret line="87" column="39" selection-start-line="87" selection-start-column="39" selection-end-line="87" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/users.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="548" max-vertical-offset="2340">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm30/system/python_stubs/-1247972723/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2556818" vertical-offset="4446" max-vertical-offset="92718">
+          <caret line="257" column="19" selection-start-line="257" selection-start-column="13" selection-end-line="257" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/MESSAGES_ID.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="147" max-vertical-offset="648">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/orm/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38636363" vertical-offset="286" max-vertical-offset="1710">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1006" max-vertical-offset="1710">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="882">
+          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/router.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1083" max-vertical-offset="4932">
+          <caret line="72" column="60" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1161" max-vertical-offset="1908">
+          <caret line="85" column="8" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9035639" vertical-offset="6373" max-vertical-offset="7398">
+          <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

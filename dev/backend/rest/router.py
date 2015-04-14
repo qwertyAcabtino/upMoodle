@@ -25,36 +25,6 @@ from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id
 
 
 @csrf_exempt
-def noteboardList(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        notes = NoteBoard.objects.all()
-        serializer = NoteBoardSerializer(notes, many=True)
-        return JSONResponse(serializer.data)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = NoteBoardSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JSONResponse(serializer.data, status=201)
-        return JSONResponse(serializer.errors, status=400)
-
-
-@csrf_exempt
-def noteboardLevel(request, pk):
-    """
-    Retrieves the noteboards from a level.
-    """
-    if request.method == 'GET':
-        notes = NoteBoard.objects.filter(level=pk)
-        serializer = NoteBoardSerializer(notes, many=True)
-        return JSONResponse(serializer.data)
-
-
-@csrf_exempt
 def bannedhashList(request):
     """
     Retrieves the banned file's hash list.
@@ -100,7 +70,7 @@ def filesList(request):
 def fileListSubject(request, pk):
     level = Level.objects.get(id=pk)
     if level.is_subject() and request.method == 'GET':
-        files = File.objects.filter(subject=pk)
+        files = File.objects.filter(subject=pk, visible=True)
         serializer = FileSerializer(files, many=True)
         return JSONResponse(serializer.data)
 
@@ -136,6 +106,7 @@ def recoverPassword(request):
 def user(request):
     try:
         check_signed_in_request(request)
+        print request.method
         if request.method == 'GET':
             return user_get(request)
         elif request.method == 'DELETE':
@@ -272,11 +243,13 @@ def fileBinary(request, pk):
 
 
 @csrf_exempt
-def file(request):
+def file_binary(request):
     try:
         check_signed_in_request(request)
         if request.method == 'POST':
             return file_post(request)
+        else:
+            raise RequestException
     except RequestException as r:
         return r.jsonResponse
 

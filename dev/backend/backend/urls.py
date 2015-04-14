@@ -37,7 +37,7 @@ urlpatterns = patterns('rest.router',
     url(r'^calendar/$', 'calendar'),
 
     # Files
-    url(r'^file/$', 'file'),
+    url(r'^file/f/$', 'file_binary'),
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
     url(r'^file/(?P<pk>[0-9]+)/$', 'fileById'),
 

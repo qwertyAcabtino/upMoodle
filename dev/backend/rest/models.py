@@ -1,5 +1,6 @@
 import calendar
 import datetime
+import os
 from django.utils import timezone
 from django.core.validators import EmailValidator, validate_email
 from django.utils.datastructures import MultiValueDictKeyError
@@ -9,7 +10,7 @@ from django.db import models
 from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID, INCORRECT_DATA, NAME_LENGTH
 from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
-
+import hashlib
 
 
 # Carrer, course, subject
@@ -332,7 +333,7 @@ class File(models.Model):
     subject = models.ForeignKey(Level)
     hash = models.CharField(max_length=65)
     name = models.CharField(max_length=100)
-    year = models.ForeignKey(Year)
+    year = models.ForeignKey(Year, default=1)
     fileType = models.CharField(max_length=50)
     uploaded = models.DateTimeField(auto_now_add=True)
     uploader = models.ForeignKey(User, related_name='file_lastUpdater')
@@ -349,6 +350,24 @@ class File(models.Model):
         if index == -1 or ((len(self.file.name) - index - 1) > 4):
             raise ExtensionError
         return self.file.name[index + 1:]
+
+    def get_sha256(self):
+        md5 = hashlib.sha256()
+        for chunk in self.file.chunks():
+            md5.update(chunk)
+        return md5.hexdigest()
+
+    def get_hashed_filename(self):
+        return "%s.%s" % (self.hash, self.file.name.split('.')[-1])
+
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = self.file.name
+        self.lastUpdater = self.uploader
+        self.hash = self.get_sha256()
+        if self.hash not in self.file.name:
+            self.file.name = self.get_hashed_filename()
+        super(File, self).save(*args, **kwargs)
 
 
 class Tag(models.Model):

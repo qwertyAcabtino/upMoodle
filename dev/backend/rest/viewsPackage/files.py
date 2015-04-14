@@ -4,13 +4,13 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from backend.settings import SESSION_COOKIE_NAME_BIS
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_REMOVED, FILE_REMOVED
+from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_REMOVED, FILE_REMOVED, SUCCESS_LOGIN, FILE_UPLOADED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
 from rest.models import File, NoteBoard, Level, User
 from rest.orm.serializers import FileSerializer
-from rest.orm.unserializers import unserialize_file
+from rest.orm.unserializers import unserialize_file, unserialize_file_binary
 
 
 def file_get_info(request, pk):
@@ -82,6 +82,19 @@ def file_delete(request, pk):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 @csrf_exempt
-def file_post(request, pk):
-    pass
-    # TODO
+def file_post(request):
+    try:
+
+        uploader = int(request.POST['uploader_id'])
+        check_signed_in_request(request, method='POST')
+        check_authorized_author(request, uploader, level=True)
+
+        form = request.POST
+        Level.validate_exists_level(form['subject_id'])
+
+        fields = ['uploader_id', 'subject_id']
+        newFile = unserialize_file_binary(form, fields=fields, optional=True, binary=request.FILES['file'])
+        newFile.save()
+        return JSONResponseID(FILE_UPLOADED)
+    except Exception as e:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
