@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from backend.settings import SESSION_COOKIE_NAME_BIS
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_REMOVED, FILE_REMOVED, SUCCESS_LOGIN, FILE_UPLOADED
+from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_REMOVED, FILE_REMOVED, SUCCESS_LOGIN, FILE_UPLOADED, FILE_UPDATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
@@ -49,20 +49,20 @@ def file_put(request, pk):
         fileOriginal = File.objects.get(id=pk)
 
         check_signed_in_request(request, method='POST')
-        check_authorized_author(request, fileOriginal.uploader_id, level=True)
+        check_authorized_author(request, fileOriginal.uploader_id, level=True, same=False)
 
         form = request.POST
-        Level.validate_exists_level(form['subject'])
-        fields = ['topic', 'text', 'level_id']
-        note = unserialize_file(form, fields=fields, optional=True)
-        note.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
-        note.save()
-        return JSONResponse({"noteId": note.id}, status=200)
+        fields = ['name', 'text']
+        newFile = unserialize_file(form, fields=fields, optional=True)
+
+        fileOriginal.update(newFile, fields)
+        fileOriginal.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        fileOriginal.save()
+
+        return JSONResponseID(FILE_UPDATED)
     except RequestException as r:
         return r.jsonResponse
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except MultiValueDictKeyError:
+    except ObjectDoesNotExist or OverflowError or ValueError or MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
@@ -72,7 +72,7 @@ def file_delete(request, pk):
     try:
         check_signed_in_request(request, method='DELETE')
         model = File.objects.get(id=pk)
-        check_authorized_author(request, model.uploader_id, same=True)
+        check_authorized_author(request, model.uploader_id, level=True, same=False)
         model.visible = False
         model.save()
         return JSONResponseID(FILE_REMOVED)

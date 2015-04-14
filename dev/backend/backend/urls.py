@@ -37,9 +37,9 @@ urlpatterns = patterns('rest.router',
     url(r'^calendar/$', 'calendar'),
 
     # Files
-    url(r'^file/f/$', 'file_binary'),
-    url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),
-    url(r'^file/(?P<pk>[0-9]+)/$', 'fileById'),
+    url(r'^file/f/$', 'file_binary'),  # New file upload
+    url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),  # File download.
+    url(r'^file/(?P<pk>[0-9]+)/$', 'fileById'),  # File get, post (edit), delete.
 
     #SubjectsTree
     url(r'^subjectsTree/$', 'subjectsTree'),

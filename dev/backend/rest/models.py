@@ -332,15 +332,16 @@ class File(models.Model):
     id = models.AutoField(primary_key=True)
     subject = models.ForeignKey(Level)
     hash = models.CharField(max_length=65)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=False)
     year = models.ForeignKey(Year, default=1)
-    fileType = models.CharField(max_length=50)
+    fileType = models.CharField(max_length=50, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
     uploader = models.ForeignKey(User, related_name='file_lastUpdater')
     lastUpdate = models.DateTimeField(auto_now=True)
     lastUpdater = models.ForeignKey(User, related_name='file_updater')
     visible = models.BooleanField(default=True)
     file = models.FileField(upload_to='files')
+    text = models.CharField(max_length=2000, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -361,13 +362,26 @@ class File(models.Model):
         return "%s.%s" % (self.hash, self.file.name.split('.')[-1])
 
     def save(self, *args, **kwargs):
-        if not self.name:
-            self.name = self.file.name
-        self.lastUpdater = self.uploader
         self.hash = self.get_sha256()
+        self.clean()
+        self.lastUpdater = self.uploader
         if self.hash not in self.file.name:
             self.file.name = self.get_hashed_filename()
         super(File, self).save(*args, **kwargs)
+
+    def clean(self):
+        self.validate_name()
+
+    def validate_name(self):
+        if not self.name and self.hash not in self.file.name:
+            self.name = self.file.name
+        elif not self.name:
+            raise ValidationError(INCORRECT_DATA)
+
+    def update(self, userUpdate, fields):
+        if fields:
+            for field in fields:
+                setattr(self, field, getattr(userUpdate, field))
 
 
 class Tag(models.Model):

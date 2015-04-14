@@ -109,7 +109,7 @@ def check_authorized_author(request, author_id, level=False, same=True):
     rolSigned = userSigned.rol
     if same and not author_id == userSigned.id:
         raise RequestExceptionByCode(UNAUTHORIZED)
-    elif level and rolSigned.priority > rolAuthor.priority:
+    elif level and rolSigned.priority < rolAuthor.priority:
         raise RequestExceptionByCode(UNAUTHORIZED)
 
 
