@@ -1,10 +1,13 @@
-var app = angular.module("upmApp", ['ngRoute', 'ngCookies', 'angular.snackbar', 'ui.bootstrap']);
+var app = angular.module("upmApp", ['ngRoute', 'ngCookies', 'angular.snackbar', 'ui.bootstrap', 'angularFileUpload', 'angular-loading-bar']);
 
 app
-.config(['$routeProvider', '$locationProvider', '$httpProvider', 
-	function($routeProvider, $locationProvider, $httpProvider) {
+.config(['$routeProvider', '$locationProvider', '$httpProvider', 'cfpLoadingBarProvider', 
+	function($routeProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider) {
+
+		cfpLoadingBarProvider.includeSpinner = false;
 
 		var userPromise = ['User', function(User){ return User.get(); }];
+		var subjectsPromise = ['SubjectsTree', function(SubjectsTree){ return SubjectsTree.get(); }];
 		var subjectsTreePromise = ['api', function(api){ return api.subjectsTree(); }];
 
 		$httpProvider.defaults.withCredentials = true;
@@ -39,6 +42,14 @@ app
 				userModel : userPromise
 			}
 		})
+		.when('/subject/:id', {
+			templateUrl: 'views/subject.html',
+			controller: 'subjectCtrl',
+			resolve : {  
+				userModel : userPromise,
+				subjectsNestModel : subjectsPromise,
+			}
+		})
 		.when('/editSubjects', {
 			templateUrl: 'views/editSubjects.html',
 			controller: 'editSubjectsCtrl',
@@ -58,7 +69,7 @@ app
 			controller: 'notesCtrl',
 			resolve : {
 				userModel : userPromise,
-				subjectsTreeModel : subjectsTreePromise,
+				subjectsNestModel : subjectsPromise,
 			}
 		})
 		.otherwise({
