@@ -41,7 +41,23 @@ body{
   height:100%;
   overflow:auto;
 }
-
+.button {
+    -moz-appearance: button;
+    /* Firefox */
+    -webkit-appearance: button;
+    /* Safari and Chrome */
+    padding: 10px;
+    margin: 10px;
+    width: 70px;
+}
+.drop-box {
+    border: 5px dashed #DDD;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
 
 @media screen and (max-width: 768px) {
   .row-offcanvas {

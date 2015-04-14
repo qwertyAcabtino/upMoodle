@@ -1,4 +1,4 @@
-angular.module('upmApp').factory('api', function($http, $cookies){
+angular.module('upmApp').factory('api', function($http, $cookies, $upload, $window){
 	var base_url = 'http://127.0.0.1:8000/';
 	var user_pics_url = base_url + "media/";
 
@@ -42,8 +42,8 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 					return str.join("&");
 				},
 				data: user.password ? 
-					{email: user.email, name: user.name, nick: user.nick, password: user.password} :
-					{email: user.email, name: user.name, nick: user.nick}
+				{email: user.email, name: user.name, nick: user.nick, password: user.password} :
+				{email: user.email, name: user.name, nick: user.nick}
 			});
 		},
 
@@ -95,7 +95,7 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
 					return str.join("&");
 				},
-			data: {email: email}
+				data: {email: email}
 			});	
 		},
 
@@ -134,6 +134,73 @@ angular.module('upmApp').factory('api', function($http, $cookies){
 				},
 				data : {text: note.text, topic: note.topic, level_id: note.level_id}
 			});
-		}
-	} 
+		},
+
+		subjectFiles : function(subjectId){
+			return $http({
+				method: 'GET',
+				url: base_url + 'files/subject/' + subjectId +"/"
+			});
+		},
+
+		uploadFile : function(file, data){
+			return $http({
+				method: 'POST',
+				url: base_url + 'file/f/',
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				},
+				data: {
+					subject_id: data.subjectId,
+					uploader_id : data.userId,
+					file: file
+				},
+				transformRequest: function (data, headersGetter) {
+					var formData = new FormData();
+					angular.forEach(data, function (value, key) {
+						formData.append(key, value);
+					});
+
+					var headers = headersGetter();
+					delete headers['Content-Type'];
+
+					return formData;
+				}
+			});
+		},
+
+		filePost : function(file){
+			return $http({
+				method: 'post', 
+				url:  base_url + 'file/' + file.id +'/',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				transformRequest: function(obj) {
+					var str = [];
+					for(var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data : {
+					text: file.text, 
+					name: file.name
+				}
+			});
+		},
+
+		fileGet : function(fileId){
+			return $http({
+				method: 'GET',
+				url: base_url + 'file/' + fileId +'/',
+			});
+		},
+
+		fileDownload : function(id){
+			var url = base_url + 'file/f/' + id +"/";
+			$window.open( url );
+		},
+
+		fileDelete : function(fileId){
+			return $http.delete(base_url + 'file/' + fileId +'/');
+		},
+	}
 });  

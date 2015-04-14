@@ -44,8 +44,31 @@ body .container-fliud .name:hover {
   overflow: auto;
 }
 
+/* line 44, sass/style.scss */
+.button {
+  -moz-appearance: button;
+  /* Firefox */
+  -webkit-appearance: button;
+  /* Safari and Chrome */
+  padding: 10px;
+  margin: 10px;
+  width: 70px;
+}
+
+/* line 53, sass/style.scss */
+.drop-box {
+  border: 5px dashed #DDD;
+  padding-top: 25px;
+  margin: 10px;
+}
+
+/* line 58, sass/style.scss */
+.dragover {
+  border: 5px dashed blue;
+}
+
 @media screen and (max-width: 768px) {
-  /* line 47, sass/style.scss */
+  /* line 63, sass/style.scss */
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
@@ -54,17 +77,17 @@ body .container-fliud .name:hover {
     width: calc(100% + 220px);
   }
 
-  /* line 55, sass/style.scss */
+  /* line 71, sass/style.scss */
   .row-offcanvas-left {
     left: -220px;
   }
 
-  /* line 59, sass/style.scss */
+  /* line 75, sass/style.scss */
   .row-offcanvas-left.active {
     left: 0;
   }
 
-  /* line 63, sass/style.scss */
+  /* line 79, sass/style.scss */
   .sidebar-offcanvas {
     position: absolute;
     top: 0;

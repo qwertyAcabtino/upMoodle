@@ -2,31 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/14-15_apuntes_-moodle.ppt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/14b524ec0c2d444fdd7c28429f25a8ca7beac907e7f4d818a42a1667274b297f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/7eea5257cb94627cab4bc70b441abc65.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/7eea5257cb94627cab4bc70b441abc65_97ULAER.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/7eea5257cb94627cab4bc70b441abc65_hKALC2j.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/DGT_Madrid_Móstoles_y_Alcorcón.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/Tema_0.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/files/autonomo.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/MESSAGES_ID.py" afterPath="$PROJECT_DIR$/rest/MESSAGES_ID.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/angular.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/angular.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/controllers/controllers.py" afterPath="$PROJECT_DIR$/rest/controllers/controllers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/directives.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/directives.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/viewsPackage/files.py" afterPath="$PROJECT_DIR$/rest/viewsPackage/files.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/models.py" afterPath="$PROJECT_DIR$/rest/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/directives/navBar.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/directives/navBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../doc/postmanAPI.json" afterPath="$PROJECT_DIR$/../../doc/postmanAPI.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/orm/serializers.py" afterPath="$PROJECT_DIR$/rest/orm/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/settings.py" afterPath="$PROJECT_DIR$/backend/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/stylesheets/style.css" afterPath="$PROJECT_DIR$/../frontend/app/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/stylesheets/sass/style.scss" afterPath="$PROJECT_DIR$/../frontend/app/stylesheets/sass/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/urls.py" afterPath="$PROJECT_DIR$/backend/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="backend.iws" />
@@ -95,8 +78,8 @@
       <file leaf-file-name="files.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6201373" vertical-offset="1223" max-vertical-offset="1908">
-              <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.7437071" vertical-offset="1223" max-vertical-offset="1908">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
               <folding>
                 <element signature="e#0#62#0" expanded="true" />
               </folding>
@@ -1169,7 +1152,11 @@
       <created>1429016413588</created>
       <updated>1429016413588</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Backend. File' view&#10;">
+      <created>1429055539856</created>
+      <updated>1429055539856</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1258,7 +1245,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Recover password, its testcases, some project's hierarchy" />
     <MESSAGE value="Test's hierarchy.&#10; Users by rol&#10; Remove user" />
     <MESSAGE value="Update user" />
     <MESSAGE value="Update user's tests" />
@@ -1283,7 +1269,8 @@
     <MESSAGE value="Frontend. Notes view" />
     <MESSAGE value="Frontend. Files' view&#10;" />
     <MESSAGE value="Backend. Files' view&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backend. Files' view&#10;" />
+    <MESSAGE value="Backend. File' view&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backend. File' view&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1697,8 +1684,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6201373" vertical-offset="1223" max-vertical-offset="1908">
-          <caret line="83" column="12" selection-start-line="83" selection-start-column="12" selection-end-line="83" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.7437071" vertical-offset="1223" max-vertical-offset="1908">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
           <folding>
             <element signature="e#0#62#0" expanded="true" />
           </folding>
