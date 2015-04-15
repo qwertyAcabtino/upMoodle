@@ -400,6 +400,7 @@ class File(models.Model):
             raise ValidationError(INCORRECT_DATA)
 
     def update(self, userUpdate, fields):
+        self.year = Year.get_actual_year()
         if fields:
             for field in fields:
                 setattr(self, field, getattr(userUpdate, field))

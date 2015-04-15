@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/views/_modalEditFileInfo.html" afterPath="$PROJECT_DIR$/../frontend/app/views/_modalEditFileInfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/app.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers/editSubjectsController.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers/editSubjectsController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/models.py" afterPath="$PROJECT_DIR$/rest/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/orm/serializers.py" afterPath="$PROJECT_DIR$/rest/orm/serializers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/views/subject.html" afterPath="$PROJECT_DIR$/../frontend/app/views/subject.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="backend.iws" />
@@ -43,8 +39,8 @@
       <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6284153" vertical-offset="5692" max-vertical-offset="8028">
-              <caret line="329" column="21" selection-start-line="329" selection-start-column="21" selection-end-line="329" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.8181818" vertical-offset="6660" max-vertical-offset="8046">
+              <caret line="402" column="42" selection-start-line="402" selection-start-column="42" selection-end-line="402" selection-end-column="42" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -1180,7 +1176,11 @@
       <created>1429059612656</created>
       <updated>1429059612656</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Years">
+      <created>1429061718762</created>
+      <updated>1429061718762</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1215,7 +1215,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21116817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4623803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4623803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23119015" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4254446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1269,7 +1269,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Security things" />
     <MESSAGE value="Get note" />
     <MESSAGE value="Get and edit note. Edit note's test are left. Also note's validators.&#10;" />
     <MESSAGE value="Tests are broken" />
@@ -1294,7 +1293,8 @@
     <MESSAGE value="Frontend. File' view&#10;" />
     <MESSAGE value="EditSubjects fix" />
     <MESSAGE value="File's extensions" />
-    <option name="LAST_COMMIT_MESSAGE" value="File's extensions" />
+    <MESSAGE value="Years" />
+    <option name="LAST_COMMIT_MESSAGE" value="Years" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1704,8 +1704,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6284153" vertical-offset="5692" max-vertical-offset="8028">
-          <caret line="329" column="21" selection-start-line="329" selection-start-column="21" selection-end-line="329" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.8181818" vertical-offset="6660" max-vertical-offset="8046">
+          <caret line="402" column="42" selection-start-line="402" selection-start-column="42" selection-end-line="402" selection-end-column="42" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
