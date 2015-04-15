@@ -1,0 +1,25 @@
+<navbar></navbar>
+<div class="row-offcanvas row-offcanvas-left">
+	<sidebar></sidebar>
+	<div id="main" ng-file-drop ng-model="files" class="drop-box" 
+        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+        accept="image/*,application/pdf">
+		<h3><a href="#/subjects/">../</a>{{subject.name}}</h3>
+        <a ng-click="openNewFileModal()">+Add a new file</a><br>
+    Drop File:
+<!--     <div ng-file-drop ng-file-select ng-model="files" class="drop-box" 
+        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+        accept="image/*,application/pdf">Drop pdfs or images here or click to upload</div>
+    <div ng-no-file-drop>File Drag/Drop is not supported for this browser </div>-->
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+    </ul>
+        <label>Filter </label><input class="form-control" ng-model="searchText"><br>
+		<ul class="nav nav-pills nav-stacked">
+			<li ng-repeat="file in subject.files | filter:searchText | orderBy:'-lastUpdate'">
+				<a ng-click="openEditFileModal(file)">{{file.name}}</a>
+			</li>
+			<li ng-show="!subject.files.length">There are not files yet for this subject.</li>
+		</ul>
+	</div>	
+</div>

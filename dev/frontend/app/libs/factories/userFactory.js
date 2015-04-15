@@ -3,7 +3,7 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 		model : undefined, 
 
 	    destroy : function(){
-	    	returno.model = undefined;
+	    	this.model = undefined;
 	    },
 
 	    get : function(){

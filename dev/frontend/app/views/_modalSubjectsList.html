@@ -1,0 +1,24 @@
+<div class="modal-header">
+	<h3 class="modal-title">Elige un nivel de filtro</h3>
+</div>
+<div class="modal-body">
+	<ul>
+        <li>
+        	<a ng-click="filterByLevel()">{{root.name}}</a>
+        	<ul>
+			<li ng-repeat="career in root.children">
+				<a ng-click="filterByLevel(career)">{{ career.name }}</a>
+				<ul>
+					<li ng-repeat="course in career.children">
+						<a ng-click="filterByLevel(course)">{{ course.name }}</a>
+						<ul>
+							<li ng-repeat="subject in course.children">
+								<a ng-click="filterByLevel(subject)">{{ subject.name }}</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li></ul>
+        </li>
+	</ul>
+</div>

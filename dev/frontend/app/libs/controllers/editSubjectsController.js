@@ -1,8 +1,10 @@
  angular.module('upmApp')
- .controller( 'editSubjectsCtrl', ['$scope', '$cookies', 'api', 'User', 'userModel', 'snackbar', function($scope, $cookies, api, User, userModel, snackbar){
+ .controller( 'editSubjectsCtrl', 
+ 	['$scope', '$cookies', 'api', 'User', 'userModel', 'snackbar', '$location',
+ 	function($scope, $cookies, api, User, userModel, snackbar, $location){
  	api.subjectsTree()
  	.success(function(data, status, headers, config){
- 		$scope.careers = data;
+ 		$scope.university = data[0];
  	})
  	.error(function(data, status, headers, config) {
  	});
@@ -16,7 +18,7 @@
 
  	$scope.updateUserSubjects = function(){
  		var subjectsCheck = [];
- 		angular.forEach($scope.careers, function(career, index){
+ 		angular.forEach($scope.university.children, function(career, index){
  			angular.forEach(career.children, function(course, index){
  				angular.forEach(course.children, function(subject, index){
  					if(subject.signedUp)
@@ -26,11 +28,11 @@
  		});
  		api.updateUserSubjects(subjectsCheck)
  		.success(function(data, status, headers, config) {
- 			snackbar.message(data.message);
+ 			snackbar.message(data);
  			api.getUser().
  			success(function(data, status, headers, config) {
- 				snackbar.message(data);
  				User.set(data);
+				$location.path('/subjects');
  			})	
  		})
  		.error(function(data, status, headers, config) {

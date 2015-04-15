@@ -1,0 +1,15 @@
+<navbar></navbar>
+<div class="row-offcanvas row-offcanvas-left">
+	<sidebar></sidebar>
+	<div id="main">
+        <a ng-click="openNewNoteModal()">+Publica una noticia</a><br>
+        <label>Filter </label><input class="form-control" ng-model="searchText"><br>
+    	<label>Nivel </label><span ng-click="openLevelModal()"> {{subjectsTree.name}}</span>
+		<ul class="nav nav-pills nav-stacked">
+			<li ng-repeat="note in notes | filter:searchText | orderBy:'-created'">
+				<a href="#/note/{{note.id}}">[{{note.level}}] {{ note.topic }} >> {{ note.text}} <i>by {{note.author.name}}</i> </a>
+			</li>
+			<li ng-show="!notes.length">No tienes notas.</li>
+		</ul>
+	</div>	
+</div>
