@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/angular.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/angular.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/directives.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/directives.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/directives/navBar.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/directives/navBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/stylesheets/style.css" afterPath="$PROJECT_DIR$/../frontend/app/stylesheets/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/stylesheets/sass/style.scss" afterPath="$PROJECT_DIR$/../frontend/app/stylesheets/sass/style.scss" />
+    <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="Frontend. File' view&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/controllers/controllers.py" afterPath="$PROJECT_DIR$/rest/controllers/controllers.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/models.py" afterPath="$PROJECT_DIR$/rest/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="backend.iws" />
@@ -41,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="6425" max-vertical-offset="7650">
-              <caret line="371" column="20" selection-start-line="371" selection-start-column="20" selection-end-line="371" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.8078358" vertical-offset="6371" max-vertical-offset="7650">
+              <caret line="378" column="49" selection-start-line="378" selection-start-column="49" selection-end-line="378" selection-end-column="49" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -75,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="files.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="files.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7437071" vertical-offset="1223" max-vertical-offset="1908">
-              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1187" max-vertical-offset="1908">
+              <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
               <folding>
                 <element signature="e#0#62#0" expanded="true" />
               </folding>
@@ -90,8 +85,8 @@
       <file leaf-file-name="controllers.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1669" max-vertical-offset="2682">
-              <caret line="111" column="39" selection-start-line="111" selection-start-column="39" selection-end-line="111" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1619" max-vertical-offset="2826">
+              <caret line="117" column="47" selection-start-line="117" selection-start-column="47" selection-end-line="117" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -147,13 +142,14 @@
         <option value="$PROJECT_DIR$/rest/viewsPackage/system.py" />
         <option value="$PROJECT_DIR$/rest/orm/serializers.py" />
         <option value="$PROJECT_DIR$/backend/urls.py" />
-        <option value="$PROJECT_DIR$/rest/controllers/controllers.py" />
         <option value="$PROJECT_DIR$/rest/MESSAGES_ID.py" />
         <option value="$PROJECT_DIR$/rest/orm/unserializers.py" />
-        <option value="$PROJECT_DIR$/rest/models.py" />
         <option value="$PROJECT_DIR$/rest/router.py" />
         <option value="$PROJECT_DIR$/backend/settings.py" />
         <option value="$PROJECT_DIR$/rest/viewsPackage/files.py" />
+        <option value="$PROJECT_DIR$/rest/controllers/controllers.py" />
+        <option value="$PROJECT_DIR$/../frontend/app/libs/controllers/subjectController.js" />
+        <option value="$PROJECT_DIR$/rest/models.py" />
       </list>
     </option>
   </component>
@@ -1156,7 +1152,15 @@
       <created>1429055539856</created>
       <updated>1429055539856</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Frontend. File' view&#10;">
+      <created>1429055553294</created>
+      <updated>1429055553294</updated>
+    </task>
+    <task id="LOCAL-00029" summary="EditSubjects fix">
+      <created>1429058438204</created>
+      <updated>1429058438204</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1184,14 +1188,14 @@
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22982216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22982216" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32742155" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32147744" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31053352" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21116817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3652531" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3652531" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23119015" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4254446" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1245,8 +1249,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Test's hierarchy.&#10; Users by rol&#10; Remove user" />
-    <MESSAGE value="Update user" />
     <MESSAGE value="Update user's tests" />
     <MESSAGE value="Security things" />
     <MESSAGE value="Get note" />
@@ -1270,7 +1272,9 @@
     <MESSAGE value="Frontend. Files' view&#10;" />
     <MESSAGE value="Backend. Files' view&#10;" />
     <MESSAGE value="Backend. File' view&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backend. File' view&#10;" />
+    <MESSAGE value="Frontend. File' view&#10;" />
+    <MESSAGE value="EditSubjects fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="EditSubjects fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1279,11 +1283,6 @@
           <url>file://$PROJECT_DIR$/../../../../Asalariado/Favoroute/favorouteEpub/navigation.py</url>
           <line>49</line>
           <option name="timeStamp" value="325" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/rest/viewsPackage/files.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="489" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1300,13 +1299,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/django/utils/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="706">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/django/test/testcases.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35835695" vertical-offset="19331" max-vertical-offset="21204">
@@ -1606,14 +1598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1669" max-vertical-offset="2682">
-          <caret line="111" column="39" selection-start-line="111" selection-start-column="39" selection-end-line="111" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2021" max-vertical-offset="4392">
@@ -1672,22 +1656,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/models.py">
+    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6425" max-vertical-offset="7650">
-          <caret line="371" column="20" selection-start-line="371" selection-start-column="20" selection-end-line="371" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1187" max-vertical-offset="1908">
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest/viewsPackage/files.py">
+    <entry file="file://$PROJECT_DIR$/../frontend/app/libs/controllers/subjectController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7437071" vertical-offset="1223" max-vertical-offset="1908">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6641791" vertical-offset="1714" max-vertical-offset="2250">
+          <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/controllers/controllers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1619" max-vertical-offset="2826">
+          <caret line="117" column="47" selection-start-line="117" selection-start-column="47" selection-end-line="117" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8078358" vertical-offset="6371" max-vertical-offset="7650">
+          <caret line="378" column="49" selection-start-line="378" selection-start-column="49" selection-end-line="378" selection-end-column="49" />
           <folding>
-            <element signature="e#0#62#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

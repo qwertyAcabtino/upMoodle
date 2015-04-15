@@ -103,6 +103,14 @@ def check_signed_in_request(request, *args, **kwargs):
 
 
 def check_authorized_author(request, author_id, level=False, same=True):
+    """
+    :param request: here comes the information for the signed user.
+    :param author_id: original author of the information.
+    :param level: check the hierarchy. If the signed user has a lower value, exception is raised
+    :param same: checks if the user that is trying to push changes is the same than the original.
+    :return:
+    """
+
     userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
     userAuthor = User.objects.get(id=author_id)
     rolAuthor = userAuthor.rol

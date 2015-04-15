@@ -374,7 +374,7 @@ class File(models.Model):
 
     def validate_name(self):
         if not self.name and self.hash not in self.file.name:
-            self.name = self.file.name
+            self.name = self.file.name.split('.')[0]
         elif not self.name:
             raise ValidationError(INCORRECT_DATA)
 
