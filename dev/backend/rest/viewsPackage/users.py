@@ -80,8 +80,10 @@ def user_subjects_put(request):
     try:
         check_signed_in_request(request, 'POST')
         form = request.POST
-        if form['ids']:
+        if form['ids'] and len(form['ids']) > 1:
             subjects = ast.literal_eval(form['ids'])
+        elif form['ids'] and len(form['ids']) == 1:
+            subjects = [ast.literal_eval(form['ids'])]
         else:
             subjects = []
         userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
