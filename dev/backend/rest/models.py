@@ -280,6 +280,7 @@ class Calendar(models.Model):
     http://stackoverflow.com/questions/100210/what-is-the-standard-way-to-add-n-seconds-to-datetime-time-in-python
     http://www.dotnetperls.com/datetime-python
     """
+
     def getNextValue(self, date):
         if self.frequency.id == FREQUENCY_DAY:
             return date + datetime.timedelta(1)
@@ -319,6 +320,21 @@ class Year(models.Model):
     def __unicode__(self):
         return self.verbose
 
+    @staticmethod
+    def get_actual_year():
+        now = datetime.datetime.now()
+        if now.month >= 9:
+            verbose = "%s/%s" % (now.year, (now.year + 1),)
+        else:
+            verbose = "%s/%s" % ((now.year - 1), now.year,)
+        print verbose
+        try:
+            return Year.objects.get(verbose=verbose)
+        except ObjectDoesNotExist:
+            newYear = Year(verbose=verbose)
+            newYear.save()
+            return newYear
+
 
 # SHA1. 64 alphabetical chars
 class BannedHash(models.Model):
@@ -333,7 +349,7 @@ class File(models.Model):
     subject = models.ForeignKey(Level)
     hash = models.CharField(max_length=65)
     name = models.CharField(max_length=100, blank=False)
-    year = models.ForeignKey(Year, default=1)
+    year = models.ForeignKey(Year)
     fileType = models.CharField(max_length=50, blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
     uploader = models.ForeignKey(User, related_name='file_lastUpdater')
@@ -364,13 +380,18 @@ class File(models.Model):
     def save(self, *args, **kwargs):
         self.hash = self.get_sha256()
         self.clean()
-        self.lastUpdater = self.uploader
+        if not self.lastUpdater_id:
+            self.lastUpdater = self.uploader
         if self.hash not in self.file.name:
             self.file.name = self.get_hashed_filename()
         super(File, self).save(*args, **kwargs)
 
     def clean(self):
         self.validate_name()
+        self.validate_year()
+
+    def validate_year(self):
+        self.year = Year.get_actual_year()
 
     def validate_name(self):
         if not self.name and self.hash not in self.file.name:

@@ -3,6 +3,12 @@ from rest_framework import serializers
 from rest.models import *
 
 
+class YearSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Year
+        field = ('id', 'year')
+
 class BannedHashSerializer(serializers.ModelSerializer):
     class Meta:
         model = BannedHash
@@ -70,6 +76,10 @@ class CalendarEventSerializer(serializers.ModelSerializer):
 
 
 class FileSerializer(serializers.ModelSerializer):
+
+    year = YearSerializer(many=False)
+    uploader = UserSimpleSerializer(many=False)
+    lastUpdater = UserSimpleSerializer(many=False)
 
     class Meta:
         model = File

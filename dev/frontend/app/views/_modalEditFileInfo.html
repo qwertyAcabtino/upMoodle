@@ -1,5 +1,5 @@
 <div class="modal-header">
-	<h3 class="modal-title" ng-show="!editMode">{{file.name}}</h3>
+	<h3 class="modal-title" ng-show="!editMode">{{file.name}}.{{file.file | split:'.':1}}</h3>
 	<input ng-show="editMode" type="text" class="form-control" id="name" placeholder="File's name" ng-model="newFileInfo.name">
 </div>
 <div class="modal-body">

@@ -1,4 +1,10 @@
-var app = angular.module("upmApp", ['ngRoute', 'ngCookies', 'angular.snackbar', 'ui.bootstrap', 'angularFileUpload', 'angular-loading-bar']);
+var app = angular.module("upmApp", ['ngRoute', 'ngCookies', 'angular.snackbar', 'ui.bootstrap', 'angularFileUpload', 'angular-loading-bar'])
+	.filter('split', function() {
+        return function(input, splitChar, splitIndex) {
+            // do some bounds checking here to ensure it has that index
+            return input.split(splitChar)[splitIndex];
+        }
+    });;
 
 app
 .config(['$routeProvider', '$locationProvider', '$httpProvider', 'cfpLoadingBarProvider', 
@@ -54,7 +60,8 @@ app
 			templateUrl: 'views/editSubjects.html',
 			controller: 'editSubjectsCtrl',
 			resolve : {  
-				userModel : userPromise
+				userModel : userPromise,
+				subjectsNestModel : subjectsPromise,
 			}
 		})
 		.when('/profile', {
