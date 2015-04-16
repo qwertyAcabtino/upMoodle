@@ -143,6 +143,13 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
+		fileTypesGet : function(){
+			return $http({
+				method: 'GET',
+				url: base_url + 'fileTypes/'
+			});
+		},
+
 		uploadFile : function(file, data){
 			return $http({
 				method: 'POST',
@@ -182,7 +189,8 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 				},
 				data : {
 					text: file.text, 
-					name: file.name
+					name: file.name,
+					fileType_id : file.fileType.id
 				}
 			});
 		},

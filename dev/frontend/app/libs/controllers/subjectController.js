@@ -3,6 +3,16 @@
  	['$scope', '$cookies', 'api', 'User', 'userModel', '$location', 'SubjectsTree', '$modal', 'snackbar', '$routeParams', '$upload',
  	function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $modal, snackbar, $routeParams, $upload){
 
+ 		$scope.getFileTypes = function(){
+ 			api.fileTypesGet()
+ 			.success(function(data, status, headers, config){
+ 				$scope.fileTypes = data;	
+ 			})
+ 			.error(function(data, status, headers, config) {
+ 				console.log(data.error);
+ 			}); 			
+ 		}
+
  		$scope.getSubjectFiles = function(){
  			api.subjectFiles( $scope.subject.id )
  			.success(function(data, status, headers, config){
@@ -16,6 +26,7 @@
  		$scope.init = function(){
  			$scope.subjectId = $routeParams.id;
  			$scope.subject = SubjectsTree.getLevel( $scope.subjectId ); 
+			$scope.getFileTypes();
  			$scope.getSubjectFiles();
  		}
 
@@ -25,8 +36,13 @@
  				controller: 'ModalEditFileInfo',
  				size: 'lg',
  				resolve: {
- 					file: function(){ return file },
+ 					file: function(){ 
+ 						return file 
+ 					},
+					fileTypes : function(){ 
+						return $scope.fileTypes; 
 					}
+				}
  			});
 
  			modalInstance.result.then(function (message) {
@@ -62,11 +78,15 @@
  		$scope.init();
  	}]);  
 
-angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $modalInstance, file, api, snackbar) {
+angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $modalInstance, file, fileTypes, api, snackbar) {
 
-	$scope.file = file;
-	$scope.editMode = false;
-	$scope.newFileInfo = angular.copy($scope.file);
+	$scope.getFilesFileTypeIndex = function(){
+		for(var i=0; i<$scope.fileTypes.length; i++){
+			if( $scope.fileTypes[i].id===$scope.file.fileType.id)
+				return i;
+		}
+	return 0;
+	}
 
 	$scope.downloadFile = function(file){
 		api.fileDownload(file.id);
@@ -83,6 +103,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $moda
 	}
 
 	$scope.saveFileInfo = function(newFileInfo){
+		newFileInfo.fileType = $scope.fileTypeSelected;
 		api.filePost(newFileInfo)
 		.success(function (data) {
 			$scope.saveFileInfoCallback(data.message);
@@ -116,5 +137,9 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $moda
 		$scope.file = newFile || file;
 		$scope.editMode = false;
 		$scope.newFileInfo = angular.copy($scope.file);
+		$scope.fileTypes = fileTypes;
+		$scope.filesFileTypeIndex = $scope.getFilesFileTypeIndex();
 	}
+
+	$scope.init();
 });
