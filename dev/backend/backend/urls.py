@@ -41,6 +41,7 @@ urlpatterns = patterns('rest.router',
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),  # File download.
     url(r'^file/(?P<pk>[0-9]+)/$', 'fileById'),  # File get, post (edit), delete.
 
-    #SubjectsTree
+    # Random data
     url(r'^subjectsTree/$', 'subjectsTree'),
+    url(r'^fileTypes/$', 'fileTypes'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

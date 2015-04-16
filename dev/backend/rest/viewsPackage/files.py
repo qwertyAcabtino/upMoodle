@@ -52,7 +52,7 @@ def file_put(request, pk):
         check_authorized_author(request, fileOriginal.uploader_id, level=True, same=False)
 
         form = request.POST
-        fields = ['name', 'text']
+        fields = ['name', 'text', 'fileType_id']
         newFile = unserialize_file(form, fields=fields, optional=True)
 
         fileOriginal.update(newFile, fields)

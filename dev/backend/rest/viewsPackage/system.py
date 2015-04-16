@@ -13,8 +13,8 @@ from rest.controllers.Exceptions.requestException import RequestExceptionByCode,
     RequestException
 from rest.controllers.controllers import check_cookies, get_email_confirmation_message, cookies_are_ok, \
     get_random_password, send_recover_password_email
-from rest.models import User, Level
-from rest.orm.serializers import LevelSerializer
+from rest.models import User, Level, FileType
+from rest.orm.serializers import LevelSerializer, FileTypeSerializer
 from rest.orm.unserializers import unserialize_user
 
 
@@ -163,3 +163,9 @@ def subjectsTree_get_ids(id=None):
             ids.append(subject.id)
             ids.extend(subjectsTree_get_ids(subject.id))
         return list(set(ids))
+
+
+def fileTypes_get():
+    filesTypes = FileType.objects.all()
+    serializer = FileTypeSerializer(filesTypes, many=True)
+    return JSONResponse(serializer.data)

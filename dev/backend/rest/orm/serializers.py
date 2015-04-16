@@ -75,11 +75,19 @@ class CalendarEventSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level', 'dates')
 
 
+class FileTypeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FileType
+        fields = ('id', 'name',)
+
+
 class FileSerializer(serializers.ModelSerializer):
 
     year = YearSerializer(many=False)
     uploader = UserSimpleSerializer(many=False)
     lastUpdater = UserSimpleSerializer(many=False)
+    fileType = FileTypeSerializer(many=False)
 
     class Meta:
         model = File

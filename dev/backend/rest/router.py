@@ -20,7 +20,7 @@ from rest.viewsPackage.calendar import calendar_get_by_period, calendar_get, cal
 from rest.viewsPackage.files import file_get_info, file_get_binary, file_put, file_delete, file_post
 from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys, \
-    subjectsTree_get
+    subjectsTree_get, fileTypes_get
 from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put
 
 
@@ -260,9 +260,15 @@ def subjectsTree(request):
         return subjectsTree_get()
     except RequestException as r:
         return r.jsonResponse
-    except ObjectDoesNotExist:
+    except ObjectDoesNotExist or OverflowError or ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except ValueError:
+
+
+def fileTypes(request):
+    try:
+        check_signed_in_request(request, 'GET')
+        return fileTypes_get()
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist or OverflowError or ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse

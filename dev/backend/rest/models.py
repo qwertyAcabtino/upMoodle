@@ -343,6 +343,13 @@ class BannedHash(models.Model):
     def __unicode__(self):
         return self.hash
 
+class FileType(models.Model):
+    name = models.CharField(max_length=20, blank=False)
+    id = models.AutoField(primary_key=True)
+
+    def __unicode__(self):
+        return self.name
+
 
 class File(models.Model):
     id = models.AutoField(primary_key=True)
@@ -350,7 +357,7 @@ class File(models.Model):
     hash = models.CharField(max_length=65)
     name = models.CharField(max_length=100, blank=False)
     year = models.ForeignKey(Year)
-    fileType = models.CharField(max_length=50, blank=True)
+    fileType = models.ForeignKey(FileType, default=1)
     uploaded = models.DateTimeField(auto_now_add=True)
     uploader = models.ForeignKey(User, related_name='file_lastUpdater')
     lastUpdate = models.DateTimeField(auto_now=True)
@@ -412,14 +419,6 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.name
-
-
-class FileTag(models.Model):
-    idFile = models.ForeignKey(File)
-    idTag = models.ForeignKey(Tag)
-
-    def __unicode__(self):
-        return '%s - %s' % (self.idFile, self.idTag)
 
 
 class FileReportList(models.Model):
