@@ -4,6 +4,162 @@
 		"selected_items":
 		[
 			[
+				"new",
+				"newFileInfo"
+			],
+			[
+				"file",
+				"fileType"
+			],
+			[
+				"su",
+				"success"
+			],
+			[
+				"get",
+				"getSubjectsCheckedList"
+			],
+			[
+				"sub",
+				"subjectsCheck"
+			],
+			[
+				"up",
+				"updateUserSubjectsCallback"
+			],
+			[
+				"save",
+				"saveFileInfoCallback"
+			],
+			[
+				"downlo",
+				"downloadFile"
+			],
+			[
+				"subj",
+				"subjectId"
+			],
+			[
+				"subjectN",
+				"SubjectsNest"
+			],
+			[
+				"le",
+				"levelsUnested"
+			],
+			[
+				"levels",
+				"levelsUnested"
+			],
+			[
+				"retu",
+				"returningNode"
+			],
+			[
+				"return",
+				"returninNode"
+			],
+			[
+				"de",
+				"depth"
+			],
+			[
+				"leve",
+				"levelsUnested"
+			],
+			[
+				"level",
+				"levelId"
+			],
+			[
+				"not",
+				"getNotesByLevelId"
+			],
+			[
+				"selec",
+				"selectedItem"
+			],
+			[
+				"s",
+				"showLevelModal"
+			],
+			[
+				"subjects",
+				"subjectsTree"
+			],
+			[
+				"note",
+				"notesByLevelIdPromise"
+			],
+			[
+				"pus",
+				"pushStack"
+			],
+			[
+				"sta",
+				"stackArray"
+			],
+			[
+				"can",
+				"candidate"
+			],
+			[
+				"r",
+				"returno"
+			],
+			[
+				"user",
+				"updateUserSuccess"
+			],
+			[
+				"medi",
+				"media_url"
+			],
+			[
+				"retur",
+				"returno"
+			],
+			[
+				"lo",
+				"location"
+			],
+			[
+				"si",
+				"signedup"
+			],
+			[
+				"ob",
+				"obfuscator"
+			],
+			[
+				"log",
+				"login"
+			],
+			[
+				"MARG",
+				"margin-top"
+			],
+			[
+				"re",
+				"received"
+			],
+			[
+				"defe",
+				"deferred"
+			],
+			[
+				"l",
+				"location"
+			],
+			[
+				"ht",
+				"httpProvider"
+			],
+			[
+				"load",
+				"loadTodos"
+			],
+			[
 				"co",
 				"COUNTER"
 			],
@@ -64,10 +220,6 @@
 				"javac"
 			],
 			[
-				"load",
-				"loadModelCallback"
-			],
-			[
 				"of",
 				"offlineSetUp"
 			],
@@ -110,10 +262,6 @@
 			[
 				"STUB",
 				"STUBFOUR"
-			],
-			[
-				"s",
-				"stub"
 			],
 			[
 				"STUBTR",
@@ -184,10 +332,6 @@
 				"con	console"
 			],
 			[
-				"re",
-				"return"
-			],
-			[
 				"guest",
 				"guests"
 			],
@@ -198,14 +342,6 @@
 			[
 				"getE",
 				"getEmptyChairs"
-			],
-			[
-				"r",
-				"return"
-			],
-			[
-				"get",
-				"getGuest"
 			],
 			[
 				"len",
@@ -352,10 +488,6 @@
 				"setSelectedText"
 			],
 			[
-				"new",
-				"newcustomspot"
-			],
-			[
 				"cu",
 				"customspot"
 			],
@@ -382,160 +514,236 @@
 			[
 				"parent",
 				"parentNode"
-			],
-			[
-				"edi",
-				"editable"
-			],
-			[
-				"pointe",
-				"pointerInfo"
-			],
-			[
-				"sel",
-				"selectedTextIsInContentEditable"
-			],
-			[
-				"ancho",
-				"anchorNode"
-			],
-			[
-				"point",
-				"pointerInfo"
-			],
-			[
-				"ta",
-				"tagLabel"
-			],
-			[
-				"tagSa",
-				"tagSpanLabelStart"
-			],
-			[
-				"le",
-				"length"
-			],
-			[
-				"copy",
-				"copyReturnedModel"
-			],
-			[
-				"clean",
-				"cleanTheEditable"
-			],
-			[
-				"retu",
-				"returnedModel"
-			],
-			[
-				"innet",
-				"innerHTML"
-			],
-			[
-				"str",
-				"stripLateralWhiteSpace"
-			],
-			[
-				"inde",
-				"indexOf"
-			],
-			[
-				"nex",
-				"nextSiblingHtml"
-			],
-			[
-				"pre",
-				"previousSiblingHtml"
-			],
-			[
-				"edt",
-				"editableCaret"
-			],
-			[
-				"desc",
-				"description"
-			],
-			[
-				"edita",
-				"editableCaret"
-			],
-			[
-				"te",
-				"textContent"
-			],
-			[
-				"foc",
-				"focusNode"
-			],
-			[
-				"ed",
-				"editableCaret"
-			],
-			[
-				"addBra",
-				"addBracketToEditable_add"
-			],
-			[
-				"addBre",
-				"addBracketToEditable_link"
-			],
-			[
-				"selecte",
-				"selectedText"
-			],
-			[
-				"selec",
-				"selectedText"
-			],
-			[
-				"au",
-				"auxData"
-			],
-			[
-				"selection",
-				"selectionData"
-			],
-			[
-				"open",
-				"openCustomSpot"
-			],
-			[
-				"conten",
-				"contenteditableSelectedText"
-			],
-			[
-				"conte",
-				"contenteditableSelectedText"
-			],
-			[
-				"getSel",
-				"getSelectionHtml"
-			],
-			[
-				"daydes",
-				"daydesc"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "app/libs/directives/navBar.js",
+			"settings":
+			{
+				"buffer_size": 513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/directives/sideBar.js",
+			"settings":
+			{
+				"buffer_size": 221,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/loginController.js",
+			"settings":
+			{
+				"buffer_size": 992,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/signUpController.js",
+			"settings":
+			{
+				"buffer_size": 443,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/dashboardController.js",
+			"settings":
+			{
+				"buffer_size": 163,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/subjectsController.js",
+			"settings":
+			{
+				"buffer_size": 1798,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/notesController.js",
+			"settings":
+			{
+				"buffer_size": 3426,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/subjectController.js",
+			"settings":
+			{
+				"buffer_size": 3971,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/editSubjectsController.js",
+			"settings":
+			{
+				"buffer_size": 1495,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/profileController.js",
+			"settings":
+			{
+				"buffer_size": 874,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 974,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/subject.html",
+			"settings":
+			{
+				"buffer_size": 1314,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/_modalEditFileInfo.html",
+			"settings":
+			{
+				"buffer_size": 1494,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/_modalNewNote.html",
+			"settings":
+			{
+				"buffer_size": 839,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/navbar.html",
+			"settings":
+			{
+				"buffer_size": 854,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/profile.html",
+			"settings":
+			{
+				"buffer_size": 1588,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/factories/apiFactory.js",
+			"settings":
+			{
+				"buffer_size": 5278,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/app.js",
+			"settings":
+			{
+				"buffer_size": 2797,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/factories/userFactory.js",
+			"settings":
+			{
+				"buffer_size": 885,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/factories/subjectsTreeFactory.js",
+			"settings":
+			{
+				"buffer_size": 1026,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/third-party/snackbar/angular.snackbar.js",
+			"settings":
+			{
+				"buffer_size": 2263,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 1565,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/_dependencies.min.js",
+			"settings":
+			{
+				"buffer_size": 149214,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/third-party/loading-bar/loading-bar.min.js",
+			"settings":
+			{
+				"buffer_size": 9898,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/stylesheets/sass/style.scss",
+			"settings":
+			{
+				"buffer_size": 1264,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 306.0,
+		"height": 285.0,
 		"selected_items":
 		[
+			[
+				"reint",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"rein",
 				"Indentation: Reindent Lines"
 			],
 			[
-				"rent",
+				"rien",
 				"Indentation: Reindent Lines"
 			],
 			[
-				"reint",
+				"retin",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rei",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -547,19 +755,63 @@
 				"Indentation: Reindent Lines"
 			],
 			[
-				"reinte",
+				"ren",
 				"Indentation: Reindent Lines"
+			],
+			[
+				"rrein",
+				"Set Syntax: Regular Expression"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"jsh",
+				"JSHint"
+			],
+			[
+				"clear",
+				"JSHint: Clear Annotations"
+			],
+			[
+				"j",
+				"JSHint"
+			],
+			[
+				"jshi",
+				"JSHint"
+			],
+			[
+				"paclis",
+				"Package Control: List Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
 			],
 			[
 				"insta",
 				"Package Control: Install Package"
 			],
 			[
-				"install",
+				"instal",
 				"Package Control: Install Package"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinte",
+				"Indentation: Reindent Lines"
 			]
 		],
-		"width": 449.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -576,11 +828,87 @@
 	},
 	"file_history":
 	[
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/index.html",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers.js",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/basics.scss",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/_base.scss",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/notes.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/sidebar.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/editSubjects.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/factories/subjectsTreeFactory.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/snackbar/angular.snackbar.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/subjects.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/profile.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/signup.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/editSubjectsController.js",
+		"/home/viperey/Downloads/asdfasdf.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/profileController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewFile.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/_dependencies.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/style.css",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/style.scss",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/ng-file-upload/angular-file-upload-all.js",
+		"/home/viperey/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/viperey/.cache/.fr-Ce4bn4/ng-file-upload-master/release.sh",
+		"/home/viperey/.cache/.fr-pbbVzi/ng-file-upload-master/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewNote.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/confirmEmailController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/recoverPassword.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/navbar.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/confirm_email.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/login.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/backbone.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalSubjectsList.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/_modalSubjectsList.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-bootstrap/ui-bootstrap-tpls.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-bootstrap/ui-bootstrap-tpls.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/notesController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/iLost/android-consumer-app/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/_base.scss",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/config.rb",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/application.scss",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/stylesheets/application.css",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/basics.scss",
+		"/var/lib/gems/1.9.1/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/_font-awesome-compass.scss",
+		"/var/lib/gems/1.9.1/gems/font-awesome-sass-4.3.2.1/Gemfile",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/Gemfile",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/Gemfile",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/basics.css",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/dashboard.html",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/iLost/android-consumer-app/ILostAndroid/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/iLost/doc/overview.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/loginController.js",
+		"/home/viperey/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/viperey/.config/sublime-text-2/Packages/JSHint Gutter/.jshintrc",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/recoverPasswordController.js",
+		"/home/viperey/.config/sublime-text-2/Packages/JSHint Gutter/JSHint.sublime-settings",
+		"/home/viperey/Dropbox/BackUp/Linux/app/genymotion-2.4.0_x64.bin",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/methaphores/colors.csv",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/src/ColorsParser.java",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/colors.csv",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/snackbar/angular.snackbar.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/Gruntfile.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/factories/userFactory.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/package.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/dashboardController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/index.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-route/angular-route.min.js.map",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-cookies/index.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/services.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/mapController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/server.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/angular-bootstrap/ui-bootstrap.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/angular.snackbar.css",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/untitled",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/snackbar/angular.snackbar.js",
+		"/home/viperey/.cache/.fr-Wfwbhu/angular.snackbar-master/package.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/suave-ui/dist/app.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/bower_components/suave-ui/bower.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/map.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/angular-cookies/package.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/services.js",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteEpub/mountServer.sh",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/backend.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/backend",
 		"/home/viperey/Dropbox/Proyectos/Propio/angularPlace/package.json",
 		"/home/viperey/.cache/.fr-HdfWNX/neo4j-community-2.2.0-M04/README.txt",
 		"/home/viperey/Dropbox/Proyectos/Propio/GildedRoseBranch/src/main/java/GildedRose.java",
@@ -627,83 +955,7 @@
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/manifest-merger-debug-report.txt",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/strings.csv",
 		"/home/viperey/Dropbox/BackUp/Linux/app/argouml-0.32.1/argouml2.sh",
-		"/home/viperey/Dropbox/BackUp/Linux/bash/hotspot.conf",
-		"/home/viperey/Dropbox/BackUp/Linux/app/sublimeInstall.sh",
-		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Examenes/Parcial 2.txt",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/run.sh",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/.hg/dirstate",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/.hg/requires",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/index.txt",
-		"/home/viperey/.cache/.fr-spWzam/Capas de Servicios",
-		"/home/viperey/.cache/.fr-NOOMLO/aka-titles.list",
-		"/home/viperey/.cache/.fr-n5KCLR/foofind-download-manager-0.3-20140421-W32/setup.py",
-		"/home/viperey/.cache/.fr-LgllHa/diffs/movies.list",
-		"/home/viperey/.cache/.fr-A68nk8/diffs/movie-links.list",
-		"/home/viperey/.cache/.fr-ekTHGw/aka-titles.list",
-		"/home/viperey/.cache/.fr-f0d6sX/movies.list",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values-en/strings.xml",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values/dimens.xml",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/folderSortering.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/dumped/r/recht-oder-unrecht/data.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/0---final---/n/season17/episode1.txt",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/layouts/strings.csv",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.py",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/ddbb/docus/ZAHAFEDXUXH7UXN.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/ddbb/docus/YPDRSDYDDEX35YW.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/ddbb/docus/P9W9C4UVZUR7VD4.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/ddbb/docus/7PA3KU26K7S493H.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/movies/ids.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend/backend/settings.pyc",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/seriesProgressWatcher.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/movieProgressWatcher.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/movieRecover.py",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/aquaman/data.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/aquaman/season1/episode1.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tvShows/american-idol/data.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/data.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/season2/episode2.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/completed.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/some-of-my-best-friends-are-zionists/links.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/some-of-my-best-friends-are-zionists/data.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/ids.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/DHKE6DPVE37TXE2.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tvShows/NSY9T7K3DPHNZF4.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tvShows/completed.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tvShows/ids.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tvShows/idsTemp.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/asdf.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/movies.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/cookie.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/movies/page530.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tvShows/226H5XFKWT.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tvShows/V2XPHXD7VUA5ARX.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/4UNHUKTCNX.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/boardwalk-empire/season3/episode1.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/ids.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/tv.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus.sh",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page497.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page498.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page495.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page90.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page91.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page0.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/login.php.1",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/cookietemp.txt",
-		"/home/viperey/.cache/.fr-COdflh/seriesly.php",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page4.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/cookiesTemp.txt",
-		"/home/viperey/Desktop/cookie.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/movies/diarios-de-motocicleta/links.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/docus/page1.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/sons-of-anarchy/data.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/sons-of-anarchy/links.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/series/6PXFCN7YCX.json",
-		"/home/viperey/Downloads/kimonoData (2).json",
-		"/home/viperey/Downloads/kimonoData (1).json",
-		"/home/viperey/Downloads/kimonoData.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/seriesLynks/links.sh"
+		"/home/viperey/Dropbox/BackUp/Linux/bash/hotspot.conf"
 	],
 	"find":
 	{
@@ -714,6 +966,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend",
 			"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial",
 			"/home/viperey/code/favoroute/code/apps/app/src/js",
 			"/home/viperey/code/favoroute/code/apps/app/src/",
@@ -728,134 +981,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"exception",
-			"profileView",
-			"stacktrace",
-			"\n",
-			"4574-4640/nl.favoThings.favoroute A/Trace﹕ ",
-			"setSel",
-			"apellidos",
-			"nombre",
-			"amp",
-			"row[language]",
-			"guide_edition_back_title",
-			"	",
-			"\n",
-			"imdb",
-			"Ops",
-			"ops",
-			"%$@",
-			"%@",
-			"%1$s",
-			"%1",
-			"%2",
-			"%1$",
-			"%1$s",
-			"</string>",
-			"|",
-			"\">",
-			"<string name=\"",
-			"---final",
-			"final---",
-			"p",
-			"o",
-			"mv `find",
-			"\nmovies",
-			"movies/",
-			"  6",
-			"mv ",
-			"mkdir ",
-			"  6",
-			"docus/",
-			"mediaType",
-			"frontera",
-			"$1",
-			"$0",
-			"cookie",
-			"servidores",
-			"qjhf6b0i4uj40fdhbs8bj2ghb4",
-			"docu",
-			"data-",
-			"movies/",
-			"docus/",
-			"tvShows/",
-			"folder",
-			"$l",
-			"\"",
-			"/series/serie-",
-			"series",
-			".tviso.com	TRUE	/	FALSE",
-			"\n.tviso.com	TRUE	/	FALSE",
-			".tviso.com	TRUE	/	FALSE",
-			"\"",
-			"data-idm=\"",
-			"922",
-			"data-idm=\"",
-			"data-i",
-			"offset",
-			"'link",
-			"-spot",
-			"[i]",
-			"i",
-			"I",
-			"i",
-			"I",
-			"i",
-			"counter",
-			"value",
-			"h2",
-			"h1",
-			"h2",
-			"h3",
-			"h2",
-			"level2",
-			"h4",
-			"h1",
-			"h3",
-			"div",
-			"h1",
-			"h2",
-			"bracketRegex",
-			"counter",
-			"features",
-			"route.",
-			"route",
-			"tag",
+			"$scope.fileTypes[i]",
+			"SubjectsTree",
+			"isAUserSubject",
+			"\n			",
+			"scope.careers",
+			"	$scope.downloadFile = function(file){\n		api.downloadFile(file.id);\n	}\n",
+			"	<button ng-click=\"editMode = !editMode\" type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"> \n		Edit file info\n	</button>\n",
+			"editMode",
+			"levels",
+			"window",
+			"location",
+			"cfpLoadingBarProvider",
+			"loading",
+			"cookies",
+			"files",
+			"angularFileUpload",
+			"jsShelf",
+			"jsThid",
+			"console",
+			"asdfasd",
+			"subjectsModel.data[0]",
+			"subjectsTreeModel",
+			"span",
+			"note.",
+			"subjectsNestModel",
+			"SubjectsNest",
+			"subjectsTreeModel",
+			"tree",
+			"subjectsTree",
+			"isSignedInSubject",
+			"subjec",
+			"returninNode",
+			"id",
+			"name",
+			"nodes",
+			"levels",
+			">\n",
+			"size",
+			"itemSub",
+			"item",
+			"items",
+			"];",
+			"notesby",
+			"	<script type=\"text/ng-template\" id=\"myModalContent.html\">\n        <div class=\"modal-header\">\n            <h3 class=\"modal-title\">I'm a modal!</h3>\n        </div>\n        <div class=\"modal-body\">\n            <ul>\n                <li ng-repeat=\"item in items\">\n                    <a ng-click=\"selected.item = item\">{{ item }}</a>\n                </li>\n            </ul>\n            Selected: <b>{{ selected.item }}</b>\n        </div>\n        <div class=\"modal-footer\">\n            <button class=\"btn btn-primary\" ng-click=\"ok()\">OK</button>\n            <button class=\"btn btn-warning\" ng-click=\"cancel()\">Cancel</button>\n        </div>\n    </script>\n",
+			"template/modal/backdrop",
+			"backdrop.",
+			"backdrop",
+			"ui.bootstrap.d",
+			"a",
+			"notesByLevelIdPromise",
+			"searchNodeById",
+			"getSimplyfiedNode",
+			"returno",
+			"simplyfiedNode",
+			"returno",
+			"\n 	",
 			";\n",
-			"spotsIds",
-			"h4",
-			"markers",
-			"downloadImages",
-			"_phantom",
-			"listOfImages",
-			"_grep",
-			"_phantom",
-			"/\n",
-			"\n                  function getCoverPage(){\n\n                    var guideID = <?php echo $id; ?>;\n                    var favoroute = loadGuide(guideID);\n                    var str = \"\";\n\n                    var str = \n                        '<h1 class=\"title\" >' + favoroute.name + '</h1>'\n                        + '<h3>' + (favoroute.nights + 1) + ' days & ' +  favoroute.nights + ' nights' + '</h3>'\n                        + '<img width= \"600\" src=\"images/img0.jpg\" />';\n\n                    var div = document.createElement(\"div\");\n                    div.innerHTML =   str;\n                    document.body.appendChild(div);\n\n                  }",
+			"returnStack",
+			"li",
+			"\n 			",
+			"subjectsTree",
+			"forEach",
+			"carrer",
+			"User.set",
+			"carrers",
+			"		 	angular.forEach(career.children, function(course, index){\n\n		 	});\n",
+			"h3",
+			"\";",
+			">\n",
+			"        <li>\n        	<a href=\"#/subjects\">\n        		Asignaturas\n    		</a>\n        </li>\n",
+			"xml",
+			"user_bck",
+			"$scope.user_bck",
+			"_user",
+			"snackbar",
+			"				<div class=\"form-group\">\n					<label for=\"email\">Email:</label>\n					<input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter email\" ng-model=\"user.email\">\n				</div>",
+			"layout",
+			"split",
+			"next_vie",
+			"next_",
+			"/\";\n",
+			"System.out.println",
+			"println",
+			"print",
+			"		logout : function(){\n			return $http({ \n				method: 'POST', \n				url:  base_url + 'logout/'\n			});	\n		},\n\n",
+			"recoverPassword",
+			"	$scope.signIn = function(){\n		$location.path('/signup');\n	}\n\n",
+			"qM",
+			".eJxVzEEOwiAQheG7sDYEQloYl-49A5lhBqkaSEq7Mt7dmnTRrt__vY-KuC4lrl3mWLAXdVUE4owL2ZN3yQLTwMENlo3xVvJIAGNwgFldjpgwvaTy5vmJ9dF0anWZJ9L_RO9r1_fG8r7t7elg2qz9_gCCBTDf:1YT9Vr:PjaXJiiL8Cb1T4-gopL-2d4V-qM",
+			"http://127.0.0.1:8000/confirm_email/",
+			"http://127.0.0.1:8000/confirm_email/.eJxVzEEOwiAQheG7sDYEQloYl-49A5lhBqkaSEq7Mt7dmnTRrt__vY-KuC4lrl3mWLAXdVUE4owL2ZN3yQLTwMENlo3xVvJIAGNwgFldjpgwvaTy5vmJ9dF0anWZJ9L_RO9r1_fG8r7t7elg2qz9_gCCBTDf:1YT9Vr:PjaXJiiL8Cb1T4-gopL-2d4V-qM",
+			"http://127.0.0.1:8000/confirm_email/.eJxVzEEOwiAQheG7sDYEQloYl-49A5lhBqkaSEq7Mt7dmnTRrt__vY-KuC4lrl3mWLAXdVUE4owL2ZN3yQLTwMENlo3xVvJIAGNwgFldjpgwvaTy5vmJ9dF0anWZJ9L_RO9r1_fG8r7t7elg2qz9_gCCBTDf%3A1YT9Vr%3APjaXJiiL8Cb1T4-gopL-2d4V-qM",
+			"scope",
+			"routeParams",
+			">\n",
+			"		.when('/signup', {\n			templateUrl: 'views/signup.html',\n			controller: 'signUpCtrl',\n		})\n",
+			"User.get(",
+			"User.get",
+			"$location.path('/login');",
+			"email",
+			"Email",
+			"email",
+			"		.when('/dashboard', {\n			templateUrl: 'views/dashboard.html',\n			controller: 'dashboardCtrl',\n			resolve : {\n				userModel : userPromise\n\n			}\n		})\n",
+			"require",
+			"create",
+			"node-modules",
+			"			js-shelf:{\n				files: 'app/libs/*/*.js',\n				tasks: ['uglify']\n			}\n",
+			"p",
+			"navBar",
+			">\n",
+			" 5px",
+			".snackbar.green{\n	background-color: #4CAF50;\n}\n",
+			"			message : function( content, duration ){\n				$rootScope.$broadcast('createSnackbar', { 'content': content, 'duration': duration, 'color': \"green\" });\n			},\n",
+			"false",
 			"\"",
-			"\"+",
-			"+\"",
-			"\n                        <",
-			"\n                        ",
-			"\"",
-			"\n",
-			"\"",
-			"html",
-			"img",
-			"jpg",
-			"img",
-			"16",
-			"images",
-			"html",
-			"https://fav",
-			"1temp",
-			"contained",
-			"584.",
-			"584",
-			"1105.",
-			"section",
-			"noticias",
-			"nota"
+			"		.when('/map', {\n			templateUrl: 'views/map.html',\n			controller: 'mapController'\n		})\n",
+			"'];\n",
+			"	api.getUser().\n	success(function(data, status, headers, config) {\n				//TODO. Set user at some place.\n			})\n	.error(function(data, status, headers, config) {\n		$location.path('/login');\n		console.debug(\"d->\"); \n		console.debug(data); \n		console.debug(headers()); \n		console.debug($cookies); \n	});\n",
+			"h",
+			"\"\n",
+			"();\n",
+			"ng-",
+			"          	.when('/index', {\n              templateUrl: 'index.html',\n              controller: 'upmAppController'\n          	})\n",
+			"gmaps",
+			"controllers",
+			">\n",
+			"gmapsApp",
+			"exception"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -864,7 +1117,7 @@
 		"replace_history":
 		[
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": true,
 		"whole_word": false,
@@ -873,19 +1126,726 @@
 	"groups":
 	[
 		{
+			"selected": 7,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/libs/directives/navBar.js",
+					"settings":
+					{
+						"buffer_size": 513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								267,
+								267
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/libs/directives/sideBar.js",
+					"settings":
+					{
+						"buffer_size": 221,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								207,
+								207
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/libs/controllers/loginController.js",
+					"settings":
+					{
+						"buffer_size": 992,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								886,
+								886
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/libs/controllers/signUpController.js",
+					"settings":
+					{
+						"buffer_size": 443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								336,
+								336
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/libs/controllers/dashboardController.js",
+					"settings":
+					{
+						"buffer_size": 163,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								163,
+								163
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/libs/controllers/subjectsController.js",
+					"settings":
+					{
+						"buffer_size": 1798,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1319,
+								1319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/libs/controllers/notesController.js",
+					"settings":
+					{
+						"buffer_size": 3426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2404,
+								2404
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 47.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/libs/controllers/subjectController.js",
+					"settings":
+					{
+						"buffer_size": 3971,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								457,
+								457
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 72.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/libs/controllers/editSubjectsController.js",
+					"settings":
+					{
+						"buffer_size": 1495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1151,
+								1151
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 24.0,
+						"translation.y": 612.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/libs/controllers/profileController.js",
+					"settings":
+					{
+						"buffer_size": 874,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								756,
+								756
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		},
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 10,
+					"file": "app/index.html",
+					"settings":
+					{
+						"buffer_size": 974,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								556,
+								556
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "app/views/subject.html",
+					"settings":
+					{
+						"buffer_size": 1314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1112,
+								1112
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "app/views/_modalEditFileInfo.html",
+					"settings":
+					{
+						"buffer_size": 1494,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								442,
+								442
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "app/views/_modalNewNote.html",
+					"settings":
+					{
+						"buffer_size": 839,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								688,
+								688
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "app/views/navbar.html",
+					"settings":
+					{
+						"buffer_size": 854,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								543,
+								543
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "app/views/profile.html",
+					"settings":
+					{
+						"buffer_size": 1588,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								68,
+								68
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 16,
+					"file": "app/libs/factories/apiFactory.js",
+					"settings":
+					{
+						"buffer_size": 5278,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4816,
+								4816
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 48.0,
+						"translation.y": 1904.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "app/libs/app.js",
+					"settings":
+					{
+						"buffer_size": 2797,
+						"regions":
+						{
+							"bookmarks":
+							{
+								"flags": 144,
+								"icon": "bookmark",
+								"regions":
+								[
+									[
+										2759,
+										2759
+									]
+								],
+								"scope": "bookmarks"
+							}
+						},
+						"selection":
+						[
+							[
+								141,
+								141
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "app/libs/factories/userFactory.js",
+					"settings":
+					{
+						"buffer_size": 885,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								362,
+								362
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "app/libs/factories/subjectsTreeFactory.js",
+					"settings":
+					{
+						"buffer_size": 1026,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 20,
+					"file": "app/libs/third-party/snackbar/angular.snackbar.js",
+					"settings":
+					{
+						"buffer_size": 2263,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								349,
+								349
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 153.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "Gruntfile.js",
+					"settings":
+					{
+						"buffer_size": 1565,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								426,
+								426
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 408.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "app/libs/_dependencies.min.js",
+					"settings":
+					{
+						"buffer_size": 149214,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								149214,
+								149214
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 165363.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "app/libs/third-party/loading-bar/loading-bar.min.js",
+					"settings":
+					{
+						"buffer_size": 9898,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								235,
+								235
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 238.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "app/stylesheets/sass/style.scss",
+					"settings":
+					{
+						"buffer_size": 1264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								780,
+								780
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 561.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -906,17 +1866,30 @@
 				0,
 				2,
 				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.921875,
+			0.5,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.518544809228,
 			1.0
 		]
 	},
@@ -931,6 +1904,158 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"subje",
+				"libs/factories/subjectsTreeFactory.js"
+			],
+			[
+				"sub",
+				"libs/factories/subjectsTreeFactory.js"
+			],
+			[
+				"pro",
+				"views/profile.html"
+			],
+			[
+				"nav",
+				"views/navbar.html"
+			],
+			[
+				"side",
+				"libs/directives/sideBar.js"
+			],
+			[
+				"edi",
+				"libs/controllers/editSubjectsController.js"
+			],
+			[
+				"edit",
+				"libs/controllers/editSubjectsController.js"
+			],
+			[
+				"modal",
+				"views/_modalNewNote.html"
+			],
+			[
+				"profil",
+				"libs/controllers/profileController.js"
+			],
+			[
+				"style",
+				"stylesheets/sass/style.scss"
+			],
+			[
+				"load",
+				"libs/third-party/loading-bar/loading-bar.min.js"
+			],
+			[
+				"depen",
+				"libs/_dependencies.min.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"scss",
+				"stylesheets/sass/style.scss"
+			],
+			[
+				"css",
+				"stylesheets/style.css"
+			],
+			[
+				"moda",
+				"views/_modalNewNote.html"
+			],
+			[
+				"profile",
+				"libs/controllers/profileController.js"
+			],
+			[
+				"conf",
+				"libs/controllers/confirmEmailController.js"
+			],
+			[
+				"ema",
+				"libs/controllers/confirmEmailController.js"
+			],
+			[
+				"back",
+				"views/backbone.html"
+			],
+			[
+				"snac",
+				"libs/third-party/snackbar/angular.snackbar.js"
+			],
+			[
+				"login",
+				"libs/controllers/loginController.js"
+			],
+			[
+				"_mo",
+				"views/_modalSubjectsList.html"
+			],
+			[
+				"notes",
+				"views/notes.html"
+			],
+			[
+				"tpl",
+				"libs/third-party/angular-bootstrap/ui-bootstrap-tpls.js"
+			],
+			[
+				"note",
+				"libs/controllers/notesController.js"
+			],
+			[
+				"_dep",
+				"libs/_dependencies.min.js"
+			],
+			[
+				"rofil",
+				"views/profile.html"
+			],
+			[
+				"profi",
+				"views/profile.html"
+			],
+			[
+				"log",
+				"views/login.html"
+			],
+			[
+				"da",
+				"views/dashboard.html"
+			],
+			[
+				"snackbar",
+				"libs/third-party/snackbar/angular.snackbar.min.js"
+			],
+			[
+				"dash",
+				"libs/controllers/dashboardController.js"
+			],
+			[
+				"sig",
+				"views/signup.html"
+			],
+			[
+				"api",
+				"libs/factories/apiFactory.js"
+			],
+			[
+				"user",
+				"libs/factories/userFactory.js"
+			],
+			[
+				"na",
+				"views/navbar.html"
+			],
+			[
+				"pac",
+				"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/package.json"
+			],
 			[
 				"url",
 				"mysite/mysite/urls.py"
@@ -986,10 +2111,6 @@
 			[
 				"favoap",
 				"code/apps/app/src/js/services/favoapi.js"
-			],
-			[
-				"edit",
-				"code/apps/app/views/favoroute-edit.html"
 			],
 			[
 				"controller",
@@ -1054,6 +2175,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 136.0,
+	"side_bar_width": 200.0,
 	"status_bar_visible": true
 }

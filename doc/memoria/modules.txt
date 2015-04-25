@@ -95,7 +95,7 @@ Hay que destacar que el controlador de nuestra directiva será mínimo y solo pr
 
 
 https://angular-ui.github.io/bootstrap/
-<br/>
+http://ngmodules.org/modules/angular-file-upload<br/>
 **Notas sobre como mejorar la memoria.**
 
 Bibliografia y referencias.

@@ -1,11 +1,11 @@
 <div class="modal-header">
 	<h3 class="modal-title" ng-show="!editMode">[{{file.fileType.name}}] {{file.name}}.{{file.file | split:'.':1}}</h3>
 	<div class="row">
-	      <div class="col-xs-3">
+	      <div class="col-xs-2">
 				<select ng-show="editMode" class="form-control" ng-init="fileTypeSelected = fileTypes[filesFileTypeIndex]" ng-model="fileTypeSelected" ng-options="fileType.name for fileType in fileTypes">
 				</select>
 	      </div>
-	      <div class="col-xs-9">
+	      <div class="col-xs-10">
 			<input ng-show="editMode" type="text" class="form-control" id="name" placeholder="File's name" ng-model="newFileInfo.name">
 	      </div>
 	</div>				

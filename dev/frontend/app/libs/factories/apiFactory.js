@@ -151,6 +151,8 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 		},
 
 		uploadFile : function(file, data){
+			console.log("data");
+			console.log(data);
 			return $http({
 				method: 'POST',
 				url: base_url + 'file/f/',
@@ -160,6 +162,9 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 				data: {
 					subject_id: data.subjectId,
 					uploader_id : data.userId,
+					name : data.fileInfo.name,
+					text : data.fileInfo.text,
+					fileType_id : data.fileType.id,
 					file: file
 				},
 				transformRequest: function (data, headersGetter) {

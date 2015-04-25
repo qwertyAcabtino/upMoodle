@@ -92,7 +92,7 @@ def file_post(request):
         form = request.POST
         Level.validate_exists_level(form['subject_id'])
 
-        fields = ['uploader_id', 'subject_id']
+        fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
         newFile = unserialize_file_binary(form, fields=fields, optional=True, binary=request.FILES['file'])
         newFile.save()
         return JSONResponseID(FILE_UPLOADED)

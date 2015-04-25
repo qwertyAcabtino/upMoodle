@@ -28,6 +28,9 @@
  			$scope.subject = SubjectsTree.getLevel( $scope.subjectId ); 
 			$scope.getFileTypes();
  			$scope.getSubjectFiles();
+ 			$scope.filetTypeFilter = {
+
+ 			};
  		}
 
  		$scope.openEditFileModal = function(file){
@@ -53,20 +56,38 @@
  			});
  		};
 
+ 		$scope.openNewFileModal = function(file){
+ 			var modalInstance = $modal.open({
+ 				templateUrl: 'views/_modalNewFile.html',
+ 				controller: 'ModalNewFileInfo',
+ 				size: 'lg',
+ 				resolve: {
+ 					file: function(){ 
+ 						return file 
+ 					},
+					fileTypes : function(){ 
+						return $scope.fileTypes; 
+					},
+					subject : function(){
+						return $scope.subject;
+					}
+				}
+ 			});
+
+ 			modalInstance.result.then(function (message) {
+ 				snackbar.message(message, 5000);
+ 				$scope.getSubjectFiles();
+ 			}, function () {
+ 				$scope.getSubjectFiles();
+ 			});
+ 		};
+
  		$scope.upload = function (files) {
  			console.log("$scope.upload($scope.files);");
  			if (files && files.length) {
  				for (var i = 0; i < files.length; i++) {
  					var file = files[i];
- 					console.log(file);
- 					api.uploadFile(file, {userId : User.get().id, subjectId : $scope.subject.id})
-					.success(function (data) {
-						$scope.getSubjectFiles();
-		 				snackbar.message(data);
- 					})
-			 		.error(function(data, status, headers, config) {
-				       snackbar.error(data.error);
-				    });
+ 					$scope.openNewFileModal(file);
  				}
  			}
  		};
@@ -77,6 +98,41 @@
 
  		$scope.init();
  	}]);  
+
+
+angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $modalInstance, file, fileTypes, api, snackbar, User, subject) {
+
+	$scope.getFilesFileTypeIndex = function(){
+		for(var i=0; i<$scope.fileTypes.length; i++){
+			if( $scope.fileTypes[i].id===$scope.file.fileType.id)
+				return i;
+		}
+	return 0;
+	}
+
+	$scope.uploadNewFile = function (newFileInfo) {
+		api.uploadFile( $scope.newFile, {userId : User.get().id, subjectId : $scope.subject.id, fileInfo: newFileInfo, fileType: $scope.fileTypeSelected})
+		.success(function (data) {
+			$modalInstance.close(data);
+		})
+ 		.error(function(data, status, headers, config) {
+	       snackbar.error(data.error);
+	    });
+	}
+
+	$scope.init = function(){
+		$scope.newFile = file;
+		$scope.newFileInfo = {};
+		$scope.newFileInfo.name = file.name;
+		$scope.newFileInfo.text = "";
+		$scope.fileTypes = fileTypes;
+		$scope.filesFileTypeIndex = 0;
+		$scope.subject = subject;
+	}
+
+	$scope.init();
+});
+
 
 angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $modalInstance, file, fileTypes, api, snackbar) {
 
