@@ -21,7 +21,8 @@ from rest.viewsPackage.files import file_get_info, file_get_binary, file_put, fi
 from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys, \
     subjectsTree_get, fileTypes_get
-from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put
+from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
+    user_put_profile_pic
 
 
 @csrf_exempt
@@ -123,6 +124,15 @@ def user_subjects(request):
         check_signed_in_request(request)
         if request.method == 'POST':
             return user_subjects_put(request)
+    except RequestException as r:
+        return r.jsonResponse
+
+@csrf_exempt
+def user_profilepic(request):
+    try:
+        check_signed_in_request(request)
+        if request.method == 'POST':
+            return user_put_profile_pic(request)
     except RequestException as r:
         return r.jsonResponse
 

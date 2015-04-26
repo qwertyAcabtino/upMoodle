@@ -83,7 +83,6 @@
  		};
 
  		$scope.upload = function (files) {
- 			console.log("$scope.upload($scope.files);");
  			if (files && files.length) {
  				for (var i = 0; i < files.length; i++) {
  					var file = files[i];

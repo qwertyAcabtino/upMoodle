@@ -47,6 +47,31 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
+		updateUserProfilePic : function( profilePic ){
+			console.log( profilePic );
+			return $http({
+				method: 'POST',
+				url: base_url + 'user/profilePic/',
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				},
+				data: {
+					profilePic: profilePic
+				},
+				transformRequest: function (data, headersGetter) {
+					var formData = new FormData();
+					angular.forEach(data, function (value, key) {
+						formData.append(key, value);
+					});
+
+					var headers = headersGetter();
+					delete headers['Content-Type'];
+
+					return formData;
+				}
+			});
+		},
+
 		login : function(userEmail, userPassword){
 			return $http({ 
 				method: 'post', 
@@ -136,6 +161,21 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
+		notePost : function(note){
+			return $http({
+				method: 'post', 
+				url:  base_url + 'note/',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				transformRequest: function(obj) {
+					var str = [];
+					for(var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data : {text: note.text, topic: note.topic, level_id: note.level_id}
+			});
+		},
+
 		noteDelete : function(noteId){
 			return $http.delete(base_url + 'note/' + noteId +'/');
 		},
@@ -155,8 +195,6 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 		},
 
 		uploadFile : function(file, data){
-			console.log("data");
-			console.log(data);
 			return $http({
 				method: 'POST',
 				url: base_url + 'file/f/',

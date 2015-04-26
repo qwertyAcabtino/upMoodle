@@ -2,7 +2,9 @@
 <div class="container-fluid">
 	<sidebar></sidebar>
 	<div class="col-md-3 ">
-		<img ng-src="{{profilePic}}" class="center-block" style="max-width: 100%" />
+		<img ng-src="{{profilePic}}" class="center-block drop-box" style="max-width: 100%" ng-file-drop ng-model="newProfilePic" 
+        drag-over-class="dragover" ng-multiple="false" allow-dir="true"
+        accept="image/*,application/pdf"/>
 	</div>
 	<div class="col-md-6">
 		<button ng-click="editMode = !editMode" type="button" class="btn btn-default" aria-label="Left Align"> Edit

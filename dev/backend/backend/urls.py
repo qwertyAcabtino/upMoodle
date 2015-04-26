@@ -23,6 +23,7 @@ urlpatterns = patterns('rest.router',
     # User
     url(r'^user/$', 'user'),
     url(r'^user/subjects/$', 'user_subjects'),
+    url(r'^user/profilePic/$', 'user_profilepic'),
     url(r'^user/(?P<pk>[0-9]+)/$', 'userById'),
     url(r'^users/rol/(?P<pk>[0-9]+)/$', 'usersByRol'),
 

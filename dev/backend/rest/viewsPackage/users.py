@@ -76,6 +76,23 @@ def user_put(request):
         return RequestExceptionByMessage(v).jsonResponse
 
 
+def user_put_profile_pic(request):
+    try:
+        check_signed_in_request(request, 'POST')
+        form = request.POST
+        profilePic = request.FILES['profilePic']
+        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        userSigned.profilePic = profilePic
+        userSigned.save()
+        return JSONResponseID(USER_UPDATED)
+    except RequestException as r:
+        return r.jsonResponse
+    except MultiValueDictKeyError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+    except ValidationError as v:
+        return RequestExceptionByMessage(v).jsonResponse
+
+
 def user_subjects_put(request):
     try:
         check_signed_in_request(request, 'POST')
