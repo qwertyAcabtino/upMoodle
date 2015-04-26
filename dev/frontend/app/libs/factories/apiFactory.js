@@ -121,10 +121,10 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
-		notePost : function(note){
+		notePut : function(note){
 			return $http({
 				method: 'post', 
-				url:  base_url + 'note/',
+				url:  base_url + 'note/' + note.id +'/',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				transformRequest: function(obj) {
 					var str = [];
@@ -132,8 +132,12 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
 					return str.join("&");
 				},
-				data : {text: note.text, topic: note.topic, level_id: note.level_id}
+				data : {text: note.text, topic: note.topic, level_id: note.level.id}
 			});
+		},
+
+		noteDelete : function(noteId){
+			return $http.delete(base_url + 'note/' + noteId +'/');
 		},
 
 		subjectFiles : function(subjectId){

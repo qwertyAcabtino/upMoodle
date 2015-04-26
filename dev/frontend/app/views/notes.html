@@ -7,7 +7,7 @@
     	<label>Nivel </label><span ng-click="openLevelModal()"> {{subjectsTree.name}}</span>
 		<ul class="nav nav-pills nav-stacked">
 			<li ng-repeat="note in notes | filter:searchText | orderBy:'-created'">
-				<a href="#/note/{{note.id}}">[{{note.level}}] {{ note.topic }} >> {{ note.text}} <i>by {{note.author.name}}</i> </a>
+				<a ng-click="openEditNoteModal(note)">[{{note.level.name}}] {{ note.topic }} >> {{ note.text}} <i>by {{note.author.name}}</i> </a>
 			</li>
 			<li ng-show="!notes.length">No tienes notas.</li>
 		</ul>

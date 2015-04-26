@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/orm/serializers.py" afterPath="$PROJECT_DIR$/rest/orm/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/views/subject.html" afterPath="$PROJECT_DIR$/../frontend/app/views/subject.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/views/notes.html" afterPath="$PROJECT_DIR$/../frontend/app/views/notes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers/notesController.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers/notesController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="backend.iws" />
@@ -1220,7 +1223,11 @@
       <created>1430002590942</created>
       <updated>1430002590942</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Note view FE&amp;BE">
+      <created>1430052903340</created>
+      <updated>1430052903340</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1309,7 +1316,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Calendar validators" />
     <MESSAGE value="Calendar validators. Bug fixing 1." />
     <MESSAGE value="Calendar validators. Bug fixing 2. Date validation improvei" />
     <MESSAGE value="CalendarDates generation and Calendar leaps" />
@@ -1334,7 +1340,8 @@
     <MESSAGE value="Backend. EditSubjects bug fix" />
     <MESSAGE value="Backend. FileTypes" />
     <MESSAGE value="Upload modal FE@File" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upload modal FE@File" />
+    <MESSAGE value="Note view FE&amp;BE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Note view FE&amp;BE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
