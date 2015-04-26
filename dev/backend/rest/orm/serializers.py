@@ -46,7 +46,7 @@ class UserSimpleSerializer(serializers.ModelSerializer):
 
 
 class NoteBoardSerializer(serializers.ModelSerializer):
-    level = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
+    level = LevelSerializer(many=False, read_only=True)
     author = UserSimpleSerializer(many=False, read_only=True)
 
     class Meta:
