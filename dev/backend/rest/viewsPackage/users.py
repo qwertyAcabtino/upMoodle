@@ -81,10 +81,13 @@ def user_put_profile_pic(request):
         check_signed_in_request(request, 'POST')
         form = request.POST
         profilePic = request.FILES['profilePic']
-        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
-        userSigned.profilePic = profilePic
-        userSigned.save()
-        return JSONResponseID(USER_UPDATED)
+        if "image/" not in profilePic.content_type:
+            return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        else:
+            userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+            userSigned.profilePic = profilePic
+            userSigned.save()
+            return JSONResponseID(USER_UPDATED)
     except RequestException as r:
         return r.jsonResponse
     except MultiValueDictKeyError:

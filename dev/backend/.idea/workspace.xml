@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories/apiFactory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/factories.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/views/profile.html" afterPath="$PROJECT_DIR$/../frontend/app/views/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers/profileController.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers/profileController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/router.py" afterPath="$PROJECT_DIR$/rest/router.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers/subjectController.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers/subjectController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/urls.py" afterPath="$PROJECT_DIR$/backend/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/viewsPackage/users.py" afterPath="$PROJECT_DIR$/rest/viewsPackage/users.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -116,8 +108,8 @@
       <file leaf-file-name="users.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest/viewsPackage/users.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4630682" vertical-offset="772" max-vertical-offset="2448">
-              <caret line="73" column="66" selection-start-line="73" selection-start-column="66" selection-end-line="73" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.48087433" vertical-offset="1192" max-vertical-offset="2502">
+              <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -1239,7 +1231,11 @@
       <created>1430053378116</created>
       <updated>1430053378116</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="ProfilePic upload FE&amp;BE">
+      <created>1430056791568</created>
+      <updated>1430056791568</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1273,7 +1269,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20346598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4623803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4623803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="494" y="198" width="1106" height="569" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23119015" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34336525" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1328,7 +1324,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="CalendarDates generation and Calendar leaps" />
     <MESSAGE value="CalendarDates deletion when Calendar deletion" />
     <MESSAGE value="CalendarDate generation when Calendar.save&#10;CalendarDates deletion when Calendar deletion" />
     <MESSAGE value="Calendar validator" />
@@ -1353,7 +1348,8 @@
     <MESSAGE value="Note view FE&amp;BE" />
     <MESSAGE value="Note view tinny improvements" />
     <MESSAGE value="Note post (new) bugfix @FE apiFactory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Note post (new) bugfix @FE apiFactory" />
+    <MESSAGE value="ProfilePic upload FE&amp;BE" />
+    <option name="LAST_COMMIT_MESSAGE" value="ProfilePic upload FE&amp;BE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1374,7 +1370,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="498" />
+      <option name="time" value="501" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -1750,8 +1746,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest/viewsPackage/users.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4630682" vertical-offset="772" max-vertical-offset="2448">
-          <caret line="73" column="66" selection-start-line="73" selection-start-column="66" selection-end-line="73" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.48087433" vertical-offset="1192" max-vertical-offset="2502">
+          <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
           <folding />
         </state>
       </provider>
