@@ -97,7 +97,8 @@ class A1_ErrorMessageTestCase(unittest.TestCase):
         ErrorMessage.objects.create(error="Email field cannot be empty")
         ErrorMessage.objects.create(error="Please, check your inbox and confirm your email.")
         ErrorMessage.objects.create(error="Please, sign in first.")
-        self.assertEqual(len(ErrorMessage.objects.all()), 13)
+        ErrorMessage.objects.create(error="Name's length has to be between 4 and 100")
+        self.assertEqual(len(ErrorMessage.objects.all()), 14)
 
 
 class A2_MessageTestCase(unittest.TestCase):
@@ -113,9 +114,12 @@ class A2_MessageTestCase(unittest.TestCase):
         Message.objects.create(message="CALENDAR_UPDATED")
         Message.objects.create(message="FILE_REMOVED")
         Message.objects.create(message="Account successfully validated")
+        Message.objects.create(message="Your note was successfully created")
+        Message.objects.create(message="Your file was successfully uploaded")
+        Message.objects.create(message="File's info has been updated")
 
     def test_messages_exists_in_db(self):
-        self.assertEqual(len(Message.objects.all()), 11)
+        self.assertEqual(len(Message.objects.all()), 14)
 
 
 class B_RolTestCase(unittest.TestCase):
@@ -160,7 +164,7 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_basic_signup(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test@eui.upm.es', 'password': '12341234', 'nick': 'vipvip'})
+                                    {'email': 'test@eui.upm.es', 'password': '12341234', 'nick': 'vipvip', 'name': 'vip vip'})
         decoded = json.loads(response.content)
         defaultUser = User.objects.get(id=1)
         defaultUser.save()
@@ -171,7 +175,7 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_duplicate_email(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test112312@eui.upm.es', 'password': 'qqwerwerqwere', 'nick': 'vqweripasdfvip'})
+                                    {'email': 'test112312@eui.upm.es', 'password': 'qqwerwerqwere', 'nick': 'vqweripasdfvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -179,7 +183,7 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_1_invalid_email(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test112@google.com', 'password': 'qqwerwerqwere', 'nick': 'vqwsdfsdferipvip'})
+                                    {'email': 'test112@google.com', 'password': 'qqwerwerqwere', 'nick': 'vqwsdfsdferipvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -188,14 +192,14 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_duplicate_nick(self):
         response = self.client.post('/signup/',
-                                    {'email': 'viperey@eui.upm.es', 'password': '12341234', 'nick': 'vipvip'})
+                                    {'email': 'viperey@eui.upm.es', 'password': '12341234', 'nick': 'vipvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
         self.assertEqual(len(User.objects.all()), 1)
 
     def test_password_length(self):
-        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwer', 'nick': 'vipvip'})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwer', 'nick': 'vipvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -205,7 +209,7 @@ class D_SignUpTestCase(CookiesEnabled):
     def test_password_length_2(self):
         response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es',
                                                  'password': 'qwerwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwerqwqwqwer',
-                                                 'nick': 'vipvip'})
+                                                 'nick': 'vipvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -215,7 +219,7 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_nick_length(self):
         response = self.client.post('/signup/',
-                                    {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer', 'nick': 'qwe'})
+                                    {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer', 'nick': 'qwe', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -224,7 +228,7 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_nick_length_2(self):
         response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer',
-                                                 'nick': 'qweqweqweqweqweqweqweqwe'})
+                                                 'nick': 'qweqweqweqweqweqweqweqwe', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -364,7 +368,7 @@ class F_LoginTestCase(CookiesEnabled):
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
 
-    def test_8_login_disabled_cookies_3(self):
+    def test_9_login_disabled_cookies_3(self):
         request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         request.session = self.client.session
         request.COOKIES[SESSION_COOKIE_NAME_BIS] = ''

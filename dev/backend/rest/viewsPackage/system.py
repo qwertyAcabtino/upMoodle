@@ -28,7 +28,7 @@ def signup_sys(request):
             except KeyError:
                 sessionCookie = request.COOKIES[SESSION_COOKIE_NAME]
             user = unserialize_user(request.POST, sessionToken=sessionCookie,
-                                    fields=['email', 'password', 'nick'])
+                                    fields=['email', 'password', 'nick', 'name'])
             send_mail('Email confirmation',
                       get_email_confirmation_message(request, cookie=sessionCookie),
                       'info@upmoodle.com', [user.email],
@@ -46,6 +46,7 @@ def signup_sys(request):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
+#TODO. Fiz this shit. Also in the memory.
 def confirmEmail_sys(request, cookie):
     try:
         if request.method == 'GET':
@@ -83,7 +84,7 @@ def login_sys(request):
                 return jsonResponse
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)
-    except ObjectDoesNotExist:
+    except ObjectDoesNotExist or MultiValueDictKeyError as e:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
     except MultiValueDictKeyError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
@@ -108,7 +109,8 @@ def logout_sys(request):
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)
     except Exception:
-        return JSONResponse({"null"}, status=200)
+        return JSONResponse({"null"}, status=200)  # TODO. 400?
+
 
 def recoverPassword_sys(request):
     try:

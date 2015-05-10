@@ -7,8 +7,6 @@ urlpatterns = patterns('rest.router',
     # Examples:
     url(r'^bannedhashes/$', 'bannedhashList'),
     url(r'^roles/$', 'rolesList'),
-    url(r'^files/$', 'filesList'),
-    url(r'^files/subject/(?P<pk>[0-9]+)/$', 'fileListSubject'),
     url(r'^admin/', include(admin.site.urls)),
 
 
@@ -41,6 +39,7 @@ urlpatterns = patterns('rest.router',
     url(r'^file/f/$', 'file_binary'),  # New file upload
     url(r'^file/f/(?P<pk>[0-9]+)/$', 'fileBinary'),  # File download.
     url(r'^file/(?P<pk>[0-9]+)/$', 'fileById'),  # File get, post (edit), delete.
+    url(r'^files/subject/(?P<pk>[0-9]+)/$', 'fileListSubject'),
 
     # Random data
     url(r'^subjectsTree/$', 'subjectsTree'),
