@@ -46,7 +46,6 @@ def signup_sys(request):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
-#TODO. Fiz this shit. Also in the memory.
 def confirmEmail_sys(request, cookie):
     try:
         if request.method == 'GET':

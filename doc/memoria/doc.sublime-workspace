@@ -520,10 +520,21 @@
 	"buffers":
 	[
 		{
-			"file": "views.txt",
+			"file": "models.txt",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 18,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\nVista\n	Frontend (endpoint, funcionalidades)\n	<= \n	API ( campos, tipos, etc)\n	=>\n	Backend (Modelo afectado, referencia)\n		Tests.\n",
+			"file": "views.txt",
+			"file_size": 120,
+			"file_write_time": 1431027695000000,
+			"settings":
+			{
+				"buffer_size": 129,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +542,7 @@
 			"file": "modules.txt",
 			"settings":
 			{
-				"buffer_size": 16099,
+				"buffer_size": 18234,
 				"line_ending": "Unix"
 			}
 		},
@@ -544,10 +555,7 @@
 			}
 		},
 		{
-			"contents": "El presente TFG es un proyecto de tipo full-stack, es decir, presenta elementos tanto de servidor (backend) como de cliente final (frontend).\nPartiendo de esta división principal, hay que introducir un tercer elemento, que si bien pertenece al backend, en cierta forma puede ser definido como el puente que une ambos mundos.\nNos referimos a la API/Rest.\nEl API/Rest es nuevo contrato, el escaparate del backend, el puente que permite la comunicación entre ambos entornos. Como se decía anteriormente, si bien la api es de facto un elemento del backend, para comprender con profundidad cual es la arquitectura del proyecto es importante presentarlo como un elemento de unión entre entornos más que un módulo más de uno de ellos.\n\nPor tanto, partiendo de estos 3 elementos principales (de los que posteriormente se presentarán sus distintas capas y módulos) podemos empezar a definir las bases ténicas del proyecto.\n\nEn términos generales, en tanto que en secciones posteriores se hablará en profundidad de todos estos elementos, en cada entorno encontraremos 3 capas de concepto diferente: vistas/modelos, módulos y el stack técnico.\n\n**Vistas**\nNuestras vistas o modelos van a ser uno de los principios fundamentales de esta memoria. Son el concepto final que permite aglutinar el resto de principios anteriormente descritos, en tanto es el concepto que se sitúa en lo alto de la lasaña de capas que componen el sistema.\nEl término vistas hace referencia en exclusiva al entorno frontend. Será cada una de las rutas principales de la web que posee el proyecto. Es por tanto que existirán vistas tales como asignatura, notas, calendario, registro, login, etc.\nCada una de estas vistas (atendiendo a distintas excepciones) tienen una correspondencia con un modelo del backend. \nAntes de continuar hay que definir brevemente el concepto modelo. Un modelo en nuestro backend es una clase (dentro del paradigma OO) que representa un objeto de nuestro sistema. \nEs por tanto, que en nuestras vistas se sirve/presentan datos que tienen una correspondencia con un modelo definido en el backend, cada uno de estos modelos tiene unos atributos y unas propiedades (atendiendo a teoría basica de OO).\nComo decimos, existe una correlación entre cada una de las vistas que habremos de tener en nuestro frontal web y los objetos que serán manipulados en el backend. Y como se comentaba al inicio de la sección, es la api del sistema la que permite que se tienda un puente entre ambos mundos, pues son nuestros modelos del servidor los que son enviados al frontal para ser representados dentro de las vistas. De igual forma, en los casos en que la información pueda ser modificada, la información viajará de vuelta de las vistas al servidor para que se produzca las pertinentes actualizaciones.\nEste es uno de los puntos principales de la teoría fullstack que se presenta en este proyecto. El cómo existe una fuerte relacíón entre ambos entornos, donde el concepto que sirve de referencia son las vistas y los modelos y donde el puente comunicativo es la apiRest expuesta.\nIgualmente, es la sencillez y potencia de este principio el que permite la creación de un código que respete los principos de arquitectura, limpieza, sencillez y claridad que se busca a la hora de programar. \nEs el respeto a este punto de partida el que permite entender cómo puede conseguirse que el código permanezca limpio y organizado a la hora de la construcción del sistema. Es el comprender que no hay que dividir conceptos, ni adaptar los objetos utilizados en cada entorno para permitir la comunicación por la API lo que hace que el código y su estructuración permanezca clara y concisa a lo largo del tiempo y que su testeabilidad sea sencilla.\n\nMás allá de aquí, lo que tendremos son elementos concretos que ya pertenecen a cada uno de los entornos. Principalemente, hablamos de la siguiente capa del sistema que serían los módulos y posteriorment el stack técnico que lo soporta todo.\n\n**Modulos**\nEn ambos casos el nombre y el concepto es el mismo. Son los distintos componentes que a través de diversas reglas se relacionan para dar forma a la arquitectura general de cada entorno, que en muchos casos pueden comprenderse como funcionalidades adicionales o laterales al núcleo del sistema y que en otros casos habrán de entenderse como elementos abstractos del mismo.\nEn las secciones sucesivas, se definirán y explicarán con mayor profundidad cuales son estos módulos, su relacion con otros, su importancia y necesidad.\nDe forma extra, será en este punto donde se explique brevemente las característica de nuestra API y la teoría que la sustenta.\n\n**Stack técnico**\nA la hora de construir este proyecto ha sido necesario recurrir a soluciones técnicas ya existentes. Hablamos tanto de las bases técnicas más básicas como son los lenguajes utilizados (y el porqué de su uso) así como todo el ecosistema de frameworks, librerías que se utilizan sobre dichos lenguajes.\nIgualmente, dentro del stack técnico se incluyen aquellas cuestiones más meta del proyecto. Los paradigmas de programación utilizados, los patrones de diseño implementados, etc, etc.\nEl stack técnico tiene una importancia muy elevada pues son los cimientos del resto del sistema. La elección de un stack u otro supone la elección del marco o el corsé que contendrá nuestros módulos y vistas y que la elección implicará grandes ventajas y sacrifios en el momento del desarrollo.\n\n",
 			"file": "intro-tecnica.txt",
-			"file_size": 5492,
-			"file_write_time": 1430564043000000,
 			"settings":
 			{
 				"buffer_size": 5418,
@@ -675,6 +683,7 @@
 	},
 	"file_history":
 	[
+		"/home/viperey/Documents/Hola Kata.txt",
 		"/tmp/bootstrap-3.3.4-dist.zip",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/editSubjectsController.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/editSubjects.html",
@@ -778,7 +787,6 @@
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema1.txt",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema0.txt",
 		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Temas1a7.txt",
-		"/home/viperey/Documents/Hola Kata.txt",
 		"/media/viperey/Hdd2/Copia de Seguridad/BackUp/Data/Personal/Varios - Inclasificables/dosOrdenadores.txt",
 		"/media/viperey/Hdd2/Copia de Seguridad/BackUp/Data/Personal/Varios - Inclasificables/Memorias.txt",
 		"/media/viperey/Hdd2/Copia de Seguridad/BackUp/Data/Personal/Varios - Inclasificables/Futuro.txt",
@@ -979,18 +987,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "views.txt",
+					"file": "models.txt",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 18,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								18,
+								18
 							]
 						],
 						"settings":
@@ -1005,18 +1013,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "modules.txt",
+					"file": "views.txt",
 					"settings":
 					{
-						"buffer_size": 16099,
+						"buffer_size": 129,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3293,
-								3293
+								129,
+								129
 							]
 						],
 						"settings":
@@ -1024,13 +1032,39 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 510.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "modules.txt",
+					"settings":
+					{
+						"buffer_size": 18234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5622,
+								5622
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1020.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "stack.txt",
 					"settings":
 					{
@@ -1041,8 +1075,8 @@
 						"selection":
 						[
 							[
-								2121,
-								2121
+								15341,
+								15341
 							]
 						],
 						"settings":
@@ -1050,13 +1084,13 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 119.0,
+						"translation.y": 2295.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "intro-tecnica.txt",
 					"settings":
 					{
@@ -1067,8 +1101,8 @@
 						"selection":
 						[
 							[
-								3953,
-								3953
+								914,
+								914
 							]
 						],
 						"settings":
@@ -1076,13 +1110,13 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 102.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "intro-no-tecnica.txt",
 					"settings":
 					{
@@ -1093,8 +1127,8 @@
 						"selection":
 						[
 							[
-								4655,
-								4655
+								6812,
+								6812
 							]
 						],
 						"settings":
@@ -1102,7 +1136,7 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 714.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
