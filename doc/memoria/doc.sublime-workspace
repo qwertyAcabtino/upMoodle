@@ -1,0 +1,1439 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sa",
+				"snackbar"
+			],
+			[
+				"updat",
+				"updateUser"
+			],
+			[
+				"pro",
+				"profilePic"
+			],
+			[
+				"leve",
+				"levelIndex"
+			],
+			[
+				"level",
+				"levelsUnested"
+			],
+			[
+				"get",
+				"getLevelIndex"
+			],
+			[
+				"fil",
+				"fileType"
+			],
+			[
+				"fileT",
+				"fileType"
+			],
+			[
+				"sub",
+				"subject"
+			],
+			[
+				"fi",
+				"fileInfo"
+			],
+			[
+				"file",
+				"file"
+			],
+			[
+				"open",
+				"openNewFileModal"
+			],
+			[
+				"newFile",
+				"newFileInfo"
+			],
+			[
+				"new",
+				"newFileInfo"
+			],
+			[
+				"su",
+				"success"
+			],
+			[
+				"up",
+				"updateUserSubjectsCallback"
+			],
+			[
+				"save",
+				"saveFileInfoCallback"
+			],
+			[
+				"downlo",
+				"downloadFile"
+			],
+			[
+				"subj",
+				"subjectId"
+			],
+			[
+				"subjectN",
+				"SubjectsNest"
+			],
+			[
+				"le",
+				"levelsUnested"
+			],
+			[
+				"levels",
+				"levelsUnested"
+			],
+			[
+				"retu",
+				"returningNode"
+			],
+			[
+				"return",
+				"returninNode"
+			],
+			[
+				"de",
+				"depth"
+			],
+			[
+				"not",
+				"getNotesByLevelId"
+			],
+			[
+				"selec",
+				"selectedItem"
+			],
+			[
+				"s",
+				"showLevelModal"
+			],
+			[
+				"subjects",
+				"subjectsTree"
+			],
+			[
+				"note",
+				"notesByLevelIdPromise"
+			],
+			[
+				"pus",
+				"pushStack"
+			],
+			[
+				"sta",
+				"stackArray"
+			],
+			[
+				"can",
+				"candidate"
+			],
+			[
+				"r",
+				"returno"
+			],
+			[
+				"user",
+				"updateUserSuccess"
+			],
+			[
+				"medi",
+				"media_url"
+			],
+			[
+				"retur",
+				"returno"
+			],
+			[
+				"lo",
+				"location"
+			],
+			[
+				"si",
+				"signedup"
+			],
+			[
+				"ob",
+				"obfuscator"
+			],
+			[
+				"log",
+				"login"
+			],
+			[
+				"MARG",
+				"margin-top"
+			],
+			[
+				"re",
+				"received"
+			],
+			[
+				"defe",
+				"deferred"
+			],
+			[
+				"l",
+				"location"
+			],
+			[
+				"ht",
+				"httpProvider"
+			],
+			[
+				"load",
+				"loadTodos"
+			],
+			[
+				"co",
+				"COUNTER"
+			],
+			[
+				"ids",
+				"idsSet"
+			],
+			[
+				"com",
+				"completedIds"
+			],
+			[
+				"coo",
+				"cookieName"
+			],
+			[
+				"media",
+				"mediaType"
+			],
+			[
+				"links",
+				"linksNoSeason"
+			],
+			[
+				"movi",
+				"moviesFolder"
+			],
+			[
+				"doc",
+				"docusFolder"
+			],
+			[
+				"obj",
+				"objectID"
+			],
+			[
+				"spo",
+				"spotId"
+			],
+			[
+				"day",
+				"day_text"
+			],
+			[
+				"getC",
+				"getCoverId"
+			],
+			[
+				"clea",
+				"clean"
+			],
+			[
+				"phan",
+				"phantom"
+			],
+			[
+				"java",
+				"javac"
+			],
+			[
+				"of",
+				"offlineSetUp"
+			],
+			[
+				"setModel",
+				"setModelOnline"
+			],
+			[
+				"are",
+				"areaEstrella"
+			],
+			[
+				"test",
+				"testAreaEstrella"
+			],
+			[
+				"area",
+				"areaTrianguloEquilatero"
+			],
+			[
+				"print",
+				"printWrongTest"
+			],
+			[
+				"prin",
+				"printSuccessTest"
+			],
+			[
+				"pr",
+				"printEOT"
+			],
+			[
+				"out",
+				"output"
+			],
+			[
+				"a",
+				"assert"
+			],
+			[
+				"STUB",
+				"STUBFOUR"
+			],
+			[
+				"STUBTR",
+				"STUBTHREE"
+			],
+			[
+				"STUBT",
+				"STUBTWO"
+			],
+			[
+				"cate",
+				"catetoMayorTrianguloRectangulo"
+			],
+			[
+				"cha",
+				"chairId"
+			],
+			[
+				"gues",
+				"guest"
+			],
+			[
+				"char",
+				"chairHtml"
+			],
+			[
+				"gete",
+				"getElementById"
+			],
+			[
+				"g",
+				"guests"
+			],
+			[
+				"gue",
+				"guests"
+			],
+			[
+				"pa",
+				"pageX"
+			],
+			[
+				"in",
+				"infoWp"
+			],
+			[
+				"infoDiv",
+				"setInfoDiv"
+			],
+			[
+				"min-",
+				"min-height"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"wai",
+				"waitingId"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"con",
+				"con	console"
+			],
+			[
+				"guest",
+				"guests"
+			],
+			[
+				"par",
+				"parseInt"
+			],
+			[
+				"getE",
+				"getEmptyChairs"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"table",
+				"tableId"
+			],
+			[
+				"gets",
+				"getGuest"
+			],
+			[
+				"max",
+				"max"
+			],
+			[
+				"ge",
+				"getGuestIndex"
+			],
+			[
+				"gu",
+				"guests"
+			],
+			[
+				"ind",
+				"indx"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"set",
+				"setGuestStatus"
+			],
+			[
+				"sele",
+				"selectedIsEmpty"
+			],
+			[
+				"tab",
+				"tableIndex"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"on",
+				"onmouseout"
+			],
+			[
+				"func",
+				"function"
+			],
+			[
+				"do",
+				"document"
+			],
+			[
+				"getCha",
+				"getChairsTable"
+			],
+			[
+				"li",
+				"living"
+			],
+			[
+				"push",
+				"pushGuestToChair"
+			],
+			[
+				"chair",
+				"chairId"
+			],
+			[
+				"chai",
+				"chairId"
+			],
+			[
+				"f",
+				"fun	Function"
+			],
+			[
+				"pop",
+				"popSelected"
+			],
+			[
+				"dom",
+				"domId"
+			],
+			[
+				"se",
+				"selected"
+			],
+			[
+				"_reDr",
+				"_reDrawTables"
+			],
+			[
+				"_re",
+				"_reDrawSelected"
+			],
+			[
+				"guests",
+				"guestsDiv"
+			],
+			[
+				"refer",
+				"reference"
+			],
+			[
+				"item",
+				"itemGoogle"
+			],
+			[
+				"referen",
+				"reference_id"
+			],
+			[
+				"fav",
+				"favoApiService"
+			],
+			[
+				"custom",
+				"customResults"
+			],
+			[
+				"cus",
+				"customResults"
+			],
+			[
+				"fa",
+				"fakeObject"
+			],
+			[
+				"po",
+				"pointerInfo"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "views.txt",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules.txt",
+			"settings":
+			{
+				"buffer_size": 16099,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stack.txt",
+			"settings":
+			{
+				"buffer_size": 15341,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "El presente TFG es un proyecto de tipo full-stack, es decir, presenta elementos tanto de servidor (backend) como de cliente final (frontend).\nPartiendo de esta división principal, hay que introducir un tercer elemento, que si bien pertenece al backend, en cierta forma puede ser definido como el puente que une ambos mundos.\nNos referimos a la API/Rest.\nEl API/Rest es nuevo contrato, el escaparate del backend, el puente que permite la comunicación entre ambos entornos. Como se decía anteriormente, si bien la api es de facto un elemento del backend, para comprender con profundidad cual es la arquitectura del proyecto es importante presentarlo como un elemento de unión entre entornos más que un módulo más de uno de ellos.\n\nPor tanto, partiendo de estos 3 elementos principales (de los que posteriormente se presentarán sus distintas capas y módulos) podemos empezar a definir las bases ténicas del proyecto.\n\nEn términos generales, en tanto que en secciones posteriores se hablará en profundidad de todos estos elementos, en cada entorno encontraremos 3 capas de concepto diferente: vistas/modelos, módulos y el stack técnico.\n\n**Vistas**\nNuestras vistas o modelos van a ser uno de los principios fundamentales de esta memoria. Son el concepto final que permite aglutinar el resto de principios anteriormente descritos, en tanto es el concepto que se sitúa en lo alto de la lasaña de capas que componen el sistema.\nEl término vistas hace referencia en exclusiva al entorno frontend. Será cada una de las rutas principales de la web que posee el proyecto. Es por tanto que existirán vistas tales como asignatura, notas, calendario, registro, login, etc.\nCada una de estas vistas (atendiendo a distintas excepciones) tienen una correspondencia con un modelo del backend. \nAntes de continuar hay que definir brevemente el concepto modelo. Un modelo en nuestro backend es una clase (dentro del paradigma OO) que representa un objeto de nuestro sistema. \nEs por tanto, que en nuestras vistas se sirve/presentan datos que tienen una correspondencia con un modelo definido en el backend, cada uno de estos modelos tiene unos atributos y unas propiedades (atendiendo a teoría basica de OO).\nComo decimos, existe una correlación entre cada una de las vistas que habremos de tener en nuestro frontal web y los objetos que serán manipulados en el backend. Y como se comentaba al inicio de la sección, es la api del sistema la que permite que se tienda un puente entre ambos mundos, pues son nuestros modelos del servidor los que son enviados al frontal para ser representados dentro de las vistas. De igual forma, en los casos en que la información pueda ser modificada, la información viajará de vuelta de las vistas al servidor para que se produzca las pertinentes actualizaciones.\nEste es uno de los puntos principales de la teoría fullstack que se presenta en este proyecto. El cómo existe una fuerte relacíón entre ambos entornos, donde el concepto que sirve de referencia son las vistas y los modelos y donde el puente comunicativo es la apiRest expuesta.\nIgualmente, es la sencillez y potencia de este principio el que permite la creación de un código que respete los principos de arquitectura, limpieza, sencillez y claridad que se busca a la hora de programar. \nEs el respeto a este punto de partida el que permite entender cómo puede conseguirse que el código permanezca limpio y organizado a la hora de la construcción del sistema. Es el comprender que no hay que dividir conceptos, ni adaptar los objetos utilizados en cada entorno para permitir la comunicación por la API lo que hace que el código y su estructuración permanezca clara y concisa a lo largo del tiempo y que su testeabilidad sea sencilla.\n\nMás allá de aquí, lo que tendremos son elementos concretos que ya pertenecen a cada uno de los entornos. Principalemente, hablamos de la siguiente capa del sistema que serían los módulos y posteriorment el stack técnico que lo soporta todo.\n\n**Modulos**\nEn ambos casos el nombre y el concepto es el mismo. Son los distintos componentes que a través de diversas reglas se relacionan para dar forma a la arquitectura general de cada entorno, que en muchos casos pueden comprenderse como funcionalidades adicionales o laterales al núcleo del sistema y que en otros casos habrán de entenderse como elementos abstractos del mismo.\nEn las secciones sucesivas, se definirán y explicarán con mayor profundidad cuales son estos módulos, su relacion con otros, su importancia y necesidad.\nDe forma extra, será en este punto donde se explique brevemente las característica de nuestra API y la teoría que la sustenta.\n\n**Stack técnico**\nA la hora de construir este proyecto ha sido necesario recurrir a soluciones técnicas ya existentes. Hablamos tanto de las bases técnicas más básicas como son los lenguajes utilizados (y el porqué de su uso) así como todo el ecosistema de frameworks, librerías que se utilizan sobre dichos lenguajes.\nIgualmente, dentro del stack técnico se incluyen aquellas cuestiones más meta del proyecto. Los paradigmas de programación utilizados, los patrones de diseño implementados, etc, etc.\nEl stack técnico tiene una importancia muy elevada pues son los cimientos del resto del sistema. La elección de un stack u otro supone la elección del marco o el corsé que contendrá nuestros módulos y vistas y que la elección implicará grandes ventajas y sacrifios en el momento del desarrollo.\n\n",
+			"file": "intro-tecnica.txt",
+			"file_size": 5492,
+			"file_write_time": 1430564043000000,
+			"settings":
+			{
+				"buffer_size": 5418,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "intro-no-tecnica.txt",
+			"settings":
+			{
+				"buffer_size": 6812,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 285.0,
+		"selected_items":
+		[
+			[
+				"reint",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rien",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"retin",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"REINT",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reit",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ren",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rrein",
+				"Set Syntax: Regular Expression"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"jsh",
+				"JSHint"
+			],
+			[
+				"clear",
+				"JSHint: Clear Annotations"
+			],
+			[
+				"j",
+				"JSHint"
+			],
+			[
+				"jshi",
+				"JSHint"
+			],
+			[
+				"paclis",
+				"Package Control: List Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinte",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/tmp/bootstrap-3.3.4-dist.zip",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/editSubjectsController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/editSubjects.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalEditFileInfo.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/notes.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewFile.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalEditNote.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewNote.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/sidebar.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/factories/subjectsTreeFactory.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/snackbar/angular.snackbar.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/subjects.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/profile.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/signup.html",
+		"/home/viperey/Downloads/asdfasdf.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/profileController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/_dependencies.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/style.css",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/style.scss",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/ng-file-upload/angular-file-upload-all.js",
+		"/home/viperey/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/home/viperey/.cache/.fr-Ce4bn4/ng-file-upload-master/release.sh",
+		"/home/viperey/.cache/.fr-pbbVzi/ng-file-upload-master/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/confirmEmailController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/recoverPassword.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/navbar.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/confirm_email.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/login.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/backbone.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalSubjectsList.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/_modalSubjectsList.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-bootstrap/ui-bootstrap-tpls.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-bootstrap/ui-bootstrap-tpls.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/notesController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/iLost/android-consumer-app/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/resourcesSizesCheatsheet.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/_base.scss",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/config.rb",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/application.scss",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/stylesheets/application.css",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/basics.scss",
+		"/var/lib/gems/1.9.1/gems/font-awesome-sass-4.3.2.1/assets/stylesheets/_font-awesome-compass.scss",
+		"/var/lib/gems/1.9.1/gems/font-awesome-sass-4.3.2.1/Gemfile",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/Gemfile",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/node_modules/grunt/node_modules/grunt-legacy-log/node_modules/underscore.string/Gemfile",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/basics.css",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/dashboard.html",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/iLost/android-consumer-app/ILostAndroid/.gitignore",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/iLost/doc/overview.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/loginController.js",
+		"/home/viperey/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/viperey/.config/sublime-text-2/Packages/JSHint Gutter/.jshintrc",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/recoverPasswordController.js",
+		"/home/viperey/.config/sublime-text-2/Packages/JSHint Gutter/JSHint.sublime-settings",
+		"/home/viperey/Dropbox/BackUp/Linux/app/genymotion-2.4.0_x64.bin",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/methaphores/colors.csv",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/src/ColorsParser.java",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/colors.csv",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/snackbar/angular.snackbar.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/Gruntfile.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/factories/userFactory.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/package.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/dashboardController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/index.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-route/angular-route.min.js.map",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-cookies/index.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/services.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/mapController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/server.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/angular-bootstrap/ui-bootstrap.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/angular.snackbar.css",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/untitled",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/snackbar/angular.snackbar.js",
+		"/home/viperey/.cache/.fr-Wfwbhu/angular.snackbar-master/package.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/suave-ui/dist/app.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/bower_components/suave-ui/bower.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/map.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/node-modules/angular-cookies/package.json",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/services.js",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteEpub/mountServer.sh",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/backend.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/backend",
+		"/home/viperey/Dropbox/Proyectos/Propio/angularPlace/package.json",
+		"/home/viperey/.cache/.fr-HdfWNX/neo4j-community-2.2.0-M04/README.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/GildedRoseBranch/src/main/java/GildedRose.java",
+		"/home/viperey/Dropbox/BackUp/Linux/app/ideaICInstall.sh",
+		"/home/viperey/.cache/.fr-iVtCVL/Ad-hoc_1.log",
+		"/home/viperey/Dropbox/Proyectos/Empresas/_Corporativo/Capitales.txt",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/src/main/java/nl/favoThings/favoroute/Controllers/Callbacks/GridViewItemCallback.java",
+		"/home/viperey/Dropbox/Proyectos/Empresas/_Corporativo/RepoCv.txt",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/doc/ghostColums.dat",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Examenes/Test - Parcial 2.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema7.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema6.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema5.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema4.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema3.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema2.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema1.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Apuntes/Tema0.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 VV/Temas1a7.txt",
+		"/home/viperey/Documents/Hola Kata.txt",
+		"/media/viperey/Hdd2/Copia de Seguridad/BackUp/Data/Personal/Varios - Inclasificables/dosOrdenadores.txt",
+		"/media/viperey/Hdd2/Copia de Seguridad/BackUp/Data/Personal/Varios - Inclasificables/Memorias.txt",
+		"/media/viperey/Hdd2/Copia de Seguridad/BackUp/Data/Personal/Varios - Inclasificables/Futuro.txt",
+		"/media/viperey/Hdd2/Copia de Seguridad/BackUp/Data/Personal/Varios - Inclasificables/Carta Anti-Estrellatos.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Examenes/Ej1 - Parcial2.xml",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Examenes/Parcial 2 - Solucion.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Tareas/Tarea 3/Ejercicio5.xsd",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Tareas/Tarea 3/Ejercicio4.xsd",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Tareas/Tarea 3/Ejercicio4.xml",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Tareas/Tarea 3/Ejercicio3.xml",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Tareas/Tarea 3/Ejercicio2.xsd",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Tareas/Tarea 3/Ejercicio1.xml",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Apuntes/Tema 3.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Apuntes/Tema 2.txt",
+		"/home/viperey/Dropbox/Universidad/3o de Software/Q1 ISS/Apuntes/Tema 1.txt",
+		"/home/viperey/rsync/src/b.dat",
+		"/home/viperey/Dropbox/Proyectos/Propio/seriesLyks/README.md",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/.hg/hgrc",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/.hg/hgrc",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/.hg/hgrc",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/stringsParser.py",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values/strings.xml",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/methaphores/strings.csv",
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/manifest-merger-debug-report.txt"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app",
+			"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend",
+			"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial",
+			"/home/viperey/code/favoroute/code/apps/app/src/js",
+			"/home/viperey/code/favoroute/code/apps/app/src/",
+			"/home/viperey/code/favoroute/code/apps/app/src/js/directives",
+			"/home/viperey/code/favoroute/code/apps/app/",
+			"/media/data/Dropbox/Proyectos/Propio/DuermeTu/dev/DuermeTu/src",
+			"/media/data/Dropbox/Proyectos/Asalariado/Welvi/welvifrontend"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Sidebar",
+			"todo",
+			"updateUserProfilePic",
+			"files",
+			"upload",
+			"console",
+			"deleteNote",
+			"init(",
+			"fileTypeSelected",
+			"levelsUnested",
+			"levelsUn",
+			"levelsUnested",
+			"levelsun",
+			"unested",
+			"unnested",
+			"file.text",
+			"newNote",
+			"levesl",
+			"note",
+			");\n",
+			"\n	",
+			"controller",
+			"_modalNewFile",
+			"$scope.fileTypes[i]",
+			"SubjectsTree",
+			"isAUserSubject",
+			"\n			",
+			"scope.careers",
+			"	$scope.downloadFile = function(file){\n		api.downloadFile(file.id);\n	}\n",
+			"	<button ng-click=\"editMode = !editMode\" type=\"button\" class=\"btn btn-default\" aria-label=\"Left Align\"> \n		Edit file info\n	</button>\n",
+			"editMode",
+			"levels",
+			"window",
+			"location",
+			"cfpLoadingBarProvider",
+			"loading",
+			"cookies",
+			"files",
+			"angularFileUpload",
+			"jsShelf",
+			"jsThid",
+			"console",
+			"asdfasd",
+			"subjectsModel.data[0]",
+			"subjectsTreeModel",
+			"span",
+			"note.",
+			"subjectsNestModel",
+			"SubjectsNest",
+			"subjectsTreeModel",
+			"tree",
+			"subjectsTree",
+			"isSignedInSubject",
+			"subjec",
+			"returninNode",
+			"id",
+			"name",
+			"nodes",
+			"levels",
+			">\n",
+			"size",
+			"itemSub",
+			"item",
+			"items",
+			"];",
+			"notesby",
+			"	<script type=\"text/ng-template\" id=\"myModalContent.html\">\n        <div class=\"modal-header\">\n            <h3 class=\"modal-title\">I'm a modal!</h3>\n        </div>\n        <div class=\"modal-body\">\n            <ul>\n                <li ng-repeat=\"item in items\">\n                    <a ng-click=\"selected.item = item\">{{ item }}</a>\n                </li>\n            </ul>\n            Selected: <b>{{ selected.item }}</b>\n        </div>\n        <div class=\"modal-footer\">\n            <button class=\"btn btn-primary\" ng-click=\"ok()\">OK</button>\n            <button class=\"btn btn-warning\" ng-click=\"cancel()\">Cancel</button>\n        </div>\n    </script>\n",
+			"template/modal/backdrop",
+			"backdrop.",
+			"backdrop",
+			"ui.bootstrap.d",
+			"a",
+			"notesByLevelIdPromise",
+			"searchNodeById",
+			"getSimplyfiedNode",
+			"returno",
+			"simplyfiedNode",
+			"returno",
+			"\n 	",
+			";\n",
+			"returnStack",
+			"li",
+			"\n 			",
+			"subjectsTree",
+			"forEach",
+			"carrer",
+			"User.set",
+			"carrers",
+			"		 	angular.forEach(career.children, function(course, index){\n\n		 	});\n",
+			"h3",
+			"\";",
+			">\n",
+			"        <li>\n        	<a href=\"#/subjects\">\n        		Asignaturas\n    		</a>\n        </li>\n",
+			"xml",
+			"user_bck",
+			"$scope.user_bck",
+			"_user",
+			"snackbar",
+			"				<div class=\"form-group\">\n					<label for=\"email\">Email:</label>\n					<input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter email\" ng-model=\"user.email\">\n				</div>",
+			"layout",
+			"split",
+			"next_vie",
+			"next_",
+			"/\";\n",
+			"System.out.println",
+			"println",
+			"print",
+			"		logout : function(){\n			return $http({ \n				method: 'POST', \n				url:  base_url + 'logout/'\n			});	\n		},\n\n",
+			"recoverPassword",
+			"	$scope.signIn = function(){\n		$location.path('/signup');\n	}\n\n",
+			"qM",
+			".eJxVzEEOwiAQheG7sDYEQloYl-49A5lhBqkaSEq7Mt7dmnTRrt__vY-KuC4lrl3mWLAXdVUE4owL2ZN3yQLTwMENlo3xVvJIAGNwgFldjpgwvaTy5vmJ9dF0anWZJ9L_RO9r1_fG8r7t7elg2qz9_gCCBTDf:1YT9Vr:PjaXJiiL8Cb1T4-gopL-2d4V-qM",
+			"http://127.0.0.1:8000/confirm_email/",
+			"http://127.0.0.1:8000/confirm_email/.eJxVzEEOwiAQheG7sDYEQloYl-49A5lhBqkaSEq7Mt7dmnTRrt__vY-KuC4lrl3mWLAXdVUE4owL2ZN3yQLTwMENlo3xVvJIAGNwgFldjpgwvaTy5vmJ9dF0anWZJ9L_RO9r1_fG8r7t7elg2qz9_gCCBTDf:1YT9Vr:PjaXJiiL8Cb1T4-gopL-2d4V-qM",
+			"http://127.0.0.1:8000/confirm_email/.eJxVzEEOwiAQheG7sDYEQloYl-49A5lhBqkaSEq7Mt7dmnTRrt__vY-KuC4lrl3mWLAXdVUE4owL2ZN3yQLTwMENlo3xVvJIAGNwgFldjpgwvaTy5vmJ9dF0anWZJ9L_RO9r1_fG8r7t7elg2qz9_gCCBTDf%3A1YT9Vr%3APjaXJiiL8Cb1T4-gopL-2d4V-qM",
+			"scope",
+			"routeParams",
+			">\n",
+			"		.when('/signup', {\n			templateUrl: 'views/signup.html',\n			controller: 'signUpCtrl',\n		})\n",
+			"User.get(",
+			"User.get",
+			"$location.path('/login');",
+			"email",
+			"Email",
+			"email",
+			"		.when('/dashboard', {\n			templateUrl: 'views/dashboard.html',\n			controller: 'dashboardCtrl',\n			resolve : {\n				userModel : userPromise\n\n			}\n		})\n",
+			"require",
+			"create"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "views.txt",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "modules.txt",
+					"settings":
+					{
+						"buffer_size": 16099,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3293,
+								3293
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 510.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "stack.txt",
+					"settings":
+					{
+						"buffer_size": 15341,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2121,
+								2121
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 119.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "intro-tecnica.txt",
+					"settings":
+					{
+						"buffer_size": 5418,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3953,
+								3953
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "intro-no-tecnica.txt",
+					"settings":
+					{
+						"buffer_size": 6812,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4655,
+								4655
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"edit",
+				"libs/controllers/editSubjectsController.js"
+			],
+			[
+				"edi",
+				"views/editSubjects.html"
+			],
+			[
+				"editf",
+				"views/_modalEditFileInfo.html"
+			],
+			[
+				"ed",
+				"views/_modalEditNote.html"
+			],
+			[
+				"new",
+				"views/_modalNewNote.html"
+			],
+			[
+				"notes",
+				"views/notes.html"
+			],
+			[
+				"modal",
+				"views/_modalNewFile.html"
+			],
+			[
+				"subje",
+				"libs/factories/subjectsTreeFactory.js"
+			],
+			[
+				"sub",
+				"libs/factories/subjectsTreeFactory.js"
+			],
+			[
+				"pro",
+				"views/profile.html"
+			],
+			[
+				"nav",
+				"views/navbar.html"
+			],
+			[
+				"side",
+				"libs/directives/sideBar.js"
+			],
+			[
+				"profil",
+				"libs/controllers/profileController.js"
+			],
+			[
+				"style",
+				"stylesheets/sass/style.scss"
+			],
+			[
+				"load",
+				"libs/third-party/loading-bar/loading-bar.min.js"
+			],
+			[
+				"depen",
+				"libs/_dependencies.min.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"scss",
+				"stylesheets/sass/style.scss"
+			],
+			[
+				"css",
+				"stylesheets/style.css"
+			],
+			[
+				"moda",
+				"views/_modalNewNote.html"
+			],
+			[
+				"profile",
+				"libs/controllers/profileController.js"
+			],
+			[
+				"conf",
+				"libs/controllers/confirmEmailController.js"
+			],
+			[
+				"ema",
+				"libs/controllers/confirmEmailController.js"
+			],
+			[
+				"back",
+				"views/backbone.html"
+			],
+			[
+				"snac",
+				"libs/third-party/snackbar/angular.snackbar.js"
+			],
+			[
+				"login",
+				"libs/controllers/loginController.js"
+			],
+			[
+				"_mo",
+				"views/_modalSubjectsList.html"
+			],
+			[
+				"tpl",
+				"libs/third-party/angular-bootstrap/ui-bootstrap-tpls.js"
+			],
+			[
+				"note",
+				"libs/controllers/notesController.js"
+			],
+			[
+				"_dep",
+				"libs/_dependencies.min.js"
+			],
+			[
+				"rofil",
+				"views/profile.html"
+			],
+			[
+				"profi",
+				"views/profile.html"
+			],
+			[
+				"log",
+				"views/login.html"
+			],
+			[
+				"da",
+				"views/dashboard.html"
+			],
+			[
+				"snackbar",
+				"libs/third-party/snackbar/angular.snackbar.min.js"
+			],
+			[
+				"dash",
+				"libs/controllers/dashboardController.js"
+			],
+			[
+				"sig",
+				"views/signup.html"
+			],
+			[
+				"api",
+				"libs/factories/apiFactory.js"
+			],
+			[
+				"user",
+				"libs/factories/userFactory.js"
+			],
+			[
+				"na",
+				"views/navbar.html"
+			],
+			[
+				"pac",
+				"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/package.json"
+			],
+			[
+				"url",
+				"mysite/mysite/urls.py"
+			],
+			[
+				"mode",
+				"mysite/polls/models.py"
+			],
+			[
+				"se",
+				"mysite/mysite/settings.py"
+			],
+			[
+				"see",
+				"mysite/manage.py"
+			],
+			[
+				"sett",
+				"tutorial/tutorial/settings.py"
+			],
+			[
+				"setti",
+				"tutorial/tutorial/settings.py"
+			],
+			[
+				"urls",
+				"tutorial/tutorial/urls.py"
+			],
+			[
+				"vies",
+				"tutorial/tutorial/quickstart/views.py"
+			],
+			[
+				"seria",
+				"tutorial/tutorial/quickstart/serializers.py"
+			],
+			[
+				"deber",
+				"Deberes.txt"
+			],
+			[
+				"tema4p",
+				"2o de Software/Q2 Seguridad/Practicas/Practica 2/tema4p2.txt"
+			],
+			[
+				"httpda",
+				"3o de Software/Q2 Seguridad II/Practicas/Practica 1/httpdA.conf"
+			],
+			[
+				"auto",
+				"code/apps/app/src/js/directives/fvAutocomplete.js"
+			],
+			[
+				"favoap",
+				"code/apps/app/src/js/services/favoapi.js"
+			],
+			[
+				"controller",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"edital",
+				"code/apps/app/src/js/directives/contenteditable.js"
+			],
+			[
+				"edit.",
+				"code/apps/app/views/favoroute-edit.html"
+			],
+			[
+				"routeedi",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"routec",
+				"code/apps/app/src/js/controllers/RouteCreateController.js"
+			],
+			[
+				"favoma",
+				"code/apps/app/src/js/services/favomap.js"
+			],
+			[
+				"route",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"routeed",
+				"code/apps/app/src/js/controllers/RouteEditController.js"
+			],
+			[
+				"favoroute-ed",
+				"code/apps/app/views/favoroute-edit.html"
+			],
+			[
+				"main.",
+				"code/apps/app/src/less/main.less"
+			],
+			[
+				"requ",
+				"app/lib/require.js"
+			],
+			[
+				"ind",
+				"app/index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 200.0,
+	"status_bar_visible": true
+}

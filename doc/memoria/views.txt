@@ -1,0 +1,7 @@
+
+Vista
+	Frontend (endpoint, funcionalidades)
+	<= 
+	API ( campos, tipos, etc)
+	=>
+	Backend (Modelo afectado, referencia)

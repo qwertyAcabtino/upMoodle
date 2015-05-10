@@ -1,0 +1,32 @@
+El presente TFG es un proyecto de tipo full-stack, es decir, presenta elementos tanto de servidor (backend) como de cliente final (frontend).
+Partiendo de esta división principal, hay que introducir un tercer elemento, que si bien pertenece al backend, en cierta forma puede ser definido como el puente que une ambos mundos.
+Nos referimos a la API/Rest.
+El API/Rest es nuevo contrato, el escaparate del backend, el puente que permite la comunicación entre ambos entornos. Como se decía anteriormente, si bien la api es de facto un elemento del backend, para comprender con profundidad cual es la arquitectura del proyecto es importante presentarlo como un elemento de unión entre entornos más que un módulo más de uno de ellos.
+
+Por tanto, partiendo de estos 3 elementos principales (de los que posteriormente se presentarán sus distintas capas y módulos) podemos empezar a definir las bases ténicas del proyecto.
+
+En términos generales, en tanto que en secciones posteriores se hablará en profundidad de todos estos elementos, en cada entorno encontraremos 3 capas de concepto diferente: vistas/modelos, módulos y el stack técnico.
+
+**Vistas**
+Nuestras vistas o modelos van a ser uno de los principios fundamentales de esta memoria. Son el concepto final que permite aglutinar el resto de principios anteriormente descritos, en tanto es el concepto que se sitúa en lo alto de la lasaña de capas que componen el sistema.
+El término vistas hace referencia en exclusiva al entorno frontend. Será cada una de las rutas principales de la web que posee el proyecto. Es por tanto que existirán vistas tales como asignatura, notas, calendario, registro, login, etc.
+Cada una de estas vistas (atendiendo a distintas excepciones) tienen una correspondencia con un modelo del backend. 
+Antes de continuar hay que definir brevemente el concepto modelo. Un modelo en nuestro backend es una clase (dentro del paradigma OO) que representa un objeto de nuestro sistema. 
+Es por tanto, que en nuestras vistas se sirve/presentan datos que tienen una correspondencia con un modelo definido en el backend, cada uno de estos modelos tiene unos atributos y unas propiedades (atendiendo a teoría basica de OO).
+Como decimos, existe una correlación entre cada una de las vistas que habremos de tener en nuestro frontal web y los objetos que serán manipulados en el backend. Y como se comentaba al inicio de la sección, es la api del sistema la que permite que se tienda un puente entre ambos mundos, pues son nuestros modelos del servidor los que son enviados al frontal para ser representados dentro de las vistas. De igual forma, en los casos en que la información pueda ser modificada, la información viajará de vuelta de las vistas al servidor para que se produzca las pertinentes actualizaciones.
+Este es uno de los puntos principales de la teoría fullstack que se presenta en este proyecto. El cómo existe una fuerte relacíón entre ambos entornos, donde el concepto que sirve de referencia son las vistas y los modelos y donde el puente comunicativo es la apiRest expuesta.
+Igualmente, es la sencillez y potencia de este principio el que permite la creación de un código que respete los principos de arquitectura, limpieza, sencillez y claridad que se busca a la hora de programar. 
+Es el respeto a este punto de partida el que permite entender cómo puede conseguirse que el código permanezca limpio y organizado a la hora de la construcción del sistema. Es el comprender que no hay que dividir conceptos, ni adaptar los objetos utilizados en cada entorno para permitir la comunicación por la API lo que hace que el código y su estructuración permanezca clara y concisa a lo largo del tiempo y que su testeabilidad sea sencilla.
+
+Más allá de aquí, lo que tendremos son elementos concretos que ya pertenecen a cada uno de los entornos. Principalemente, hablamos de la siguiente capa del sistema que serían los módulos y posteriorment el stack técnico que lo soporta todo.
+
+**Modulos**
+En ambos casos el nombre y el concepto es el mismo. Son los distintos componentes que a través de diversas reglas se relacionan para dar forma a la arquitectura general de cada entorno, que en muchos casos pueden comprenderse como funcionalidades adicionales o laterales al núcleo del sistema y que en otros casos habrán de entenderse como elementos abstractos del mismo.
+En las secciones sucesivas, se definirán y explicarán con mayor profundidad cuales son estos módulos, su relacion con otros, su importancia y necesidad.
+De forma extra, será en este punto donde se explique brevemente las característica de nuestra API y la teoría que la sustenta.
+
+**Stack técnico**
+A la hora de construir este proyecto ha sido necesario recurrir a soluciones técnicas ya existentes. Hablamos tanto de las bases técnicas más básicas como son los lenguajes utilizados (y el porqué de su uso) así como todo el ecosistema de frameworks, librerías que se utilizan sobre dichos lenguajes.
+Igualmente, dentro del stack técnico se incluyen aquellas cuestiones más meta del proyecto. Los paradigmas de programación utilizados, los patrones de diseño implementados, etc, etc.
+El stack técnico tiene una importancia muy elevada pues son los cimientos del resto del sistema. La elección de un stack u otro supone la elección del marco o el corsé que contendrá nuestros módulos y vistas y que la elección implicará grandes ventajas y sacrifios en el momento del desarrollo.
+
