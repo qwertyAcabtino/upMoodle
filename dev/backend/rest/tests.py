@@ -98,7 +98,8 @@ class A1_ErrorMessageTestCase(unittest.TestCase):
         ErrorMessage.objects.create(error="Please, check your inbox and confirm your email.")
         ErrorMessage.objects.create(error="Please, sign in first.")
         ErrorMessage.objects.create(error="Name's length has to be between 4 and 100")
-        self.assertEqual(len(ErrorMessage.objects.all()), 14)
+        ErrorMessage.objects.create(error="Invalid level")
+        self.assertEqual(len(ErrorMessage.objects.all()), 15)
 
 
 class A2_MessageTestCase(unittest.TestCase):
@@ -595,7 +596,7 @@ class J_noteTestCase(SignedTestCase):
         pk = 1
         topic = 'topic'
         response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'author_id': 2})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 400)
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(note.author_id, User.objects.get(id=1).id)
 
@@ -603,7 +604,8 @@ class J_noteTestCase(SignedTestCase):
         self.login()
         pk = 1
         response = self.client.post('/note/' + str(pk) + '/', {})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(1, len(User.objects.all()))
 
     def test_08_postNote_length_overflows(self):
         self.login()
@@ -704,3 +706,5 @@ class J_noteTestCase(SignedTestCase):
         response = self.client.get('/note/level/' + str(pk) + '/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, '[]')
+
+#TODO. Test de userProfile, editSubjects, subjects,

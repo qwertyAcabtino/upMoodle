@@ -7,7 +7,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 
-from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID, INCORRECT_DATA, NAME_LENGTH
+from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID, INCORRECT_DATA, NAME_LENGTH, INVALID_LEVEL
 from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
 import hashlib
@@ -61,8 +61,7 @@ class Level(models.Model):
             Level.objects.get(id=fk)
             Level.validate_exists_level(fk)
         except MultiValueDictKeyError:
-            pass
-            # TODO. Solve
+            raise ValidationError(INVALID_LEVEL)
 
     @staticmethod
     def validate_exists_level(fk):
