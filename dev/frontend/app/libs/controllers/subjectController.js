@@ -29,7 +29,6 @@
 			$scope.getFileTypes();
  			$scope.getSubjectFiles();
  			$scope.filetTypeFilter = {
-
  			};
  		}
 

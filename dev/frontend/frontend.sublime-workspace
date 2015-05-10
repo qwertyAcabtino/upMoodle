@@ -4,24 +4,64 @@
 		"selected_items":
 		[
 			[
+				"sa",
+				"snackbar"
+			],
+			[
+				"updat",
+				"updateUser"
+			],
+			[
+				"pro",
+				"profilePic"
+			],
+			[
+				"leve",
+				"levelIndex"
+			],
+			[
+				"level",
+				"levelsUnested"
+			],
+			[
+				"get",
+				"getLevelIndex"
+			],
+			[
+				"fil",
+				"fileType"
+			],
+			[
+				"fileT",
+				"fileType"
+			],
+			[
+				"sub",
+				"subject"
+			],
+			[
+				"fi",
+				"fileInfo"
+			],
+			[
+				"file",
+				"file"
+			],
+			[
+				"open",
+				"openNewFileModal"
+			],
+			[
+				"newFile",
+				"newFileInfo"
+			],
+			[
 				"new",
 				"newFileInfo"
 			],
 			[
-				"file",
-				"fileType"
-			],
-			[
 				"su",
 				"success"
-			],
-			[
-				"get",
-				"getSubjectsCheckedList"
-			],
-			[
-				"sub",
-				"subjectsCheck"
 			],
 			[
 				"up",
@@ -62,14 +102,6 @@
 			[
 				"de",
 				"depth"
-			],
-			[
-				"leve",
-				"levelsUnested"
-			],
-			[
-				"level",
-				"levelId"
 			],
 			[
 				"not",
@@ -482,51 +514,11 @@
 			[
 				"po",
 				"pointerInfo"
-			],
-			[
-				"setS",
-				"setSelectedText"
-			],
-			[
-				"cu",
-				"customspot"
-			],
-			[
-				"make",
-				"makeUpEditable"
-			],
-			[
-				"link",
-				"linkaddDisabled"
-			],
-			[
-				"lik",
-				"linkaddDisabled"
-			],
-			[
-				"lin",
-				"linkaddDisabled"
-			],
-			[
-				"index",
-				"indexOf"
-			],
-			[
-				"parent",
-				"parentNode"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "app/libs/directives/navBar.js",
-			"settings":
-			{
-				"buffer_size": 513,
-				"line_ending": "Unix"
-			}
-		},
 		{
 			"file": "app/libs/directives/sideBar.js",
 			"settings":
@@ -571,7 +563,7 @@
 			"file": "app/libs/controllers/notesController.js",
 			"settings":
 			{
-				"buffer_size": 3426,
+				"buffer_size": 6134,
 				"line_ending": "Unix"
 			}
 		},
@@ -579,15 +571,7 @@
 			"file": "app/libs/controllers/subjectController.js",
 			"settings":
 			{
-				"buffer_size": 3971,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/libs/controllers/editSubjectsController.js",
-			"settings":
-			{
-				"buffer_size": 1495,
+				"buffer_size": 5223,
 				"line_ending": "Unix"
 			}
 		},
@@ -595,7 +579,7 @@
 			"file": "app/libs/controllers/profileController.js",
 			"settings":
 			{
-				"buffer_size": 874,
+				"buffer_size": 1609,
 				"line_ending": "Unix"
 			}
 		},
@@ -611,23 +595,7 @@
 			"file": "app/views/subject.html",
 			"settings":
 			{
-				"buffer_size": 1314,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/_modalEditFileInfo.html",
-			"settings":
-			{
-				"buffer_size": 1494,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/_modalNewNote.html",
-			"settings":
-			{
-				"buffer_size": 839,
+				"buffer_size": 763,
 				"line_ending": "Unix"
 			}
 		},
@@ -643,7 +611,7 @@
 			"file": "app/views/profile.html",
 			"settings":
 			{
-				"buffer_size": 1588,
+				"buffer_size": 1760,
 				"line_ending": "Unix"
 			}
 		},
@@ -651,7 +619,7 @@
 			"file": "app/libs/factories/apiFactory.js",
 			"settings":
 			{
-				"buffer_size": 5278,
+				"buffer_size": 6501,
 				"line_ending": "Unix"
 			}
 		},
@@ -699,15 +667,7 @@
 			"file": "app/libs/_dependencies.min.js",
 			"settings":
 			{
-				"buffer_size": 149214,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/libs/third-party/loading-bar/loading-bar.min.js",
-			"settings":
-			{
-				"buffer_size": 9898,
+				"buffer_size": 277675,
 				"line_ending": "Unix"
 			}
 		},
@@ -728,6 +688,10 @@
 		[
 			[
 				"reint",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"re",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -828,18 +792,24 @@
 	},
 	"file_history":
 	[
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/notes.html",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/sidebar.html",
+		"/home/viperey/Downloads/bootstrap-3.3.4-dist.zip",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/directives/navBar.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/loading-bar/loading-bar.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/editSubjectsController.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/editSubjects.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalEditFileInfo.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/notes.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewFile.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalEditNote.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewNote.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/sidebar.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/factories/subjectsTreeFactory.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/snackbar/angular.snackbar.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/subjects.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/profile.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/signup.html",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/editSubjectsController.js",
 		"/home/viperey/Downloads/asdfasdf.txt",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/profileController.js",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewFile.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/_dependencies.min.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/style.css",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/style.scss",
@@ -847,7 +817,6 @@
 		"/home/viperey/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/viperey/.cache/.fr-Ce4bn4/ng-file-upload-master/release.sh",
 		"/home/viperey/.cache/.fr-pbbVzi/ng-file-upload-master/.gitignore",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalNewNote.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/confirmEmailController.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/recoverPassword.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/navbar.html",
@@ -950,12 +919,7 @@
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/.hg/hgrc",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/.hg/hgrc",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/stringsParser.py",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values/strings.xml",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/doc/methaphores/strings.csv",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/manifest-merger-debug-report.txt",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/strings.csv",
-		"/home/viperey/Dropbox/BackUp/Linux/app/argouml-0.32.1/argouml2.sh",
-		"/home/viperey/Dropbox/BackUp/Linux/bash/hotspot.conf"
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values/strings.xml"
 	],
 	"find":
 	{
@@ -966,6 +930,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app",
 			"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend",
 			"/home/viperey/Dropbox/Proyectos/Propio/TFG/python/tutorial",
 			"/home/viperey/code/favoroute/code/apps/app/src/js",
@@ -981,6 +946,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"updateUserProfilePic",
+			"files",
+			"upload",
+			"console",
+			"deleteNote",
+			"init(",
+			"fileTypeSelected",
+			"levelsUnested",
+			"levelsUn",
+			"levelsUnested",
+			"levelsun",
+			"unested",
+			"unnested",
+			"file.text",
+			"newNote",
+			"levesl",
+			"note",
+			");\n",
+			"\n	",
+			"controller",
+			"_modalNewFile",
 			"$scope.fileTypes[i]",
 			"SubjectsTree",
 			"isAUserSubject",
@@ -1087,28 +1073,7 @@
 			"require",
 			"create",
 			"node-modules",
-			"			js-shelf:{\n				files: 'app/libs/*/*.js',\n				tasks: ['uglify']\n			}\n",
-			"p",
-			"navBar",
-			">\n",
-			" 5px",
-			".snackbar.green{\n	background-color: #4CAF50;\n}\n",
-			"			message : function( content, duration ){\n				$rootScope.$broadcast('createSnackbar', { 'content': content, 'duration': duration, 'color': \"green\" });\n			},\n",
-			"false",
-			"\"",
-			"		.when('/map', {\n			templateUrl: 'views/map.html',\n			controller: 'mapController'\n		})\n",
-			"'];\n",
-			"	api.getUser().\n	success(function(data, status, headers, config) {\n				//TODO. Set user at some place.\n			})\n	.error(function(data, status, headers, config) {\n		$location.path('/login');\n		console.debug(\"d->\"); \n		console.debug(data); \n		console.debug(headers()); \n		console.debug($cookies); \n	});\n",
-			"h",
-			"\"\n",
-			"();\n",
-			"ng-",
-			"          	.when('/index', {\n              templateUrl: 'index.html',\n              controller: 'upmAppController'\n          	})\n",
-			"gmaps",
-			"controllers",
-			">\n",
-			"gmapsApp",
-			"exception"
+			"			js-shelf:{\n				files: 'app/libs/*/*.js',\n				tasks: ['uglify']\n			}\n"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1126,39 +1091,11 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/libs/directives/navBar.js",
-					"settings":
-					{
-						"buffer_size": 513,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								267,
-								267
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "app/libs/directives/sideBar.js",
 					"settings":
 					{
@@ -1186,7 +1123,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "app/libs/controllers/loginController.js",
 					"settings":
 					{
@@ -1213,7 +1150,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "app/libs/controllers/signUpController.js",
 					"settings":
 					{
@@ -1240,7 +1177,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "app/libs/controllers/dashboardController.js",
 					"settings":
 					{
@@ -1266,7 +1203,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "app/libs/controllers/subjectsController.js",
 					"settings":
 					{
@@ -1287,25 +1224,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 306.0,
+						"translation.y": 255.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "app/libs/controllers/notesController.js",
 					"settings":
 					{
-						"buffer_size": 3426,
+						"buffer_size": 6134,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2404,
-								2404
+								5224,
+								5224
 							]
 						],
 						"settings":
@@ -1315,25 +1252,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 47.0,
+						"translation.y": 2805.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 6,
 					"file": "app/libs/controllers/subjectController.js",
 					"settings":
 					{
-						"buffer_size": 3971,
+						"buffer_size": 5223,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								457,
-								457
+								2473,
+								2473
 							]
 						],
 						"settings":
@@ -1341,52 +1278,26 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 72.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 1729.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "app/libs/controllers/editSubjectsController.js",
-					"settings":
-					{
-						"buffer_size": 1495,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1151,
-								1151
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 24.0,
-						"translation.y": 612.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
+					"buffer": 7,
 					"file": "app/libs/controllers/profileController.js",
 					"settings":
 					{
-						"buffer_size": 874,
+						"buffer_size": 1609,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								756,
-								756
+								460,
+								460
 							]
 						],
 						"settings":
@@ -1403,11 +1314,11 @@
 			]
 		},
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
-					"buffer": 10,
+					"buffer": 8,
 					"file": "app/index.html",
 					"settings":
 					{
@@ -1434,19 +1345,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 9,
 					"file": "app/views/subject.html",
 					"settings":
 					{
-						"buffer_size": 1314,
+						"buffer_size": 763,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1112,
-								1112
+								263,
+								263
 							]
 						],
 						"settings":
@@ -1462,61 +1373,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
-					"file": "app/views/_modalEditFileInfo.html",
-					"settings":
-					{
-						"buffer_size": 1494,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								442,
-								442
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "app/views/_modalNewNote.html",
-					"settings":
-					{
-						"buffer_size": 839,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								688,
-								688
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
+					"buffer": 10,
 					"file": "app/views/navbar.html",
 					"settings":
 					{
@@ -1544,19 +1401,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 11,
 					"file": "app/views/profile.html",
 					"settings":
 					{
-						"buffer_size": 1588,
+						"buffer_size": 1760,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								68,
-								68
+								332,
+								332
 							]
 						],
 						"settings":
@@ -1573,23 +1430,23 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
-					"buffer": 16,
+					"buffer": 12,
 					"file": "app/libs/factories/apiFactory.js",
 					"settings":
 					{
-						"buffer_size": 5278,
+						"buffer_size": 6501,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4816,
-								4816
+								5732,
+								5732
 							]
 						],
 						"settings":
@@ -1597,14 +1454,14 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 48.0,
-						"translation.y": 1904.0,
+						"translation.x": 0.0,
+						"translation.y": 3308.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 13,
 					"file": "app/libs/app.js",
 					"settings":
 					{
@@ -1628,8 +1485,8 @@
 						"selection":
 						[
 							[
-								141,
-								141
+								2526,
+								2526
 							]
 						],
 						"settings":
@@ -1637,14 +1494,14 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 255.0,
+						"translation.x": 312.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 14,
 					"file": "app/libs/factories/userFactory.js",
 					"settings":
 					{
@@ -1666,13 +1523,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 102.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 15,
 					"file": "app/libs/factories/subjectsTreeFactory.js",
 					"settings":
 					{
@@ -1705,7 +1562,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 20,
+					"buffer": 16,
 					"file": "app/libs/third-party/snackbar/angular.snackbar.js",
 					"settings":
 					{
@@ -1732,7 +1589,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 17,
 					"file": "Gruntfile.js",
 					"settings":
 					{
@@ -1759,19 +1616,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 18,
 					"file": "app/libs/_dependencies.min.js",
 					"settings":
 					{
-						"buffer_size": 149214,
+						"buffer_size": 277675,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								149214,
-								149214
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1785,35 +1642,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 23,
-					"file": "app/libs/third-party/loading-bar/loading-bar.min.js",
-					"settings":
-					{
-						"buffer_size": 9898,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								235,
-								235
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 238.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 24,
+					"buffer": 19,
 					"file": "app/stylesheets/sass/style.scss",
 					"settings":
 					{
@@ -1905,6 +1734,46 @@
 		"selected_items":
 		[
 			[
+				"nav",
+				"libs/directives/navBar.js"
+			],
+			[
+				"side",
+				"libs/directives/sideBar.js"
+			],
+			[
+				"user",
+				"libs/factories/userFactory.js"
+			],
+			[
+				"edit",
+				"libs/controllers/editSubjectsController.js"
+			],
+			[
+				"edi",
+				"views/editSubjects.html"
+			],
+			[
+				"editf",
+				"views/_modalEditFileInfo.html"
+			],
+			[
+				"ed",
+				"views/_modalEditNote.html"
+			],
+			[
+				"new",
+				"views/_modalNewNote.html"
+			],
+			[
+				"notes",
+				"views/notes.html"
+			],
+			[
+				"modal",
+				"views/_modalNewFile.html"
+			],
+			[
 				"subje",
 				"libs/factories/subjectsTreeFactory.js"
 			],
@@ -1915,26 +1784,6 @@
 			[
 				"pro",
 				"views/profile.html"
-			],
-			[
-				"nav",
-				"views/navbar.html"
-			],
-			[
-				"side",
-				"libs/directives/sideBar.js"
-			],
-			[
-				"edi",
-				"libs/controllers/editSubjectsController.js"
-			],
-			[
-				"edit",
-				"libs/controllers/editSubjectsController.js"
-			],
-			[
-				"modal",
-				"views/_modalNewNote.html"
 			],
 			[
 				"profil",
@@ -1997,10 +1846,6 @@
 				"views/_modalSubjectsList.html"
 			],
 			[
-				"notes",
-				"views/notes.html"
-			],
-			[
 				"tpl",
 				"libs/third-party/angular-bootstrap/ui-bootstrap-tpls.js"
 			],
@@ -2043,10 +1888,6 @@
 			[
 				"api",
 				"libs/factories/apiFactory.js"
-			],
-			[
-				"user",
-				"libs/factories/userFactory.js"
 			],
 			[
 				"na",

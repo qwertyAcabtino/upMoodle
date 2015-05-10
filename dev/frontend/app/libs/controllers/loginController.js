@@ -7,7 +7,7 @@ angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', '
 		api.login( email, password )
 			.success(function(data, status, headers, config) {
 				snackbar.message(data.message);
-				$scope.getUser();
+				$location.path('/dashboard');
 			})
 			.error(function(data, status, headers, config) {
 				snackbar.error(data.error);
@@ -20,16 +20,5 @@ angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', '
 
 	$scope.recoverPassword = function(){
 		$location.path('/recoverPassword');
-	};
-
-	$scope.getUser = function(){
-		api.getUser()
-			.success(function(data, status, headers, config){
-				// User.update(data);
-				$location.path('/dashboard');
-			})
-			.error(function(data, status, headers, config) {
-				snackbar.error(data.error);
-			});
 	};
 }]);
