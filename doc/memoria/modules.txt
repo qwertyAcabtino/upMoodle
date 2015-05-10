@@ -39,6 +39,27 @@ En el presente proyecto la información transmitida al usuario es muy importante
 
 En ciertos casos, dependiendo del nivel de seguridad y en función de la información expuesta a través de los mensajes y errores, es posible e incluso aconsejable el uso de una llamada api que devuelva todos los mensajes que pueda producir el backend, de esta forma, pueden retornarse códigos de mensaje/error en el lugar de mensajes en sí. El objetivo final de este diseño no responde a una necesidad de ahorro de datos (que a nivel teórico sí podría producirse), si no que podría utilizarse para proveer al frontend de un listado de errores y mensajes que pudiera utilizar a discrección, incluso en casos en lo que no existiese comunicación con el servidor. Ejemplo, los mensajes de control de formato de un formulario. De esta forma los mensajes de error ya están disponibles para el cliente web, pero la integridad del sistema permanece.
 
+==PUENTE==
+*API (entendido como el puente entre el backend y el frontend).*
+Para la construcción de esta API se ha utilizado como referencia princial (con ciertas excepciones) una guía escrita por un antiguo alumnos de la escuela: Anthanh Pham.
+En dicha guía se describen los aspectos más importantes a la hora de diseñar una API Rest. Entre dichos conceptos priman algunos sobre el resto a la hora de enfocarlo a nuestro caso particular. En concreto podría destacarse el esfuerzo por construir una API mínima, altamente legible, con una alta relación con las vistas y modelos e intentando reutilizar conceptos que varían en el tipo de llamada HTTP utilizado (GET, POST, etc).
+
+Una de las pocas violaciones de la guía sería el consejo de no habilitar y utilizar llamadas tipo DELETE. Dicho consejo fue depreciado en pro de una mayor legilibilidad. Sin embargo, en caso de ser necesario en un futuro donde el proyecto fuese a ser usado en producción, la solución pasaría por añadir un flag/campo a las llamadas post equivalentes (todas lo tienen) e incluir un &method=DELETE.
+Sin embargo, como se mencionaba anteriormente se ha preferido dotar de legibilibilidad a la API en tanto que se considera que el presente TFG es una vía de investigación y exploración que en términos generales, para adquirir el rango de código apto para despliegue en producción, necesita ligeros cambios.
+
+Como se ha incidido en varias ocasiones en el tema de la legilibidad de la API, observemos un pequeño ejemplo.
+En el caso de las llamadas de noticias (note/), tenemos los siguientes casos:
+[POST] note/. Dar de alta una nueva nota. 
+[GET]|[POST]|[DELETE] note/{id}. Obtiene, modifica o elimina una nota en función de su identificación única.
+[GET] note/level/{id}. Obtiene las notas de un nivel concreto (carrera, curso, asignatura).
+
+Con estas 5 llamadas se gestionan la totalidad de los aspectos relacionados con las noticias de nuestro sistema. Las llamadas son sencillas de comprender y con una extensión adecuada. 
+Retomando la cuestión anterior de la legibilidad versus una API rígida en cuestiones de cabeceras, tendríamos que en el caso de [POST]|[DELETE] note/{id} quedaría fusionado en una sola llamada y que habría que recurrir a su estructura interna para comprender su funcionamiento.
+
+Otro elemento que se ha intentado respetar aunque apenas si tiene peso en el proyecto: la composición. En el caso de que por ejemplo de la foto de perfil de nuestros usuarios tiene una llamada separada del [POST] user/, esta es, [POST] user/profile. Este sería un caso típico de composición/anidación de llamadas que en el capítulo correspondiente será analizado en detalle.
+
+En cualquier caso, en las secciones posteriores (vistas) se tratarán a fondo cada una de estas llamadas, aunque es necesario explicar que la guía de estilo seguida en la cuasitotalidad de los casos es la explicada anteriormente.
+
 
 <br>
 <br>
@@ -58,10 +79,11 @@ Es decir, de acuerdo a las capacidades ofertadas por el framework, las rutas int
 
 <br>
 **API**
-Para ofrecer el paquete de llamadas API que permiten la comunicación con el servidor tenemos el módulo api.
-Dicho módulo es una implementación de una factoría angular. Dichas factorias pueden ser consideradas los singletons de Angular y suelen ser utilizadas tanto para proveer módulos orientadas a factorías de métodos como para los casos en que son necesarios un punto acceso modular a variables globales (u objetos globales).
+Para ofrecer el paquete de llamadas API que permiten la comunicación con el servidor tenemos el módulo api. Dicho módulo es una implementación de una factoría angular.
+Como ya se ha descrito anteriormente, el presente módulo es el último punto de comunicación dentro del cliente y es quien es encargará tanto de realizar las pertinentes comunicaciones con el debido servidor como de proveer una API pública dentro del cliente frontend que permita conocer las opciones de comunicación con el servidor.
+Nuestra factoría API simplemente sirve de enlace entre el puente API real y nuestro front.
+Es por tanto que no es en este punto donde decidimos la arquitectura de la misma, ni los métodos expuestos, simplemente seguimos e implementamos lo que la API como tal expone declara públicamente que ofrece.
 
-En cualquier caso, como ya se ha descrito anteriormente, el presente módulo es el último punto de comunicación dentro del cliente y es quien es encargará tanto de realizar las pertinentes comunicaciones con el debido servidor como de proveer una API pública dentro del cliente frontend que permita conocer las opciones de comunicación con el servidor.
 
 <br>
 **User**
@@ -87,15 +109,47 @@ Como curiosidad destacar que para simplificar y hacer más robusto el código de
 En el presente proyecto encontramos que en el apartado frontend algunas vistas poseen una barra de navegación y otras no. En general puede dividirse que aquellas que pertenecen al ámbito de las vistas post-loguin poseen un navbar y el resto no.
 Es por ello que es necesario que exista un módulo específico para la gestión de dicha barra de navegación.
 
-En esta caso particular el tipo de módulo elegido es la directiva. Dichas directivas nos permiten reutilizar vistas html así como sus controladores y algunos datos a lo largo de las vistas principales de nuestro sistema.
+Como es de suponer por lo exlicado anteriormente, el tipo de módulo de Angular elegido para desarrollar esta parte del proyecto es una directiva.
 
 Hay que considerar que en Angular, por defecto, la anidación de vistas no está soportado. Es cierto que existen librerías de terceros que permiten esta funcionalidad explotando los límites del sistema, pero en tanto que las directivas suponen una excelente forma de cumplir nuestros objetivos y respetando la arquitectura original del framework, se opta porque esta sea nuestra elección.
 
-Hay que destacar que el controlador de nuestra directiva será mínimo y solo provee una serie de funcionalidades mínimas de navegación, siendo una forma de uso de los controladores bastante más minimalista que en el resto de vistas&controladores.
+Hay que destacar que el controlador de nuestra directiva será mínimo y solo provee una serie de funcionalidades mínimas de navegación, siendo una forma de uso de los controladores aún más minimalista que en el resto de vistas&controladores.
 
 
+**Sidebar**
+Al igual que sucede con el NavBar, en nuestro frontend nos encontramos con que en la mayoría de casos (aunque no en todos ellos), es necesario disponer de un fragmento de código HTML con un comportamiento asociado. En este caso particular tratamos el concepto de sidebar y como en esta integramos información de acceso rápido para simplificar la navegación a lo largo de la web.
+Igual que ocurría con el Navbar, habrá ocasiones en que sea necesario disponer de una barra lateral y otras veces no, por lo que se opta por utilizar una directiva para la implementación. 
+En términos generales, ambos dos módulos son muy parecidos, pues en ambos dos casos se busca proveer una rápida navegación al usuario, siendo quizás la característica más diferenciadora que el sidebar depende en mayor medida de los datos y relaciones de usuario en tanto que este muestra información relacionada con el mismo de una forma mucho más completa y personalizada de lo que lo hace el navbar, además de que por su diseño vertical está pensado para ser extendido en funcionalidades dinámicas, una característica que el navbar tiene más limitada.
+
+
+
+**Upload**
+https://github.com/danialfarid/ng-file-upload
+$upload es una directiva desarrollada por @danialfarid que controla todo el proceso de envío de ficheros desde el navegador hasta el servidor.
+Esta librería es muy importante este proyecto pues hace sencillo el proceso de subida de ficheros al servidor, permitiendo que sea sencillo compartir y colaborar en los contenidos.
+A nivel técnico de esta librería solo se aprovechan parte de sus funcionalidaes, esto se debe a que si bien el código de declaración del área Drag&Drop es muy útil, el resto de funcionalidades ya se encuentran definidas de forma propia, bien en el frontend o en el backend.
+Es decir, no es necesario que la directiva $upload maneje la petición POST que envía el fichero (y el formulario asociado) al servidor, nuestra factoría api ya se encarga de ello sin problemas.
+La elección de seleccionar sólo una parte de las funcionalidades viene fomentado en gran parte porque la integración pura con python por parte de $upload no era la mejor solución. En el repositorio de la librería se indican varios ejemplos de código backend para soportar la petición generada, sin embargo python no se encuentra entre uno de ellos. Esto supone una falla de documentación, sumado al hecho de que la propuesta de estructura HTTP generada por la librería choca parcialmente con el diseño ya implementado en nuestro servidor. 
+Son la suma de esta serie de circunstancias lo que invita a utilizar la librería únicamente en el estado inicial de captura de fichero por D&D, pero quedando el resto del procedimiento bajo implementación propia.
+
+**Loading bar**
+https://github.com/chieffancypants/angular-loading-bar
+Esta librería nos permitirá mostrar progresos de carga en nuestro navegador.
+En un esfuerzo por mantener desacoplados los conceptos visuales de alerta e información de los elementos que los originan (como se vio anteriomente en el apartado de las snacks, si un formulario falla, no es el formulario quien muestra el mensaje de error, sino nuestras snacks), esta librería supone una continuación de dicha política.
+La librería angular-loading-bar nos permitirá mostrar los progresos de una petición HTTP, de carga de un recurso, etc, etc, de una forma increíblemente sencilla, pues este módulo simplemente es indicado como una dependencia general de la aplicación y el resto es gestionado por la librería.
+Como se comentaba anteriormente, el que la librería sea autónoma permite mantener desacoplados los conceptos visuales de los elementos precursores, simplificándose la interfaz, los casos de uso y mejorando notablemente la experiencia de usuario.
+
+**Bootstrap**
 https://angular-ui.github.io/bootstrap/
-http://ngmodules.org/modules/angular-file-upload<br/>
+Bootstrap es un framework web que incluye tanto aspectos visuales (css) como elementos dinámicos (javascript). Inicialmente es utilizado a lo largo del proyecto como esqueleto para hacer crecer las vistas html de una forma rápida y estable, sin embargo, según ha avanzado el desarrollo del frontend se ha visto en la necesidad de acudir a explotar su carácter más dinámico y utilizar las librerías js utilizadas (incluídas en la carpeta de librería de terceros).
+Un motivo de esta pivotación sobre su uso puede encontrarse por ejemplo en el caso de las ventanas modales. Las ventanas modales son complejas de implementar si se desea obtener una UX pulida, sin embargo, acudiendo a la librería angular-bootstrap (su nombre lo dice todo) encontramos una implementación completa y cuidada de este patrón visual.
+Como se explicaba anteriormente, bootstrap en su apartado más visual proporciona una serie de reglas y clases css muy sencillas pero que permiten construir vistas que se adaptan a las circunstancias de renderizado (adpatative o responsive).
+
+
+*Tests*
+
+
+
 **Notas sobre como mejorar la memoria.**
 
 Bibliografia y referencias.

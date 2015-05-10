@@ -1,39 +1,44 @@
-El proyecto está dividido en dos: servidor y cliente web (o backend y frontend respectivamente).
-La pila técnica del proyecto, es decir, lenguajes, herramientas, frameworks y librerías utilizadas a lo largo del proyecto del proyecto son múltiples y variadas.
+Como se definía brevemente en la introducción técnica de la memoria, nuestro stack técnico es en pocas palabras la pila técnica del proyecto, es decir, lenguajes, herramientas, frameworks y librerías utilizadas a lo largo del proyecto del proyecto son múltiples y variadas. 
 
 ###Backend
 
 En nuestro backend el lenguaje principal es Python. Este lenguaje se distingue por ser multiparadigma (se adapta tanto a una estructura tipo script como a OO), por su sencillez y verstailidad y por su potencia.
 
 Por encima de Python se utiliza Django, un framework orientado a facilitar el desarrollo de proyectos web. Si bien puede utilizarse para proyectos fullstack (backend + frontend), en nuestro caso particular solo se utiliza para la parte de servidor.
-Este framework nos provee potentes herramientas tales como un ORM (mapeador de objectos relacionales), enrutador de urls, etc.
+Este framework nos provee de múltiples y potentes herramientas. En nuestro caso, optamos por utilizar únicamente una pequeña parte de toda ellas, en concreto los módulos que refieren al ORM (mapeador de objectos relacionales), el enrutador de urls, etc.
 
-Para facilitar la tarea de enrutación y des/serialización de objetos (de base de datos), por encima de Django se encuentra DjandoRestFramework. Este framework nos ayudará a la hora de transformar los datos de entrada de nuestras peticiones HTTP en objetos que nuestra base de datos pueda comprender (y viceversa).
+Para facilitar la tarea de enrutación y des/serialización de objetos (de base de datos), por encima de Django se encuentra DjandoRestFramework. Este framework, dependiente de Django para su uso, proporciona una capa muy útil a la hora de transformar los datos de entrada de nuestras peticiones HTTP en objetos que nuestra base de datos pueda comprender (y viceversa).
+El motivo principal de la elección de este diseño es que Django está pensado para ser el framework principal de todo el sistema, pues además del módulo de modelos también ofrece módulos para tratar vistas, plantillas, formularios. Esto significa que Djando puede encargarse en solitario de servir vistas donde el modleo de datos está integrado en la propia vista y no es necesario nada más para controlar los datos. 
+Sin embargo, atendiendo al diseño arquitectónico dispuesto, donde las vistas son delegadas al frontend y el canal de comunicación es nuestra ApiRest, es necesario utilizar DjangoRestFramework y como posteriormente se explica, mejorar algunas de las funcionalidades proporcionadas por dicho framework.
 
 <br>
 **Persistencia de datos**
 
-En el presente proyecto la persistencia de los datos recae en una base de datos (motor sqlite) pero con una serie de particularidades. A nivel real la base de datos es sql, pero sin embargo la capa más alta de acceso a nivel de framework es una base de datos de tipo objeto. Esto significa que es el framework de djando quien se encarga de realizar el mapeo orm para transformar las instancias de nuestros modelos (objetos) a datos sql con persistencia en disco.
+En el presente proyecto la persistencia de los datos recae en una base de datos (motor sqlite) pero con una serie de particularidades. A nivel real la base de datos es sql, pero sin embargo la capa más alta de acceso a nivel de framework es una base de datos de tipo objeto. Esto significa que es el framework de django quien se encarga de realizar el mapeo orm para transformar las instancias de nuestros modelos (objetos) a datos sql con persistencia en disco.
 El ORM proporcionado por Djando se podría resumir en que proporciona un objeto base Model de la librería models, todo objeto que en nuestro proyecto haga herencia de dicha clase será susceptible se tener capacidades de mapeo a datos SQL. 
 En el apartado dedicado a los des/serializadores se analiza el módulo encargado de convertir nuestras instancias heredada de Model a texto con formato JSON, preparado de esta forma para que nuestros clientes finales consuman los datos.
 En términos generales puede establecerse el siguiente hilo conductor extremo a extremo de un dato tipo.
 Datos SQL <=Mapeador ORM=> Objeto de una clase heredera de models.Model <=Des/Serializador=> Diccionarios de Python (clave-valor) <=JSONRender=> Cadena de texto con formato JSON que representa pares de clave-valor.
+Como se explicaba en la introducción nuestros modelos son una pieza fundamental del entorno backend. Y es aquí, en el principio técnico que soporta la persistencia de datos donde se ve la relación última entre un objeto de tipo modelo y la pila técnica que lo sustenta ( pasando por el elemento intermedio, el módulo, en nuestro casos el conjunto de clases Model que son proporcionadas por el framework Django).
 
 <br>
 **Requests.**
 
-Request es una librería tipo navaja-suiza de Python. Es la librería tipo de PYthon para la comunicación HTTP.
+Request es una librería tipo navaja-suiza (swiss-knife) de Python. Es la librería tipo de PYthon para la comunicación HTTP.
 Esta provee un acceso completo a la totalidad de los campos/cabeceras de una petición HTTP y de igual permite una completa personalización de las mismas.
-De esta forma, nos es posible gestionar de forma propia las cookies/tokens de sesión, los tipos de petición HTTP que realizamos, el contenido de las respuesta, el formato de los datos que se envían en las respuestas, etc.
+De esta forma, nos es posible gestionar de forma propia las cookies/tokens de sesión, los tipos de petición HTTP que realizamos, el contenido de las respuesta, el formato de los datos que se envían en las respuestas y en definitiva, obtener un control total sobre la comunicación HTTP y llevarlo a nuestras necesidades.
 
 De forma manual y complementaria a nuestras peticiones HTTP esambladas a través de librerías dependientes de HTTPResponse, tenemos que configurar algunos valores de cabecera de nuestras peticiones para permitir la comunicación entre servidores. Pero estas cuestiones son tratadas en el apartado dedicado a CORS.
+
 
 <br>
 **HTTP Cors.**
 
-En cuestiones de comunicaciones HTTP, los servidores tienen una serie de reglas para permitir la comunicación con servidores más allá del propio dominio.
-De forma y manera que para poder permitir que nuestra API sea descubrible, no ya por servicios de terceros, sino por nuestro propio frontend, es preciso que ciertas cabeceras sean modificadas para permitir la mentada comunicación "más allá de dominio".
-
+En cuestiones de comunicaciones HTTP, los servidores tienen una serie de reglas para permitir la comunicación y envío de datos con servidores más allá del propio dominio (Cross-origin resource sharing).
+De forma y manera que para poder permitir que nuestra API sea descubrible y usable, no ya por servicios de terceros, sino por nuestro propio frontend, es preciso que ciertas cabeceras sean modificadas para permitir la mentada comunicación "más allá de dominio".
+Django proporciona una capa de distintos middelware (código embebido entre distintas capas y procesos del sistema) para permitir una comunicación cross-domain completa.
+De esta forma, mediante la activación de una serie de middelwares ubicados en el settings.py de nuestro backend, podremos definir las reglas que nuestra api expone en las cabeceras de las respuestas HTTP.
+Por ejemplo, algunas de estas reglas nos permiten activar las peticiones de tipo DELETE, que por defecto no son accesibles fuera del dominio del backend y que tan necesarias y que en el apartado dedicado a la teoría y práctica de nuestra ApiRest se encuentra explicado la importancia de un correcto y completo manejo de las capacidades del protocolo HTTP.
 
 
 <br>
@@ -44,21 +49,48 @@ Como todo proyecto web basado en páginas dinámicas, nuestro proyecto hace uso 
 
 <br>
 **Angular**
-El primero de todos ellos sería Angular. Angular es un framework basado en javascript desarrollado por Google. Como la mayoría de frameworks desarrollados en los últimos años, apuesta por los principios de single-page y por un patrón MVC. Aunque en este aspecto hay que destacar que si bien la mayoría de frameworks webs aseveran apostar por un patrón MVC para organizar los módulos y lógicas, la mayoría de ellos redefinen parcialmente (y de forma interesada) dicho patrón para adaptarlo a sus implementaciones concretas.
+El primero de todos ellos sería Angular. Angular es un framework basado en javascript desarrollado por Google. Como la mayoría de frameworks desarrollados en los últimos años, apuesta por los principios de single-page y por un patrón oficialmente definido MVC, aunque en términos relativos (y los propios desarrolladores del core así lo creen) puede considerarse un MVW (Model-View-Whatever). Esta definición nace de la abstracción, flexibilidad o mutabilidad que puede sufrir el concepto Controller según el punto de vista del programador y el modelo arquitectónico que utilice. 
+Igualmente, sería interesante mencionar que el concepto de vista no es inmutable en el desarrollo y que especialmente en entornos frontend se ve continuamente cuestionado. Si bien nadie discute la indivisible asociación de los términos vista & interfaz de usuario, existen distintas implementaciones o presentaciones finales del concepto vista. Es tangible que dependiendo del framework de javascript utilizado, la potencia y versatilidad del concepto vista varía y esto puede comprobarse objetivamente observando la discusión sobre patrones y en concreto patrón MVVM.
+Como conclusión explicar que se elige Angular por su flexibilidad (entendido como reto para la construcción de un buen código sin que sea el framework quien fuerce a ello), por los retos a superar en sus puntos más débiles y por su comunidad y documentación disponible para consulta.
+En el apartado dedicado a los módulos del proyecto (concepto anteriormente explicado en la introducción tecnica) se analizarán más en detalle aquellas librerías que se han incluído (o desarrollado) en la parte Angular del proyecto.
+
+Directiva. Un elemento html que simboliza un modulo definido en el apartado js y que engloba un comportamiento completo asociado a una vista y un controlador principal.
+Servicios. Módulos de código reutilizable a lo largo de la aplicación pero que comparten memoria. En cierta manera son los singletons de angular y en múltiples ocasiones en la documentación oficial así como los propios desarrolladores del framework lo han defendido.
+Factorías. Las factorías y los servicios son muy similares en la mayoría de aspectos, habiendo diferencias significativas en la flexibilidad ofrecia (las factorías son algo más flexibles). En general puede entenderse que las factorías sirven para ofrecer comportamientos (funciones) y los servicios para ofrecer datos (modelos).
+Los controladores son una pieza clave de Angular y ofrecen comportamientos asociados a una vista. Si bien en términos generales el nombre de controlador es apropiado, debido a lo comentado anteriormente sobre MVW, a la modularidad pretendida en Angular y el diseño de módulos intercambiables, los controladores han de entenderse más bien como un pegamento, un nexo entre las vistas y los servicios y factorías.
+Si bien la estructura a nivel de código no puede ser discutido (en tanto partimos de un framework definido por terceros), la forma en que el código sea organizado en las carpetas del proyecto sí que puede ser elegido a la hora de desarrollar.
+Como se verá más adelante, cada uno de los conceptos de Angular señalados en el apartado anterior, es agrupado junto a sus semejantes en carpetas que los identifiquen. Es decir, los servicios se encuentran en la carpeta de servicios, las vistas en la carpeta de vistas, etc.
+Esta organización responde a una voluntad de limpieza organizativa pero también buscando el objetivo se mejorar las tareas de compilación e inyección, cuestión que será visto con mayor detenimiento en el apartado dedicado a los gestores de tareas.
 
 <br>
 **SASS**
-Al igual que sucede con javascript, css hoy en día requiere de librerías y frameworks encima del lenguaje para alcanzar cierta potencia. En nuestro caso se apuesta por el uso de SASS como lenguaje de estilo. SASS (junto a LESS) ofrecen grandes ventajas sobre el lenguaje CSS original, siendo la escritura anidada, las metafunciones y las variables algunas de las características ofrecidas mas destacables.
+Al igual que sucede con javascript, css hoy en día requiere de librerías y frameworks encima del lenguaje para alcanzar cierta potencia. En nuestro caso se apuesta por el uso de SASS como lenguaje de estilo.
+SASS (al igual que su principal rival: LESS) es un metalenguaje compilado, queriendo esto decir que el resultado de la compilación de su código da por resultado código CSS.
+CSS es un lenguage con una serie de limitaciones que en el mundo actual del desarrollo y maquetado web no ofrece todo lo necesario, sin embargo, la solución intermedia (y esperemos temporal) utilizada en ese aspecto es el uso extendido y masivo de metalenguajes que extiendan las capacidades y posibilidades de css.
+Todo esto se traduce en que los dos principales metalenguajes de CSS (SASS y Less) ofrecen características como la anidación, las variables, herencia, reutilización de código, etc, etc.
+Entre la posibilidad de utilizar Sass o Less se ha apostado por el primero. Es una opción más novedosa (más potente, un concepto más avanzado) pero con una comunidad y documentación igualmente asentada. Al ser la opción más novedosa incluye algunas funciones extremadamente interesantes que hacen que la balanza se decante positivamente sobre Sass (como por ejemplo su capacidad de reutilizar código). Uno de los últimos motivos de utilizar Sass es Compass. Compass es una herramienta de compilación de Sass pero que incluye funciones adicionales (como el uso de sprints por defecto) que hacen que la oferta de Compass haga de Sass una opcion mucho más interesante que su rival.
+
 
 <br>
-**Grunt**
-En la actualidad, nuestros proyectos web requieren de ciertas herramientas de gestión, control y despliegue adicionales que hasta hace unos pocos años no estaban maduras ni al alcance de cualquier desarrollo. En nuestro caso, Grunt es usado como gestor de tareas.
-Grunt nos permitirá automatizar nuestro despliegue durante el desarrollo, pero también puede ser configurado para configurar distintos tipos de compilaciones. Por ejemplo, puede ser configurado para compilar y preparar nuestros ficheros scss. También puede ser utilizado para las tareas de ofuscación o concatenación de código.
+**Gestores de tareas y despliegue**
+En la actualidad, nuestros proyectos web requieren de ciertas herramientas de gestión, control y despliegue adicionales que hasta hace unos pocos años no estaban maduras ni al alcance de cualquier desarrollo.
+Para cumplir dichas necesidades los gestores de tareas, programas que simplifican los procesos de scripting asociados a las compilaciones y despliegues de código. En Android podríamos considerar Gradle o Ant y en términos de desarrollo web hablaríamos de Grunt o Gulp como los dos programas icono.
+En nuestro caso, Grunt es la elección utilizada como gestor de tareas.
+Como se explicaba anteriormente, Grunt nos ofrecerá incialmente introducir el concepto de automatización en el proceso de despliegue de nuestro proyecto. Sin embargo, este concepto se volverá más complejo según vaya escalando las necesidades y la complejidad del proyecto.
+Inicialmente podríamos observar la necesidad de automatizar el proceso de compilación de los ficheros Sass como tarea mas primaria a solventar mediante automatización. Sin embargo, según crece la estructura del proyecto en su apartado Angular, se observa la necesidad de incluir tareas más complejas.
+
+Entre las muchas opciones que ofrece grunt, las más comunes son la configuración para compilar y preparar nuestros ficheros scss. También puede ser utilizado para las tareas de ofuscación o concatenación de código. En el apartado predecesor dedicado a Angular ya se explicaba la estructura a nivel de ficheros seguida, pues bien, dicha estructura obedece a razones de legibilidad, estructura visual y también a razones de simplificación de las tareas de despliegue y es aquí donde Grunt ofrece todo su potencial.
+Gracias a la estructura de carpetas utilizado, en Grunt únicamente hemos de indicarle que por cada carpeta de nuestra librería de Angular, devuelva un fichero minimizado (min.js) con una estructura concatenada y ofuscada. Así, en un solo fichero tenemos todos nuestros servicios, directivas, controladores y librerías de terceros integrados para funcionar.
+De igual forma, en nuestro index.html que soporta toda la ingeniería single-page, tiene un número muy reducido de dependencias a incluir, facilitando enormemente las labores de desarrollo y mantenimiento.
 
 
 <br>
 **Gestores de dependencias**
-Por otra parte, gran parte de los desarrollos web actuales, máxime cuando se hace uso de frameworks como angular, el uso de librerías de terceros es una práctica común y necesaria. Partiendo de la lógica de que el uso de librerías de terceros con licencias libres nos permite tener el control del código que asociamos a nuestros proyectos, el carácter abierto de un módulo de código y una comunidad detrás de apoyo nos invita a confiar en la fiabilidad del código (más ojos observando, mejorando y utilizando tienden a encontrar más errores en el código).
-Por tanto, para la gestión automática de dichas librerías, existen algunas librerías gestionadas por programas de gestión de dependencias. En nuestro caso, dependiendo del caso concreto, habremos de utilizar Bower, NPM (node package manager) o gem (gemas de ruby) para la gestión de dichas librerías de terceros.
+En la actualidad la mayoría de disciplinas o entornos poseen un grado de madurez tanto propio como de comunidad que permite que reusables conjuntos de código sean compartidos en forma de librerías o frameworks. 
+Si bien cada una de los entornos (web, móvil, servidor) tiene unas necesidades distintas, el principio que sustenta los gestores de dependencias de cada uno tienen bases comunes.
+Dichos gestores de dependencias son herramientas extras que nos permiten acceder a aquellos paquetes (entendido como concepto abstracto de librería, framework o X) e intregrarlos en nuestros sistemas.
+En muchas ocasiones, la filosofía detrás de los gestores de dependencias y comunidades de paquetes es el código libre. Entre sus muchos principios, en lo que compete a nuestro caso, una de las máximas de la teoría de estas comunidades es que muchos ojos observando y colaborando es extremadamente positivo.
+En nuestro caso, para la gestión de dependencias de nuestro frontend utilizaremos Bower, NPM (node package manager) o gem (gemas de ruby) para la gestión de dichas librerías de terceros, sirviéndonos de las circunstancias para elegir en cada caso uno u otro, siendo el motivo principal de elección la disponibilidad y la capacidad de acceso a versiones específicas que garanticen la mayor compatibilidad con el resto de librerías.
+Como excepcionalidad y violando brevemente la estructura de la memoria apuntar que un gestor de dependencias extremadamente famoso y muy utilizado en el desarrollo python es pip que en muchos aspectos recuerda a Bower.
 
 

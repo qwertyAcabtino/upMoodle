@@ -1,34 +1,40 @@
 El mundo actual ha cambiado irremediablemente con la irrupción de internet en nuestras vidas y la educación (en todos sus niveles) no es una excepción.
-En la actualidad, si bien hay numerosas herramientas orientadas a integrar la educación universitaria en las posibilidades tecnológicas del siglo XXI, estas no alcanzan las expectativas y necesidades de sus alumnos.
+En la actualidad, si bien hay numerosas herramientas orientadas a integrar la educación universitaria en las posibilidades tecnológicas del siglo XXI, estas no alcanzan las expectativas y necesidades de profesores y alumnos.
 
 Esta perspectiva, fruto de la propia experiencia en mis pasados años como estudiante son el punto de partida del presente TFG. 
-Es una idea, una opinión sencilla: los alumnos no obtienen de sus escuelas las herramientas digitales adecuadas y algunas de ellas de implementar.
+Es una idea, una opinión sencilla: los alumnos no obtienen de sus escuelas las herramientas digitales adecuadas y algunas de ellas son realmente sencillas de implementar.
 
-Independientemente de la asignatura, siempre a unos elementos que acompañan al alumno durante el tiempo que la cursa. 
-+Necesita material de trabajo. Enfóquese en fino y llámense apuntes, trabajos, bibliografía, ejemplos, exámenes. En cualquiera de los casos, como alumnos dependemos enormemente de dichos materiales para el estudio y superación de nuestras asignaturas.
+Independientemente de la asignatura, siempre hay a unos elementos que acompañan al alumno durante el tiempo que la cursa. 
++Necesita material de trabajo. Enfóquese en corto y llámense apuntes, trabajos, bibliografía, ejemplos, exámenes. En cualquiera de los casos, como alumnos dependemos enormemente de dichos materiales para el estudio y superación de nuestras asignaturas.
 +Necesitamos conocer las noticias de la escuela. De las más generales a las más concretas. Grandes noticias que sacuden la vida del campus (huelgas, cortes de luz, etc) hasta la suspensión de una clase por una baja médica. En realidad no importa el mensaje. Lo que los alumnos realmente necesitan es saber que ocurre en la escuela y tener un auténtico punto de referencia a través del cual informarse.
 +Los alumnos necesitan organizar sus horarios. Hablamos tanto de sus tediosos horarios de clases que se habrán de repetir por todo un semestre, pero también de los eventos que habrán de ocurrir sólo una vez, o incluso con frecuencia irregular.
 
 Los arriba enunciados son 3 pilares sencillos y al mismo tiempo fundamentales del estudio universitario. 
-Sin embargo, la motivación que lleva a la puesta en marcha de este TFG es el vergonzante y plausible hecho de que en nuestra escuela, así como en muchas otras universidades españolas, las herramientas aportadas por las escuelas a los estudiantes para satisfacer dichas necesidades NO FUNCIONAN.
+Sin embargo, la motivación que lleva a la puesta en marcha de este TFG es el vergonzante y plausible hecho de que en nuestra escuela, así como en muchas otras universidades españolas, las herramientas aportadas por las escuelas a los estudiantes para satisfacer las necesidades anteriormente descritas NO FUNCIONAN.
 
-Hechos probados.
+Partamos de los hechos probados.
 
-Apuntes. Desfasados, tardíos, inexistentes, incorrectos o insuficientes. Estos son los adjetivos que en muchos casos pueden atribuirse al material subido a las plataformas de e-educación universitaria. No es en muchos casos simple culpa de los profesores, en muchas ocasiones el mayor motivo de fracaso en los objetivos de estas plataformas reside en el hecho de que el profesor es el único que es capaz de aportar a la plataforma. 
-La experiencia como estudiante es innegable. En muchas ocaciones los repositorios de material de trabajo realizados por los estudiantes es plausiblemente mejor que el ofrecido por el profesor, simple y llanamente porque existe colaboración. 
+Apuntes. 
+	Desfasados, tardíos, inexistentes, incorrectos o insuficientes. Estos son los adjetivos que en muchos casos pueden atribuirse al material subido a las plataformas de e-educación universitaria. No es en muchos casos simple culpa de los profesores, en muchas ocasiones el mayor motivo de fracaso en los objetivos de estas plataformas reside en el hecho de que el profesor es el único que es capaz de aportar a la plataforma. 
+La experiencia como estudiante es innegable. En muchas ocaciones los repositorios de material de trabajo realizados por los estudiantes es plausiblemente mejor que el ofrecido por el profesor, simple y llanamente porque se parte de un principio de colaboración. 
 No hay mayor premisa que esa (la colaboración) tras la idea de una plataforma de material de trabajo abierta a modificaciones por parte de cualquier usuario, independientemente de su rol dentro del aula.
-El objetivo de nuestra educación superior es la reflexión, el aprendizaje bajo el fuerte convencimiento de que estudiamos materias que nos apasionan, que despiertan nuestro interés y curiosidad. Si esta es una de las premisas fundacionales de la educación superior, así ha de considerarse el desarrollo de la misma y por tanto, la colaboración como vía de juntar mentes curiosas y ávidas de aprendizaje para el desarrollo del conocimiento. Ese ha de ser el modelo teórico y las plataformas de e-educación verdaderamente abiertas a la particiación y la colaboración el camino práctico.
+El objetivo de nuestra educación superior es la reflexión, el aprendizaje bajo el fuerte convencimiento de que estudiamos materias que nos apasionan, que despiertan nuestro interés y curiosidad. 
+Siendo esta una de las premisas fundacionales de la educación superior, así ha de considerarse el desarrollo de la misma y por tanto, la colaboración como vía de juntar mentes curiosas y ávidas de aprendizaje para el desarrollo del conocimiento. Ese ha de ser el modelo teórico y las plataformas de e-educación verdaderamente abiertas a la particiación y la colaboración el camino práctico.
 
-Eventos. Las noticias de la escuela nunca se encuentran 2 veces en el mismo sitio y eso choca terriblemente con una realidad cotidiana de nuestra vida en el 2015. 
+Eventos. 
+	Las noticias de la escuela nunca se encuentran 2 veces en el mismo sitio y eso choca terriblemente con una realidad cotidiana de nuestra vida en el 2015. 
 Hoy en día nuestros ojos se dirigen continuamente a los paneles de notificaciones de nuestros dispositivos móviles. Es un concepto teórico sencillo. En un solo lugar, todo lo que necesitamos saber, fin.
-Frente a esta realidad tangible de nuestro día a día, la experiencia de la universidad. Webs de departamento, de escuela, de profesores, el correo, las plataformas de e-educación, etc.
+Frente a esta realidad tangible de nuestro día a día, la experiencia de la universidad: webs de departamento, de escuela, de profesores, el correo, las plataformas de e-educación, etc.
 Simplemente no funciona. Por disperso, por inconexo, por desactualizado, por falta de acuse de recibo.
-Y tan sencillamente se aprecia la carencia, de la misma forma hilando con el concepto de notificaciones de nuestros dispositivos móviles, surge la solución.
+Y tan sencillamente como se aprecia la carencia, de la misma forma e hilando con el concepto de notificaciones de nuestros dispositivos móviles, surge la solución.
 Un sitio, un panel de notificaciones, relevancia por roles y ruido. Pura teoría comunicativa de esta sociedad de RTs y likes. El presente proyecto, un simple intento de hacerlo práctico.
 
-De forma paralela y casi indistinguible de los eventos surgen los horarios. Horarios de clase, de exámenes, de mantenimientos, tutorías. El mismo problema nuevamente, no es posible mantener esa información organizada y de la misma.
-BLABLABLA
+De forma paralela y casi indistinguible de los eventos surgen los horarios. Horarios de clase, de exámenes, de mantenimientos, tutorías. El mismo problema nuevamente, no es posible mantener esa información organizada, conexa, organizada o incluso por estar presentada bajo un sistema comunicativo anticuado. Y siempre partiendo de la base de que la información exista, supuesto que no siempre se cumple.
+Ante esta problemática, partiendo nuevamente de la teoría de notificaciones anteriormente escrita surge el diseño de aquello que pretende ser la solución.
+Unificar en un solo espacio (al igual que con los eventos) todos aquello que tiene una relación temporal concreta. No hablamos únicamente de los horarios de las asignaturas, también de sus horarios de tutorías, charlas que se den en las escuelas y en definitiva cualquier cosa que como miembros de la universidad deseamos estar conocer con facilidad.
 
-Nuevamente, 3 problemas desarrollados sobre su base teórica y práctica. 
-Tozuda realidad de que algo está fallando en nuestros centro de educación superior.
+Hay que ser conscientes del reto que se está poniendo encima de la mesa. En el mundo del desarrollo existe una cierta tendencia en bramar sobre la carencia que presentan algunos estándares y en el como hay demasiados que intentar dar una solución única. El resultado de estas discusiones en comunidad suelen dar por resultado que donde antes existían 13 estándares incompletos, ahora existan 14.
+Es por tanto importante comprender que si se quiere señalar acusatoriamente a diversos niveles de la institución universitaria, la solución aportada debe verdaderamente solucionarlos con una calidad a la altura de la acusación, quedando este juicio de valor a discrección del jurado que habrá de evaluar el presente TFG.
+Existirán más oportunidades en el futuro para presentar una solución que verdaderamente satisfaga a los miembros de la universidad, la presente solución aportada no es la última oportunidad para ello. Sin embargo, es mi objetivo prestar un alto valor en la solución aportada para que las nuevas promociones que ingresen en las aulas así como los profesores que habrán de continuar en ellas cuando nosotros ya no estemos, finalmente posean una herramienta a la altura de las necesidades educativas de estos tiempos digitales.
+
 
