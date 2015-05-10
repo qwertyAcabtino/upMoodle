@@ -13,7 +13,7 @@ urlpatterns = patterns('rest.router',
     # APIs
     # System
     url(r'^signup/$', 'signup'),
-    url(r'^confirm_email/(?P<cookie>.*)/$', 'confirmEmail'),
+    url(r'^confirm_email/$', 'confirmEmail'),
     url(r'^login/$', 'login'),
     url(r'^logout/$', 'logout'),
     url(r'^recover_password/$', 'recoverPassword'),

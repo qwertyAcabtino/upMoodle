@@ -1,26 +1,16 @@
-from django.core.mail import send_mail
-from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
 
-from backend import settings
-from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
-from rest.MESSAGES_ID import INCORRECT_DATA, REQUEST_CANNOT, DISABLED_COOKIES, INVALID_TOKEN, ALREADY_CONFIRMED, \
-    SUCCESS_LOGIN, UNCONFIRMED_EMAIL, RECOVER_PASS_EMAIL, UNAUTHORIZED, USER_REMOVED, USER_UPDATED, NOTE_UPDATED
-from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.controllers.Exceptions.requestException import RequestExceptionByMessage, RequestExceptionByCode, \
+from rest.JSONResponse import JSONResponse
+from rest.controllers.Exceptions.requestException import RequestExceptionByCode, \
     RequestException
 from rest.orm.serializers import *
-from rest.controllers.controllers import get_email_confirmation_message, cookies_are_ok, send_recover_password_email, \
-    get_random_password, \
-    get_random_email, check_signed_in_request, check_cookies, check_authorized_author
-from rest.orm.unserializers import unserialize_user, unserialize_note
+from rest.controllers.controllers import check_signed_in_request
 from rest.viewsPackage.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
 from rest.viewsPackage.files import file_get_info, file_get_binary, file_put, file_delete, file_post
 from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
-from rest.viewsPackage.system import signup_sys, confirmEmail_sys, login_sys, logout_sys, recoverPassword_sys, \
-    subjectsTree_get, fileTypes_get
+from rest.viewsPackage.system import signup_sys, login_sys, logout_sys, recoverPassword_sys, \
+    subjectsTree_get, fileTypes_get, confirmEmail_sys
 from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
     user_put_profile_pic
 
@@ -84,9 +74,9 @@ def fileListSubject(request, pk):
 def signup(request):
     return signup_sys(request)
 
-
-def confirmEmail(request, cookie):
-    return confirmEmail_sys(request, cookie)
+@csrf_exempt
+def confirmEmail(request):
+    return confirmEmail_sys(request)
 
 
 @csrf_exempt

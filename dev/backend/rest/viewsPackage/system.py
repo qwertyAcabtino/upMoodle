@@ -12,7 +12,7 @@ from rest.MESSAGES_ID import REQUEST_CANNOT, INCORRECT_DATA, ALREADY_CONFIRMED, 
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestExceptionByMessage, \
     RequestException
 from rest.controllers.controllers import check_cookies, get_email_confirmation_message, cookies_are_ok, \
-    get_random_password, send_recover_password_email
+    get_random_password, send_recover_password_email, check_signed_in_request, check_request_method
 from rest.models import User, Level, FileType
 from rest.orm.serializers import LevelSerializer, FileTypeSerializer
 from rest.orm.unserializers import unserialize_user
@@ -46,20 +46,21 @@ def signup_sys(request):
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
-def confirmEmail_sys(request, cookie):
+def confirmEmail_sys(request):
     try:
-        if request.method == 'GET':
-            user = User.objects.get(sessionToken=cookie)
-            if user.confirmedEmail:
-                return RequestExceptionByCode(ALREADY_CONFIRMED).jsonResponse
-            else:
-                user.confirmedEmail = True
-                user.save()
-                return JSONResponseID(ACCOUNT_VALIDATED)
+        check_request_method(request, method='POST')
+        token = request.POST['token']
+        user = User.objects.get(sessionToken=token)
+        if user.confirmedEmail:
+            return RequestExceptionByCode(ALREADY_CONFIRMED).jsonResponse
         else:
-            return RequestExceptionByCode(REQUEST_CANNOT).jsonResponse
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INVALID_TOKEN).jsonResponse
+            user.confirmedEmail = True
+            user.save()
+            return JSONResponseID(ACCOUNT_VALIDATED)
+    except RequestException as r:
+        return r.jsonResponse
+    except ObjectDoesNotExist or OverflowError or ValueError:
+        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
 def login_sys(request):
