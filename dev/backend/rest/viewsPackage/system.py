@@ -109,7 +109,7 @@ def logout_sys(request):
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)
     except Exception:
-        return JSONResponse({"null"}, status=200)  # TODO. 400?
+        return JSONResponse({"null"}, status=400)
 
 
 def recoverPassword_sys(request):

@@ -68,7 +68,7 @@ def filesList(request):
         return JSONResponse(serializer.data)
 
 
-def fileListSubject(request, pk):  # TODO. Fails if is not a subject.
+def fileListSubject(request, pk):
     level = Level.objects.get(id=pk)
     if level.is_subject() and request.method == 'GET':
         files = File.objects.filter(subject=pk, visible=True)
