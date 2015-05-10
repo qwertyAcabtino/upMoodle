@@ -1,7 +1,7 @@
 angular.module('upmApp').controller( 'signUpCtrl', ['$scope', '$cookies', 'api', 'snackbar', function($scope, $cookies, api, snackbar) {
 	$scope.signedup = false;
 	$scope.signUp = function(user){
-		api.signup( user.email, user.password, user.nick )
+		api.signup( user )
 			.success(function(data, status, headers, config) {
 				$scope.signedup = true;
 			})

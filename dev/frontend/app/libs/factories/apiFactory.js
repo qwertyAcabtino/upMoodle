@@ -87,7 +87,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
-		signup : function(email, password, nick){
+		signup : function(user){
 			return $http({ 
 				method: 'post', 
 				url:  base_url + 'signup/',
@@ -98,7 +98,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
 					return str.join("&");
 				},
-				data : {email: email, password: password, nick: nick}
+				data : {email: user.email, password: user.password, nick: user.nick, name: user.name}
 			});
 		},
 
@@ -126,8 +126,16 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 
 		confirmEmail : function(token){  
 			return $http({     
-				method: 'GET',      
-				url:  base_url + 'confirm_email/' + token +"/"
+				method: 'POST',      
+				url:  base_url + 'confirm_email/',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				transformRequest: function(obj) {
+					var str = [];
+					for(var p in obj)
+						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+					return str.join("&");
+				},
+				data: {token: token}
 			});
 		},
 
