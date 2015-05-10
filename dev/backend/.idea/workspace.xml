@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="Fails if is not a subject.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest/router.py" afterPath="$PROJECT_DIR$/rest/router.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/app/libs/controllers/subjectController.js" afterPath="$PROJECT_DIR$/../frontend/app/libs/controllers/subjectController.js" />
+    <list default="true" id="1dc8c3e7-623d-4c42-9257-8072d0c073b1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="backend.iws" />
@@ -1223,7 +1220,11 @@
       <created>1431266222217</created>
       <updated>1431266222217</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Fails if is not a subject.">
+      <created>1431266564971</created>
+      <updated>1431266564971</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1247,7 +1248,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="1050" width="1602" height="876" extended-state="6" />
+    <frame x="-1" y="1050" width="1602" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1312,7 +1313,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Improvements over obfuscation, redirection.&#10;Recover password and email confirmation" />
     <MESSAGE value="Edit user's subjects" />
     <MESSAGE value="Recursive notes" />
     <MESSAGE value="More notes structure" />
@@ -1337,7 +1337,8 @@
     <MESSAGE value="Memory" />
     <MESSAGE value="Cleaning the repo. Back to cleaning commiting" />
     <MESSAGE value="Level validate exists" />
-    <option name="LAST_COMMIT_MESSAGE" value="Level validate exists" />
+    <MESSAGE value="Fails if is not a subject." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fails if is not a subject." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
