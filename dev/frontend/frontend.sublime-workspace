@@ -531,31 +531,7 @@
 			"file": "app/libs/controllers/loginController.js",
 			"settings":
 			{
-				"buffer_size": 992,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/libs/controllers/signUpController.js",
-			"settings":
-			{
-				"buffer_size": 443,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/libs/controllers/dashboardController.js",
-			"settings":
-			{
-				"buffer_size": 163,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/libs/controllers/subjectsController.js",
-			"settings":
-			{
-				"buffer_size": 1798,
+				"buffer_size": 743,
 				"line_ending": "Unix"
 			}
 		},
@@ -571,15 +547,23 @@
 			"file": "app/libs/controllers/subjectController.js",
 			"settings":
 			{
-				"buffer_size": 5223,
+				"buffer_size": 5257,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/libs/controllers/profileController.js",
+			"file": "app/libs/controllers/editSubjectsController.js",
 			"settings":
 			{
-				"buffer_size": 1609,
+				"buffer_size": 1495,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/libs/controllers/confirmEmailController.js",
+			"settings":
+			{
+				"buffer_size": 525,
 				"line_ending": "Unix"
 			}
 		},
@@ -587,7 +571,7 @@
 			"file": "app/index.html",
 			"settings":
 			{
-				"buffer_size": 974,
+				"buffer_size": 973,
 				"line_ending": "Unix"
 			}
 		},
@@ -616,10 +600,34 @@
 			}
 		},
 		{
+			"file": "app/views/sidebar.html",
+			"settings":
+			{
+				"buffer_size": 678,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/editSubjects.html",
+			"settings":
+			{
+				"buffer_size": 945,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/confirm_email.html",
+			"settings":
+			{
+				"buffer_size": 22,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "app/libs/factories/apiFactory.js",
 			"settings":
 			{
-				"buffer_size": 6501,
+				"buffer_size": 6786,
 				"line_ending": "Unix"
 			}
 		},
@@ -683,19 +691,19 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 285.0,
+		"height": 356.0,
 		"selected_items":
 		[
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
 			[
 				"reint",
 				"Indentation: Reindent Lines"
 			],
 			[
 				"re",
-				"Indentation: Reindent Lines"
-			],
-			[
-				"rein",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -792,10 +800,17 @@
 	},
 	"file_history":
 	[
-		"/home/viperey/Downloads/bootstrap-3.3.4-dist.zip",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/signup.html",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/signUpController.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/directives/navBar.js",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/loading-bar/loading-bar.min.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/profileController.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/editSubjectsController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/subjectsController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/subjectController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/dashboardController.js",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/login.html",
+		"/home/viperey/Downloads/bootstrap-3.3.4-dist.zip",
+		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/loading-bar/loading-bar.min.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/editSubjects.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalEditFileInfo.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/notes.html",
@@ -807,9 +822,7 @@
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/snackbar/angular.snackbar.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/subjects.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/profile.html",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/signup.html",
 		"/home/viperey/Downloads/asdfasdf.txt",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/profileController.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/_dependencies.min.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/style.css",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/stylesheets/sass/style.scss",
@@ -821,7 +834,6 @@
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/recoverPassword.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/navbar.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/confirm_email.html",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/login.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/backbone.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/views/_modalSubjectsList.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/_modalSubjectsList.html",
@@ -857,7 +869,6 @@
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/Gruntfile.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/factories/userFactory.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/package.json",
-		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/controllers/dashboardController.js",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/index.html",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-route/angular-route.min.js.map",
 		"/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/frontend/app/libs/third-party/angular-cookies/index.js",
@@ -916,10 +927,7 @@
 		"/home/viperey/rsync/src/b.dat",
 		"/home/viperey/Dropbox/Proyectos/Propio/seriesLyks/README.md",
 		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/.hg/hgrc",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/.hg/hgrc",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/Favoroute/.hg/hgrc",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/stringsParser.py",
-		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favoroute-graphic-resources/dev/dimensGenerator/res/values/strings.xml"
+		"/home/viperey/Dropbox/Proyectos/Asalariado/Favoroute/favorouteAndroid/FavorouteProject/.hg/hgrc"
 	],
 	"find":
 	{
@@ -946,6 +954,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"location",
 			"updateUserProfilePic",
 			"files",
 			"upload",
@@ -1072,8 +1081,7 @@
 			"		.when('/dashboard', {\n			templateUrl: 'views/dashboard.html',\n			controller: 'dashboardCtrl',\n			resolve : {\n				userModel : userPromise\n\n			}\n		})\n",
 			"require",
 			"create",
-			"node-modules",
-			"			js-shelf:{\n				files: 'app/libs/*/*.js',\n				tasks: ['uglify']\n			}\n"
+			"node-modules"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1091,7 +1099,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -1106,8 +1114,8 @@
 						"selection":
 						[
 							[
-								207,
-								207
+								221,
+								221
 							]
 						],
 						"settings":
@@ -1127,15 +1135,15 @@
 					"file": "app/libs/controllers/loginController.js",
 					"settings":
 					{
-						"buffer_size": 992,
+						"buffer_size": 743,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								886,
-								886
+								493,
+								493
 							]
 						],
 						"settings":
@@ -1151,86 +1159,6 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/libs/controllers/signUpController.js",
-					"settings":
-					{
-						"buffer_size": 443,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								336,
-								336
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/libs/controllers/dashboardController.js",
-					"settings":
-					{
-						"buffer_size": 163,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								163,
-								163
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/libs/controllers/subjectsController.js",
-					"settings":
-					{
-						"buffer_size": 1798,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1319,
-								1319
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 255.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "app/libs/controllers/notesController.js",
 					"settings":
 					{
@@ -1241,8 +1169,8 @@
 						"selection":
 						[
 							[
-								5224,
-								5224
+								2345,
+								2345
 							]
 						],
 						"settings":
@@ -1252,25 +1180,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2805.0,
+						"translation.y": 1581.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "app/libs/controllers/subjectController.js",
 					"settings":
 					{
-						"buffer_size": 5223,
+						"buffer_size": 5257,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2473,
-								2473
+								871,
+								871
 							]
 						],
 						"settings":
@@ -1279,25 +1207,51 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1729.0,
+						"translation.y": 204.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "app/libs/controllers/profileController.js",
+					"buffer": 4,
+					"file": "app/libs/controllers/editSubjectsController.js",
 					"settings":
 					{
-						"buffer_size": 1609,
+						"buffer_size": 1495,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								460,
-								460
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 561.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/libs/controllers/confirmEmailController.js",
+					"settings":
+					{
+						"buffer_size": 525,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								515,
+								515
 							]
 						],
 						"settings":
@@ -1314,23 +1268,23 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 6,
 			"sheets":
 			[
 				{
-					"buffer": 8,
+					"buffer": 6,
 					"file": "app/index.html",
 					"settings":
 					{
-						"buffer_size": 974,
+						"buffer_size": 973,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								556,
-								556
+								973,
+								973
 							]
 						],
 						"settings":
@@ -1339,13 +1293,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 204.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 7,
 					"file": "app/views/subject.html",
 					"settings":
 					{
@@ -1356,8 +1310,8 @@
 						"selection":
 						[
 							[
-								263,
-								263
+								347,
+								347
 							]
 						],
 						"settings":
@@ -1373,7 +1327,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 8,
 					"file": "app/views/navbar.html",
 					"settings":
 					{
@@ -1401,7 +1355,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 9,
 					"file": "app/views/profile.html",
 					"settings":
 					{
@@ -1426,27 +1380,108 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 12,
-					"file": "app/libs/factories/apiFactory.js",
+					"buffer": 10,
+					"file": "app/views/sidebar.html",
 					"settings":
 					{
-						"buffer_size": 6501,
+						"buffer_size": 678,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5732,
-								5732
+								176,
+								176
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "app/views/editSubjects.html",
+					"settings":
+					{
+						"buffer_size": 945,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								938,
+								938
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 272.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "app/views/confirm_email.html",
+					"settings":
+					{
+						"buffer_size": 22,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 13,
+					"file": "app/libs/factories/apiFactory.js",
+					"settings":
+					{
+						"buffer_size": 6786,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3309,
+								3309
 							]
 						],
 						"settings":
@@ -1455,13 +1490,13 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3308.0,
+						"translation.y": 2101.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "app/libs/app.js",
 					"settings":
 					{
@@ -1485,8 +1520,8 @@
 						"selection":
 						[
 							[
-								2526,
-								2526
+								364,
+								364
 							]
 						],
 						"settings":
@@ -1494,14 +1529,14 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 312.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 765.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"file": "app/libs/factories/userFactory.js",
 					"settings":
 					{
@@ -1529,7 +1564,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 16,
 					"file": "app/libs/factories/subjectsTreeFactory.js",
 					"settings":
 					{
@@ -1562,7 +1597,7 @@
 			"sheets":
 			[
 				{
-					"buffer": 16,
+					"buffer": 17,
 					"file": "app/libs/third-party/snackbar/angular.snackbar.js",
 					"settings":
 					{
@@ -1589,7 +1624,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 18,
 					"file": "Gruntfile.js",
 					"settings":
 					{
@@ -1600,8 +1635,8 @@
 						"selection":
 						[
 							[
-								426,
-								426
+								622,
+								622
 							]
 						],
 						"settings":
@@ -1616,7 +1651,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 19,
 					"file": "app/libs/_dependencies.min.js",
 					"settings":
 					{
@@ -1642,7 +1677,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 20,
 					"file": "app/stylesheets/sass/style.scss",
 					"settings":
 					{
@@ -1712,13 +1747,13 @@
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.514285714286,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.518544809228,
+			0.534693877551,
 			1.0
 		]
 	},
@@ -1734,20 +1769,52 @@
 		"selected_items":
 		[
 			[
+				"con",
+				"views/confirm_email.html"
+			],
+			[
+				"sign",
+				"libs/controllers/signUpController.js"
+			],
+			[
+				"conf",
+				"libs/controllers/confirmEmailController.js"
+			],
+			[
 				"nav",
 				"libs/directives/navBar.js"
 			],
 			[
+				"edit",
+				"libs/controllers/editSubjectsController.js"
+			],
+			[
+				"subj",
+				"libs/controllers/subjectController.js"
+			],
+			[
+				"subjec",
+				"libs/controllers/subjectsController.js"
+			],
+			[
 				"side",
-				"libs/directives/sideBar.js"
+				"views/sidebar.html"
+			],
+			[
+				"login",
+				"views/login.html"
+			],
+			[
+				"",
+				"libs/controllers/signUpController.js"
+			],
+			[
+				"navbar",
+				"libs/directives/navBar.js"
 			],
 			[
 				"user",
 				"libs/factories/userFactory.js"
-			],
-			[
-				"edit",
-				"libs/controllers/editSubjectsController.js"
 			],
 			[
 				"edi",
@@ -1822,10 +1889,6 @@
 				"libs/controllers/profileController.js"
 			],
 			[
-				"conf",
-				"libs/controllers/confirmEmailController.js"
-			],
-			[
 				"ema",
 				"libs/controllers/confirmEmailController.js"
 			],
@@ -1836,10 +1899,6 @@
 			[
 				"snac",
 				"libs/third-party/snackbar/angular.snackbar.js"
-			],
-			[
-				"login",
-				"libs/controllers/loginController.js"
 			],
 			[
 				"_mo",

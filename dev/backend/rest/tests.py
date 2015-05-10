@@ -141,28 +141,30 @@ class B_RolTestCase(unittest.TestCase):
 
 class C1_LevelTypeTestCase(unittest.TestCase):
     def setUp(self):
+        LevelType.objects.create(name="university")
         LevelType.objects.create(name="carrer")
         LevelType.objects.create(name="course")
         LevelType.objects.create(name="subject")
         LevelType.objects.create(name="student")
 
     def test_levelTypes_exits_in_db(self):
-        self.assertEqual(len(LevelType.objects.all()), 4)
+        self.assertEqual(len(LevelType.objects.all()), 5)
 
 
 class C2_LevelTypeTestCase(unittest.TestCase):
 
     def setUp(self):
-        # level = Level()
-        # level.name = "Level 1"
-        # level.visible = True
-        # level.type = LevelType.objects.get(id=1)
-        # level.save()
-        Level.objects.create(name="Software", visible=True, type_id=1)
-        Level.objects.create(name="Computadores", visible=True, type_id=1)
+        Level.objects.create(name="UPM", visible=True, type_id=1, parent_id=None)
+        Level.objects.create(name="Software", visible=True, type_id=2, parent_id=1)
+        Level.objects.create(name="Computadores", visible=True, type_id=2, parent_id=1)
+        Level.objects.create(name="1o de software", visible=True, type_id=3, parent_id=2)
+        Level.objects.create(name="Algebra", visible=True, type_id=4, parent_id=3)
+        Level.objects.create(name="Discreta", visible=True, type_id=4, parent_id=3)
+        Level.objects.create(name="Aspectos", visible=True, type_id=4, parent_id=3)
 
     def test_levels_exists_in_db(self):
-        self.assertEqual(len(Level.objects.all()), 2)
+        self.assertEqual(len(Level.objects.all()), 7)
+
 
 class D_SignUpTestCase(CookiesEnabled):
 
@@ -709,4 +711,54 @@ class J_noteTestCase(SignedTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, '[]')
 
-#TODO. Test de userProfile, editSubjects, subjects,
+
+class K_editSubjects(SignedTestCase):
+
+    def test_1_editSubjects_basic(self):
+        self.login()
+        response = self.client.post('/user/subjects/', {'ids': '5,6'})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(len(userUpdated.subjects.all()), 2)
+
+    def test_2_editSubjects_basic(self):
+        self.login()
+        response = self.client.post('/user/subjects/', {'ids': '5,6,7'})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(len(userUpdated.subjects.all()), 3)
+
+    def test_3_editSubjects_empty(self):
+        self.login()
+        response = self.client.post('/user/subjects/', {'ids': ''})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(len(userUpdated.subjects.all()), 0)
+
+    def test_4_editSubjects_empty(self):
+        self.login()
+        response = self.client.post('/user/subjects/', {'ids': '[]'})
+        self.assertEqual(response.status_code, 200)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(len(userUpdated.subjects.all()), 0)
+
+    def test_5_editSubjects_empty(self):
+        self.login()
+        response = self.client.post('/user/subjects/', {'ids': '5,6'})
+        response = self.client.post('/user/subjects/', {})
+        self.assertEqual(response.status_code, 400)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(len(userUpdated.subjects.all()), 2)
+
+    def test_6_editSubjects_notSubjects(self):
+        self.login()
+        response = self.client.post('/user/subjects/', {'ids': '[]'})
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(len(userUpdated.subjects.all()), 0)
+        self.assertEqual(response.status_code, 200)
+        response = self.client.post('/user/subjects/', {'ids': '1,5,6'})
+        self.assertEqual(response.status_code, 400)
+        userUpdated = User.objects.get(id=1)
+        self.assertEqual(len(userUpdated.subjects.all()), 0)
+
+#TODO. Test subjects,
