@@ -19,7 +19,8 @@
  				$scope.subject.files = data;	
  			})
  			.error(function(data, status, headers, config) {
- 				console.log(data.error);
+ 				snackbar.error( data );
+ 				$location.path( "/subjects" );
  			}); 			
  		}
 

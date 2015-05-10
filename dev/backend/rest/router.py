@@ -74,6 +74,8 @@ def fileListSubject(request, pk):  # TODO. Fails if is not a subject.
         files = File.objects.filter(subject=pk, visible=True)
         serializer = FileSerializer(files, many=True)
         return JSONResponse(serializer.data)
+    elif not level.is_subject():
+        return RequestExceptionByCode(INVALID_LEVEL).jsonResponse
 
 
 # Final APIS.
