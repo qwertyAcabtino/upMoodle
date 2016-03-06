@@ -5,6 +5,8 @@ pre/*.pyc
 dev/*.pyc
 pre/*
 *.xml
+dev/backend/.idea/
+dev/backend/.idea/*
 dev/backend/files/
 dev/backend/files/*
 dev/backend/pics/
