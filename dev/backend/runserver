@@ -1,3 +1,4 @@
+export DJANGO_SETTINGS_MODULE='backend.settings'
 clear
 ./updatedb
 python manage.py runserver

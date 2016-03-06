@@ -1,6 +1,6 @@
 angular.module('upmApp').factory('api', function($http, $cookies, $upload, $window){
 	var base_url = 'http://127.0.0.1:8000/';
-	var user_pics_url = base_url + "media/";
+	var user_pics_url = base_url /*+ "media/"*/;
 
 	return {
 

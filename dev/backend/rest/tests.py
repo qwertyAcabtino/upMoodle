@@ -1,8 +1,8 @@
 import json
 
-from django.utils.importlib import import_module
+from django.utils.module_loading import import_module
 from django.test import Client, RequestFactory
-from django.utils import unittest
+import unittest
 
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
@@ -14,7 +14,7 @@ from rest.router import login
 from django.db.models import FileField as DjangoFile
 
 """
-unittest and not the django one for having persistency all along the *TestCase's
+unittest and not the django one for having persistence all along the *TestCase's
 """
 
 defPassword = '12341234'
@@ -30,6 +30,7 @@ defNote = NoteBoard()
 defNote.text = 'Bla bla'
 defNote.topic = 'Topic'
 defNote.author_id = 1
+
 
 class CookiesEnabled(unittest.TestCase):
     def setUp(self):
@@ -152,7 +153,6 @@ class C1_LevelTypeTestCase(unittest.TestCase):
 
 
 class C2_LevelTypeTestCase(unittest.TestCase):
-
     def setUp(self):
         Level.objects.create(name="UPM", visible=True, type_id=1, parent_id=None)
         Level.objects.create(name="Software", visible=True, type_id=2, parent_id=1)
@@ -167,10 +167,10 @@ class C2_LevelTypeTestCase(unittest.TestCase):
 
 
 class D_SignUpTestCase(CookiesEnabled):
-
     def test_basic_signup(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test@eui.upm.es', 'password': '12341234', 'nick': 'vipvip', 'name': 'vip vip'})
+                                    {'email': 'test@eui.upm.es', 'password': '12341234', 'nick': 'vipvip',
+                                     'name': 'vip vip'})
         decoded = json.loads(response.content)
         defaultUser = User.objects.get(id=1)
         defaultUser.save()
@@ -181,7 +181,8 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_duplicate_email(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test112312@eui.upm.es', 'password': 'qqwerwerqwere', 'nick': 'vqweripasdfvip', 'name': 'vip vip'})
+                                    {'email': 'test112312@eui.upm.es', 'password': 'qqwerwerqwere',
+                                     'nick': 'vqweripasdfvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -189,7 +190,8 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_1_invalid_email(self):
         response = self.client.post('/signup/',
-                                    {'email': 'test112@google.com', 'password': 'qqwerwerqwere', 'nick': 'vqwsdfsdferipvip', 'name': 'vip vip'})
+                                    {'email': 'test112@google.com', 'password': 'qqwerwerqwere',
+                                     'nick': 'vqwsdfsdferipvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -198,14 +200,16 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_duplicate_nick(self):
         response = self.client.post('/signup/',
-                                    {'email': 'viperey@eui.upm.es', 'password': '12341234', 'nick': 'vipvip', 'name': 'vip vip'})
+                                    {'email': 'viperey@eui.upm.es', 'password': '12341234', 'nick': 'vipvip',
+                                     'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
         self.assertEqual(len(User.objects.all()), 1)
 
     def test_password_length(self):
-        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwer', 'nick': 'vipvip', 'name': 'vip vip'})
+        response = self.client.post('/signup/', {'email': 'viperey@eui.upm.es', 'password': 'qwer', 'nick': 'vipvip',
+                                                 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -225,7 +229,8 @@ class D_SignUpTestCase(CookiesEnabled):
 
     def test_nick_length(self):
         response = self.client.post('/signup/',
-                                    {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer', 'nick': 'qwe', 'name': 'vip vip'})
+                                    {'email': 'viperey@eui.upm.es', 'password': 'qwerqwerqwer', 'nick': 'qwe',
+                                     'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertIsNotNone(decoded['error'])
@@ -301,14 +306,14 @@ class E_ConfirmEmailTestCase(unittest.TestCase):
 
     def test_4_long_token(self):
         user = User.objects.get(id=1)
-        response = self.client.post('/confirm_email/', {'token': '/confirm_email/.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70adfsalsldflkasdjflaksjdflkasdjfkasdasdfhasdfasjdfijaosdifjaosidff/'})
+        response = self.client.post('/confirm_email/', {
+            'token': '/confirm_email/.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70adfsalsldflkasdjflaksjdflkasdjfkasdasdfhasdfasjdfijaosdifjaosidff/'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
 
 
 class F_LoginTestCase(CookiesEnabled):
-
     def test_1_basic_login(self):
         response = self.client.post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         self.assertEqual(response.status_code, 200)
@@ -552,7 +557,6 @@ class I_userTestCase(SignedTestCase):
 
 
 class J_noteTestCase(SignedTestCase):
-
     def test_01_basic_note_get(self):
         self.login()
         self.addDefaultNote()
@@ -620,7 +624,8 @@ class J_noteTestCase(SignedTestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
         # Text
-        response = self.client.post('/note/' + str(pk) + '/', {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
+        response = self.client.post('/note/' + str(pk) + '/',
+                                    {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
         decoded = json.loads(response.content)
         self.assertEqual(response.status_code, 400)
         self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
@@ -713,7 +718,6 @@ class J_noteTestCase(SignedTestCase):
 
 
 class K_editSubjects(SignedTestCase):
-
     def test_1_editSubjects_basic(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': '5,6'})

@@ -4,10 +4,10 @@ from rest.models import *
 
 
 class YearSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Year
         field = ('id', 'year')
+
 
 class BannedHashSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,6 +23,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
 class LevelSerializer(serializers.ModelSerializer):
     type = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
+
     class Meta:
         model = Level
         fields = ('id', 'name', 'type', 'parent')
@@ -76,14 +77,12 @@ class CalendarEventSerializer(serializers.ModelSerializer):
 
 
 class FileTypeSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = FileType
         fields = ('id', 'name',)
 
 
 class FileSerializer(serializers.ModelSerializer):
-
     year = YearSerializer(many=False)
     uploader = UserSimpleSerializer(many=False)
     lastUpdater = UserSimpleSerializer(many=False)
@@ -91,18 +90,18 @@ class FileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = File
-        fields = ('id', 'subject', 'hash', 'name', 'year', 'fileType', 'uploaded', 'uploader', 'lastUpdate', 'lastUpdater', 'visible', 'file', 'text')
+        fields = (
+            'id', 'subject', 'hash', 'name', 'year', 'fileType', 'uploaded', 'uploader', 'lastUpdate', 'lastUpdater',
+            'visible', 'file', 'text')
 
 
 class ErrorMessageSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = ErrorMessage
         fields = ('error',)
 
 
 class MessageSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Message
         field = ('message',)

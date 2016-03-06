@@ -2,10 +2,11 @@ import calendar
 import datetime
 from random import randrange
 import string
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils.crypto import random
-import re
+
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT, UNAUTHORIZED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode

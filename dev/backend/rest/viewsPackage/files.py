@@ -43,6 +43,7 @@ def file_get_binary(request, pk):
     except ObjectDoesNotExist or OverflowError or ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
+
 @csrf_exempt
 def file_put(request, pk):
     try:
@@ -67,6 +68,7 @@ def file_put(request, pk):
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
 
+
 @csrf_exempt
 def file_delete(request, pk):
     try:
@@ -80,6 +82,7 @@ def file_delete(request, pk):
         return r.jsonResponse
     except ObjectDoesNotExist:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+
 
 @csrf_exempt
 def file_post(request):

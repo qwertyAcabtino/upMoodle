@@ -62,7 +62,7 @@ CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'backend.urls'
 
 MEDIA_ROOT = '/home/viperey/dev/code/self/TFG/dev/backend'
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
