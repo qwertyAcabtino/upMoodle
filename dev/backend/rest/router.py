@@ -3,8 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest.JSONResponse import JSONResponse
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, \
     RequestException
-from rest.orm.serializers import *
 from rest.controllers.controllers import check_signed_in_request
+from rest.orm.serializers import *
 from rest.viewsPackage.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
 from rest.viewsPackage.files import file_get_info, file_get_binary, file_put, file_delete, file_post
@@ -99,7 +99,6 @@ def recoverPassword(request):
 def user(request):
     try:
         check_signed_in_request(request)
-        print request.method
         if request.method == 'GET':
             return user_get(request)
         elif request.method == 'DELETE':

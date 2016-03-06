@@ -1,17 +1,16 @@
 import calendar
 import datetime
-import os
-from django.utils import timezone
-from django.core.validators import EmailValidator, validate_email
-from django.utils.datastructures import MultiValueDictKeyError
+import hashlib
+
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.validators import validate_email
 from django.db import models
+from django.utils import timezone
+from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.MESSAGES_ID import NICK_LENGTH, PASSWORD_LENGTH, EMAIL_INVALID, INCORRECT_DATA, NAME_LENGTH, INVALID_LEVEL
 from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.finals import *
-import hashlib
-
 
 # Carrer, course, subject
 from rest.validators import validate_length
@@ -326,7 +325,6 @@ class Year(models.Model):
             verbose = "%s/%s" % (now.year, (now.year + 1),)
         else:
             verbose = "%s/%s" % ((now.year - 1), now.year,)
-        print verbose
         try:
             return Year.objects.get(verbose=verbose)
         except ObjectDoesNotExist:

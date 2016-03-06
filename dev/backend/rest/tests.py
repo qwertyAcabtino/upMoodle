@@ -1,17 +1,16 @@
 import json
-
-from django.utils.module_loading import import_module
-from django.test import Client, RequestFactory
 import unittest
+
+from django.test import Client, RequestFactory
+from django.utils.module_loading import import_module
 
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, UNCONFIRMED_EMAIL, \
     INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED, EMAIL_INVALID
 from rest.controllers.controllers import get_random_string, get_random_email
-from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level, File
+from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level
 from rest.router import login
-from django.db.models import FileField as DjangoFile
 
 """
 unittest and not the django one for having persistence all along the *TestCase's
@@ -225,7 +224,6 @@ class D_SignUpTestCase(CookiesEnabled):
         self.assertIsNotNone(decoded['error'])
         self.assertEqual(len(User.objects.all()), 1)
         self.assertEqual(ErrorMessage.objects.get(pk=PASSWORD_LENGTH).error, decoded['error'])
-        print response.content
 
     def test_nick_length(self):
         response = self.client.post('/signup/',
