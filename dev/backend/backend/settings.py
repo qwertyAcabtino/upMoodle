@@ -61,16 +61,16 @@ CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'backend.urls'
 
-MEDIA_ROOT = '/home/viperey/Dropbox/Proyectos/Propio/TFG/dev/backend'
+MEDIA_ROOT = '/home/viperey/dev/code/self/TFG/dev/backend'
 MEDIA_URL = '/media/'
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # https://github.com/ottoyiu/django-cors-headers
-# CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [
-    '127.0.0.1:3000',
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#     '127.0.0.1:3000',
+# ]
 
 
 # Database

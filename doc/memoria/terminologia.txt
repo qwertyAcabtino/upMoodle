@@ -1,0 +1,13 @@
+Terminología.
+
+Stack (pila). Término para referirse a un conjunto de elementos que están dispuestos con cierta relación. Es una ampliación del concepto de pila en teoría de datos (y organización de los mismos).
+
+Front-end. Cliente final. Conjunto de tecnologías que se encargan de las interacciones con los usuarios, fundamentalmente web.
+
+Back-end. Servidores. Con el conjunto de teconologías que residen en equipos remotos y que son accesibles a través de diversos protocolos comunicativos.
+
+Full-stack. Proyectos que tienen implementación tanto en el lado front-end como en el lado back-end.
+
+Endpoint.
+
+OO. Object-oriented u orientado a objetos. Es un paradigma de programación donde se conciben los elementos o módulos de un sistema como si de objetos se tratasen de forma que poseyesen atributos y acciones.

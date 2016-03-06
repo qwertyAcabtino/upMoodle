@@ -691,9 +691,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 356.0,
+		"height": 180.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"rein",
 				"Indentation: Reindent Lines"
@@ -760,10 +764,6 @@
 			],
 			[
 				"ins",
-				"Package Control: Install Package"
-			],
-			[
-				"insta",
 				"Package Control: Install Package"
 			],
 			[
@@ -1747,13 +1747,13 @@
 		"cols":
 		[
 			0.0,
-			0.514285714286,
+			0.500096525097,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.534693877551,
+			0.485714285714,
 			1.0
 		]
 	},

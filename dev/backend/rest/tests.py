@@ -9,9 +9,9 @@ from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, UNCONFIRMED_EMAIL, \
     INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED, EMAIL_INVALID
 from rest.controllers.controllers import get_random_string, get_random_email
-from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level
+from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level, File
 from rest.router import login
-
+from django.db.models import FileField as DjangoFile
 
 """
 unittest and not the django one for having persistency all along the *TestCase's
@@ -760,5 +760,4 @@ class K_editSubjects(SignedTestCase):
         self.assertEqual(response.status_code, 400)
         userUpdated = User.objects.get(id=1)
         self.assertEqual(len(userUpdated.subjects.all()), 0)
-
-#TODO. Test subjects,
+        self.assertEqual(len(userUpdated.subjects.all()), 0)
