@@ -4,6 +4,7 @@ pre/python/minimal-django-file-upload-example
 pre/*.pyc
 dev/*.pyc
 pre/*
+*.swp
 *.xml
 dev/backend/.idea/
 dev/backend/files/
