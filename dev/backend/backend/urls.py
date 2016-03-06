@@ -1,15 +1,14 @@
-from django.conf.urls import include, url
+from django.conf.urls import include, url, patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 
 from backend import settings
 from rest.router import *
 
-urlpatterns = [
+urlpatterns = patterns('',
     url(r'^bannedhashes/$', bannedhashList),
     url(r'^roles/$', rolesList),
     url(r'^admin/', include(admin.site.urls)),
-
 
     # APIs
     # System
@@ -44,6 +43,5 @@ urlpatterns = [
 
     # Random data
     url(r'^subjectsTree/$', subjectsTree),
-    url(r'^fileTypes/$', fileTypes),
-    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-]
+    url(r'^fileTypes/$', fileTypes)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
