@@ -1,5 +1,5 @@
-from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.JSONResponse import JSONResponse
+from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.models import ErrorMessage
 from rest.orm.serializers import ErrorMessageSerializer
 
@@ -9,7 +9,7 @@ class RequestException(Exception):
 
     def __init__(self, errorMessage):
         serializer = ErrorMessageSerializer(errorMessage, many=False)
-        self.jsonResponse = JSONResponse(serializer.data, status=400)
+        self.jsonResponse = JSONResponse(serializer.data, status=errorMessage.http_code)
 
     def __str__(self):
         return repr(self)
