@@ -1,13 +1,13 @@
 import calendar
 import datetime
-from random import randrange
 import string
+from random import randrange
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils.crypto import random
 
-from backend.settings import SESSION_COOKIE_NAME, SESSION_COOKIE_NAME_BIS
+from backend.settings import SESSION_COOKIE_NAME_BIS
 from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT, UNAUTHORIZED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.models import User
@@ -55,15 +55,8 @@ def get_random_string(length):
 
 
 def cookies_are_ok(request):
-    try:
-        return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
-               and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
-    except KeyError:
-        return request.COOKIES[SESSION_COOKIE_NAME] \
-               and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
-        # return request.session.test_cookie_worked() \
-        # and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
-        #        and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
+    return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
+           and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
 
 
 def is_signed_in(request):
@@ -159,6 +152,6 @@ def get_date_range(period, initDate):
     if period == "day":
         return [rangeStart, rangeStart]
     else:
-        monthsDays = calendar.monthrange(date.year, date.month)[1] -1
+        monthsDays = calendar.monthrange(date.year, date.month)[1] - 1
         rangeEnd = (date + datetime.timedelta(monthsDays)).strftime(DATE_FORMAT)
     return [rangeStart, rangeEnd]
