@@ -5,7 +5,7 @@ from django.test import Client, RequestFactory
 from django.utils.module_loading import import_module
 
 from backend import settings
-from backend.settings import SESSION_COOKIE_NAME_BIS
+from backend.settings import SESSION_COOKIE_NAME
 from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, UNCONFIRMED_EMAIL, \
     INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED, EMAIL_INVALID
 from rest.controllers.controllers import get_random_string, get_random_email
@@ -37,11 +37,11 @@ class CookiesEnabled(unittest.TestCase):
         engine = import_module(settings.SESSION_ENGINE)
         session = self.client.session
         session = engine.SessionStore()
-        session[SESSION_COOKIE_NAME_BIS] = sessionCookie
+        session[SESSION_COOKIE_NAME] = sessionCookie
         # session[SESSION_COOKIE_NAME] = sessionCookie
         session.save()
         cookies = self.client.cookies
-        cookies[SESSION_COOKIE_NAME_BIS] = sessionCookie
+        cookies[SESSION_COOKIE_NAME] = sessionCookie
         # cookies[SESSION_COOKIE_NAME] = sessionCookie
 
 
@@ -357,7 +357,7 @@ class F_LoginTestCase(CookiesEnabled):
     # In this case, for testing the behaviour when having cookies disabled, the request has to be made in a special way.
     def test_7_login_disabled_cookies(self):
         request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
-        request.COOKIES[SESSION_COOKIE_NAME_BIS] = None
+        request.COOKIES[SESSION_COOKIE_NAME] = None
         request.session = self.client.session
         request.session.TEST_COOKIE_VALUE = None
 
@@ -369,7 +369,7 @@ class F_LoginTestCase(CookiesEnabled):
     def test_8_login_disabled_cookies_2(self):
         request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         request.session = self.client.session
-        request.COOKIES[SESSION_COOKIE_NAME_BIS] = None
+        request.COOKIES[SESSION_COOKIE_NAME] = None
 
         response = login(request)
         self.assertEqual(response.status_code, 400)
@@ -379,7 +379,7 @@ class F_LoginTestCase(CookiesEnabled):
     def test_9_login_disabled_cookies_3(self):
         request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
         request.session = self.client.session
-        request.COOKIES[SESSION_COOKIE_NAME_BIS] = ''
+        request.COOKIES[SESSION_COOKIE_NAME] = ''
 
         response = login(request)
         self.assertEqual(response.status_code, 400)

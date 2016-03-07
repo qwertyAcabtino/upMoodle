@@ -1,3 +1,4 @@
+from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse
 from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.models import ErrorMessage
@@ -10,6 +11,7 @@ class RequestException(Exception):
     def __init__(self, errorMessage):
         serializer = ErrorMessageSerializer(errorMessage, many=False)
         self.jsonResponse = JSONResponse(serializer.data, status=errorMessage.http_code)
+        self.jsonResponse.set_cookie(SESSION_COOKIE_NAME)
 
     def __str__(self):
         return repr(self)

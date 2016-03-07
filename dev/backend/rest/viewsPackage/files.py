@@ -1,14 +1,15 @@
-from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.http import HttpResponse
+from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
-from backend.settings import SESSION_COOKIE_NAME_BIS
+
+from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_REMOVED, FILE_REMOVED, SUCCESS_LOGIN, FILE_UPLOADED, FILE_UPDATED
+from rest.MESSAGES_ID import INCORRECT_DATA, FILE_REMOVED, FILE_UPLOADED, FILE_UPDATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
-from rest.models import File, NoteBoard, Level, User
+from rest.models import File, Level, User
 from rest.orm.serializers import FileSerializer
 from rest.orm.unserializers import unserialize_file, unserialize_file_binary
 
@@ -57,7 +58,7 @@ def file_put(request, pk):
         newFile = unserialize_file(form, fields=fields, optional=True)
 
         fileOriginal.update(newFile, fields)
-        fileOriginal.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        fileOriginal.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
         fileOriginal.save()
 
         return JSONResponseID(FILE_UPDATED)

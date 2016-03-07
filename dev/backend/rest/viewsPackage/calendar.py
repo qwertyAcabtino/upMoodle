@@ -1,16 +1,17 @@
-from sets import Set
 from datetime import datetime
+from sets import Set
+
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.views.decorators.csrf import csrf_exempt
-from backend.settings import SESSION_COOKIE_NAME_BIS
+
+from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_REMOVED, CEVENT_REMOVED, CALENDAR_UPDATED
+from rest.MESSAGES_ID import INCORRECT_DATA, CEVENT_REMOVED, CALENDAR_UPDATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, is_valid_initDate_by_period, get_date_range, \
     check_authorized_author
 from rest.models import CalendarDate, Calendar, Level, User
-
 from rest.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
@@ -67,7 +68,7 @@ def calendar_put(request, pk):
         Level.validate_exists(form)
         fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency']
         calendar = unserialize_calendar(form, fields=fields, optional=True)
-        calendar.lastUpdated_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        calendar.lastUpdated_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
         calendar.lastUpdate = datetime.now()
         calendarOriginal.update(calendar, fields)
         calendarOriginal.save()
@@ -86,8 +87,8 @@ def calendar_post(request):
         Level.validate_exists(form)
         fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency_id']
         calendar = unserialize_calendar(form, fields=fields, optional=True)
-        calendar.author_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
-        calendar.lastUpdated_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        calendar.author_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
+        calendar.lastUpdated_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
         check_authorized_author(request, calendar.author_id, level=True)
         calendar.lastUpdate = datetime.now()
         calendar.save()

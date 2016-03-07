@@ -1,13 +1,14 @@
 import calendar
 import datetime
 import string
+import uuid
 from random import randrange
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils.crypto import random
 
-from backend.settings import SESSION_COOKIE_NAME_BIS
+from backend.settings import SESSION_COOKIE_NAME
 from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT, UNAUTHORIZED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.models import User
@@ -55,13 +56,13 @@ def get_random_string(length):
 
 
 def cookies_are_ok(request):
-    return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME_BIS] \
-           and not len(request.COOKIES[SESSION_COOKIE_NAME_BIS]) == 0
+    return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME] \
+           and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
 
 
 def is_signed_in(request):
     try:
-        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+        sessionToken = request.COOKIES[SESSION_COOKIE_NAME]
         user = User.objects.get(sessionToken=sessionToken)
         if user.banned:
             return False
@@ -75,7 +76,9 @@ def is_signed_in(request):
 
 def check_cookies(request):
     if not cookies_are_ok(request):
-        raise RequestExceptionByCode(DISABLED_COOKIES)
+        exception = RequestExceptionByCode(DISABLED_COOKIES)
+        exception.jsonResponse.set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
+        raise exception
 
 
 def check_signed_in(request):
@@ -105,7 +108,7 @@ def check_authorized_author(request, author_id, level=False, same=True):
     :return:
     """
 
-    userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+    userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
     userAuthor = User.objects.get(id=author_id)
     rolAuthor = userAuthor.rol
     rolSigned = userSigned.rol

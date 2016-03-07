@@ -1,3 +1,5 @@
+import uuid
+
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.utils import timezone
@@ -5,7 +7,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
 
 from backend import settings
-from backend.settings import SESSION_COOKIE_NAME_BIS
+from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.MESSAGES_ID import REQUEST_CANNOT, INCORRECT_DATA, ALREADY_CONFIRMED, DISABLED_COOKIES, \
     UNCONFIRMED_EMAIL, SUCCESS_LOGIN, UNAUTHORIZED, RECOVER_PASS_EMAIL, ACCOUNT_VALIDATED
@@ -23,7 +25,7 @@ def signup_sys(request):
     try:
         check_cookies(request)
         if request.method == 'POST':
-            sessionCookie = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+            sessionCookie = request.COOKIES[SESSION_COOKIE_NAME]
             user = unserialize_user(request.POST, sessionToken=sessionCookie,
                                     fields=['email', 'password', 'nick', 'name'])
             send_mail('Email confirmation',
@@ -63,9 +65,11 @@ def confirmEmail_sys(request):
 def login_sys(request):
     try:
         if not cookies_are_ok(request):
-            return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
+            exception = RequestExceptionByCode(DISABLED_COOKIES)
+            exception.jsonResponse.set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
+            return exception.jsonResponse
         elif request.method == 'POST':
-            session_key = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+            session_key = request.COOKIES[SESSION_COOKIE_NAME]
             emailIn = request.POST['email']
             passwordIn = request.POST['password']
             user = User.objects.get(email=emailIn, password=passwordIn)
@@ -76,7 +80,7 @@ def login_sys(request):
                 user.lastTimeActive = timezone.now()
                 user.save()
                 jsonResponse = JSONResponseID(SUCCESS_LOGIN)
-                jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME_BIS, session_key)
+                jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
                 return jsonResponse
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)
@@ -94,13 +98,13 @@ def logout_sys(request):
         if not cookies_are_ok(request):
             return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
-            session_key = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+            session_key = request.COOKIES[SESSION_COOKIE_NAME]
             user = User.objects.get(sessionToken=session_key)
             user.sessionToken = ''
             user.save()
             jsonResponse = JSONResponse({"null"}, status=200)
             # jsonResponse.delete_cookie(SESSION_COOKIE_NAME)
-            jsonResponse.delete_cookie(SESSION_COOKIE_NAME_BIS)
+            jsonResponse.delete_cookie(SESSION_COOKIE_NAME)
             return jsonResponse
         else:
             raise RequestExceptionByCode(REQUEST_CANNOT)

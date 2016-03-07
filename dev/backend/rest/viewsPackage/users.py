@@ -1,8 +1,10 @@
 import ast
-from django.utils.datastructures import MultiValueDictKeyError
+
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
-from backend.settings import SESSION_COOKIE_NAME_BIS
+
+from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.MESSAGES_ID import INCORRECT_DATA, USER_REMOVED, USER_UPDATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
@@ -12,13 +14,14 @@ from rest.models import User
 from rest.orm.serializers import UserSerializer
 from rest.orm.unserializers import unserialize_user
 
+
 # == Signed in user ==
 
 @csrf_exempt
 def user_get(request):
     try:
         check_signed_in_request(request, 'GET')
-        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+        sessionToken = request.COOKIES[SESSION_COOKIE_NAME]
         users = User.objects.get(sessionToken=sessionToken)
         serializer = UserSerializer(users, many=False)
         return JSONResponse(serializer.data)
@@ -36,7 +39,7 @@ def user_get(request):
 def user_delete(request):
     try:
         check_signed_in_request(request, method='DELETE')
-        sessionToken = request.COOKIES[SESSION_COOKIE_NAME_BIS]
+        sessionToken = request.COOKIES[SESSION_COOKIE_NAME]
         userSigned = User.objects.get(sessionToken=sessionToken)
         userSigned.name = 'RemovedUser ' + str(userSigned.id)
         userSigned.nick = 'RemovedUser ' + str(userSigned.id)
@@ -56,7 +59,7 @@ def user_put(request):
     try:
         check_signed_in_request(request, 'POST')
         form = request.POST
-        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
         try:
             password = form['password']
             if not userSigned.password == form['oldPassword']:
@@ -84,7 +87,7 @@ def user_put_profile_pic(request):
         if "image/" not in profilePic.content_type:
             return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
         else:
-            userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+            userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
             userSigned.profilePic = profilePic
             userSigned.save()
             return JSONResponseID(USER_UPDATED)
@@ -106,7 +109,7 @@ def user_subjects_put(request):
             subjects = [ast.literal_eval(form['ids'])]
         else:
             subjects = []
-        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
         userSigned.update_subjects(subjects)
         userSigned.save()
         return JSONResponseID(USER_UPDATED)

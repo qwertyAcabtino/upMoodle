@@ -1,8 +1,8 @@
-from django.utils.datastructures import MultiValueDictKeyError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.utils.datastructures import MultiValueDictKeyError
 from django.views.decorators.csrf import csrf_exempt
-import time
-from backend.settings import SESSION_COOKIE_NAME_BIS
+
+from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.MESSAGES_ID import INCORRECT_DATA, NOTE_UPDATED, NOTE_REMOVED, NOTE_CREATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
@@ -79,7 +79,7 @@ def note_post(request):
         Level.validate_exists(form)
         fields = ['topic', 'text', 'level_id']
         note = unserialize_note(form, fields=fields, optional=True)
-        note.author_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME_BIS])
+        note.author_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
         note.save()
         message = Message.objects.get(pk=NOTE_CREATED)
         return JSONResponse({"noteId": note.id, "message": message.message}, status=200)
