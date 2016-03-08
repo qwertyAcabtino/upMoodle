@@ -6,6 +6,8 @@ dev/*.pyc
 pre/*
 *.swp
 *.xml
+*~
+dev/backend/rest/migrations
 dev/backend/db.sqlite3
 dev/backend/.idea/
 dev/backend/files/
