@@ -1,5 +1,5 @@
 from rest.models import NoteBoard
-from rest.orm.unserializer.common import *
+from rest.orm.unserializer.internal import *
 
 
 def unserialize_note(form, *args, **kwargs):

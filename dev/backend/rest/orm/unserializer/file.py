@@ -1,5 +1,5 @@
 from rest.models import File
-from rest.orm.unserializer.common import *
+from rest.orm.unserializer.internal import *
 
 
 def unserialize_file(form, *args, **kwargs):

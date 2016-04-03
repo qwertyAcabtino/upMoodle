@@ -1,5 +1,5 @@
 from rest.models import User
-from rest.orm.unserializer.common import *
+from rest.orm.unserializer.internal import *
 
 
 def unserialize_user(form, *args, **kwargs):
