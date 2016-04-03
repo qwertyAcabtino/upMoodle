@@ -5,13 +5,13 @@ from rest.controllers.Exceptions.requestException import RequestExceptionByCode,
     RequestException
 from rest.controllers.controllers import check_signed_in_request
 from rest.orm.serializers import *
-from rest.viewsPackage.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
+from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
-from rest.viewsPackage.files import file_get_info, file_get_binary, file_put, file_delete, file_post
-from rest.viewsPackage.notes import note_get, note_delete, note_put, note_post, note_get_by_level
-from rest.viewsPackage.system import signup_sys, login_sys, logout_sys, recoverPassword_sys, \
+from rest.services.files import file_get_info, file_get_binary, file_put, file_delete, file_post
+from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
+from rest.services.system import signup_sys, login_sys, logout_sys, recoverPassword_sys, \
     subjectsTree_get, fileTypes_get, confirmEmail_sys
-from rest.viewsPackage.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
+from rest.services.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
     user_put_profile_pic
 
 

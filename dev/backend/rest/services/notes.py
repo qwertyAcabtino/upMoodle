@@ -11,7 +11,7 @@ from rest.controllers.controllers import check_signed_in_request, check_authoriz
 from rest.models import NoteBoard, Level, User, Message
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializers import unserialize_note
-from rest.viewsPackage.system import subjectsTree_get_ids
+from rest.services.system import subjectsTree_get_ids
 
 
 @csrf_exempt

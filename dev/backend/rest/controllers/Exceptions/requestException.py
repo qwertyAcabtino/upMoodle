@@ -1,7 +1,7 @@
 from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse
 from rest.MESSAGES_ID import INCORRECT_DATA
-from rest.models import ErrorMessage
+from rest.models.message.errorMessage import ErrorMessage as errorMessage
 from rest.orm.serializers import ErrorMessageSerializer
 
 
@@ -22,10 +22,10 @@ class RequestExceptionByMessage(RequestException):
 
         try:
             code = int(validationError.messages[0])
-            error = ErrorMessage.objects.get(pk=code)
+            error = errorMessage.objects.get(pk=code)
             super(RequestExceptionByMessage, self).__init__(error)
         except ValueError as v:
-            error = ErrorMessage.objects.get(pk=INCORRECT_DATA)
+            error = errorMessage.objects.get(pk=INCORRECT_DATA)
             if len(validationError.message):
                 error.error += ". " + validationError.message
             else:
@@ -35,5 +35,5 @@ class RequestExceptionByMessage(RequestException):
 
 class RequestExceptionByCode(RequestException):
     def __init__(self, code):
-        error = ErrorMessage.objects.get(pk=code)
+        error = errorMessage.objects.get(pk=code)
         super(RequestExceptionByCode, self).__init__(error)

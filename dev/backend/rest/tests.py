@@ -6,10 +6,11 @@ from django.utils.module_loading import import_module
 
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
-from rest.MESSAGES_ID import PASSWORD_LENGTH, NICK_LENGTH, ALREADY_CONFIRMED, UNCONFIRMED_EMAIL, \
-    INCORRECT_DATA, DISABLED_COOKIES, RECOVER_PASS_EMAIL, UNAUTHORIZED, NOT_SIGNED_IN, USER_REMOVED, EMAIL_INVALID
+from rest.MESSAGES_ID import *
 from rest.controllers.controllers import get_random_string, get_random_email
-from rest.models import Rol, LevelType, ErrorMessage, User, Message, NoteBoard, Level
+from rest.models import Rol, LevelType, Message, NoteBoard, Level
+from rest.models.message.errorMessage import ErrorMessage
+from rest.models.user.user import User
 from rest.router import login
 
 """
@@ -626,7 +627,7 @@ class J_noteTestCase(SignedTestCase):
                                     {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
         decoded = json.loads(response.content)
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
 
     def test_09_createNote_basic(self):
         self.login()
@@ -671,7 +672,7 @@ class J_noteTestCase(SignedTestCase):
         response = self.client.post('/note/', {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
         decoded = json.loads(response.content)
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        self.assertEqual(ErrorMessage.objects.get(pk=DISABLED_COOKIES).error, decoded['error'])
 
     def test_14_deleteNote_wrong_id(self):
         self.login()
