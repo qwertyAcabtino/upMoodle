@@ -15,7 +15,7 @@ from rest.models import CalendarDate, Calendar, Level, User
 from rest.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
-from rest.orm.unserializers import unserialize_calendar
+from rest.orm.unserializer import unserialize_calendar
 
 
 def calendar_get_by_period(request, period, initDate):

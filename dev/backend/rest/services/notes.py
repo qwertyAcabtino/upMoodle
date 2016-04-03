@@ -10,7 +10,7 @@ from rest.controllers.Exceptions.requestException import RequestException, Reque
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
 from rest.models import NoteBoard, Level, User, Message
 from rest.orm.serializers import NoteBoardSerializer
-from rest.orm.unserializers import unserialize_note
+from rest.orm.unserializer import unserialize_note
 from rest.services.system import subjectsTree_get_ids
 
 

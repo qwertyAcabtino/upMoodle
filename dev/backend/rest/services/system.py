@@ -17,7 +17,7 @@ from rest.controllers.controllers import check_cookies, get_email_confirmation_m
     get_random_password, send_recover_password_email, check_request_method
 from rest.models import User, Level, FileType
 from rest.orm.serializers import LevelSerializer, FileTypeSerializer
-from rest.orm.unserializers import unserialize_user
+from rest.orm.unserializer import unserialize_user
 
 
 @csrf_exempt

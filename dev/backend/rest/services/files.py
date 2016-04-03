@@ -11,7 +11,7 @@ from rest.controllers.Exceptions.requestException import RequestException, Reque
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
 from rest.models import File, Level, User
 from rest.orm.serializers import FileSerializer
-from rest.orm.unserializers import unserialize_file, unserialize_file_binary
+from rest.orm.unserializer import unserialize_file_binary, unserialize_file
 
 
 def file_get_info(request, pk):

@@ -12,10 +12,10 @@ from rest.controllers.Exceptions.requestException import RequestException, Reque
 from rest.controllers.controllers import check_signed_in_request, get_random_email, get_random_password
 from rest.models import User
 from rest.orm.serializers import UserSerializer
-from rest.orm.unserializers import unserialize_user
-
+from rest.orm.unserializer import unserialize_user
 
 # == Signed in user ==
+
 
 @csrf_exempt
 def user_get(request):
