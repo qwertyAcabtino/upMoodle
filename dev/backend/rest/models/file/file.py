@@ -5,9 +5,10 @@ from django.db import models
 
 from rest.MESSAGES_ID import INCORRECT_DATA
 from rest.controllers.Exceptions.exceptions import ExtensionError
-from rest.models import Year, FileType
+from rest.models.file.fileType import FileType
 from rest.models.level import Level
 from rest.models.user import User
+from rest.models.year import Year
 
 
 class File(models.Model):

@@ -6,7 +6,7 @@ from django.db import models
 import rest.models.calendar
 from rest.MESSAGES_ID import *
 from rest.finals import *
-from rest.models import CalendarDate
+from rest.models.calendar.calendarDate import CalendarDate
 from rest.models.user import User
 
 
