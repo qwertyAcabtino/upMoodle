@@ -101,7 +101,7 @@ DATABASES = {
 }
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
-SESSION_COOKIE_NAME = 'csrftoken'
+SESSION_COOKIE_NAME = 'csrftokenn'
 SESSION_SAVE_EVERY_REQUEST = True
 
 # Internationalization
