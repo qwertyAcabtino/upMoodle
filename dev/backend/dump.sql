@@ -1,276 +1,26 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE);
-CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"), UNIQUE ("group_id", "permission_id"));
-CREATE TABLE "auth_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "group_id" integer NOT NULL REFERENCES "auth_group" ("id"), UNIQUE ("user_id", "group_id"));
-CREATE TABLE "auth_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"), UNIQUE ("user_id", "permission_id"));
-CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL);
-INSERT INTO "django_session" VALUES('iweqy1uzvu8syfw4iilg3hu1age8grn6','NGNlMzY4ZmY3OGIzMTJlZDRjYjQ0NTIzZmVjMmQ5MGI2NjdiZDdhYjp7Il9hdXRoX3VzZXJfaGFzaCI6ImI5ZTMwMzhmN2I3M2MxOWRiNWQ4MzUxZDAwNzFlZjZiOTk2ODM5YWYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2014-11-02 19:36:22.520742');
-INSERT INTO "django_session" VALUES('9qey0aya5ii3qp8zwyors2l5m53zpnyh','NWRiZTM4MTc4Y2I4NTIyYWQ1MDI4NmRkMjYwYjNmZGZlNDMwOGNmMzp7fQ==','2014-11-09 18:22:44.238686');
-INSERT INTO "django_session" VALUES('dr07caz6w4hmfwas1eotjkew5bf8a1st','NWRiZTM4MTc4Y2I4NTIyYWQ1MDI4NmRkMjYwYjNmZGZlNDMwOGNmMzp7fQ==','2014-11-09 18:33:46.824201');
-CREATE TABLE "rest_leveltype" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL);
-INSERT INTO "rest_leveltype" VALUES(1,'carrer');
-INSERT INTO "rest_leveltype" VALUES(2,'course');
-INSERT INTO "rest_leveltype" VALUES(3,'subject');
-INSERT INTO "rest_leveltype" VALUES(4,'student');
-INSERT INTO "rest_leveltype" VALUES(5,'university');
-CREATE TABLE "rest_errormessage" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "error" varchar(200) NOT NULL, "http_code" integer NOT NULL);
-CREATE TABLE "rest_bannedhash" ("hash" varchar(65) NOT NULL PRIMARY KEY);
-INSERT INTO "rest_bannedhash" VALUES('aec070645fe53ee3b3763059376134f058cc337247c978add178b6ccdfb0019f');
-INSERT INTO "rest_bannedhash" VALUES('b5d417261307d6902ec32a5355d056c647e101678b99106690ddd1953fd126f5');
-CREATE TABLE "rest_filecomments" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "date" datetime NOT NULL, "text" varchar(1000) NOT NULL, "idAuthor_id" integer NOT NULL REFERENCES "rest_user" ("id"), "idFile_id" integer NOT NULL REFERENCES "rest_file" ("id"));
-CREATE TABLE "rest_filereportlist" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "comment" varchar(200) NOT NULL, "idFile_id" integer NOT NULL REFERENCES "rest_file" ("id"), "idReporter_id" integer NOT NULL REFERENCES "rest_user" ("id"));
-CREATE TABLE "rest_tag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL);
-INSERT INTO "rest_tag" VALUES(1,'Notes');
-INSERT INTO "rest_tag" VALUES(2,'Practices');
-INSERT INTO "rest_tag" VALUES(3,'Bibliography');
-INSERT INTO "rest_tag" VALUES(4,'Exams');
-INSERT INTO "rest_tag" VALUES(5,'Others');
-CREATE TABLE "rest_year" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "verbose" varchar(20) NOT NULL);
-INSERT INTO "rest_year" VALUES(1,'2014/2015');
-INSERT INTO "rest_year" VALUES(2,'2013/2015');
-INSERT INTO "rest_year" VALUES(3,'2015/2016');
-CREATE TABLE "rest_filetag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "idFile_id" integer NOT NULL REFERENCES "rest_file" ("id"), "idTag_id" integer NOT NULL REFERENCES "rest_tag" ("id"));
-CREATE TABLE "rest_message" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "message" varchar(200) NOT NULL
-);
-INSERT INTO "rest_message" VALUES(1,'Successfully signed in');
-INSERT INTO "rest_message" VALUES(2,'Email is now confirmed');
-INSERT INTO "rest_message" VALUES(3,'A new password has been sent to your email adress. Check your inbox');
-INSERT INTO "rest_message" VALUES(4,'Your user account has been removed.');
-INSERT INTO "rest_message" VALUES(5,'Your profile has been updated');
-INSERT INTO "rest_message" VALUES(6,'Note updated');
-INSERT INTO "rest_message" VALUES(7,'The note is been removed');
-INSERT INTO "rest_message" VALUES(8,'The calendar event is been removed');
-INSERT INTO "rest_message" VALUES(9,'Calendar event has been updated.');
-INSERT INTO "rest_message" VALUES(10,'The file has been removed');
-INSERT INTO "rest_message" VALUES(11,'Account successfully validated.');
-INSERT INTO "rest_message" VALUES(12,'Your note was successfully created');
-INSERT INTO "rest_message" VALUES(13,'Your file was successfully uploaded');
-INSERT INTO "rest_message" VALUES(14,'File''s info has been updated');
-CREATE TABLE "rest_rol" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" varchar(100) NOT NULL,
-    "priority" integer NOT NULL
-);
-INSERT INTO "rest_rol" VALUES(1,'Alumno',0);
-INSERT INTO "rest_rol" VALUES(2,'Profesor',1);
-INSERT INTO "rest_rol" VALUES(3,'Coordinador de asignatura',2);
-INSERT INTO "rest_rol" VALUES(4,'Delegado de curso',3);
-INSERT INTO "rest_rol" VALUES(5,'Administrador',4);
-INSERT INTO "rest_rol" VALUES(6,'g0d',5);
-CREATE TABLE "rest_calendarregularevent" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "title" varchar(200) NOT NULL,
-    "text" varchar(2000) NOT NULL,
-    "created" date NOT NULL,
-    "lastUpdate" date NOT NULL,
-    "author_id" integer NOT NULL REFERENCES "rest_user" ("id"),
-    "lastUpdated_id" integer NOT NULL REFERENCES "rest_user" ("id"),
-    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
-    "hourStart" time,
-    "hourEnd" time,
-    "firstDate" date NOT NULL,
-    "lastDate" date,
-    "allDay" bool NOT NULL,
-    "frequency_id" integer NOT NULL REFERENCES "rest_calendarfrequency" ("id")
-);
-INSERT INTO "rest_calendarregularevent" VALUES(1,'Estadistica','Clases de estadistica de los lunes','2015-02-01','2015-02-01',1,1,1,'12:00:00','14:00:00','2015-02-01','2015-04-01',0,1);
-CREATE TABLE "rest_calendarfrequency" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" varchar(50) NOT NULL
-);
-INSERT INTO "rest_calendarfrequency" VALUES(1,'daily');
-INSERT INTO "rest_calendarfrequency" VALUES(2,'weekly');
-INSERT INTO "rest_calendarfrequency" VALUES(3,'monthly');
-INSERT INTO "rest_calendarfrequency" VALUES(4,'unique');
-CREATE TABLE "rest_calendar" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "title" varchar(200) NOT NULL,
-    "text" varchar(2000) NOT NULL,
-    "created" date NOT NULL,
-    "lastUpdate" date NOT NULL,
-    "author_id" integer NOT NULL REFERENCES "rest_user" ("id"),
-    "lastUpdated_id" integer NOT NULL REFERENCES "rest_user" ("id"),
-    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
-    "hourStart" time,
-    "hourEnd" time,
-    "firstDate" date NOT NULL,
-    "lastDate" date NOT NULL,
-    "allDay" bool NOT NULL,
-    "frequency_id" integer NOT NULL REFERENCES "rest_calendarfrequency" ("id")
-);
-INSERT INTO "rest_calendar" VALUES(1,'New calendar title','Description for this calendar event','2015-02-03','2015-02-10',1,1,1,'21:41:17','21:41:18','2015-02-03','2015-02-03',1,1);
-INSERT INTO "rest_calendar" VALUES(2,'asdf','asdf','2015-02-03','2015-02-03',2,2,1,'21:51:01','21:51:02','2015-02-27','2015-03-06',1,1);
-INSERT INTO "rest_calendar" VALUES(5,'asdfasdf','qwerqwer','2015-02-10','2015-02-10',1,1,1,'21:41:17','21:41:17','2015-02-03','2015-02-03',1,4);
-INSERT INTO "rest_calendar" VALUES(6,'POST POST','qwerqwer','2015-02-10','2015-02-22',1,1,1,'21:41:17','21:41:17','2015-02-03','2015-02-03',1,4);
-CREATE TABLE "rest_calendardate" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "calendarId_id" integer NOT NULL REFERENCES "rest_calendar" ("id"),
-    "date" datetime NOT NULL
-);
-INSERT INTO "rest_calendardate" VALUES(2,2,'2015-02-27 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(5,2,'2015-03-02 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(6,2,'2015-03-03 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(7,2,'2015-03-04 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(8,2,'2015-03-05 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(9,2,'2015-03-06 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(28,1,'2015-02-03 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(29,5,'2015-02-03 00:00:00');
-INSERT INTO "rest_calendardate" VALUES(31,6,'2015-02-03 00:00:00');
-CREATE TABLE "rest_level" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" varchar(50) NOT NULL,
-    "type_id" integer NOT NULL REFERENCES "rest_leveltype" ("id"),
-    "visible" bool NOT NULL,
-    "parent_id" integer REFERENCES "rest_level" ("id")
-);
-INSERT INTO "rest_level" VALUES(1,'Ingenieria del software',1,1,7);
-INSERT INTO "rest_level" VALUES(2,'Ingenieria de computadores',1,1,7);
-INSERT INTO "rest_level" VALUES(3,'3ro de software',2,1,1);
-INSERT INTO "rest_level" VALUES(4,'Verificacion y Validacion',3,1,3);
-INSERT INTO "rest_level" VALUES(5,'Calidad del software',3,1,3);
-INSERT INTO "rest_level" VALUES(6,'Gestion de proyectos',3,1,3);
-INSERT INTO "rest_level" VALUES(7,'UPM',5,1,NULL);
-CREATE TABLE "corsheaders_corsmodel" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "cors" varchar(255) NOT NULL
-);
-CREATE TABLE "rest_user_subjects" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "user_id" integer NOT NULL,
-    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
-    UNIQUE ("user_id", "level_id")
-);
-INSERT INTO "rest_user_subjects" VALUES(5,2,1);
-INSERT INTO "rest_user_subjects" VALUES(273,3,4);
-INSERT INTO "rest_user_subjects" VALUES(274,3,5);
-INSERT INTO "rest_user_subjects" VALUES(275,3,6);
-INSERT INTO "rest_user_subjects" VALUES(294,1,4);
-INSERT INTO "rest_user_subjects" VALUES(295,1,5);
-INSERT INTO "rest_user_subjects" VALUES(296,1,6);
-INSERT INTO "rest_user_subjects" VALUES(305,5,4);
-INSERT INTO "rest_user_subjects" VALUES(306,5,5);
-INSERT INTO "rest_user_subjects" VALUES(307,5,6);
-CREATE TABLE "rest_user" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "rol_id" integer NOT NULL REFERENCES "rest_rol" ("id"),
-    "email" varchar(100) NOT NULL UNIQUE,
-    "nick" varchar(20) NOT NULL UNIQUE,
-    "name" varchar(100) NOT NULL,
-    "password" varchar(100) NOT NULL,
-    "profilePic" varchar(100) NOT NULL,
-    "lastTimeActive" datetime NOT NULL,
-    "joined" datetime NOT NULL,
-    "banned" bool NOT NULL,
-    "confirmedEmail" bool NOT NULL,
-    "sessionToken" varchar(256) NOT NULL UNIQUE
-);
-INSERT INTO "rest_user" VALUES(1,6,'viperey@alumnos.upm.es','viperey','Victor Perez Rey','qwerqwer','pics/users/arda-425467.jpg','2016-02-18 19:05:47.228188','2015-03-04 13:30:32',0,1,'.eJxVzEEOwiAQheG7zNoQBsQGl-49AxmYQaoGktKujHe3Tbqo6_d_7wOBlrmEpcsUCvUCV6CsRfzZOYfWZL6g1Ymyt0a81W5AGkziiBlORxwpvaTy6vlJ9dFUanWexqi2RO1rV_fG8r7t7d_BuFmE7w_pKTE0:1aWSU5:q3xhs2YhjGiciFcDpi2eT2vUa40');
-INSERT INTO "rest_user" VALUES(2,1,'asdfasd@alumnos.upm.es','qwerqwer','','qwerqwer','_default.png','2015-03-04 13:31:59','2015-03-04 13:31:59',0,0,'.eJxVi70OwiAQgN_lZkMglxbo6O4zEI47pGogKe1kfHdt0qGu388bQtzWErYuSyixF5iAvKBGly1ZTMYzDexwMKy1NZJH8n506GOGy3meGSbzRyimp9QfBn7Eem8qtbouM6k9UYft6tZYXtej_XwBZ48w3w:1YT9Or:JJm7SkZVxAqnADr-Yr9r1QQo-pY');
-INSERT INTO "rest_user" VALUES(3,1,'victoereno@eui.upm.es','mlmlfemf','asdfasdf asdf asd','qwerqwer','_default.png','2015-04-26 12:02:50.220249','2015-03-04 13:39:12',0,1,'e30:1YmLGo:qgdTQcy-Rv7kEtoQ2FtPkxDLmfk');
-INSERT INTO "rest_user" VALUES(4,1,'asdf@alumnos.upm.es','qwer','qwerqwe','qwerqwer','pics/users/_default.png','2015-04-26 13:49:48.448076','2015-04-26 13:49:16',0,1,'e30:1YmMwL:-1SmZ4xargcMAS0LbhW3IQfNklY');
-INSERT INTO "rest_user" VALUES(5,1,'victor.perezr@alumnos.upm.es','vipvip','vip vip','qwerqwer','pics/users/1854070.jpg','2016-03-06 17:43:59.686237','2015-05-10 15:17:00',0,1,'.eJxVi70OgyAQgN-F2RAOSg0du_cZyMEdojaQiE5N372aONj1-_kIj9ua_dZ48RlbFg-BSTG7m7UWjE50B6MiJmc0O6NsD9jrSAGS6K7zSPsK_yxgnLkcgiYsQ5WxlnUZgzwSedomX5X4_Tzb7w-wKzE0:1acciX:3j-cbf69a23QZSvIwQK3qWVFGiQ');
-CREATE TABLE "rest_noteboard" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "topic" varchar(100) NOT NULL,
-    "text" varchar(2000) NOT NULL,
-    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
-    "author_id" integer NOT NULL REFERENCES "rest_user" ("id"),
-    "visible" bool NOT NULL,
-    "authorized" bool NOT NULL,
-    "created" datetime NOT NULL
-);
-INSERT INTO "rest_noteboard" VALUES(1,'qwer2','qwerqwer',1,1,1,1,'2015-04-13 13:31:19');
-INSERT INTO "rest_noteboard" VALUES(2,'asdf','sdfasdf',2,1,1,1,'2015-04-13 13:33:36');
-INSERT INTO "rest_noteboard" VALUES(3,'asdf','asdfa',3,1,1,1,'2015-04-13 13:33:52.576212');
-INSERT INTO "rest_noteboard" VALUES(4,'Lastest','.',1,1,1,1,'2015-04-13 13:44:33.743823');
-INSERT INTO "rest_noteboard" VALUES(5,'Lastest lastest','.asdfas',3,1,1,1,'2015-04-13 13:46:14.239982');
-INSERT INTO "rest_noteboard" VALUES(6,'asdf','asdf',1,1,1,1,'2015-04-13 23:51:21.448678');
-INSERT INTO "rest_noteboard" VALUES(7,'asdf','asdfasdf',1,1,0,1,'2015-04-14 00:05:12.293724');
-INSERT INTO "rest_noteboard" VALUES(8,'Note','Message',3,1,0,1,'2015-04-14 00:06:12.817530');
-INSERT INTO "rest_noteboard" VALUES(9,'asdf','asdf',7,1,0,1,'2015-04-26 13:02:27.024524');
-INSERT INTO "rest_noteboard" VALUES(10,'asdf','asdfasdf',1,1,1,1,'2015-05-10 13:33:33.028163');
-CREATE TABLE "rest_filetype" (
-    "name" varchar(20) NOT NULL,
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT
-);
-INSERT INTO "rest_filetype" VALUES('Theory',1);
-INSERT INTO "rest_filetype" VALUES('Practice',2);
-INSERT INTO "rest_filetype" VALUES('Classwork',3);
-INSERT INTO "rest_filetype" VALUES('Bibliography',4);
-INSERT INTO "rest_filetype" VALUES('Exam',5);
-INSERT INTO "rest_filetype" VALUES('Exercise',6);
-CREATE TABLE "rest_file" (
-    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "subject_id" integer NOT NULL REFERENCES "rest_level" ("id"),
-    "hash" varchar(65) NOT NULL,
-    "name" varchar(100) NOT NULL,
-    "year_id" integer NOT NULL REFERENCES "rest_year" ("id"),
-    "fileType_id" integer NOT NULL REFERENCES "rest_filetype" ("id"),
-    "uploaded" datetime NOT NULL,
-    "uploader_id" integer NOT NULL REFERENCES "rest_user" ("id"),
-    "lastUpdate" datetime NOT NULL,
-    "lastUpdater_id" integer NOT NULL REFERENCES "rest_user" ("id"),
-    "visible" bool NOT NULL,
-    "file" varchar(100) NOT NULL,
-    "text" varchar(2000) NOT NULL
-);
-INSERT INTO "rest_file" VALUES(1,6,'7528590d779aae2af62b3d78fe6a0fbbd15c195b2ae9eaaadbd91b1336a6ae11','Horario',1,1,'2015-04-15 02:06:01.549045',1,'2015-04-15 02:06:01.549104',1,1,'files/7528590d779aae2af62b3d78fe6a0fbbd15c195b2ae9eaaadbd91b1336a6ae11.png','');
-INSERT INTO "rest_file" VALUES(2,6,'0d54f77bf7b343eaa44a75e97d5009eab9ca4f1c83296eedf24c11747f40b491','bla',1,2,'2015-04-15 02:12:17.696964',1,'2015-04-16 16:09:33.893755',1,1,'files/0d54f77bf7b343eaa44a75e97d5009eab9ca4f1c83296eedf24c11747f40b491.sublime-project','blabla');
-INSERT INTO "rest_file" VALUES(3,6,'b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13','bower',1,1,'2015-04-16 16:25:40.758247',1,'2015-04-16 16:25:40.758327',1,1,'files/b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13.json','');
-INSERT INTO "rest_file" VALUES(4,6,'27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a','LICENSE',1,1,'2015-04-16 16:25:40.768219',1,'2015-04-16 16:25:40.768313',1,1,'files/27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a.LICENSE','');
-INSERT INTO "rest_file" VALUES(5,6,'6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2','CHANGELOG',1,1,'2015-04-16 16:25:40.771430',1,'2015-04-16 16:25:40.771590',1,1,'files/6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2.md','');
-INSERT INTO "rest_file" VALUES(6,6,'6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2','CHANGELOG',1,1,'2015-04-16 19:04:02.725702',1,'2015-04-16 19:04:02.725789',1,1,'files/6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2_yK0A4Qv.md','');
-INSERT INTO "rest_file" VALUES(7,6,'b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13','bower',1,1,'2015-04-16 19:04:02.922797',1,'2015-04-16 19:04:02.922911',1,1,'files/b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13_nhzr3nY.json','');
-INSERT INTO "rest_file" VALUES(8,6,'27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a','LICENSE',1,5,'2015-04-16 19:04:03.163569',1,'2015-04-25 22:16:24.319327',1,1,'files/27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a_ODlxbL9.LICENSE','tEST');
-INSERT INTO "rest_file" VALUES(9,6,'6523dc5d228b5d09031c29e23a3362120ede559facd5b70fcf242cb98654936b','Ciutat Morta (2014)(Spa + Sub Eng)(360p)(H',1,1,'2015-04-16 19:06:03.111833',1,'2015-04-16 19:06:03.111895',1,1,'files/6523dc5d228b5d09031c29e23a3362120ede559facd5b70fcf242cb98654936b.mp4','');
-INSERT INTO "rest_file" VALUES(10,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:40:13.556031',1,'2015-04-25 22:40:13.556069',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4.jpg','');
-INSERT INTO "rest_file" VALUES(11,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:41:19.137011',1,'2015-04-25 22:41:19.137076',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_p4txx9U.jpg','');
-INSERT INTO "rest_file" VALUES(12,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:41:28.256647',1,'2015-04-25 22:41:28.256710',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_oro9nEj.jpg','');
-INSERT INTO "rest_file" VALUES(13,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:42:53.759096',1,'2015-04-25 22:42:53.759178',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_Hf4R9aI.jpg','');
-INSERT INTO "rest_file" VALUES(14,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:42:56.982471',1,'2015-04-25 22:42:56.982515',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_sDysSZ4.jpg','');
-INSERT INTO "rest_file" VALUES(15,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:43:17.925390',1,'2015-04-25 22:43:17.925443',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_vAHkAWN.jpg','');
-INSERT INTO "rest_file" VALUES(16,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:44:04.146339',1,'2015-04-25 22:44:04.146451',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_ccYxe5s.jpg','');
-INSERT INTO "rest_file" VALUES(17,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:44:10.286766',1,'2015-04-25 22:44:10.286994',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_6xfJ5iV.jpg','');
-INSERT INTO "rest_file" VALUES(18,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1',1,1,'2015-04-25 22:44:28.308755',1,'2015-04-25 22:44:28.308824',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8.png','');
-INSERT INTO "rest_file" VALUES(19,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1',1,1,'2015-04-25 22:45:26.075854',1,'2015-04-25 22:45:26.075919',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_h1kJxLL.png','');
-INSERT INTO "rest_file" VALUES(20,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1',1,1,'2015-04-25 22:45:44.700864',1,'2015-04-25 22:45:44.701002',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_dRHqGjJ.png','');
-INSERT INTO "rest_file" VALUES(21,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','EM275797',1,1,'2015-04-25 22:46:45.084068',1,'2015-04-25 22:46:45.084135',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851.pdf','');
-INSERT INTO "rest_file" VALUES(22,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','EM275797',1,1,'2015-04-25 22:47:34.400033',1,'2015-04-25 22:47:34.400075',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851_7r6eyxd.pdf','');
-INSERT INTO "rest_file" VALUES(23,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','pedeefe.pdf',1,1,'2015-04-25 22:48:49.420623',1,'2015-04-25 22:48:49.420712',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851_wUpML4q.pdf','');
-INSERT INTO "rest_file" VALUES(24,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','EM275797.pdf',1,3,'2015-04-25 22:50:24.058695',1,'2015-04-25 22:50:24.058776',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851_yo2UfaR.pdf','');
-INSERT INTO "rest_file" VALUES(25,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00.jpg',1,5,'2015-04-25 22:50:34.984835',1,'2015-04-25 22:50:34.984878',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_Gm2Xsmq.jpg','');
-INSERT INTO "rest_file" VALUES(26,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1.png',1,1,'2015-04-25 22:51:20.975158',1,'2015-04-25 22:51:20.975227',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_vm64BQd.png','');
-INSERT INTO "rest_file" VALUES(27,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1.png',1,1,'2015-04-25 22:51:41.697013',1,'2015-04-25 22:51:41.697055',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_xhiaDF7.png','');
-INSERT INTO "rest_file" VALUES(28,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1.png',1,1,'2015-04-25 22:52:24.653703',1,'2015-04-25 22:52:24.653768',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_2GPfxfZ.png','');
-INSERT INTO "rest_file" VALUES(29,6,'a25b037eb8e80d793bd77230c90d6bb7b22d27b0f8c639b087553afc278437b3','xbmc_crashlog-20150314_223839.log',1,5,'2015-04-25 22:52:35.510490',1,'2015-04-25 22:52:35.510566',1,1,'files/a25b037eb8e80d793bd77230c90d6bb7b22d27b0f8c639b087553afc278437b3.log','');
-INSERT INTO "rest_file" VALUES(30,6,'7533c8b5adcdbb17152f0a6a0f7397eb4387107773bf4f618f26ef9d6eb07674','xbmc_crashlog-20150131_212200.log',1,4,'2015-04-25 22:52:38.675933',1,'2015-04-25 22:52:38.675995',1,1,'files/7533c8b5adcdbb17152f0a6a0f7397eb4387107773bf4f618f26ef9d6eb07674.log','');
-INSERT INTO "rest_file" VALUES(31,6,'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855','output',1,1,'2015-04-25 22:54:28.184368',1,'2015-04-25 22:54:28.184415',1,1,'files/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.txt','');
-INSERT INTO "rest_file" VALUES(32,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00.jpg',1,1,'2015-04-25 22:55:45.128721',1,'2015-04-25 22:58:04.002023',1,0,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_Gu3Y9FA.jpg','');
-INSERT INTO "rest_file" VALUES(33,6,'f2ef80068762f9298b95691f3885bbe9d4f1c5f2ef725ab7d88c77a3f26f8b54','Screenshot from 2015-04-09 16:52:20.png',1,1,'2015-04-26 13:44:10.012742',1,'2015-04-26 13:44:10.013177',1,1,'files/f2ef80068762f9298b95691f3885bbe9d4f1c5f2ef725ab7d88c77a3f26f8b54.png','');
-INSERT INTO "rest_file" VALUES(34,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00.jpg',1,1,'2015-04-26 17:00:53.136575',1,'2015-04-26 17:00:53.136928',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_edt3VCE.jpg','');
-INSERT INTO "rest_file" VALUES(35,6,'59a8439928f95d2e9e62ea90ec5ca338215e7832ea828a7ed63ca1ed30653f29','install.sh',1,2,'2015-05-05 13:46:53.416028',1,'2015-05-05 13:47:04.292168',1,1,'files/59a8439928f95d2e9e62ea90ec5ca338215e7832ea828a7ed63ca1ed30653f29.sh','asdfasdf');
-INSERT INTO "rest_file" VALUES(36,5,'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855','output.txt',1,1,'2015-05-11 22:27:03.839168',5,'2015-05-11 22:27:03.839300',5,1,'files/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_EpfH6Yr.txt','');
-INSERT INTO "rest_file" VALUES(37,5,'78b704464ae8c567788558a51963642168f4d67427a11d7755b26814a7964e71','asdfasdf.png',3,6,'2016-03-03 18:01:36.434918',5,'2016-03-03 18:01:36.434951',5,1,'files/78b704464ae8c567788558a51963642168f4d67427a11d7755b26814a7964e71.png','');
 CREATE TABLE "django_migrations" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app" varchar(255) NOT NULL, "name" varchar(255) NOT NULL, "applied" datetime NOT NULL);
-INSERT INTO "django_migrations" VALUES(1,'rest','0001_initial','2016-03-06 23:02:11.797873');
-INSERT INTO "django_migrations" VALUES(2,'rest','0002_auto_20160306_2304','2016-03-06 23:05:02.431270');
-INSERT INTO "django_migrations" VALUES(3,'contenttypes','0001_initial','2016-03-06 23:07:32.139015');
-INSERT INTO "django_migrations" VALUES(4,'auth','0001_initial','2016-03-06 23:07:32.165259');
-INSERT INTO "django_migrations" VALUES(5,'admin','0001_initial','2016-03-06 23:07:32.179855');
-INSERT INTO "django_migrations" VALUES(6,'admin','0002_logentry_remove_auto_add','2016-03-06 23:07:32.208281');
-INSERT INTO "django_migrations" VALUES(7,'contenttypes','0002_remove_content_type_name','2016-03-06 23:07:32.252769');
-INSERT INTO "django_migrations" VALUES(8,'auth','0002_alter_permission_name_max_length','2016-03-06 23:07:32.279919');
-INSERT INTO "django_migrations" VALUES(9,'auth','0003_alter_user_email_max_length','2016-03-06 23:07:32.318890');
-INSERT INTO "django_migrations" VALUES(10,'auth','0004_alter_user_username_opts','2016-03-06 23:07:32.341082');
-INSERT INTO "django_migrations" VALUES(11,'auth','0005_alter_user_last_login_null','2016-03-06 23:07:32.364464');
-INSERT INTO "django_migrations" VALUES(12,'auth','0006_require_contenttypes_0002','2016-03-06 23:07:32.372005');
-INSERT INTO "django_migrations" VALUES(13,'auth','0007_alter_validators_add_error_messages','2016-03-06 23:07:32.443934');
-INSERT INTO "django_migrations" VALUES(14,'sessions','0001_initial','2016-03-06 23:07:32.638409');
+INSERT INTO "django_migrations" VALUES(1,'contenttypes','0001_initial','2016-04-21 15:41:33.805378');
+INSERT INTO "django_migrations" VALUES(2,'auth','0001_initial','2016-04-21 15:41:33.838681');
+INSERT INTO "django_migrations" VALUES(3,'admin','0001_initial','2016-04-21 15:41:33.860911');
+INSERT INTO "django_migrations" VALUES(4,'admin','0002_logentry_remove_auto_add','2016-04-21 15:41:33.883740');
+INSERT INTO "django_migrations" VALUES(5,'contenttypes','0002_remove_content_type_name','2016-04-21 15:41:33.947049');
+INSERT INTO "django_migrations" VALUES(6,'auth','0002_alter_permission_name_max_length','2016-04-21 15:41:33.969024');
+INSERT INTO "django_migrations" VALUES(7,'auth','0003_alter_user_email_max_length','2016-04-21 15:41:33.991598');
+INSERT INTO "django_migrations" VALUES(8,'auth','0004_alter_user_username_opts','2016-04-21 15:41:34.015842');
+INSERT INTO "django_migrations" VALUES(9,'auth','0005_alter_user_last_login_null','2016-04-21 15:41:34.038685');
+INSERT INTO "django_migrations" VALUES(10,'auth','0006_require_contenttypes_0002','2016-04-21 15:41:34.044017');
+INSERT INTO "django_migrations" VALUES(11,'auth','0007_alter_validators_add_error_messages','2016-04-21 15:41:34.067404');
+INSERT INTO "django_migrations" VALUES(12,'sessions','0001_initial','2016-04-21 15:41:34.084110');
+INSERT INTO "django_migrations" VALUES(13,'sites','0001_initial','2016-04-21 15:41:34.098460');
+INSERT INTO "django_migrations" VALUES(14,'sites','0002_alter_domain_unique','2016-04-21 15:41:34.116214');
 INSERT INTO "django_migrations" VALUES(15,'sites','0001_initial','2016-03-06 23:07:32.647898');
 INSERT INTO "django_migrations" VALUES(16,'sites','0002_alter_domain_unique','2016-03-06 23:07:32.665761');
+CREATE TABLE "auth_group" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(80) NOT NULL UNIQUE);
+CREATE TABLE "auth_group_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "group_id" integer NOT NULL REFERENCES "auth_group" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"));
+CREATE TABLE "auth_user_groups" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "group_id" integer NOT NULL REFERENCES "auth_group" ("id"));
+CREATE TABLE "auth_user_user_permissions" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"));
 CREATE TABLE "django_admin_log" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "object_id" text NULL, "object_repr" varchar(200) NOT NULL, "action_flag" smallint unsigned NOT NULL, "change_message" text NOT NULL, "content_type_id" integer NULL REFERENCES "django_content_type" ("id"), "user_id" integer NOT NULL REFERENCES "auth_user" ("id"), "action_time" datetime NOT NULL);
 INSERT INTO "django_admin_log" VALUES(1,'1','carrer',1,'',10,1,'2014-10-19 19:30:22.310998');
 INSERT INTO "django_admin_log" VALUES(2,'2','course',1,'',10,1,'2014-10-19 19:30:36.160617');
@@ -723,6 +473,22 @@ INSERT INTO "django_admin_log" VALUES(457,'5','vipvip',2,'Changed confirmedEmail
 INSERT INTO "django_admin_log" VALUES(458,'5','vipvip',2,'Changed confirmedEmail.',15,1,'2015-05-10 15:21:56.207726');
 INSERT INTO "django_admin_log" VALUES(459,'5','vipvip',2,'Changed confirmedEmail.',15,1,'2015-05-10 15:28:54.726126');
 INSERT INTO "django_admin_log" VALUES(460,'5','vipvip',2,'Changed confirmedEmail.',15,1,'2015-05-10 15:30:42.153533');
+INSERT INTO "django_admin_log" VALUES(461,'1','123123',1,'Added.',24,1,'2016-04-21 16:08:37.003518');
+INSERT INTO "django_admin_log" VALUES(462,'1','REQUEST_CANNOT',2,'Changed error and http_code.',24,1,'2016-04-21 16:08:58.269009');
+INSERT INTO "django_admin_log" VALUES(463,'2','INCORRECT_DATA',1,'Added.',24,1,'2016-04-21 16:09:06.418301');
+INSERT INTO "django_admin_log" VALUES(464,'3','DISABLED_COOKIES',1,'Added.',24,1,'2016-04-21 16:09:23.773451');
+INSERT INTO "django_admin_log" VALUES(465,'4','ALREADY_CONFIRMED',1,'Added.',24,1,'2016-04-21 16:09:29.954874');
+INSERT INTO "django_admin_log" VALUES(466,'5','INVALID_TOKEN',1,'Added.',24,1,'2016-04-21 16:09:35.493082');
+INSERT INTO "django_admin_log" VALUES(467,'6','USER_IN_USE',1,'Added.',24,1,'2016-04-21 16:09:42.315395');
+INSERT INTO "django_admin_log" VALUES(468,'7','UNAUTHORIZED',1,'Added.',24,1,'2016-04-21 16:09:47.293797');
+INSERT INTO "django_admin_log" VALUES(469,'8','INCORRECT_FILE_DATA',1,'Added.',24,1,'2016-04-21 16:09:53.800875');
+INSERT INTO "django_admin_log" VALUES(470,'9','PASSWORD_LENGTH',1,'Added.',24,1,'2016-04-21 16:09:59.647986');
+INSERT INTO "django_admin_log" VALUES(471,'10','NICK_LENGTH',1,'Added.',24,1,'2016-04-21 16:10:04.108197');
+INSERT INTO "django_admin_log" VALUES(472,'11','EMAIL_INVALID',1,'Added.',24,1,'2016-04-21 16:10:11.483963');
+INSERT INTO "django_admin_log" VALUES(473,'12','UNCONFIRMED_EMAIL',1,'Added.',24,1,'2016-04-21 16:10:16.148867');
+INSERT INTO "django_admin_log" VALUES(474,'13','NOT_SIGNED_IN',1,'Added.',24,1,'2016-04-21 16:10:20.952403');
+INSERT INTO "django_admin_log" VALUES(475,'14','NAME_LENGTH',1,'Added.',24,1,'2016-04-21 16:10:25.108884');
+INSERT INTO "django_admin_log" VALUES(476,'15','INVALID_LEVEL',1,'Added.',24,1,'2016-04-21 16:10:32.097543');
 CREATE TABLE "django_content_type" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "app_label" varchar(100) NOT NULL, "model" varchar(100) NOT NULL);
 INSERT INTO "django_content_type" VALUES(1,'admin','logentry');
 INSERT INTO "django_content_type" VALUES(2,'auth','permission');
@@ -730,25 +496,25 @@ INSERT INTO "django_content_type" VALUES(3,'auth','group');
 INSERT INTO "django_content_type" VALUES(4,'auth','user');
 INSERT INTO "django_content_type" VALUES(5,'contenttypes','contenttype');
 INSERT INTO "django_content_type" VALUES(6,'sessions','session');
-INSERT INTO "django_content_type" VALUES(9,'rest','level');
-INSERT INTO "django_content_type" VALUES(10,'rest','leveltype');
-INSERT INTO "django_content_type" VALUES(11,'rest','noteboard');
-INSERT INTO "django_content_type" VALUES(13,'rest','bannedhash');
-INSERT INTO "django_content_type" VALUES(14,'rest','rol');
-INSERT INTO "django_content_type" VALUES(15,'rest','user');
-INSERT INTO "django_content_type" VALUES(19,'rest','calendarfrequency');
-INSERT INTO "django_content_type" VALUES(21,'rest','year');
-INSERT INTO "django_content_type" VALUES(22,'rest','file');
-INSERT INTO "django_content_type" VALUES(23,'rest','tag');
-INSERT INTO "django_content_type" VALUES(25,'rest','filereportlist');
-INSERT INTO "django_content_type" VALUES(26,'rest','filecomments');
-INSERT INTO "django_content_type" VALUES(28,'rest','errormessage');
-INSERT INTO "django_content_type" VALUES(29,'rest','message');
-INSERT INTO "django_content_type" VALUES(30,'rest','calendar');
-INSERT INTO "django_content_type" VALUES(31,'rest','calendardate');
-INSERT INTO "django_content_type" VALUES(32,'corsheaders','corsmodel');
-INSERT INTO "django_content_type" VALUES(33,'rest','filetype');
-INSERT INTO "django_content_type" VALUES(34,'sites','site');
+INSERT INTO "django_content_type" VALUES(7,'sites','site');
+INSERT INTO "django_content_type" VALUES(8,'corsheaders','corsmodel');
+INSERT INTO "django_content_type" VALUES(9,'rest','filetype');
+INSERT INTO "django_content_type" VALUES(10,'rest','level');
+INSERT INTO "django_content_type" VALUES(11,'rest','leveltype');
+INSERT INTO "django_content_type" VALUES(12,'rest','rol');
+INSERT INTO "django_content_type" VALUES(13,'rest','user');
+INSERT INTO "django_content_type" VALUES(14,'rest','year');
+INSERT INTO "django_content_type" VALUES(15,'rest','file');
+INSERT INTO "django_content_type" VALUES(16,'rest','filecomments');
+INSERT INTO "django_content_type" VALUES(17,'rest','filereportlist');
+INSERT INTO "django_content_type" VALUES(18,'rest','tag');
+INSERT INTO "django_content_type" VALUES(19,'rest','bannedhash');
+INSERT INTO "django_content_type" VALUES(20,'rest','calendardate');
+INSERT INTO "django_content_type" VALUES(21,'rest','calendar');
+INSERT INTO "django_content_type" VALUES(22,'rest','calendarfrequency');
+INSERT INTO "django_content_type" VALUES(23,'rest','message');
+INSERT INTO "django_content_type" VALUES(24,'rest','errormessage');
+INSERT INTO "django_content_type" VALUES(25,'rest','noteboard');
 CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL);
 INSERT INTO "auth_permission" VALUES(1,1,'add_logentry','Can add log entry');
 INSERT INTO "auth_permission" VALUES(2,1,'change_logentry','Can change log entry');
@@ -768,39 +534,63 @@ INSERT INTO "auth_permission" VALUES(15,5,'delete_contenttype','Can delete conte
 INSERT INTO "auth_permission" VALUES(16,6,'add_session','Can add session');
 INSERT INTO "auth_permission" VALUES(17,6,'change_session','Can change session');
 INSERT INTO "auth_permission" VALUES(18,6,'delete_session','Can delete session');
-INSERT INTO "auth_permission" VALUES(25,9,'add_level','Can add level');
-INSERT INTO "auth_permission" VALUES(26,9,'change_level','Can change level');
-INSERT INTO "auth_permission" VALUES(27,9,'delete_level','Can delete level');
-INSERT INTO "auth_permission" VALUES(28,10,'add_leveltype','Can add level type');
-INSERT INTO "auth_permission" VALUES(29,10,'change_leveltype','Can change level type');
-INSERT INTO "auth_permission" VALUES(30,10,'delete_leveltype','Can delete level type');
-INSERT INTO "auth_permission" VALUES(31,11,'add_noteboard','Can add note board');
-INSERT INTO "auth_permission" VALUES(32,11,'change_noteboard','Can change note board');
-INSERT INTO "auth_permission" VALUES(33,11,'delete_noteboard','Can delete note board');
-INSERT INTO "auth_permission" VALUES(37,13,'add_bannedhash','Can add banned hash');
-INSERT INTO "auth_permission" VALUES(38,13,'change_bannedhash','Can change banned hash');
-INSERT INTO "auth_permission" VALUES(39,13,'delete_bannedhash','Can delete banned hash');
-INSERT INTO "auth_permission" VALUES(40,14,'add_rol','Can add rol');
-INSERT INTO "auth_permission" VALUES(41,14,'change_rol','Can change rol');
-INSERT INTO "auth_permission" VALUES(42,14,'delete_rol','Can delete rol');
-INSERT INTO "auth_permission" VALUES(43,15,'add_user','Can add user');
-INSERT INTO "auth_permission" VALUES(44,15,'change_user','Can change user');
-INSERT INTO "auth_permission" VALUES(45,15,'delete_user','Can delete user');
-INSERT INTO "auth_permission" VALUES(55,19,'add_calendarfrequency','Can add calendar frequency');
-INSERT INTO "auth_permission" VALUES(56,19,'change_calendarfrequency','Can change calendar frequency');
-INSERT INTO "auth_permission" VALUES(57,19,'delete_calendarfrequency','Can delete calendar frequency');
-INSERT INTO "auth_permission" VALUES(61,21,'add_year','Can add year');
-INSERT INTO "auth_permission" VALUES(62,21,'change_year','Can change year');
-INSERT INTO "auth_permission" VALUES(63,21,'delete_year','Can delete year');
-INSERT INTO "auth_permission" VALUES(64,22,'add_file','Can add file');
-INSERT INTO "auth_permission" VALUES(65,22,'change_file','Can change file');
-INSERT INTO "auth_permission" VALUES(66,22,'delete_file','Can delete file');
-INSERT INTO "auth_permission" VALUES(67,23,'add_tag','Can add tag');
-INSERT INTO "auth_permission" VALUES(68,23,'change_tag','Can change tag');
-INSERT INTO "auth_permission" VALUES(69,23,'delete_tag','Can delete tag');
-INSERT INTO "auth_permission" VALUES(73,25,'add_filereportlist','Can add file report list');
-INSERT INTO "auth_permission" VALUES(74,25,'change_filereportlist','Can change file report list');
-INSERT INTO "auth_permission" VALUES(75,25,'delete_filereportlist','Can delete file report list');
+INSERT INTO "auth_permission" VALUES(19,7,'add_site','Can add site');
+INSERT INTO "auth_permission" VALUES(20,7,'change_site','Can change site');
+INSERT INTO "auth_permission" VALUES(21,7,'delete_site','Can delete site');
+INSERT INTO "auth_permission" VALUES(22,8,'add_corsmodel','Can add cors model');
+INSERT INTO "auth_permission" VALUES(23,8,'change_corsmodel','Can change cors model');
+INSERT INTO "auth_permission" VALUES(24,8,'delete_corsmodel','Can delete cors model');
+INSERT INTO "auth_permission" VALUES(25,9,'add_filetype','Can add file type');
+INSERT INTO "auth_permission" VALUES(26,9,'change_filetype','Can change file type');
+INSERT INTO "auth_permission" VALUES(27,9,'delete_filetype','Can delete file type');
+INSERT INTO "auth_permission" VALUES(28,10,'add_level','Can add level');
+INSERT INTO "auth_permission" VALUES(29,10,'change_level','Can change level');
+INSERT INTO "auth_permission" VALUES(30,10,'delete_level','Can delete level');
+INSERT INTO "auth_permission" VALUES(31,11,'add_leveltype','Can add level type');
+INSERT INTO "auth_permission" VALUES(32,11,'change_leveltype','Can change level type');
+INSERT INTO "auth_permission" VALUES(33,11,'delete_leveltype','Can delete level type');
+INSERT INTO "auth_permission" VALUES(34,12,'add_rol','Can add rol');
+INSERT INTO "auth_permission" VALUES(35,12,'change_rol','Can change rol');
+INSERT INTO "auth_permission" VALUES(36,12,'delete_rol','Can delete rol');
+INSERT INTO "auth_permission" VALUES(37,13,'add_user','Can add user');
+INSERT INTO "auth_permission" VALUES(38,13,'change_user','Can change user');
+INSERT INTO "auth_permission" VALUES(39,13,'delete_user','Can delete user');
+INSERT INTO "auth_permission" VALUES(40,14,'add_year','Can add year');
+INSERT INTO "auth_permission" VALUES(41,14,'change_year','Can change year');
+INSERT INTO "auth_permission" VALUES(42,14,'delete_year','Can delete year');
+INSERT INTO "auth_permission" VALUES(43,15,'add_file','Can add file');
+INSERT INTO "auth_permission" VALUES(44,15,'change_file','Can change file');
+INSERT INTO "auth_permission" VALUES(45,15,'delete_file','Can delete file');
+INSERT INTO "auth_permission" VALUES(46,16,'add_filecomments','Can add file comments');
+INSERT INTO "auth_permission" VALUES(47,16,'change_filecomments','Can change file comments');
+INSERT INTO "auth_permission" VALUES(48,16,'delete_filecomments','Can delete file comments');
+INSERT INTO "auth_permission" VALUES(49,17,'add_filereportlist','Can add file report list');
+INSERT INTO "auth_permission" VALUES(50,17,'change_filereportlist','Can change file report list');
+INSERT INTO "auth_permission" VALUES(51,17,'delete_filereportlist','Can delete file report list');
+INSERT INTO "auth_permission" VALUES(52,18,'add_tag','Can add tag');
+INSERT INTO "auth_permission" VALUES(53,18,'change_tag','Can change tag');
+INSERT INTO "auth_permission" VALUES(54,18,'delete_tag','Can delete tag');
+INSERT INTO "auth_permission" VALUES(55,19,'add_bannedhash','Can add banned hash');
+INSERT INTO "auth_permission" VALUES(56,19,'change_bannedhash','Can change banned hash');
+INSERT INTO "auth_permission" VALUES(57,19,'delete_bannedhash','Can delete banned hash');
+INSERT INTO "auth_permission" VALUES(58,20,'add_calendardate','Can add calendar date');
+INSERT INTO "auth_permission" VALUES(59,20,'change_calendardate','Can change calendar date');
+INSERT INTO "auth_permission" VALUES(60,20,'delete_calendardate','Can delete calendar date');
+INSERT INTO "auth_permission" VALUES(61,21,'add_calendar','Can add calendar');
+INSERT INTO "auth_permission" VALUES(62,21,'change_calendar','Can change calendar');
+INSERT INTO "auth_permission" VALUES(63,21,'delete_calendar','Can delete calendar');
+INSERT INTO "auth_permission" VALUES(64,22,'add_calendarfrequency','Can add calendar frequency');
+INSERT INTO "auth_permission" VALUES(65,22,'change_calendarfrequency','Can change calendar frequency');
+INSERT INTO "auth_permission" VALUES(66,22,'delete_calendarfrequency','Can delete calendar frequency');
+INSERT INTO "auth_permission" VALUES(67,23,'add_message','Can add message');
+INSERT INTO "auth_permission" VALUES(68,23,'change_message','Can change message');
+INSERT INTO "auth_permission" VALUES(69,23,'delete_message','Can delete message');
+INSERT INTO "auth_permission" VALUES(70,24,'add_errormessage','Can add error message');
+INSERT INTO "auth_permission" VALUES(71,24,'change_errormessage','Can change error message');
+INSERT INTO "auth_permission" VALUES(72,24,'delete_errormessage','Can delete error message');
+INSERT INTO "auth_permission" VALUES(73,25,'add_noteboard','Can add note board');
+INSERT INTO "auth_permission" VALUES(74,25,'change_noteboard','Can change note board');
+INSERT INTO "auth_permission" VALUES(75,25,'delete_noteboard','Can delete note board');
 INSERT INTO "auth_permission" VALUES(76,26,'add_filecomments','Can add file comments');
 INSERT INTO "auth_permission" VALUES(77,26,'change_filecomments','Can change file comments');
 INSERT INTO "auth_permission" VALUES(78,26,'delete_filecomments','Can delete file comments');
@@ -826,9 +616,274 @@ INSERT INTO "auth_permission" VALUES(100,34,'add_site','Can add site');
 INSERT INTO "auth_permission" VALUES(101,34,'change_site','Can change site');
 INSERT INTO "auth_permission" VALUES(102,34,'delete_site','Can delete site');
 CREATE TABLE "auth_user" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "password" varchar(128) NOT NULL, "last_login" datetime NULL, "is_superuser" bool NOT NULL, "first_name" varchar(30) NOT NULL, "last_name" varchar(30) NOT NULL, "email" varchar(254) NOT NULL, "is_staff" bool NOT NULL, "is_active" bool NOT NULL, "date_joined" datetime NOT NULL, "username" varchar(30) NOT NULL UNIQUE);
-INSERT INTO "auth_user" VALUES(1,'pbkdf2_sha256$20000$9ruSWi5rsWxb$Qu64e0/m6/uQdPEPNYBEtxQAw1u8NdzFJA1CY1ULNFg=','2016-02-18 17:32:45.293045',1,'','','viperey@gmail.com',1,1,'2014-10-19 18:02:05.468449','admin');
+INSERT INTO "auth_user" VALUES(1,'pbkdf2_sha256$24000$9r4LfythlIEd$vj5sK0ltVDoAoJBJI7CTaLVYcpIWmBakUoE8FRkz038=','2016-04-21 16:08:24.591555',1,'','','viperey@gmail.com',1,1,'2014-10-19 18:02:05.468449','admin');
+CREATE TABLE "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL);
+INSERT INTO "django_session" VALUES('iweqy1uzvu8syfw4iilg3hu1age8grn6','NGNlMzY4ZmY3OGIzMTJlZDRjYjQ0NTIzZmVjMmQ5MGI2NjdiZDdhYjp7Il9hdXRoX3VzZXJfaGFzaCI6ImI5ZTMwMzhmN2I3M2MxOWRiNWQ4MzUxZDAwNzFlZjZiOTk2ODM5YWYiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2014-11-02 19:36:22.520742');
+INSERT INTO "django_session" VALUES('9qey0aya5ii3qp8zwyors2l5m53zpnyh','NWRiZTM4MTc4Y2I4NTIyYWQ1MDI4NmRkMjYwYjNmZGZlNDMwOGNmMzp7fQ==','2014-11-09 18:22:44.238686');
+INSERT INTO "django_session" VALUES('dr07caz6w4hmfwas1eotjkew5bf8a1st','NWRiZTM4MTc4Y2I4NTIyYWQ1MDI4NmRkMjYwYjNmZGZlNDMwOGNmMzp7fQ==','2014-11-09 18:33:46.824201');
 CREATE TABLE "django_site" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL, "domain" varchar(100) NOT NULL UNIQUE);
 INSERT INTO "django_site" VALUES(1,'example.com','example.com');
+CREATE TABLE "rest_leveltype" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL);
+INSERT INTO "rest_leveltype" VALUES(1,'carrer');
+INSERT INTO "rest_leveltype" VALUES(2,'course');
+INSERT INTO "rest_leveltype" VALUES(3,'subject');
+INSERT INTO "rest_leveltype" VALUES(4,'student');
+INSERT INTO "rest_leveltype" VALUES(5,'university');
+CREATE TABLE "rest_errormessage" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "error" varchar(200) NOT NULL, "http_code" integer NOT NULL);
+INSERT INTO "rest_errormessage" VALUES(1,'REQUEST_CANNOT',400);
+INSERT INTO "rest_errormessage" VALUES(2,'INCORRECT_DATA',400);
+INSERT INTO "rest_errormessage" VALUES(3,'DISABLED_COOKIES',400);
+INSERT INTO "rest_errormessage" VALUES(4,'ALREADY_CONFIRMED',409);
+INSERT INTO "rest_errormessage" VALUES(5,'INVALID_TOKEN',401);
+INSERT INTO "rest_errormessage" VALUES(6,'USER_IN_USE',409);
+INSERT INTO "rest_errormessage" VALUES(7,'UNAUTHORIZED',401);
+INSERT INTO "rest_errormessage" VALUES(8,'INCORRECT_FILE_DATA',400);
+INSERT INTO "rest_errormessage" VALUES(9,'PASSWORD_LENGTH',400);
+INSERT INTO "rest_errormessage" VALUES(10,'NICK_LENGTH',400);
+INSERT INTO "rest_errormessage" VALUES(11,'EMAIL_INVALID',400);
+INSERT INTO "rest_errormessage" VALUES(12,'UNCONFIRMED_EMAIL',400);
+INSERT INTO "rest_errormessage" VALUES(13,'NOT_SIGNED_IN',401);
+INSERT INTO "rest_errormessage" VALUES(14,'NAME_LENGTH',400);
+INSERT INTO "rest_errormessage" VALUES(15,'INVALID_LEVEL',400);
+CREATE TABLE "rest_bannedhash" ("hash" varchar(65) NOT NULL PRIMARY KEY);
+INSERT INTO "rest_bannedhash" VALUES('aec070645fe53ee3b3763059376134f058cc337247c978add178b6ccdfb0019f');
+INSERT INTO "rest_bannedhash" VALUES('b5d417261307d6902ec32a5355d056c647e101678b99106690ddd1953fd126f5');
+CREATE TABLE "rest_filecomments" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "date" datetime NOT NULL, "text" varchar(1000) NOT NULL, "idAuthor_id" integer NOT NULL REFERENCES "rest_user" ("id"), "idFile_id" integer NOT NULL REFERENCES "rest_file" ("id"));
+CREATE TABLE "rest_filereportlist" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "comment" varchar(200) NOT NULL, "idFile_id" integer NOT NULL REFERENCES "rest_file" ("id"), "idReporter_id" integer NOT NULL REFERENCES "rest_user" ("id"));
+CREATE TABLE "rest_tag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "name" varchar(50) NOT NULL);
+INSERT INTO "rest_tag" VALUES(1,'Notes');
+INSERT INTO "rest_tag" VALUES(2,'Practices');
+INSERT INTO "rest_tag" VALUES(3,'Bibliography');
+INSERT INTO "rest_tag" VALUES(4,'Exams');
+INSERT INTO "rest_tag" VALUES(5,'Others');
+CREATE TABLE "rest_year" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "verbose" varchar(20) NOT NULL);
+INSERT INTO "rest_year" VALUES(1,'2014/2015');
+INSERT INTO "rest_year" VALUES(2,'2013/2015');
+INSERT INTO "rest_year" VALUES(3,'2015/2016');
+CREATE TABLE "rest_filetag" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "idFile_id" integer NOT NULL REFERENCES "rest_file" ("id"), "idTag_id" integer NOT NULL REFERENCES "rest_tag" ("id"));
+CREATE TABLE "rest_message" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "message" varchar(200) NOT NULL
+);
+INSERT INTO "rest_message" VALUES(1,'Successfully signed in');
+INSERT INTO "rest_message" VALUES(2,'Email is now confirmed');
+INSERT INTO "rest_message" VALUES(3,'A new password has been sent to your email adress. Check your inbox');
+INSERT INTO "rest_message" VALUES(4,'Your user account has been removed.');
+INSERT INTO "rest_message" VALUES(5,'Your profile has been updated');
+INSERT INTO "rest_message" VALUES(6,'Note updated');
+INSERT INTO "rest_message" VALUES(7,'The note is been removed');
+INSERT INTO "rest_message" VALUES(8,'The calendar event is been removed');
+INSERT INTO "rest_message" VALUES(9,'Calendar event has been updated.');
+INSERT INTO "rest_message" VALUES(10,'The file has been removed');
+INSERT INTO "rest_message" VALUES(11,'Account successfully validated.');
+INSERT INTO "rest_message" VALUES(12,'Your note was successfully created');
+INSERT INTO "rest_message" VALUES(13,'Your file was successfully uploaded');
+INSERT INTO "rest_message" VALUES(14,'File''s info has been updated');
+CREATE TABLE "rest_rol" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" varchar(100) NOT NULL,
+    "priority" integer NOT NULL
+);
+INSERT INTO "rest_rol" VALUES(1,'Alumno',0);
+INSERT INTO "rest_rol" VALUES(2,'Profesor',1);
+INSERT INTO "rest_rol" VALUES(3,'Coordinador de asignatura',2);
+INSERT INTO "rest_rol" VALUES(4,'Delegado de curso',3);
+INSERT INTO "rest_rol" VALUES(5,'Administrador',4);
+INSERT INTO "rest_rol" VALUES(6,'g0d',5);
+CREATE TABLE "rest_calendarregularevent" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" varchar(200) NOT NULL,
+    "text" varchar(2000) NOT NULL,
+    "created" date NOT NULL,
+    "lastUpdate" date NOT NULL,
+    "author_id" integer NOT NULL REFERENCES "rest_user" ("id"),
+    "lastUpdated_id" integer NOT NULL REFERENCES "rest_user" ("id"),
+    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
+    "hourStart" time,
+    "hourEnd" time,
+    "firstDate" date NOT NULL,
+    "lastDate" date,
+    "allDay" bool NOT NULL,
+    "frequency_id" integer NOT NULL REFERENCES "rest_calendarfrequency" ("id")
+);
+INSERT INTO "rest_calendarregularevent" VALUES(1,'Estadistica','Clases de estadistica de los lunes','2015-02-01','2015-02-01',1,1,1,'12:00:00','14:00:00','2015-02-01','2015-04-01',0,1);
+CREATE TABLE "rest_calendarfrequency" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" varchar(50) NOT NULL
+);
+INSERT INTO "rest_calendarfrequency" VALUES(1,'daily');
+INSERT INTO "rest_calendarfrequency" VALUES(2,'weekly');
+INSERT INTO "rest_calendarfrequency" VALUES(3,'monthly');
+INSERT INTO "rest_calendarfrequency" VALUES(4,'unique');
+CREATE TABLE "rest_calendar" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" varchar(200) NOT NULL,
+    "text" varchar(2000) NOT NULL,
+    "created" date NOT NULL,
+    "lastUpdate" date NOT NULL,
+    "author_id" integer NOT NULL REFERENCES "rest_user" ("id"),
+    "lastUpdated_id" integer NOT NULL REFERENCES "rest_user" ("id"),
+    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
+    "hourStart" time,
+    "hourEnd" time,
+    "firstDate" date NOT NULL,
+    "lastDate" date NOT NULL,
+    "allDay" bool NOT NULL,
+    "frequency_id" integer NOT NULL REFERENCES "rest_calendarfrequency" ("id")
+);
+INSERT INTO "rest_calendar" VALUES(1,'New calendar title','Description for this calendar event','2015-02-03','2015-02-10',1,1,1,'21:41:17','21:41:18','2015-02-03','2015-02-03',1,1);
+INSERT INTO "rest_calendar" VALUES(2,'asdf','asdf','2015-02-03','2015-02-03',2,2,1,'21:51:01','21:51:02','2015-02-27','2015-03-06',1,1);
+INSERT INTO "rest_calendar" VALUES(5,'asdfasdf','qwerqwer','2015-02-10','2015-02-10',1,1,1,'21:41:17','21:41:17','2015-02-03','2015-02-03',1,4);
+INSERT INTO "rest_calendar" VALUES(6,'POST POST','qwerqwer','2015-02-10','2015-02-22',1,1,1,'21:41:17','21:41:17','2015-02-03','2015-02-03',1,4);
+CREATE TABLE "rest_calendardate" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "calendarId_id" integer NOT NULL REFERENCES "rest_calendar" ("id"),
+    "date" datetime NOT NULL
+);
+INSERT INTO "rest_calendardate" VALUES(2,2,'2015-02-27 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(5,2,'2015-03-02 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(6,2,'2015-03-03 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(7,2,'2015-03-04 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(8,2,'2015-03-05 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(9,2,'2015-03-06 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(28,1,'2015-02-03 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(29,5,'2015-02-03 00:00:00');
+INSERT INTO "rest_calendardate" VALUES(31,6,'2015-02-03 00:00:00');
+CREATE TABLE "rest_level" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" varchar(50) NOT NULL,
+    "type_id" integer NOT NULL REFERENCES "rest_leveltype" ("id"),
+    "visible" bool NOT NULL,
+    "parent_id" integer REFERENCES "rest_level" ("id")
+);
+INSERT INTO "rest_level" VALUES(1,'Ingenieria del software',1,1,7);
+INSERT INTO "rest_level" VALUES(2,'Ingenieria de computadores',1,1,7);
+INSERT INTO "rest_level" VALUES(3,'3ro de software',2,1,1);
+INSERT INTO "rest_level" VALUES(4,'Verificacion y Validacion',3,1,3);
+INSERT INTO "rest_level" VALUES(5,'Calidad del software',3,1,3);
+INSERT INTO "rest_level" VALUES(6,'Gestion de proyectos',3,1,3);
+INSERT INTO "rest_level" VALUES(7,'UPM',5,1,NULL);
+CREATE TABLE "corsheaders_corsmodel" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "cors" varchar(255) NOT NULL
+);
+CREATE TABLE "rest_user_subjects" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "user_id" integer NOT NULL,
+    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
+    UNIQUE ("user_id", "level_id")
+);
+INSERT INTO "rest_user_subjects" VALUES(5,2,1);
+INSERT INTO "rest_user_subjects" VALUES(273,3,4);
+INSERT INTO "rest_user_subjects" VALUES(274,3,5);
+INSERT INTO "rest_user_subjects" VALUES(275,3,6);
+INSERT INTO "rest_user_subjects" VALUES(294,1,4);
+INSERT INTO "rest_user_subjects" VALUES(295,1,5);
+INSERT INTO "rest_user_subjects" VALUES(296,1,6);
+INSERT INTO "rest_user_subjects" VALUES(305,5,4);
+INSERT INTO "rest_user_subjects" VALUES(306,5,5);
+INSERT INTO "rest_user_subjects" VALUES(307,5,6);
+CREATE TABLE "rest_user" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "rol_id" integer NOT NULL REFERENCES "rest_rol" ("id"),
+    "email" varchar(100) NOT NULL UNIQUE,
+    "nick" varchar(20) NOT NULL UNIQUE,
+    "name" varchar(100) NOT NULL,
+    "password" varchar(100) NOT NULL,
+    "profilePic" varchar(100) NOT NULL,
+    "lastTimeActive" datetime NOT NULL,
+    "joined" datetime NOT NULL,
+    "banned" bool NOT NULL,
+    "confirmedEmail" bool NOT NULL,
+    "sessionToken" varchar(256) NOT NULL UNIQUE
+);
+INSERT INTO "rest_user" VALUES(1,6,'viperey@alumnos.upm.es','viperey','Victor Perez Rey','qwerqwer','pics/users/arda-425467.jpg','2016-02-18 19:05:47.228188','2015-03-04 13:30:32',0,1,'.eJxVzEEOwiAQheG7zNoQBsQGl-49AxmYQaoGktKujHe3Tbqo6_d_7wOBlrmEpcsUCvUCV6CsRfzZOYfWZL6g1Ymyt0a81W5AGkziiBlORxwpvaTy6vlJ9dFUanWexqi2RO1rV_fG8r7t7d_BuFmE7w_pKTE0:1aWSU5:q3xhs2YhjGiciFcDpi2eT2vUa40');
+INSERT INTO "rest_user" VALUES(2,1,'asdfasd@alumnos.upm.es','qwerqwer','','qwerqwer','_default.png','2015-03-04 13:31:59','2015-03-04 13:31:59',0,0,'.eJxVi70OwiAQgN_lZkMglxbo6O4zEI47pGogKe1kfHdt0qGu388bQtzWErYuSyixF5iAvKBGly1ZTMYzDexwMKy1NZJH8n506GOGy3meGSbzRyimp9QfBn7Eem8qtbouM6k9UYft6tZYXtej_XwBZ48w3w:1YT9Or:JJm7SkZVxAqnADr-Yr9r1QQo-pY');
+INSERT INTO "rest_user" VALUES(3,1,'victoereno@eui.upm.es','mlmlfemf','asdfasdf asdf asd','qwerqwer','_default.png','2015-04-26 12:02:50.220249','2015-03-04 13:39:12',0,1,'e30:1YmLGo:qgdTQcy-Rv7kEtoQ2FtPkxDLmfk');
+INSERT INTO "rest_user" VALUES(4,1,'asdf@alumnos.upm.es','qwer','qwerqwe','qwerqwer','pics/users/_default.png','2015-04-26 13:49:48.448076','2015-04-26 13:49:16',0,1,'e30:1YmMwL:-1SmZ4xargcMAS0LbhW3IQfNklY');
+INSERT INTO "rest_user" VALUES(5,1,'victor.perezr@alumnos.upm.es','vipvip','vip vip','qwerqwer','pics/users/1854070.jpg','2016-03-06 17:43:59.686237','2015-05-10 15:17:00',0,1,'.eJxVi70OgyAQgN-F2RAOSg0du_cZyMEdojaQiE5N372aONj1-_kIj9ua_dZ48RlbFg-BSTG7m7UWjE50B6MiJmc0O6NsD9jrSAGS6K7zSPsK_yxgnLkcgiYsQ5WxlnUZgzwSedomX5X4_Tzb7w-wKzE0:1acciX:3j-cbf69a23QZSvIwQK3qWVFGiQ');
+CREATE TABLE "rest_noteboard" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "topic" varchar(100) NOT NULL,
+    "text" varchar(2000) NOT NULL,
+    "level_id" integer NOT NULL REFERENCES "rest_level" ("id"),
+    "author_id" integer NOT NULL REFERENCES "rest_user" ("id"),
+    "visible" bool NOT NULL,
+    "authorized" bool NOT NULL,
+    "created" datetime NOT NULL
+);
+INSERT INTO "rest_noteboard" VALUES(1,'qwer2','qwerqwer',1,1,1,1,'2015-04-13 13:31:19');
+INSERT INTO "rest_noteboard" VALUES(2,'asdf','sdfasdf',2,1,1,1,'2015-04-13 13:33:36');
+INSERT INTO "rest_noteboard" VALUES(3,'asdf','asdfa',3,1,1,1,'2015-04-13 13:33:52.576212');
+INSERT INTO "rest_noteboard" VALUES(4,'Lastest','.',1,1,1,1,'2015-04-13 13:44:33.743823');
+INSERT INTO "rest_noteboard" VALUES(5,'Lastest lastest','.asdfas',3,1,1,1,'2015-04-13 13:46:14.239982');
+INSERT INTO "rest_noteboard" VALUES(6,'asdf','asdf',1,1,1,1,'2015-04-13 23:51:21.448678');
+INSERT INTO "rest_noteboard" VALUES(7,'asdf','asdfasdf',1,1,0,1,'2015-04-14 00:05:12.293724');
+INSERT INTO "rest_noteboard" VALUES(8,'Note','Message',3,1,0,1,'2015-04-14 00:06:12.817530');
+INSERT INTO "rest_noteboard" VALUES(9,'asdf','asdf',7,1,0,1,'2015-04-26 13:02:27.024524');
+INSERT INTO "rest_noteboard" VALUES(10,'asdf','asdfasdf',1,1,1,1,'2015-05-10 13:33:33.028163');
+CREATE TABLE "rest_filetype" (
+    "name" varchar(20) NOT NULL,
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT
+);
+INSERT INTO "rest_filetype" VALUES('Theory',1);
+INSERT INTO "rest_filetype" VALUES('Practice',2);
+INSERT INTO "rest_filetype" VALUES('Classwork',3);
+INSERT INTO "rest_filetype" VALUES('Bibliography',4);
+INSERT INTO "rest_filetype" VALUES('Exam',5);
+INSERT INTO "rest_filetype" VALUES('Exercise',6);
+CREATE TABLE "rest_file" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "subject_id" integer NOT NULL REFERENCES "rest_level" ("id"),
+    "hash" varchar(65) NOT NULL,
+    "name" varchar(100) NOT NULL,
+    "year_id" integer NOT NULL REFERENCES "rest_year" ("id"),
+    "fileType_id" integer NOT NULL REFERENCES "rest_filetype" ("id"),
+    "uploaded" datetime NOT NULL,
+    "uploader_id" integer NOT NULL REFERENCES "rest_user" ("id"),
+    "lastUpdate" datetime NOT NULL,
+    "lastUpdater_id" integer NOT NULL REFERENCES "rest_user" ("id"),
+    "visible" bool NOT NULL,
+    "file" varchar(100) NOT NULL,
+    "text" varchar(2000) NOT NULL
+);
+INSERT INTO "rest_file" VALUES(1,6,'7528590d779aae2af62b3d78fe6a0fbbd15c195b2ae9eaaadbd91b1336a6ae11','Horario',1,1,'2015-04-15 02:06:01.549045',1,'2015-04-15 02:06:01.549104',1,1,'files/7528590d779aae2af62b3d78fe6a0fbbd15c195b2ae9eaaadbd91b1336a6ae11.png','');
+INSERT INTO "rest_file" VALUES(2,6,'0d54f77bf7b343eaa44a75e97d5009eab9ca4f1c83296eedf24c11747f40b491','bla',1,2,'2015-04-15 02:12:17.696964',1,'2015-04-16 16:09:33.893755',1,1,'files/0d54f77bf7b343eaa44a75e97d5009eab9ca4f1c83296eedf24c11747f40b491.sublime-project','blabla');
+INSERT INTO "rest_file" VALUES(3,6,'b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13','bower',1,1,'2015-04-16 16:25:40.758247',1,'2015-04-16 16:25:40.758327',1,1,'files/b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13.json','');
+INSERT INTO "rest_file" VALUES(4,6,'27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a','LICENSE',1,1,'2015-04-16 16:25:40.768219',1,'2015-04-16 16:25:40.768313',1,1,'files/27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a.LICENSE','');
+INSERT INTO "rest_file" VALUES(5,6,'6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2','CHANGELOG',1,1,'2015-04-16 16:25:40.771430',1,'2015-04-16 16:25:40.771590',1,1,'files/6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2.md','');
+INSERT INTO "rest_file" VALUES(6,6,'6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2','CHANGELOG',1,1,'2015-04-16 19:04:02.725702',1,'2015-04-16 19:04:02.725789',1,1,'files/6caee45251954f251fa4b8d0bdb898d5b1f87666d383ea1f216bf89242f197a2_yK0A4Qv.md','');
+INSERT INTO "rest_file" VALUES(7,6,'b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13','bower',1,1,'2015-04-16 19:04:02.922797',1,'2015-04-16 19:04:02.922911',1,1,'files/b60c283e959c2558f0896cc9d6bae5bb81fbcc08c14ed79d65a87a9cfcd97b13_nhzr3nY.json','');
+INSERT INTO "rest_file" VALUES(8,6,'27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a','LICENSE',1,5,'2015-04-16 19:04:03.163569',1,'2015-04-25 22:16:24.319327',1,1,'files/27f17c59cc854d8541f7ca879fd2ca56e370a425ddb70580f49e5b068d8dca1a_ODlxbL9.LICENSE','tEST');
+INSERT INTO "rest_file" VALUES(9,6,'6523dc5d228b5d09031c29e23a3362120ede559facd5b70fcf242cb98654936b','Ciutat Morta (2014)(Spa + Sub Eng)(360p)(H',1,1,'2015-04-16 19:06:03.111833',1,'2015-04-16 19:06:03.111895',1,1,'files/6523dc5d228b5d09031c29e23a3362120ede559facd5b70fcf242cb98654936b.mp4','');
+INSERT INTO "rest_file" VALUES(10,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:40:13.556031',1,'2015-04-25 22:40:13.556069',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4.jpg','');
+INSERT INTO "rest_file" VALUES(11,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:41:19.137011',1,'2015-04-25 22:41:19.137076',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_p4txx9U.jpg','');
+INSERT INTO "rest_file" VALUES(12,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:41:28.256647',1,'2015-04-25 22:41:28.256710',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_oro9nEj.jpg','');
+INSERT INTO "rest_file" VALUES(13,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:42:53.759096',1,'2015-04-25 22:42:53.759178',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_Hf4R9aI.jpg','');
+INSERT INTO "rest_file" VALUES(14,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:42:56.982471',1,'2015-04-25 22:42:56.982515',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_sDysSZ4.jpg','');
+INSERT INTO "rest_file" VALUES(15,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:43:17.925390',1,'2015-04-25 22:43:17.925443',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_vAHkAWN.jpg','');
+INSERT INTO "rest_file" VALUES(16,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:44:04.146339',1,'2015-04-25 22:44:04.146451',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_ccYxe5s.jpg','');
+INSERT INTO "rest_file" VALUES(17,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00',1,1,'2015-04-25 22:44:10.286766',1,'2015-04-25 22:44:10.286994',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_6xfJ5iV.jpg','');
+INSERT INTO "rest_file" VALUES(18,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1',1,1,'2015-04-25 22:44:28.308755',1,'2015-04-25 22:44:28.308824',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8.png','');
+INSERT INTO "rest_file" VALUES(19,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1',1,1,'2015-04-25 22:45:26.075854',1,'2015-04-25 22:45:26.075919',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_h1kJxLL.png','');
+INSERT INTO "rest_file" VALUES(20,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1',1,1,'2015-04-25 22:45:44.700864',1,'2015-04-25 22:45:44.701002',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_dRHqGjJ.png','');
+INSERT INTO "rest_file" VALUES(21,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','EM275797',1,1,'2015-04-25 22:46:45.084068',1,'2015-04-25 22:46:45.084135',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851.pdf','');
+INSERT INTO "rest_file" VALUES(22,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','EM275797',1,1,'2015-04-25 22:47:34.400033',1,'2015-04-25 22:47:34.400075',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851_7r6eyxd.pdf','');
+INSERT INTO "rest_file" VALUES(23,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','pedeefe.pdf',1,1,'2015-04-25 22:48:49.420623',1,'2015-04-25 22:48:49.420712',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851_wUpML4q.pdf','');
+INSERT INTO "rest_file" VALUES(24,6,'1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851','EM275797.pdf',1,3,'2015-04-25 22:50:24.058695',1,'2015-04-25 22:50:24.058776',1,1,'files/1a34c97ed7d37e927c867983064680580f4f057d571598be6339db5474b7c851_yo2UfaR.pdf','');
+INSERT INTO "rest_file" VALUES(25,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00.jpg',1,5,'2015-04-25 22:50:34.984835',1,'2015-04-25 22:50:34.984878',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_Gm2Xsmq.jpg','');
+INSERT INTO "rest_file" VALUES(26,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1.png',1,1,'2015-04-25 22:51:20.975158',1,'2015-04-25 22:51:20.975227',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_vm64BQd.png','');
+INSERT INTO "rest_file" VALUES(27,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1.png',1,1,'2015-04-25 22:51:41.697013',1,'2015-04-25 22:51:41.697055',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_xhiaDF7.png','');
+INSERT INTO "rest_file" VALUES(28,6,'17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8','Sin título-1.png',1,1,'2015-04-25 22:52:24.653703',1,'2015-04-25 22:52:24.653768',1,1,'files/17d7dcf236c072d63bfa172771ab0e3cbd2e7c34c29929079951408b420b22a8_2GPfxfZ.png','');
+INSERT INTO "rest_file" VALUES(29,6,'a25b037eb8e80d793bd77230c90d6bb7b22d27b0f8c639b087553afc278437b3','xbmc_crashlog-20150314_223839.log',1,5,'2015-04-25 22:52:35.510490',1,'2015-04-25 22:52:35.510566',1,1,'files/a25b037eb8e80d793bd77230c90d6bb7b22d27b0f8c639b087553afc278437b3.log','');
+INSERT INTO "rest_file" VALUES(30,6,'7533c8b5adcdbb17152f0a6a0f7397eb4387107773bf4f618f26ef9d6eb07674','xbmc_crashlog-20150131_212200.log',1,4,'2015-04-25 22:52:38.675933',1,'2015-04-25 22:52:38.675995',1,1,'files/7533c8b5adcdbb17152f0a6a0f7397eb4387107773bf4f618f26ef9d6eb07674.log','');
+INSERT INTO "rest_file" VALUES(31,6,'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855','output',1,1,'2015-04-25 22:54:28.184368',1,'2015-04-25 22:54:28.184415',1,1,'files/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.txt','');
+INSERT INTO "rest_file" VALUES(32,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00.jpg',1,1,'2015-04-25 22:55:45.128721',1,'2015-04-25 22:58:04.002023',1,0,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_Gu3Y9FA.jpg','');
+INSERT INTO "rest_file" VALUES(33,6,'f2ef80068762f9298b95691f3885bbe9d4f1c5f2ef725ab7d88c77a3f26f8b54','Screenshot from 2015-04-09 16:52:20.png',1,1,'2015-04-26 13:44:10.012742',1,'2015-04-26 13:44:10.013177',1,1,'files/f2ef80068762f9298b95691f3885bbe9d4f1c5f2ef725ab7d88c77a3f26f8b54.png','');
+INSERT INTO "rest_file" VALUES(34,6,'2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4','logo-00.jpg',1,1,'2015-04-26 17:00:53.136575',1,'2015-04-26 17:00:53.136928',1,1,'files/2c08e343954db43c5151fc5d8dcfd71e00f3f2685b1cf5c484d683fe3b7d53a4_edt3VCE.jpg','');
+INSERT INTO "rest_file" VALUES(35,6,'59a8439928f95d2e9e62ea90ec5ca338215e7832ea828a7ed63ca1ed30653f29','install.sh',1,2,'2015-05-05 13:46:53.416028',1,'2015-05-05 13:47:04.292168',1,1,'files/59a8439928f95d2e9e62ea90ec5ca338215e7832ea828a7ed63ca1ed30653f29.sh','asdfasdf');
+INSERT INTO "rest_file" VALUES(36,5,'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855','output.txt',1,1,'2015-05-11 22:27:03.839168',5,'2015-05-11 22:27:03.839300',5,1,'files/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_EpfH6Yr.txt','');
+INSERT INTO "rest_file" VALUES(37,5,'78b704464ae8c567788558a51963642168f4d67427a11d7755b26814a7964e71','asdfasdf.png',3,6,'2016-03-03 18:01:36.434918',5,'2016-03-03 18:01:36.434951',5,1,'files/78b704464ae8c567788558a51963642168f4d67427a11d7755b26814a7964e71.png','');
 DELETE FROM sqlite_sequence;
 INSERT INTO "sqlite_sequence" VALUES('rest_leveltype',5);
 INSERT INTO "sqlite_sequence" VALUES('rest_filetag',1);
@@ -847,18 +902,27 @@ INSERT INTO "sqlite_sequence" VALUES('rest_noteboard',10);
 INSERT INTO "sqlite_sequence" VALUES('rest_filetype',6);
 INSERT INTO "sqlite_sequence" VALUES('rest_file',37);
 INSERT INTO "sqlite_sequence" VALUES('django_migrations',16);
-INSERT INTO "sqlite_sequence" VALUES('django_admin_log',460);
+INSERT INTO "sqlite_sequence" VALUES('django_admin_log',476);
 INSERT INTO "sqlite_sequence" VALUES('django_content_type',34);
 INSERT INTO "sqlite_sequence" VALUES('auth_permission',102);
 INSERT INTO "sqlite_sequence" VALUES('auth_user',1);
 INSERT INTO "sqlite_sequence" VALUES('django_site',1);
-CREATE INDEX auth_group_permissions_0e939a4f ON "auth_group_permissions" ("group_id");
-CREATE INDEX auth_group_permissions_8373b171 ON "auth_group_permissions" ("permission_id");
-CREATE INDEX auth_user_groups_e8701ad4 ON "auth_user_groups" ("user_id");
-CREATE INDEX auth_user_groups_0e939a4f ON "auth_user_groups" ("group_id");
-CREATE INDEX auth_user_user_permissions_e8701ad4 ON "auth_user_user_permissions" ("user_id");
-CREATE INDEX auth_user_user_permissions_8373b171 ON "auth_user_user_permissions" ("permission_id");
-CREATE INDEX django_session_de54fa62 ON "django_session" ("expire_date");
+INSERT INTO "sqlite_sequence" VALUES('rest_errormessage',15);
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX "auth_group_permissions_0e939a4f" ON "auth_group_permissions" ("group_id");
+CREATE INDEX "auth_group_permissions_8373b171" ON "auth_group_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX "auth_user_groups_e8701ad4" ON "auth_user_groups" ("user_id");
+CREATE INDEX "auth_user_groups_0e939a4f" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX "auth_user_user_permissions_e8701ad4" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX "auth_user_user_permissions_8373b171" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX "django_admin_log_417f1b1c" ON "django_admin_log" ("content_type_id");
+CREATE INDEX "django_admin_log_e8701ad4" ON "django_admin_log" ("user_id");
+CREATE UNIQUE INDEX "django_content_type_app_label_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX "auth_permission_417f1b1c" ON "auth_permission" ("content_type_id");
+CREATE INDEX "django_session_de54fa62" ON "django_session" ("expire_date");
 CREATE INDEX rest_filecomments_cf721968 ON "rest_filecomments" ("idAuthor_id");
 CREATE INDEX rest_filecomments_e291f4a8 ON "rest_filecomments" ("idFile_id");
 CREATE INDEX rest_filereportlist_e291f4a8 ON "rest_filereportlist" ("idFile_id");
@@ -886,9 +950,4 @@ CREATE INDEX "rest_file_cfde7537" ON "rest_file" ("year_id");
 CREATE INDEX "rest_file_69b45c43" ON "rest_file" ("fileType_id");
 CREATE INDEX "rest_file_8a3cba94" ON "rest_file" ("uploader_id");
 CREATE INDEX "rest_file_a4f875da" ON "rest_file" ("lastUpdater_id");
-CREATE INDEX "django_admin_log_417f1b1c" ON "django_admin_log" ("content_type_id");
-CREATE INDEX "django_admin_log_e8701ad4" ON "django_admin_log" ("user_id");
-CREATE UNIQUE INDEX "django_content_type_app_label_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
-CREATE UNIQUE INDEX "auth_permission_content_type_id_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
-CREATE INDEX "auth_permission_417f1b1c" ON "auth_permission" ("content_type_id");
 COMMIT;

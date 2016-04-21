@@ -6,6 +6,7 @@ BeautifulSoup==3.2.1
 beautifulsoup4==4.4.1
 CDApplet==1.0
 CDBashApplet==1.0
+Cerealizer==0.8.1
 characteristic==14.3.0
 chardet==2.3.0
 CherryPy==5.0.1
@@ -24,6 +25,7 @@ djangorestframework==3.3.2
 dnspython==1.12.0
 docutils==0.12
 duplicity==0.7.1
+EditObj==0.5.7
 enum34==1.1.2
 feedparser==5.2.1
 gyp==0.1
@@ -37,6 +39,7 @@ lockfile==0.12.2
 lxml==3.4.2
 Markdown==2.6.5
 mechanize==0.2.5
+meld==3.12.3
 mercurial==3.1.2
 ndg-httpsclient==0.3.2
 netifaces==0.10.4
@@ -57,12 +60,14 @@ pycups==1.9.72
 Pygments==2.1.3
 pygobject==3.14.0
 pyinotify==0.9.6
+pyogg==1.3
 pyOpenSSL==0.13.1
 pyparsing==2.1.0
 pyserial==3.0.1
 python-apt===0.9.3.11build1
 python-dateutil==2.5.0
 python-debian==0.1.23
+pyvorbis==1.5
 pyxdg==0.25
 PyYAML==3.11
 repoze.lru==0.6
@@ -75,6 +80,7 @@ sessioninstaller==0.0.0
 simplejson==3.8.2
 six==1.10.0
 software-center-aptd-plugins==0.0.0
+Soya==0.15rc1
 system-service==0.1.6
 Twisted-Core==14.0.2
 Twisted-Web==14.0.2
