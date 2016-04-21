@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from rest.models import FileType, File
 from rest.orm.serializers import YearSerializer, UserSimpleSerializer
+from rest.models import FileType, File
 
 
 class FileTypeSerializer(serializers.ModelSerializer):
