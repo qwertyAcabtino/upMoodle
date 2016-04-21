@@ -3,6 +3,6 @@ cd ..
 #install python dependencies
 sudo pip install -r requirements.txt
 #init django stuff
-bash updatedb
+bash scripts/updatedb
 #provision database
-sqlite3 db.sqlite3 ".read provision-database.sql"
+sqlite3 db.sqlite3 ".read ddbb/schemas/provision-database.sql"
