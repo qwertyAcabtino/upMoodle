@@ -1,4 +1,5 @@
+#!/usr/bin/env bash
 export DJANGO_SETTINGS_MODULE='backend.django-admin-server-settings'
 clear
 ./updatedb
-python django-admin-manage.py runserver
+python django-admin-manage.py runserver 8001
