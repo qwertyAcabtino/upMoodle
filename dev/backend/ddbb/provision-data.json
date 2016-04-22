@@ -1,0 +1,507 @@
+[
+  {
+    "model": "rest.filetype",
+    "pk": 1,
+    "fields": {
+      "name": "Theory"
+    }
+  },
+  {
+    "model": "rest.filetype",
+    "pk": 2,
+    "fields": {
+      "name": "Practice"
+    }
+  },
+  {
+    "model": "rest.filetype",
+    "pk": 3,
+    "fields": {
+      "name": "Classwork"
+    }
+  },
+  {
+    "model": "rest.filetype",
+    "pk": 4,
+    "fields": {
+      "name": "Bibliography"
+    }
+  },
+  {
+    "model": "rest.filetype",
+    "pk": 5,
+    "fields": {
+      "name": "Exam"
+    }
+  },
+  {
+    "model": "rest.filetype",
+    "pk": 6,
+    "fields": {
+      "name": "Exercise"
+    }
+  },
+  {
+    "model": "rest.level",
+    "pk": 1,
+    "fields": {
+      "name": "Ingenieria del software",
+      "type": 1,
+      "visible": true,
+      "parent": 7
+    }
+  },
+  {
+    "model": "rest.level",
+    "pk": 2,
+    "fields": {
+      "name": "Ingenieria de computadores",
+      "type": 1,
+      "visible": true,
+      "parent": 7
+    }
+  },
+  {
+    "model": "rest.level",
+    "pk": 3,
+    "fields": {
+      "name": "3ro de software",
+      "type": 2,
+      "visible": true,
+      "parent": 1
+    }
+  },
+  {
+    "model": "rest.level",
+    "pk": 4,
+    "fields": {
+      "name": "Verificacion y Validacion",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "rest.level",
+    "pk": 5,
+    "fields": {
+      "name": "Calidad del software",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "rest.level",
+    "pk": 6,
+    "fields": {
+      "name": "Gestion de proyectos",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "rest.level",
+    "pk": 7,
+    "fields": {
+      "name": "UPM",
+      "type": 5,
+      "visible": true,
+      "parent": null
+    }
+  },
+  {
+    "model": "rest.leveltype",
+    "pk": 1,
+    "fields": {
+      "name": "carrer"
+    }
+  },
+  {
+    "model": "rest.leveltype",
+    "pk": 2,
+    "fields": {
+      "name": "course"
+    }
+  },
+  {
+    "model": "rest.leveltype",
+    "pk": 3,
+    "fields": {
+      "name": "subject"
+    }
+  },
+  {
+    "model": "rest.leveltype",
+    "pk": 4,
+    "fields": {
+      "name": "student"
+    }
+  },
+  {
+    "model": "rest.leveltype",
+    "pk": 5,
+    "fields": {
+      "name": "university"
+    }
+  },
+  {
+    "model": "rest.rol",
+    "pk": 1,
+    "fields": {
+      "name": "Alumno",
+      "priority": 0
+    }
+  },
+  {
+    "model": "rest.rol",
+    "pk": 2,
+    "fields": {
+      "name": "Profesor",
+      "priority": 1
+    }
+  },
+  {
+    "model": "rest.rol",
+    "pk": 3,
+    "fields": {
+      "name": "Coordinador de asignatura",
+      "priority": 2
+    }
+  },
+  {
+    "model": "rest.rol",
+    "pk": 4,
+    "fields": {
+      "name": "Delegado de curso",
+      "priority": 3
+    }
+  },
+  {
+    "model": "rest.rol",
+    "pk": 5,
+    "fields": {
+      "name": "Administrador",
+      "priority": 4
+    }
+  },
+  {
+    "model": "rest.rol",
+    "pk": 6,
+    "fields": {
+      "name": "g0d",
+      "priority": 5
+    }
+  },
+  {
+    "model": "rest.user",
+    "pk": 5,
+    "fields": {
+      "rol": 1,
+      "email": "victor.perezr@alumnos.upm.es",
+      "nick": "vipvip",
+      "name": "vip vip",
+      "password": "qwerqwer",
+      "profilePic": "pics/users/1854070.jpg",
+      "lastTimeActive": "2016-04-21T17:09:03.610Z",
+      "joined": "2015-05-10T15:17:00Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "4661d46eb74647f1909cec5980269208",
+      "subjects": [
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "rest.year",
+    "pk": 3,
+    "fields": {
+      "verbose": "2015/2016"
+    }
+  },
+  {
+    "model": "rest.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Notes"
+    }
+  },
+  {
+    "model": "rest.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Practices"
+    }
+  },
+  {
+    "model": "rest.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Bibliography"
+    }
+  },
+  {
+    "model": "rest.tag",
+    "pk": 4,
+    "fields": {
+      "name": "Exams"
+    }
+  },
+  {
+    "model": "rest.tag",
+    "pk": 5,
+    "fields": {
+      "name": "Others"
+    }
+  },
+  {
+    "model": "rest.calendarfrequency",
+    "pk": 1,
+    "fields": {
+      "name": "daily"
+    }
+  },
+  {
+    "model": "rest.calendarfrequency",
+    "pk": 2,
+    "fields": {
+      "name": "weekly"
+    }
+  },
+  {
+    "model": "rest.calendarfrequency",
+    "pk": 3,
+    "fields": {
+      "name": "monthly"
+    }
+  },
+  {
+    "model": "rest.calendarfrequency",
+    "pk": 4,
+    "fields": {
+      "name": "unique"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 1,
+    "fields": {
+      "message": "Successfully signed in"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 2,
+    "fields": {
+      "message": "Email is now confirmed"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 3,
+    "fields": {
+      "message": "A new password has been sent to your email adress. Check your inbox"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 4,
+    "fields": {
+      "message": "Your user account has been removed."
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 5,
+    "fields": {
+      "message": "Your profile has been updated"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 6,
+    "fields": {
+      "message": "Note updated"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 7,
+    "fields": {
+      "message": "The note is been removed"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 8,
+    "fields": {
+      "message": "The calendar event is been removed"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 9,
+    "fields": {
+      "message": "Calendar event has been updated."
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 10,
+    "fields": {
+      "message": "The file has been removed"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 11,
+    "fields": {
+      "message": "Account successfully validated."
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 12,
+    "fields": {
+      "message": "Your note was successfully created"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 13,
+    "fields": {
+      "message": "Your file was successfully uploaded"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 14,
+    "fields": {
+      "message": "File's info has been updated"
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 1,
+    "fields": {
+      "error": "REQUEST_CANNOT",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 2,
+    "fields": {
+      "error": "INCORRECT_DATA",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 3,
+    "fields": {
+      "error": "DISABLED_COOKIES",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 4,
+    "fields": {
+      "error": "ALREADY_CONFIRMED",
+      "http_code": 409
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 5,
+    "fields": {
+      "error": "INVALID_TOKEN",
+      "http_code": 401
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 6,
+    "fields": {
+      "error": "USER_IN_USE",
+      "http_code": 409
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 7,
+    "fields": {
+      "error": "UNAUTHORIZED",
+      "http_code": 401
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 8,
+    "fields": {
+      "error": "INCORRECT_FILE_DATA",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 9,
+    "fields": {
+      "error": "PASSWORD_LENGTH",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 10,
+    "fields": {
+      "error": "NICK_LENGTH",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 11,
+    "fields": {
+      "error": "EMAIL_INVALID",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 12,
+    "fields": {
+      "error": "UNCONFIRMED_EMAIL",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 13,
+    "fields": {
+      "error": "NOT_SIGNED_IN",
+      "http_code": 401
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 14,
+    "fields": {
+      "error": "NAME_LENGTH",
+      "http_code": 400
+    }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 15,
+    "fields": {
+      "error": "INVALID_LEVEL",
+      "http_code": 400
+    }
+  }
+]

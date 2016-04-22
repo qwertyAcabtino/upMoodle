@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-cd ..
-#install python dependencies
+#install python dependencies, this is more about deployment
 sudo pip install -r requirements.txt
-#init django stuff
-bash scripts/updatedb
-#provision database
-sqlite3 db.sqlite3 ".read ddbb/schemas/provision-database.sql"
+#init migrate needed database data
+bash scripts/model-migration
+#provision database with minimum structure
+python manage loaddata ddbb/provision-data.json
