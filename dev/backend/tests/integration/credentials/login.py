@@ -5,7 +5,7 @@ from django.test import RequestFactory
 from backend.settings import SESSION_COOKIE_NAME
 from rest.MESSAGES_ID import *
 from rest.models import User, ErrorMessage
-from rest.router import login
+from rest.routers import login
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture
 

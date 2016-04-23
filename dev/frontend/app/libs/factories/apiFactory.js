@@ -191,7 +191,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 		subjectFiles : function(subjectId){
 			return $http({
 				method: 'GET',
-				url: base_url + 'files/subject/' + subjectId +"/"
+				url: base_url + 'subject/' + subjectId +"/files"
 			});
 		},
 
@@ -205,7 +205,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 		uploadFile : function(file, data){
 			return $http({
 				method: 'POST',
-				url: base_url + 'file/f/',
+				url: base_url + 'file/',
 				headers: {
 					'Content-Type': 'multipart/form-data'
 				},
@@ -233,9 +233,9 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 
 		filePost : function(file){
 			return $http({
-				method: 'post', 
-				url:  base_url + 'file/' + file.hash +'/metadata/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				method: 'PUT', 
+				url:  base_url + 'file/' + file.hash,
+				headers: {'Content-Type': 'application/json'},
 				transformRequest: function(obj) {
 					var str = [];
 					for(var p in obj)
@@ -250,27 +250,22 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
-		fileGet : function(fileId){
-			return $http({
-				method: 'GET',
-				url: base_url + 'file/' + fileId +'/',
-			});
-		},
-
-		fileGetByHash : function(hash){
-			return $http({
-				method: 'GET',
-				url: base_url + 'file/' + hash +'/metadata/',
-			});
+		fileGet : function(hash){
+			return $http.get(
+				base_url + 'file/' + hash,
+				{
+					headers: {'Accept': 'application/json'}
+				}
+			);
 		},
 
 		fileDownload : function(hash){
-			var url = base_url + 'file/' + hash +"/binary";
+			var url = base_url + 'file/' + hash;
 			$window.open( url );
 		},
 
-		fileDelete : function(fileId){
-			return $http.delete(base_url + 'file/' + fileId +'/');
+		fileDelete : function(hash){
+			return $http.delete(base_url + 'file/' + hash);
 		},
 	}
 });  

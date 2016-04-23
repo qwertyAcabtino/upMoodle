@@ -1,22 +1,20 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.views.decorators.csrf import csrf_exempt
 
 from rest.JSONResponse import JSONResponse
 from rest.MESSAGES_ID import INCORRECT_DATA, INVALID_LEVEL
-from rest.controllers.Exceptions.requestException import RequestExceptionByCode, \
-    RequestException
-from rest.controllers.controllers import check_signed_in_request
 from rest.models import BannedHash, Rol, File, Level, User
 from rest.orm.serializers import *
 from rest.orm.serializers.rol import RolSerializer
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
-from rest.services.files import file_metadata_get, file_get_binary, file_metadata_update, file_delete, file_post
 from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.services.system import signup_sys, login_sys, logout_sys, recoverPassword_sys, \
     subjectsTree_get, fileTypes_get, confirmEmail_sys
 from rest.services.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
     user_put_profile_pic
+
+# noinspection PyUnresolvedReferences
+from routers.file import *
 
 
 @csrf_exempt
@@ -223,40 +221,6 @@ def calendar(request):
         return r.jsonResponse
 
 
-# == Files ==
-@csrf_exempt
-def file_metadata_operations(request, file_hash):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'GET':
-            return file_metadata_get(request, file_hash)
-        if request.method == 'POST':
-            return file_metadata_update(request, file_hash)
-        if request.method == 'DELETE':
-            return file_delete(request, file_hash)
-    except RequestException as r:
-        return r.jsonResponse
-
-@csrf_exempt
-def file_binary_operations(request, file_hash):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'GET':
-            return file_get_binary(request, file_hash)
-    except RequestException as r:
-        return r.jsonResponse
-
-
-@csrf_exempt
-def file_binary_upload(request):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'POST':
-            return file_post(request)
-        else:
-            raise RequestException
-    except RequestException as r:
-        return r.jsonResponse
 
 
 def subjectsTree(request):

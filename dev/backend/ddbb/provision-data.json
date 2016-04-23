@@ -481,5 +481,13 @@
       "error": "INVALID_LEVEL",
       "http_code": 400
     }
+  },
+  {
+    "model": "rest.errormessage",
+    "pk": 16,
+    "fields": {
+      "error": "Method not allowed",
+      "http_code": 405
+    }
   }
 ]

@@ -14,86 +14,89 @@ from rest.orm.serializers import FileSerializer
 from rest.orm.unserializer import unserialize_file_binary, unserialize_file
 
 
-def file_metadata_get(request, pk):
-    try:
-        check_signed_in_request(request, 'GET')
-        files = File.objects.filter(hash=pk, visible=True)
-        serializer = FileSerializer(files, many=True)
-        return JSONResponse(serializer.data)
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+class FileService:
 
+    def __init__(self):
+        pass
 
-def file_get_binary(request, file_hash):
-    try:
-        check_signed_in_request(request, 'GET')
-        response_file = File.objects.get(hash=file_hash)
+    @staticmethod
+    def add(request):
+        try:
 
-        response = HttpResponse(response_file.file)
-        response['Content-Disposition'] = 'attachment; filename=' + response_file.filename
-        return response
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+            uploader = int(request.POST['uploader_id'])
+            check_signed_in_request(request, method='POST')
+            check_authorized_author(request, uploader, level=True)
 
+            form = request.POST
+            Level.validate_exists_level(form['subject_id'])
 
-@csrf_exempt
-def file_metadata_update(request, file_hash):
-    try:
-        file_original = File.objects.get(hash=file_hash)
+            fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
+            new_file = unserialize_file_binary(form, fields=fields, optional=True, binary=request.FILES['file'])
+            new_file.save()
+            return JSONResponseID(FILE_UPLOADED)
+        except Exception as e:
+            return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
-        check_signed_in_request(request, method='POST')
-        check_authorized_author(request, file_original.uploader_id, level=True, same=False)
+    @staticmethod
+    def delete(request, file_hash):
+        try:
+            check_signed_in_request(request, method='DELETE')
+            model = File.objects.get(hash=file_hash)
+            check_authorized_author(request, model.uploader_id, level=True, same=False)
+            model.visible = False
+            model.save()
+            return JSONResponseID(FILE_REMOVED)
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist:
+            return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
-        form = request.POST
-        fields = ['name', 'text', 'fileType_id']
-        file_updated = unserialize_file(form, fields=fields, optional=True)
+    @staticmethod
+    def metadata_get(request, file_hash):
+        try:
+            check_signed_in_request(request, 'GET')
+            file_returning = File.objects.filter(hash=file_hash, visible=True)
+            serializer = FileSerializer(file_returning, many=True)
+            return JSONResponse(serializer.data)
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
-        file_original.update(file_updated, fields)
-        file_original.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
-        file_original.save()
+    @staticmethod
+    def metadata_update(request, file_hash):
+        try:
+            check_signed_in_request(request, method='PUT')
 
-        return JSONResponseID(FILE_UPDATED)
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist or OverflowError or ValueError or MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
-    except ValidationError as v:
-        return RequestExceptionByMessage(v).jsonResponse
+            file_original = File.objects.get(hash=file_hash)
+            check_authorized_author(request, file_original.uploader_id, level=True, same=False)
 
+            form = request.POST
+            fields = ['name', 'text', 'fileType_id']
+            file_updated = unserialize_file(form, fields=fields, optional=True)
 
-@csrf_exempt
-def file_delete(request, pk):
-    try:
-        check_signed_in_request(request, method='DELETE')
-        model = File.objects.get(id=pk)
-        check_authorized_author(request, model.uploader_id, level=True, same=False)
-        model.visible = False
-        model.save()
-        return JSONResponseID(FILE_REMOVED)
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+            file_original.update(file_updated, fields)
+            file_original.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
+            file_original.save()
 
+            return JSONResponseID(FILE_UPDATED)
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError or MultiValueDictKeyError:
+            return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        except ValidationError as v:
+            return RequestExceptionByMessage(v).jsonResponse
 
-@csrf_exempt
-def file_post(request):
-    try:
+    @staticmethod
+    def binary_get(request, file_hash):
+        try:
+            check_signed_in_request(request, 'GET')
+            response_file = File.objects.get(hash=file_hash)
 
-        uploader = int(request.POST['uploader_id'])
-        check_signed_in_request(request, method='POST')
-        check_authorized_author(request, uploader, level=True)
-
-        form = request.POST
-        Level.validate_exists_level(form['subject_id'])
-
-        fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
-        new_file = unserialize_file_binary(form, fields=fields, optional=True, binary=request.FILES['file'])
-        new_file.save()
-        return JSONResponseID(FILE_UPLOADED)
-    except Exception as e:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+            response = HttpResponse(response_file.file)
+            response['Content-Disposition'] = 'attachment; filename=' + response_file.filename
+            return response
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
