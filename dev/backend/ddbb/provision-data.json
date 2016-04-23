@@ -195,28 +195,6 @@
     }
   },
   {
-    "model": "rest.user",
-    "pk": 5,
-    "fields": {
-      "rol": 1,
-      "email": "victor.perezr@alumnos.upm.es",
-      "nick": "vipvip",
-      "name": "vip vip",
-      "password": "qwerqwer",
-      "profilePic": "pics/users/1854070.jpg",
-      "lastTimeActive": "2016-04-21T17:09:03.610Z",
-      "joined": "2015-05-10T15:17:00Z",
-      "banned": false,
-      "confirmedEmail": true,
-      "sessionToken": "4661d46eb74647f1909cec5980269208",
-      "subjects": [
-        4,
-        5,
-        6
-      ]
-    }
-  },
-  {
     "model": "rest.year",
     "pk": 3,
     "fields": {
