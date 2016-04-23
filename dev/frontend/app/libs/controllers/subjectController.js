@@ -144,7 +144,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $moda
 	}
 
 	$scope.downloadFile = function(file){
-		api.fileDownload(file.id);
+		api.fileDownload(file.hash);
 	}
 
 	$scope.deleteFile = function(file){
@@ -170,12 +170,12 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $moda
 	}
 
 	$scope.saveFileInfoCallback = function(message){
-		$scope.getFileInfo(file.id, message);
+		$scope.getFileInfo(file.hash, message);
 		$scope.editMode = false;
 	}
 
-	$scope.getFileInfo = function (fileId, previousMessage) {
-		api.fileGet(fileId)
+	$scope.getFileInfo = function (hash, previousMessage) {
+		api.fileGetByHash(hash)
 		.success(function (data) {
 			if( previousMessage )
 				snackbar.message( previousMessage, 5000);

@@ -234,7 +234,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 		filePost : function(file){
 			return $http({
 				method: 'post', 
-				url:  base_url + 'file/' + file.id +'/',
+				url:  base_url + 'file/' + file.hash +'/metadata/',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				transformRequest: function(obj) {
 					var str = [];
@@ -257,8 +257,15 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
-		fileDownload : function(id){
-			var url = base_url + 'file/f/' + id +"/";
+		fileGetByHash : function(hash){
+			return $http({
+				method: 'GET',
+				url: base_url + 'file/' + hash +'/metadata/',
+			});
+		},
+
+		fileDownload : function(hash){
+			var url = base_url + 'file/' + hash +"/binary";
 			$window.open( url );
 		},
 
