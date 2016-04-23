@@ -14,23 +14,22 @@ from rest.orm.serializers import FileSerializer
 from rest.orm.unserializer import unserialize_file_binary, unserialize_file
 
 
-def file_get_info(request, pk):
+def file_metadata_get(request, pk):
     try:
         check_signed_in_request(request, 'GET')
-        files = File.objects.filter(id=pk, visible=True)
+        files = File.objects.filter(hash=pk, visible=True)
         serializer = FileSerializer(files, many=True)
-        jsonResponse = JSONResponse(serializer.data)
-        return jsonResponse
+        return JSONResponse(serializer.data)
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist or OverflowError or ValueError:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
 
 
-def file_get_binary(request, pk):
+def file_get_binary(request, file_hash):
     try:
         check_signed_in_request(request, 'GET')
-        response_file = File.objects.get(id=pk)
+        response_file = File.objects.get(hash=file_hash)
 
         response = HttpResponse(response_file.file)
         response['Content-Disposition'] = 'attachment; filename=' + response_file.filename
@@ -42,20 +41,20 @@ def file_get_binary(request, pk):
 
 
 @csrf_exempt
-def file_put(request, pk):
+def file_metadata_update(request, file_hash):
     try:
-        fileOriginal = File.objects.get(id=pk)
+        file_original = File.objects.get(hash=file_hash)
 
         check_signed_in_request(request, method='POST')
-        check_authorized_author(request, fileOriginal.uploader_id, level=True, same=False)
+        check_authorized_author(request, file_original.uploader_id, level=True, same=False)
 
         form = request.POST
         fields = ['name', 'text', 'fileType_id']
-        newFile = unserialize_file(form, fields=fields, optional=True)
+        file_updated = unserialize_file(form, fields=fields, optional=True)
 
-        fileOriginal.update(newFile, fields)
-        fileOriginal.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
-        fileOriginal.save()
+        file_original.update(file_updated, fields)
+        file_original.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
+        file_original.save()
 
         return JSONResponseID(FILE_UPDATED)
     except RequestException as r:

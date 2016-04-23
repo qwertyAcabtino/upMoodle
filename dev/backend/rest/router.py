@@ -11,7 +11,7 @@ from rest.orm.serializers import *
 from rest.orm.serializers.rol import RolSerializer
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
-from rest.services.files import file_get_info, file_get_binary, file_put, file_delete, file_post
+from rest.services.files import file_metadata_get, file_get_binary, file_metadata_update, file_delete, file_post
 from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 from rest.services.system import signup_sys, login_sys, logout_sys, recoverPassword_sys, \
     subjectsTree_get, fileTypes_get, confirmEmail_sys
@@ -225,24 +225,24 @@ def calendar(request):
 
 # == Files ==
 @csrf_exempt
-def file_metadata_operations(request, pk):
+def file_metadata_operations(request, file_hash):
     try:
         check_signed_in_request(request)
         if request.method == 'GET':
-            return file_get_info(request, pk)
+            return file_metadata_get(request, file_hash)
         if request.method == 'POST':
-            return file_put(request, pk)
+            return file_metadata_update(request, file_hash)
         if request.method == 'DELETE':
-            return file_delete(request, pk)
+            return file_delete(request, file_hash)
     except RequestException as r:
         return r.jsonResponse
 
 @csrf_exempt
-def file_binary_operations(request, pk):
+def file_binary_operations(request, file_hash):
     try:
         check_signed_in_request(request)
         if request.method == 'GET':
-            return file_get_binary(request, pk)
+            return file_get_binary(request, file_hash)
     except RequestException as r:
         return r.jsonResponse
 

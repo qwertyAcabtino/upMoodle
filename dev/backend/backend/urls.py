@@ -36,8 +36,8 @@ urlpatterns = patterns('',
                        url(r'^calendar/$', calendar),
 
     # Files
-    url(r'^file/(?P<pk>[0-9]+)/binary$', file_binary_operations),  # File's binary download.
-    url(r'^file/(?P<pk>[0-9]+)/metadata$', file_metadata_operations),  # File get, post (edit), delete.
+    url(r'^file/(?P<file_hash>(\w|_)+)/binary$', file_binary_operations),  # File's binary download.
+    url(r'^file/(?P<file_hash>(\w|_)+)/metadata/$', file_metadata_operations),  # File get, post (edit), delete.
     url(r'^file/$', file_binary_upload),  # New file upload. TODo. Remove previous endpoint
 
     # Subjects
