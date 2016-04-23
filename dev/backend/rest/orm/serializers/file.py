@@ -20,4 +20,4 @@ class FileSerializer(serializers.ModelSerializer):
         model = File
         fields = (
             'id', 'subject', 'hash', 'name', 'year', 'fileType', 'uploaded', 'uploader', 'lastUpdate', 'lastUpdater',
-            'visible', 'file', 'text')
+            'visible', 'filename', 'text')

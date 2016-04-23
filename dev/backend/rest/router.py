@@ -225,7 +225,7 @@ def calendar(request):
 
 # == Files ==
 @csrf_exempt
-def fileById(request, pk):
+def file_metadata_operations(request, pk):
     try:
         check_signed_in_request(request)
         if request.method == 'GET':
@@ -238,7 +238,7 @@ def fileById(request, pk):
         return r.jsonResponse
 
 @csrf_exempt
-def fileBinary(request, pk):
+def file_binary_operations(request, pk):
     try:
         check_signed_in_request(request)
         if request.method == 'GET':
@@ -248,7 +248,7 @@ def fileBinary(request, pk):
 
 
 @csrf_exempt
-def file_binary(request):
+def file_binary_upload(request):
     try:
         check_signed_in_request(request)
         if request.method == 'POST':

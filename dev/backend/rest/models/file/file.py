@@ -1,5 +1,6 @@
 import hashlib
 
+import time
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -14,10 +15,11 @@ from rest.models.year import Year
 class File(models.Model):
     id = models.AutoField(primary_key=True)
     subject = models.ForeignKey(Level)
-    hash = models.CharField(max_length=65)
-    name = models.CharField(max_length=100, blank=False)
-    year = models.ForeignKey(Year)
+    hash = models.CharField(max_length=512, unique=True)
+    name = models.CharField(max_length=256, blank=False)
+    filename = models.CharField(max_length=256, blank=False)
     fileType = models.ForeignKey(FileType, default=1)
+    year = models.ForeignKey(Year)
     uploaded = models.DateTimeField(auto_now_add=True)
     uploader = models.ForeignKey(User, related_name='file_lastUpdater')
     lastUpdate = models.DateTimeField(auto_now=True)
@@ -29,27 +31,23 @@ class File(models.Model):
     def __unicode__(self):
         return self.name
 
-    def extension(self):
-        index = self.file.name.rfind('.')
-        if index == -1 or ((len(self.file.name) - index - 1) > 4):
-            raise ExtensionError
-        return self.file.name[index + 1:]
-
-    def get_sha256(self):
+    def get_binary_sha256(self):
         md5 = hashlib.sha256()
         for chunk in self.file.chunks():
             md5.update(chunk)
         return md5.hexdigest()
 
     def get_hashed_filename(self):
-        return "%s.%s" % (self.hash, self.file.name.split('.')[-1])
+        return "%s_%s" % (self.hash, str(int(time.time())))
 
     def save(self, *args, **kwargs):
-        self.hash = self.get_sha256()
+        self.hash = self.get_binary_sha256()
+
         self.clean()
         if not self.lastUpdater_id:
             self.lastUpdater = self.uploader
-        if self.hash not in self.file.name:
+        if self.hash not in self.file.name:  # 1st time uploading
+            self.filename = self.file.name
             self.file.name = self.get_hashed_filename()
         super(File, self).save(*args, **kwargs)
 

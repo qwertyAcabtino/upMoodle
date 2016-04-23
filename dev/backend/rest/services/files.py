@@ -30,14 +30,10 @@ def file_get_info(request, pk):
 def file_get_binary(request, pk):
     try:
         check_signed_in_request(request, 'GET')
-        file = File.objects.get(id=pk)
-        path_to_file = file.file.path
+        response_file = File.objects.get(id=pk)
 
-        extension = file.extension()
-        f = open(path_to_file, 'r')
-        myfile = File(f)
-        response = HttpResponse(file.file)
-        response['Content-Disposition'] = 'attachment; filename=' + file.name + '.' + extension
+        response = HttpResponse(response_file.file)
+        response['Content-Disposition'] = 'attachment; filename=' + response_file.filename
         return response
     except RequestException as r:
         return r.jsonResponse
@@ -97,8 +93,8 @@ def file_post(request):
         Level.validate_exists_level(form['subject_id'])
 
         fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
-        newFile = unserialize_file_binary(form, fields=fields, optional=True, binary=request.FILES['file'])
-        newFile.save()
+        new_file = unserialize_file_binary(form, fields=fields, optional=True, binary=request.FILES['file'])
+        new_file.save()
         return JSONResponseID(FILE_UPLOADED)
     except Exception as e:
         return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
