@@ -9,10 +9,9 @@ pre/*
 *~
 .~*
 dev/backend/rest/migrations
-dev/backend/db.sqlite3
+dev/backend/ddbb/db.sqlite3
 dev/backend/.idea/
-dev/backend/files/
-dev/backend/pics/
+dev/backend/data/
 dev/frontend/node_modules
 dev/frontend/bower_components
 dev/frontend/node_modules/*
