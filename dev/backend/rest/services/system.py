@@ -20,31 +20,6 @@ from rest.orm.serializers import LevelSerializer, FileTypeSerializer
 from rest.orm.unserializer import unserialize_user
 
 
-@csrf_exempt
-def signup_sys(request):
-    try:
-        check_cookies(request)
-        if request.method == 'POST':
-            sessionCookie = request.COOKIES[SESSION_COOKIE_NAME]
-            user = unserialize_user(request.POST, sessionToken=sessionCookie,
-                                    fields=['email', 'password', 'nick', 'name'])
-            send_mail('Email confirmation',
-                      get_email_confirmation_message(request, cookie=sessionCookie),
-                      'info@upmoodle.com', [user.email],
-                      fail_silently=False)
-            user.save()
-            return JSONResponse({"userId": user.id}, status=200)
-        else:
-            return RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT).jsonResponse
-    except ValidationError as v:
-        r = RequestExceptionByMessage(v)
-        return r.jsonResponse
-    except RequestException as r:
-        return r.jsonResponse
-    except Exception:
-        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-
-
 def confirmEmail_sys(request):
     try:
         check_request_method(request, method='POST')
@@ -60,56 +35,6 @@ def confirmEmail_sys(request):
         return r.jsonResponse
     except ObjectDoesNotExist or OverflowError or ValueError:
         return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-
-
-def login_sys(request):
-    try:
-        if not cookies_are_ok(request):
-            exception = RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES)
-            exception.jsonResponse.set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
-            return exception.jsonResponse
-        elif request.method == 'POST':
-            session_key = request.COOKIES[SESSION_COOKIE_NAME]
-            emailIn = request.POST['email']
-            passwordIn = request.POST['password']
-            user = User.objects.get(email=emailIn, password=passwordIn)
-            if not user.confirmedEmail:
-                return RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL).jsonResponse
-            else:
-                user.sessionToken = session_key
-                user.lastTimeActive = timezone.now()
-                user.save()
-                jsonResponse = JSONResponseID(MessageType.SUCCESS_LOGIN)
-                jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
-                return jsonResponse
-        else:
-            raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
-    except ObjectDoesNotExist or MultiValueDictKeyError as e:
-        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-    except MultiValueDictKeyError:
-        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-    except RequestException as r:
-        return r.jsonResponse
-
-
-@csrf_exempt
-def logout_sys(request):
-    try:
-        if not cookies_are_ok(request):
-            return RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES).jsonResponse
-        elif request.method == 'POST':
-            session_key = request.COOKIES[SESSION_COOKIE_NAME]
-            user = User.objects.get(sessionToken=session_key)
-            user.sessionToken = ''
-            user.save()
-            jsonResponse = JSONResponse({"null"}, status=200)
-            # jsonResponse.delete_cookie(SESSION_COOKIE_NAME)
-            jsonResponse.delete_cookie(SESSION_COOKIE_NAME)
-            return jsonResponse
-        else:
-            raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
-    except Exception:
-        return JSONResponse({"null"}, status=400)
 
 
 def recoverPassword_sys(request):

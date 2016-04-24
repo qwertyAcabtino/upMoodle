@@ -27,7 +27,7 @@ def file_by_hash_endpoint(request, file_hash):
             }
             return service_binary_methods[request.method](request, file_hash)
 
-    except KeyError as k:
+    except KeyError:
         return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
     except RequestException as r:
         return r.jsonResponse

@@ -48,29 +48,3 @@ class LoginTestCase(AuthenticationTestBase):
     def test_6_login_empty_password_2(self):
         response = self.client.post('/login/', {'email': 'test@eui.upm.es'})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
-
-    # In this case, for testing the behaviour when having cookies disabled, the request has to be made in a special way.
-    def test_7_login_disabled_cookies(self):
-        request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
-        request.COOKIES[SESSION_COOKIE_NAME] = None
-        request.session = self.client.session
-        request.session.TEST_COOKIE_VALUE = None
-
-        response = login(request)
-        assert_error_response(response, ErrorMessageType.DISABLED_COOKIES)
-
-    def test_8_login_disabled_cookies_2(self):
-        request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
-        request.session = self.client.session
-        request.COOKIES[SESSION_COOKIE_NAME] = None
-
-        response = login(request)
-        assert_error_response(response, ErrorMessageType.DISABLED_COOKIES)
-
-    def test_9_login_disabled_cookies_3(self):
-        request = RequestFactory().post('/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
-        request.session = self.client.session
-        request.COOKIES[SESSION_COOKIE_NAME] = ''
-
-        response = login(request)
-        assert_error_response(response, ErrorMessageType.DISABLED_COOKIES)

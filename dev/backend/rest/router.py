@@ -1,27 +1,21 @@
-# noinspection PyUnresolvedReferences
-import routers
-
 from django.core.exceptions import ObjectDoesNotExist
-from django.views.decorators.csrf import csrf_exempt
 
 from rest.JSONResponse import JSONResponse
-from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.models import BannedHash, Rol, File, Level, User
-from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.serializers import *
 from rest.orm.serializers.rol import RolSerializer
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
 from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
-from rest.services.system import signup_sys, logout_sys, recoverPassword_sys, \
+from rest.services.system import recoverPassword_sys, \
     subjectsTree_get, fileTypes_get, confirmEmail_sys
 from rest.services.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
     user_put_profile_pic
 
 # noinspection PyUnresolvedReferences
-#from routers.file import *
+from routers.file import *
 # noinspection PyUnresolvedReferences
-#from routers.authentication import *
+from routers.auth import *
 
 
 @csrf_exempt
@@ -79,18 +73,10 @@ def fileListSubject(request, pk):
 
 # Final APIS.
 # == System APIs ==
-@csrf_exempt
-def signup(request):
-    return signup_sys(request)
 
 @csrf_exempt
 def confirmEmail(request):
     return confirmEmail_sys(request)
-
-
-@csrf_exempt
-def logout(request):
-    return logout_sys(request)
 
 
 @csrf_exempt
