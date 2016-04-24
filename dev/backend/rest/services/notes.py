@@ -12,7 +12,7 @@ from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializer import unserialize_note
-from rest.services.system import subjectsTree_get_ids
+from rest.services.level import LevelService
 
 
 @csrf_exempt
@@ -98,7 +98,7 @@ def note_get_by_level(request, level):
         Level.validate_exists_level(level)
         form = request.GET
         if form.get('recursive') and form.get('recursive') == 'true':
-            level_group = subjectsTree_get_ids(level)
+            level_group = LevelService.get_level_children_ids_list(request, level)
         else:
             level_group = (level,)
         note = NoteBoard.objects.filter(level_id__in=level_group, visible=True)

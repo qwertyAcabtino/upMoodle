@@ -7,8 +7,7 @@ from rest.orm.serializers.rol import RolSerializer
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
 from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
-from rest.services.system import recoverPassword_sys, \
-    subjectsTree_get, fileTypes_get, confirmEmail_sys
+from rest.services.system import fileTypes_get
 from rest.services.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
     user_put_profile_pic
 
@@ -16,7 +15,8 @@ from rest.services.users import user_get, user_delete, user_put, user_get_id, us
 from routers.file import *
 # noinspection PyUnresolvedReferences
 from routers.auth import *
-
+# noinspection PyUnresolvedReferences
+from routers.level import *
 
 @csrf_exempt
 def bannedhashList(request):
@@ -69,19 +69,6 @@ def fileListSubject(request, pk):
         return JSONResponse(serializer.data)
     elif not level.is_subject():
         return RequestExceptionByCode(ErrorMessageType.INVALID_LEVEL).jsonResponse
-
-
-# Final APIS.
-# == System APIs ==
-
-@csrf_exempt
-def confirmEmail(request):
-    return confirmEmail_sys(request)
-
-
-@csrf_exempt
-def recoverPassword(request):
-    return recoverPassword_sys(request)
 
 
 # == Users ==
@@ -207,18 +194,6 @@ def calendar(request):
             return calendar_post(request)
     except RequestException as r:
         return r.jsonResponse
-
-
-
-
-def subjectsTree(request):
-    try:
-        check_signed_in_request(request, 'GET')
-        return subjectsTree_get()
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 def fileTypes(request):

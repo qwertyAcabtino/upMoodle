@@ -16,3 +16,13 @@ def signup(request):
 @csrf_exempt
 def logout(request):
     return AuthService.logout(request)
+
+
+@csrf_exempt
+def confirm_email(request):
+    return AuthService.confirm_email(request)
+
+
+@csrf_exempt
+def recover_password(request):
+    return AuthService.recover_password(request)

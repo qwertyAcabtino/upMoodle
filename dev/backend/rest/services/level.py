@@ -1,0 +1,74 @@
+from django.core.exceptions import ObjectDoesNotExist
+
+from rest.JSONResponse import JSONResponse
+from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode
+from rest.controllers.controllers import check_signed_in_request
+from rest.models import Level
+from rest.models.message.errorMessage import ErrorMessageType
+from rest.orm.serializers import LevelSerializer
+
+
+class LevelService:
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def __get_level_object(level_id=None):
+        if not level_id:
+            level = Level.objects.filter(parent=None, visible=True)
+        else:
+            level = Level.objects.filter(parent=level_id, visible=True)
+        return LevelSerializer(level, many=True).data
+
+    @staticmethod
+    def get_tree(request, level_id=None):
+        try:
+            check_signed_in_request(request, 'GET')
+            return LevelService.__get_tree_from_id(level_id)
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+
+    @staticmethod
+    def __get_tree_from_id(level_id=None):
+        level_object = LevelService.__get_level_object(level_id=level_id)
+
+        if not level_id:
+            for item in level_object:
+                item['children'] = LevelService.__get_tree_from_id(item.get('id'))
+            return JSONResponse(level_object)
+        else:
+            for item in level_object:
+                item['children'] = LevelService.__get_tree_from_id(item.get('id'))
+                if not item['children'] or len(item['children']) is 0:
+                    del item['children']
+            return level_object
+
+    @staticmethod
+    def get_level_children_ids_list(request, level_id=None):
+        try:
+            check_signed_in_request(request, 'GET')
+            return LevelService.__get_ids_tree(level_id)
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+
+    @staticmethod
+    def __get_ids_tree(level_id=None):
+        if not level_id:
+            subjects = Level.objects.filter(parent=None, visible=True)
+            ids = []
+            for subject in subjects:
+                ids.append(subject.id)
+                ids.extend(LevelService.__get_ids_tree(subject.id))
+            return list(set(ids))
+        else:
+            subjects = Level.objects.filter(parent=level_id, visible=True)
+            ids = [level_id]
+            for subject in subjects:
+                ids.append(subject.id)
+                ids.extend(LevelService.__get_ids_tree(subject.id))
+            return list(set(ids))

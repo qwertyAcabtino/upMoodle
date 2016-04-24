@@ -10,7 +10,8 @@ from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponseID, JSONResponse
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestException, \
     RequestExceptionByMessage
-from rest.controllers.controllers import cookies_are_ok, check_cookies, get_email_confirmation_message
+from rest.controllers.controllers import cookies_are_ok, check_cookies, get_email_confirmation_message, \
+    check_request_method, get_random_password, send_recover_password_email
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
@@ -96,3 +97,41 @@ class AuthService:
                 raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
         except Exception:
             return JSONResponse({"null"}, status=400)
+
+    @staticmethod
+    def confirm_email(request):
+        try:
+            check_request_method(request, method='POST')
+            token = request.POST['token']
+            user = User.objects.get(sessionToken=token)
+            if user.confirmedEmail:
+                return RequestExceptionByCode(ErrorMessageType.ALREADY_CONFIRMED).jsonResponse
+            else:
+                user.confirmedEmail = True
+                user.save()
+                return JSONResponseID(MessageType.ACCOUNT_VALIDATED)
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+
+    @staticmethod
+    def recover_password(request):
+        try:
+            if request.method == 'POST':
+                email_request = request.POST['email']
+                user = User.objects.get(email=email_request)
+                if not user.confirmedEmail:
+                    raise RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL)
+                elif user.banned:
+                    raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+                else:
+                    password = get_random_password()
+                    send_recover_password_email(user.email, password)
+                    user.password = password
+                    user.save()
+            return JSONResponseID(MessageType.RECOVER_PASS_EMAIL)
+        except RequestException as r:
+            return r.jsonResponse
+        except Exception:
+            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse

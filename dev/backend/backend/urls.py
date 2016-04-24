@@ -13,10 +13,10 @@ urlpatterns = patterns('',
     # APIs
     # System
     url(r'^signup/$', signup),
-    url(r'^confirm_email/$', confirmEmail),
+    url(r'^confirm_email/$', confirm_email),
     url(r'^login/$', login),
     url(r'^logout/$', logout),
-    url(r'^recover_password/$', recoverPassword),
+    url(r'^recover_password/$', recover_password),
 
     # User
     url(r'^user/$', user),
@@ -35,14 +35,13 @@ urlpatterns = patterns('',
     url(r'^calendar/(?P<pk>[0-9]+)/$', calendarById),
     url(r'^calendar/$', calendar),
 
-   # Files
+    # Files
     url(r'^file/(?P<file_hash>(\w|_)+)(/?)$', file_by_hash_endpoint),
     url(r'^file/$', file_add_endpoint),
 
     # Subjects
     url(r'^subject/(?P<pk>[0-9]+)/files(/?)$', fileListSubject),
-
-    url(r'^subjectsTree/$', subjectsTree),
+    url(r'^subjectsTree/$', level_tree),
     url(r'^fileTypes/$', fileTypes),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
