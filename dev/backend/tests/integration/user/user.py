@@ -1,11 +1,10 @@
-import json
-
-from rest.MESSAGES_ID import *
 from rest.controllers.controllers import get_random_email
-from rest.models import User, Message, ErrorMessage, Rol
+from rest.models import User, Rol
+from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.message import MessageType
 
 from tests.integration.system import AuthenticationTestBase
-from tests.utils import load_fixture
+from tests.utils import load_fixture, assert_error_response, assert_ok_response
 
 
 class UserTestCase(AuthenticationTestBase):
@@ -25,17 +24,13 @@ class UserTestCase(AuthenticationTestBase):
         self.logout()
         pk = '1'
         response = self.client.get('/user/' + pk + '/')
-        self.assertEqual(response.status_code, 401)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=NOT_SIGNED_IN).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.NOT_SIGNED_IN)
 
     def test_3_getUser_id_overflow(self):
         self.login()
         pk = '191289347901273481236498712634971234123481263984'
         response = self.client.get('/user/' + pk + '/')
-        self.assertEqual(response.status_code, 400)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_4_basic_usersRol(self):
         self.login()
@@ -47,17 +42,13 @@ class UserTestCase(AuthenticationTestBase):
         self.logout()
         rol = Rol.objects.get(name='Alumno')
         response = self.client.get('/users/rol/' + str(rol.id) + '/')
-        self.assertEqual(response.status_code, 401)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=NOT_SIGNED_IN).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.NOT_SIGNED_IN)
 
     def test_6_userRol_id_overflow(self):
         self.login()
         rol = '191289347901273481236498712634971234123481263984'
         response = self.client.get('/users/rol/' + rol + '/')
-        self.assertEqual(response.status_code, 400)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_7_userRemove_basic(self):
         self.login()
@@ -65,15 +56,12 @@ class UserTestCase(AuthenticationTestBase):
         self.assertEqual(response.status_code, 200)
         user = User.objects.get(id=1)
         self.assertEqual(user.nick, 'RemovedUser ' + str(user.id))
-        decoded = json.loads(response.content)
-        self.assertEqual(Message.objects.get(pk=USER_REMOVED).message, decoded['message'])
+        assert_ok_response(response, MessageType.USER_REMOVED)
 
     def test_8_userRemove_not_signedIn(self):
         self.logout()
         response = self.client.delete('/user/')
-        self.assertEqual(response.status_code, 401)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=NOT_SIGNED_IN).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.NOT_SIGNED_IN)
 
     def test_9_userUpdate_basic(self):
         self.login()
@@ -103,9 +91,7 @@ class UserTestCase(AuthenticationTestBase):
         self.login()
         newPassword = 'qwerqwer'
         response = self.client.post('/user/', {'oldPassword': newPassword, 'password': newPassword})
-        self.assertEqual(response.status_code, 400)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_13_userUpdate_basic_several(self):
         self.login()

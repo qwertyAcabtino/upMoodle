@@ -4,9 +4,9 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 import rest.models.calendar
-from rest.MESSAGES_ID import *
 from rest.finals import *
 from rest.models.calendar.calendarDate import CalendarDate
+from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.user import User
 
 
@@ -53,14 +53,14 @@ class Calendar(models.Model):
     # TODO. hourStart > hourEnd.
     def validateHours(self):
         if not self.allDay and (not self.hourStart or not self.hourEnd):
-            raise ValidationError(INCORRECT_DATA)
+            raise ValidationError(ErrorMessageType.INCORRECT_DATA.value)
 
     # TODO. Error message.
     def validateDates(self):
         if self.frequency.id != FREQUENCY_UNIQUE and not self.lastDate:
-            raise ValidationError(INCORRECT_DATA)
+            raise ValidationError(ErrorMessageType.INCORRECT_DATA.value)
         elif self.lastDate and self.firstDate > self.lastDate:
-            raise ValidationError(INCORRECT_DATA)
+            raise ValidationError(ErrorMessageType.INCORRECT_DATA.value)
         elif not self.lastDate:
             self.lastDate = self.firstDate
 

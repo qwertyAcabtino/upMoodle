@@ -20,7 +20,7 @@ class JSONResponse(HttpResponse):
 class JSONResponseID(JSONResponse):
 
     def __init__(self, code):
-        message = Message.objects.get(pk=code)
+        message = Message.objects.get(pk=code.value)
         serializer = MessageSerializer(message, many=False)
         super(JSONResponseID, self).__init__(serializer.data, status=200)
 

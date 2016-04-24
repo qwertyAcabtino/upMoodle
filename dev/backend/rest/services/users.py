@@ -6,11 +6,12 @@ from django.views.decorators.csrf import csrf_exempt
 
 from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, USER_REMOVED, USER_UPDATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, get_random_email, get_random_password
 from rest.models import User
+from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.message import MessageType
 from rest.orm.serializers import UserSerializer
 from rest.orm.unserializer import unserialize_user
 
@@ -28,11 +29,11 @@ def user_get(request):
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 @csrf_exempt
@@ -49,7 +50,7 @@ def user_delete(request):
         userSigned.banned = True
         userSigned.confirmedEmail = False
         userSigned.save()
-        return JSONResponseID(USER_REMOVED)
+        return JSONResponseID(MessageType.USER_REMOVED)
     except RequestException as r:
         return r.jsonResponse
 
@@ -63,18 +64,18 @@ def user_put(request):
         try:
             password = form['password']
             if not userSigned.password == form['oldPassword']:
-                raise RequestExceptionByCode(INCORRECT_DATA)
+                raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
         except MultiValueDictKeyError:
             pass
         fields = ['nick', 'name', 'password', 'email']
         userUpdated = unserialize_user(form, fields=fields, optional=True)
         userSigned.update(userUpdated, fields)
         userSigned.save()
-        return JSONResponseID(USER_UPDATED)
+        return JSONResponseID(MessageType.USER_UPDATED)
     except RequestException as r:
         return r.jsonResponse
     except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
 
@@ -85,16 +86,16 @@ def user_put_profile_pic(request):
         form = request.POST
         profilePic = request.FILES['profilePic']
         if "image/" not in profilePic.content_type:
-            return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
         else:
             userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
             userSigned.profilePic = profilePic
             userSigned.save()
-            return JSONResponseID(USER_UPDATED)
+            return JSONResponseID(MessageType.USER_UPDATED)
     except RequestException as r:
         return r.jsonResponse
     except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
 
@@ -112,11 +113,11 @@ def user_subjects_put(request):
         userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
         userSigned.update_subjects(subjects)
         userSigned.save()
-        return JSONResponseID(USER_UPDATED)
+        return JSONResponseID(MessageType.USER_UPDATED)
     except RequestException as r:
         return r.jsonResponse
     except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except ValidationError as v:
         return RequestExceptionByMessage(v).jsonResponse
 
@@ -130,11 +131,11 @@ def user_get_id(request, pk):
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 # == Rol ==
 def user_get_rol(request, rol):
@@ -146,4 +147,4 @@ def user_get_rol(request, rol):
     except RequestException as r:
         return r.jsonResponse
     except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse

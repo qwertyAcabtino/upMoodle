@@ -148,7 +148,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $moda
 	}
 
 	$scope.deleteFile = function(file){
-		api.fileDelete(file.id)
+		api.fileDelete(file.hash)
 		.success(function (data) {
 			$modalInstance.close(data.message);  
 		})
@@ -175,7 +175,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $moda
 	}
 
 	$scope.getFileInfo = function (hash, previousMessage) {
-		api.fileGetByHash(hash)
+		api.fileGet(hash)
 		.success(function (data) {
 			if( previousMessage )
 				snackbar.message( previousMessage, 5000);

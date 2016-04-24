@@ -4,10 +4,9 @@ import time
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from rest.MESSAGES_ID import INCORRECT_DATA
-from rest.controllers.Exceptions.exceptions import ExtensionError
 from rest.models.file.fileType import FileType
 from rest.models.level import Level
+from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.user import User
 from rest.models.year import Year
 
@@ -62,7 +61,7 @@ class File(models.Model):
         if not self.name and self.hash not in self.file.name:
             self.name = self.file.name.split('.')[0]
         elif not self.name:
-            raise ValidationError(INCORRECT_DATA)
+            raise ValidationError(ErrorMessageType.INCORRECT_DATA.value)
 
     def update(self, userUpdate, fields):
         self.year = Year.get_actual_year()

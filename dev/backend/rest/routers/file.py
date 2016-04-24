@@ -1,8 +1,8 @@
 from django.views.decorators.csrf import csrf_exempt
 
-from rest.MESSAGES_ID import NOT_ALLOWED_METHOD
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestException
 from rest.controllers.controllers import check_signed_in_request
+from rest.models.message.errorMessage import ErrorMessageType
 from rest.services.files import FileService
 
 
@@ -28,7 +28,7 @@ def file_by_hash_endpoint(request, file_hash):
             return service_binary_methods[request.method](request, file_hash)
 
     except KeyError as k:
-        return RequestExceptionByCode(NOT_ALLOWED_METHOD).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
     except RequestException as r:
         return r.jsonResponse
 

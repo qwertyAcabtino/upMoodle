@@ -1,8 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from rest.JSONResponse import JSONResponse
-from rest.MESSAGES_ID import INCORRECT_DATA, INVALID_LEVEL
 from rest.models import BannedHash, Rol, File, Level, User
+from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.serializers import *
 from rest.orm.serializers.rol import RolSerializer
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
@@ -67,7 +67,7 @@ def fileListSubject(request, pk):
         serializer = FileSerializer(files, many=True)
         return JSONResponse(serializer.data)
     elif not level.is_subject():
-        return RequestExceptionByCode(INVALID_LEVEL).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INVALID_LEVEL).jsonResponse
 
 
 # Final APIS.
@@ -159,7 +159,7 @@ def noteById(request, pk):
     except RequestException as r:
         return r.jsonResponse
     except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 @csrf_exempt
@@ -180,7 +180,7 @@ def noteByLevel(request, level):
     except RequestException as r:
         return r.jsonResponse
     except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 # == Calendar ==
@@ -192,7 +192,7 @@ def calendarByPeriod(request, period, initDate):
     except RequestException as r:
         return r.jsonResponse
     except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 @csrf_exempt
@@ -208,7 +208,7 @@ def calendarById(request, pk):
     except RequestException as r:
         return r.jsonResponse
     except OverflowError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 @csrf_exempt
@@ -230,7 +230,7 @@ def subjectsTree(request):
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 def fileTypes(request):
@@ -240,4 +240,4 @@ def fileTypes(request):
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse

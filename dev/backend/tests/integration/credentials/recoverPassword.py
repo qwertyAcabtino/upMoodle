@@ -1,9 +1,10 @@
 import json
 
-from rest.MESSAGES_ID import *
 from rest.models import User, Message, ErrorMessage
+from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.message import MessageType
 from tests.integration.system import AuthenticationTestBase
-from tests.utils import load_fixture
+from tests.utils import load_fixture, assert_error_response, assert_ok_response
 
 
 class RecoverPasswordTestCase(AuthenticationTestBase):
@@ -19,25 +20,20 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         passOld = user.password
         response = self.client.post('/recover_password/', {'email': email})
         self.assertEqual(response.status_code, 200)
-        userNew = User.objects.get(email=email)
-        passNew = userNew.password
-        self.assertNotEqual(passNew, passOld)
-        decoded = json.loads(response.content)
-        self.assertEqual(Message.objects.get(pk=RECOVER_PASS_EMAIL).message, decoded['message'])
+        user_new = User.objects.get(email=email)
+        pass_new = user_new.password
+        self.assertNotEqual(pass_new, passOld)
+        assert_ok_response(response, MessageType.RECOVER_PASS_EMAIL)
 
     def test_2_unexisting_email(self):
         email = 'notExisting@test.com'
         response = self.client.post('/recover_password/', {'email': email})
-        self.assertEqual(response.status_code, 400)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_3_empty_email(self):
         email = ''
         response = self.client.post('/recover_password/', {'email': email})
-        self.assertEqual(response.status_code, 400)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=INCORRECT_DATA).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_4_banned_user(self):
         email = 'test@eui.upm.es'
@@ -45,9 +41,7 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         user.banned = True
         user.save()
         response = self.client.post('/recover_password/', {'email': email})
-        self.assertEqual(response.status_code, 401)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=UNAUTHORIZED).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.UNAUTHORIZED)
         user.banned = False
         user.save()
 
@@ -57,8 +51,6 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         user.confirmedEmail = False
         user.save()
         response = self.client.post('/recover_password/', {'email': email})
-        self.assertEqual(response.status_code, 400)
-        decoded = json.loads(response.content)
-        self.assertEqual(ErrorMessage.objects.get(pk=UNCONFIRMED_EMAIL).error, decoded['error'])
+        assert_error_response(response, ErrorMessageType.UNCONFIRMED_EMAIL)
         user.confirmedEmail = True
         user.save()

@@ -6,12 +6,13 @@ from django.views.decorators.csrf import csrf_exempt
 
 from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import INCORRECT_DATA, CEVENT_REMOVED, CALENDAR_UPDATED
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, is_valid_initDate_by_period, get_date_range, \
     check_authorized_author
 from rest.models import CalendarDate, Calendar, Level, User
+from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.message import MessageType
 from rest.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
@@ -41,7 +42,7 @@ def calendar_get(request, pk):
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 @csrf_exempt
@@ -51,11 +52,11 @@ def calendar_delete(request, pk):
         event = Calendar.objects.get(id=pk)
         check_authorized_author(request, event.author_id, level=True)
         event.delete()
-        return JSONResponseID(CEVENT_REMOVED)
+        return JSONResponseID(MessageType.CEVENT_REMOVED)
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 def calendar_put(request, pk):
@@ -72,7 +73,7 @@ def calendar_put(request, pk):
         calendar.lastUpdate = datetime.now()
         calendarOriginal.update(calendar, fields)
         calendarOriginal.save()
-        return JSONResponseID(CALENDAR_UPDATED)
+        return JSONResponseID(MessageType.CALENDAR_UPDATED)
     except RequestException as r:
         return r.jsonResponse
     except ValidationError as v:

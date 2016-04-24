@@ -9,9 +9,9 @@ from django.core.mail import send_mail
 from django.utils.crypto import random
 
 from backend.settings import SESSION_COOKIE_NAME
-from rest.MESSAGES_ID import INCORRECT_DATA, DISABLED_COOKIES, NOT_SIGNED_IN, REQUEST_CANNOT, UNAUTHORIZED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.models import User
+from rest.models.message.errorMessage import ErrorMessageType
 
 
 def get_email_confirmation_message(request, cookie=None):
@@ -76,19 +76,19 @@ def is_signed_in(request):
 
 def check_cookies(request):
     if not cookies_are_ok(request):
-        exception = RequestExceptionByCode(DISABLED_COOKIES)
+        exception = RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES)
         exception.jsonResponse.set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
         raise exception
 
 
 def check_signed_in(request):
     if not is_signed_in(request):
-        raise RequestExceptionByCode(NOT_SIGNED_IN)
+        raise RequestExceptionByCode(ErrorMessageType.NOT_SIGNED_IN)
 
 
 def check_request_method(request, method):
     if not request.method == method:
-        raise RequestExceptionByCode(REQUEST_CANNOT)
+        raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
 
 
 def check_signed_in_request(request, *args, **kwargs):
@@ -113,9 +113,9 @@ def check_authorized_author(request, author_id, level=False, same=True):
     rolAuthor = userAuthor.rol
     rolSigned = userSigned.rol
     if same and not author_id == userSigned.id:
-        raise RequestExceptionByCode(UNAUTHORIZED)
+        raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
     elif level and rolSigned.priority < rolAuthor.priority:
-        raise RequestExceptionByCode(UNAUTHORIZED)
+        raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
 
 
 def is_valid_month_initDate(initDate):
@@ -139,11 +139,11 @@ def is_valid_initDate_by_period(period, initDate):
         elif period == "day":
             validDate = is_valid_day_initDate(initDate)
         if not validDate:
-            raise RequestExceptionByCode(INCORRECT_DATA)
+            raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
         else:
             return True
     except ValueError:
-        raise RequestExceptionByCode(INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
 
 
 def get_date_range(period, initDate):

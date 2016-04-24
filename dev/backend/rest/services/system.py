@@ -9,13 +9,13 @@ from django.views.decorators.csrf import csrf_exempt
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.MESSAGES_ID import REQUEST_CANNOT, INCORRECT_DATA, ALREADY_CONFIRMED, DISABLED_COOKIES, \
-    UNCONFIRMED_EMAIL, SUCCESS_LOGIN, UNAUTHORIZED, RECOVER_PASS_EMAIL, ACCOUNT_VALIDATED
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestExceptionByMessage, \
     RequestException
 from rest.controllers.controllers import check_cookies, get_email_confirmation_message, cookies_are_ok, \
     get_random_password, send_recover_password_email, check_request_method
 from rest.models import User, Level, FileType
+from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.message import MessageType
 from rest.orm.serializers import LevelSerializer, FileTypeSerializer
 from rest.orm.unserializer import unserialize_user
 
@@ -35,14 +35,14 @@ def signup_sys(request):
             user.save()
             return JSONResponse({"userId": user.id}, status=200)
         else:
-            return RequestExceptionByCode(REQUEST_CANNOT).jsonResponse
+            return RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT).jsonResponse
     except ValidationError as v:
         r = RequestExceptionByMessage(v)
         return r.jsonResponse
     except RequestException as r:
         return r.jsonResponse
     except Exception:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 def confirmEmail_sys(request):
@@ -51,21 +51,21 @@ def confirmEmail_sys(request):
         token = request.POST['token']
         user = User.objects.get(sessionToken=token)
         if user.confirmedEmail:
-            return RequestExceptionByCode(ALREADY_CONFIRMED).jsonResponse
+            return RequestExceptionByCode(ErrorMessageType.ALREADY_CONFIRMED).jsonResponse
         else:
             user.confirmedEmail = True
             user.save()
-            return JSONResponseID(ACCOUNT_VALIDATED)
+            return JSONResponseID(MessageType.ACCOUNT_VALIDATED)
     except RequestException as r:
         return r.jsonResponse
     except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 def login_sys(request):
     try:
         if not cookies_are_ok(request):
-            exception = RequestExceptionByCode(DISABLED_COOKIES)
+            exception = RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES)
             exception.jsonResponse.set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
             return exception.jsonResponse
         elif request.method == 'POST':
@@ -74,20 +74,20 @@ def login_sys(request):
             passwordIn = request.POST['password']
             user = User.objects.get(email=emailIn, password=passwordIn)
             if not user.confirmedEmail:
-                return RequestExceptionByCode(UNCONFIRMED_EMAIL).jsonResponse
+                return RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL).jsonResponse
             else:
                 user.sessionToken = session_key
                 user.lastTimeActive = timezone.now()
                 user.save()
-                jsonResponse = JSONResponseID(SUCCESS_LOGIN)
+                jsonResponse = JSONResponseID(MessageType.SUCCESS_LOGIN)
                 jsonResponse.set_cookie(settings.SESSION_COOKIE_NAME, session_key)
                 return jsonResponse
         else:
-            raise RequestExceptionByCode(REQUEST_CANNOT)
+            raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
     except ObjectDoesNotExist or MultiValueDictKeyError as e:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except MultiValueDictKeyError:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
     except RequestException as r:
         return r.jsonResponse
 
@@ -96,7 +96,7 @@ def login_sys(request):
 def logout_sys(request):
     try:
         if not cookies_are_ok(request):
-            return RequestExceptionByCode(DISABLED_COOKIES).jsonResponse
+            return RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES).jsonResponse
         elif request.method == 'POST':
             session_key = request.COOKIES[SESSION_COOKIE_NAME]
             user = User.objects.get(sessionToken=session_key)
@@ -107,7 +107,7 @@ def logout_sys(request):
             jsonResponse.delete_cookie(SESSION_COOKIE_NAME)
             return jsonResponse
         else:
-            raise RequestExceptionByCode(REQUEST_CANNOT)
+            raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
     except Exception:
         return JSONResponse({"null"}, status=400)
 
@@ -118,19 +118,19 @@ def recoverPassword_sys(request):
             emailRequest = request.POST['email']
             user = User.objects.get(email=emailRequest)
             if not user.confirmedEmail:
-                raise RequestExceptionByCode(UNCONFIRMED_EMAIL)
+                raise RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL)
             elif user.banned:
-                raise RequestExceptionByCode(UNAUTHORIZED)
+                raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
             else:
                 password = get_random_password()
                 send_recover_password_email(user.email, password)
                 user.password = password
                 user.save()
-        return JSONResponseID(RECOVER_PASS_EMAIL)
+        return JSONResponseID(MessageType.RECOVER_PASS_EMAIL)
     except RequestException as r:
         return r.jsonResponse
     except Exception:
-        return RequestExceptionByCode(INCORRECT_DATA).jsonResponse
+        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
 
 def subjectsTree_get(id=None):
