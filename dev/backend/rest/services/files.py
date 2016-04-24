@@ -8,10 +8,10 @@ from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
 from rest.controllers.controllers import check_signed_in_request, check_authorized_author
-from rest.models import File, Level, User
+from rest.models import File, Level, User, FileType
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
-from rest.orm.serializers import FileSerializer
+from rest.orm.serializers import FileSerializer, FileTypeSerializer
 from rest.orm.unserializer import unserialize_file_binary, unserialize_file
 
 
@@ -101,3 +101,24 @@ class FileService:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+
+
+class FileTypeService:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def get(request):
+        try:
+            check_signed_in_request(request, 'GET')
+            return FileTypeService.__get__file_types()
+        except RequestException as r:
+            return r.jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+
+    @staticmethod
+    def __get__file_types():
+        files_types = FileType.objects.all()
+        serializer = FileTypeSerializer(files_types, many=True)
+        return JSONResponse(serializer.data)

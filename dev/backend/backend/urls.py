@@ -42,6 +42,6 @@ urlpatterns = patterns('',
     # Subjects
     url(r'^subject/(?P<pk>[0-9]+)/files(/?)$', fileListSubject),
     url(r'^subjectsTree/$', level_tree),
-    url(r'^fileTypes/$', fileTypes),
+    url(r'^fileTypes/$', filetype_list),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

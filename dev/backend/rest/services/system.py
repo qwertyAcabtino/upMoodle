@@ -1,6 +1,6 @@
 from rest.JSONResponse import JSONResponse
-from rest.models import Level, FileType
-from rest.orm.serializers import LevelSerializer, FileTypeSerializer
+from rest.models import FileType
+from rest.orm.serializers import FileTypeSerializer
 
 
 def fileTypes_get():

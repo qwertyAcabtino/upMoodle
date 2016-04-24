@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestException
 from rest.controllers.controllers import check_signed_in_request
 from rest.models.message.errorMessage import ErrorMessageType
-from rest.services.files import FileService
+from rest.services.files import FileService, FileTypeService
 
 
 @csrf_exempt
@@ -43,3 +43,7 @@ def file_add_endpoint(request):
             raise RequestException
     except RequestException as r:
         return r.jsonResponse
+
+
+def filetype_list(request):
+    FileTypeService.get(request)

@@ -194,13 +194,3 @@ def calendar(request):
             return calendar_post(request)
     except RequestException as r:
         return r.jsonResponse
-
-
-def fileTypes(request):
-    try:
-        check_signed_in_request(request, 'GET')
-        return fileTypes_get()
-    except RequestException as r:
-        return r.jsonResponse
-    except ObjectDoesNotExist or OverflowError or ValueError:
-        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
