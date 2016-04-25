@@ -24,19 +24,19 @@ class AuthService:
         pass
 
     @staticmethod
-    def get_cookie(request):
-        if not cookies_are_ok(request):
+    def get_cookie(session_token):
+        if not session_token:
             return uuid.uuid4().hex
         else:
-            return request.COOKIES[SESSION_COOKIE_NAME]
+            return session_token
 
     @staticmethod
-    def login(request):
+    def login(session_token=None, data=None):
         try:
-            session_token = AuthService.get_cookie(request)
+            session_token = AuthService.get_cookie(session_token)
 
-            request_email = request.POST['email']
-            request_pass = request.POST['password']
+            request_email = data['email']
+            request_pass = data['password']
             user = User.objects.get(email=request_email, password=request_pass)
             if not user.confirmedEmail:
                 return RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL).jsonResponse
@@ -55,11 +55,11 @@ class AuthService:
             return r.jsonResponse
 
     @staticmethod
-    def signup(request):
+    def signup(request, session_token=None, data=None):
         try:
-            session_token = AuthService.get_cookie(request)
+            session_token = AuthService.get_cookie(session_token)
 
-            user = unserialize_user(request.POST, sessionToken=session_token,
+            user = unserialize_user(data, sessionToken=session_token,
                                     fields=['email', 'password', 'nick', 'name'])
             send_mail('Email confirmation',
                       get_email_confirmation_message(request, cookie=session_token),
@@ -78,9 +78,9 @@ class AuthService:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
     @staticmethod
-    def logout(request):
+    def logout(session_token=None):
         try:
-            session_token = AuthService.get_cookie(request)
+            session_token = AuthService.get_cookie(session_token)
             user = User.objects.get(sessionToken=session_token)
             user.sessionToken = ''
             user.save()
@@ -91,10 +91,9 @@ class AuthService:
             return JSONResponse({"null"}, status=400)
 
     @staticmethod
-    def confirm_email(request):
+    def confirm_email(session_token=None):
         try:
-            token = request.POST['token']
-            user = User.objects.get(sessionToken=token)
+            user = User.objects.get(sessionToken=session_token)
             if user.confirmedEmail:
                 return RequestExceptionByCode(ErrorMessageType.ALREADY_CONFIRMED).jsonResponse
             else:
@@ -107,9 +106,9 @@ class AuthService:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
     @staticmethod
-    def recover_password(request):
+    def recover_password(data=None):
         try:
-            email_request = request.POST['email']
+            email_request = data['email']
             user = User.objects.get(email=email_request)
             if not user.confirmedEmail:
                 raise RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL)

@@ -76,9 +76,9 @@ class NoteTestCase(AuthenticationTestBase):
         response = self.client.put('/note/' + str(pk) + '/', {'topic': get_random_string(2001), 'text': 'text', 'level_id': 1})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
         # Text
-        response = self.client.post('/note/' + str(pk) + '/',
+        response = self.client.put('/note/' + str(pk) + '/',
                                     {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
-        assert_error_response(response, ErrorMessageType.DISABLED_COOKIES)
+        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_09_createNote_basic(self):
         self.login()
@@ -119,7 +119,7 @@ class NoteTestCase(AuthenticationTestBase):
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
         # Text
         response = self.client.post('/note/', {'topic': 'topic', 'text': get_random_string(2001), 'level_id': 1})
-        assert_error_response(response, ErrorMessageType.DISABLED_COOKIES)
+        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_14_deleteNote_wrong_id(self):
         self.login()
