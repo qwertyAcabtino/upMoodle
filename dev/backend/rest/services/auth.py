@@ -10,8 +10,8 @@ from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponseID, JSONResponse
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestException, \
     RequestExceptionByMessage
-from rest.controllers.controllers import cookies_are_ok, check_cookies, get_email_confirmation_message, \
-    check_request_method, get_random_password, send_recover_password_email
+from rest.controllers.controllers import cookies_are_ok, get_email_confirmation_message, \
+    get_random_password, send_recover_password_email
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType

@@ -4,8 +4,6 @@ import sys
 
 import django
 from django.conf import settings
-from django.core.management import call_command
-from django.test.runner import DiscoverRunner
 from django.test.utils import get_runner
 
 if __name__ == "__main__":

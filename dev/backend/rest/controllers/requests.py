@@ -38,31 +38,31 @@ def check_cookies(view_func):
     return wraps(view_func)(_decorator)
 
 
-def authorized(same=True, level=False):
-    def _authorized_decorator(view_func):
-        def _decorator(request, *args, **kwargs):
-            """
-            :param request: here comes the information for the signed user.
-            :param author_id: original author of the information.
-            :param level: check the hierarchy. If the signed user has a lower value, exception is raised
-            :param same: checks if the user that is trying to push changes is the same than the original.
-            :return:
-            """
-
-            auth_user = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
-            auth_user_rol = auth_user.rol
-            original_user = User.objects.get(id=author_id)
-            original_user_rol = original_user.rol
-            if same and not author_id == userSigned.id:
-                raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
-            elif level and rolSigned.priority < rolAuthor.priority:
-                raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
-            else:
-                response = view_func(request, *args, **kwargs)
-                return response
-
-        return wraps(view_func)(_decorator)
-    return _authorized_decorator()
+# def authorized(same=True, level=False):
+#     def _authorized_decorator(view_func):
+#         def _decorator(request, *args, **kwargs):
+#             """
+#             :param request: here comes the information for the signed user.
+#             :param author_id: original author of the information.
+#             :param level: check the hierarchy. If the signed user has a lower value, exception is raised
+#             :param same: checks if the user that is trying to push changes is the same than the original.
+#             :return:
+#             """
+#
+#             auth_user = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
+#             auth_user_rol = auth_user.rol
+#             original_user = User.objects.get(id=author_id)
+#             original_user_rol = original_user.rol
+#             if same and not author_id == userSigned.id:
+#                 raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+#             elif level and rolSigned.priority < rolAuthor.priority:
+#                 raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+#             else:
+#                 response = view_func(request, *args, **kwargs)
+#                 return response
+#
+#         return wraps(view_func)(_decorator)
+#     return _authorized_decorator()
 
 
 def method(method_value):

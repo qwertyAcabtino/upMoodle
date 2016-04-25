@@ -1,12 +1,10 @@
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
-from django.views.decorators.csrf import csrf_exempt
 
-from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
-from rest.controllers.controllers import check_signed_in_request, check_authorized_author, is_authorized_author
+from rest.controllers.controllers import is_authorized_author
 from rest.models import NoteBoard, Level, User, Message
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
