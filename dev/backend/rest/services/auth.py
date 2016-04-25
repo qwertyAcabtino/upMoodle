@@ -35,21 +35,18 @@ class AuthService:
         try:
             session_token = AuthService.get_cookie(request)
 
-            if request.method == 'POST':
-                request_email = request.POST['email']
-                request_pass = request.POST['password']
-                user = User.objects.get(email=request_email, password=request_pass)
-                if not user.confirmedEmail:
-                    return RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL).jsonResponse
-                else:
-                    user.sessionToken = session_token
-                    user.lastTimeActive = timezone.now()
-                    user.save()
-                    json_response = JSONResponseID(MessageType.SUCCESS_LOGIN)
-                    json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
-                    return json_response
+            request_email = request.POST['email']
+            request_pass = request.POST['password']
+            user = User.objects.get(email=request_email, password=request_pass)
+            if not user.confirmedEmail:
+                return RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL).jsonResponse
             else:
-                raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
+                user.sessionToken = session_token
+                user.lastTimeActive = timezone.now()
+                user.save()
+                json_response = JSONResponseID(MessageType.SUCCESS_LOGIN)
+                json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
+                return json_response
         except ObjectDoesNotExist or MultiValueDictKeyError:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
         except MultiValueDictKeyError:
@@ -60,19 +57,18 @@ class AuthService:
     @staticmethod
     def signup(request):
         try:
-            check_cookies(request)
-            if request.method == 'POST':
-                session_token = request.COOKIES[SESSION_COOKIE_NAME]
-                user = unserialize_user(request.POST, sessionToken=session_token,
-                                        fields=['email', 'password', 'nick', 'name'])
-                send_mail('Email confirmation',
-                          get_email_confirmation_message(request, cookie=session_token),
-                          'info@upmoodle.com', [user.email],
-                          fail_silently=False)
-                user.save()
-                return JSONResponse({"userId": user.id}, status=200)
-            else:
-                return RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT).jsonResponse
+            session_token = AuthService.get_cookie(request)
+
+            user = unserialize_user(request.POST, sessionToken=session_token,
+                                    fields=['email', 'password', 'nick', 'name'])
+            send_mail('Email confirmation',
+                      get_email_confirmation_message(request, cookie=session_token),
+                      'info@upmoodle.com', [user.email],
+                      fail_silently=False)
+            user.save()
+            json_response = JSONResponse({"userId": user.id}, status=200)
+            json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
+            return json_response
         except ValidationError as v:
             r = RequestExceptionByMessage(v)
             return r.jsonResponse
@@ -85,23 +81,18 @@ class AuthService:
     def logout(request):
         try:
             session_token = AuthService.get_cookie(request)
-
-            if request.method == 'POST':
-                user = User.objects.get(sessionToken=session_token)
-                user.sessionToken = ''
-                user.save()
-                json_response = JSONResponse({"null"}, status=200)
-                json_response.delete_cookie(SESSION_COOKIE_NAME)
-                return json_response
-            else:
-                raise RequestExceptionByCode(ErrorMessageType.REQUEST_CANNOT)
+            user = User.objects.get(sessionToken=session_token)
+            user.sessionToken = ''
+            user.save()
+            json_response = JSONResponse({"null"}, status=200)
+            json_response.delete_cookie(SESSION_COOKIE_NAME)
+            return json_response
         except Exception:
             return JSONResponse({"null"}, status=400)
 
     @staticmethod
     def confirm_email(request):
         try:
-            check_request_method(request, method='POST')
             token = request.POST['token']
             user = User.objects.get(sessionToken=token)
             if user.confirmedEmail:
@@ -118,18 +109,17 @@ class AuthService:
     @staticmethod
     def recover_password(request):
         try:
-            if request.method == 'POST':
-                email_request = request.POST['email']
-                user = User.objects.get(email=email_request)
-                if not user.confirmedEmail:
-                    raise RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL)
-                elif user.banned:
-                    raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
-                else:
-                    password = get_random_password()
-                    send_recover_password_email(user.email, password)
-                    user.password = password
-                    user.save()
+            email_request = request.POST['email']
+            user = User.objects.get(email=email_request)
+            if not user.confirmedEmail:
+                raise RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL)
+            elif user.banned:
+                raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+            else:
+                password = get_random_password()
+                send_recover_password_email(user.email, password)
+                user.password = password
+                user.save()
             return JSONResponseID(MessageType.RECOVER_PASS_EMAIL)
         except RequestException as r:
             return r.jsonResponse
