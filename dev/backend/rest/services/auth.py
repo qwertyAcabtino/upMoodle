@@ -85,7 +85,7 @@ class AuthService:
             user.sessionToken = ''
             user.save()
             json_response = JSONResponse({"null"}, status=200)
-            json_response.delete_cookie(SESSION_COOKIE_NAME)
+            json_response.set_cookie(SESSION_COOKIE_NAME, '')
             return json_response
         except Exception:
             return JSONResponse({"null"}, status=400)

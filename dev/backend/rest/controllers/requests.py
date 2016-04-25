@@ -6,7 +6,6 @@ import demjson as demjson
 from backend.settings import SESSION_COOKIE_NAME
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.controllers.controllers import cookies_are_ok
-from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.services.auth import AuthService
 
@@ -20,8 +19,8 @@ def authenticated(view_func):
 
         kwargs['session_token'] = request.COOKIES[SESSION_COOKIE_NAME]
         response = view_func(request, *args, **kwargs)
+        response = _ensure_cookie(response, kwargs['session_token'])
         return response
-
     return wraps(view_func)(_decorator)
 
 
@@ -104,6 +103,12 @@ def methods(methods_list):
 
         return wraps(view_func)(_decorator)
     return _method_decorator
+
+
+def _ensure_cookie(response, session_token):
+    if len(response.cookies) > 0 and response.cookies[SESSION_COOKIE_NAME] and response.cookies[SESSION_COOKIE_NAME].value == '':
+        response.set_cookie(SESSION_COOKIE_NAME, session_token)
+    return response
 
 
 def _check_cookies(request):

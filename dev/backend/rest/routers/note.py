@@ -6,7 +6,7 @@ from rest.services.notes import NoteService
 
 @csrf_exempt
 @authenticated
-@methods(('GET', 'PUT', 'POST', 'DELETE'))
+@methods(('GET', 'PUT', 'DELETE'))
 def note_by_id(request, note_id, session_token=None, data=None, **kwargs):
     service_methods = {
         'GET': NoteService.get_note_by_id,
