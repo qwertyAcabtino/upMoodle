@@ -6,30 +6,30 @@ from rest.services.auth import AuthService
 
 @csrf_exempt
 @method('POST')
-def login(request):
+def login(request, **kwargs):
     return AuthService.login(request)
 
 
 @csrf_exempt
 @method('POST')
-def signup(request):
+def signup(request, **kwargs):
     return AuthService.signup(request)
 
 
 @csrf_exempt
 @authenticated
 @method('POST')
-def logout(request):
+def logout(request, **kwargs):
     return AuthService.logout(request)
 
 
 @csrf_exempt
 @method('POST')
-def confirm_email(request):
+def confirm_email(request, **kwargs):
     return AuthService.confirm_email(request)
 
 
 @csrf_exempt
 @method('POST')
-def recover_password(request):
+def recover_password(request, **kwargs):
     return AuthService.recover_password(request)

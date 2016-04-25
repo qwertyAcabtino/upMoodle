@@ -15,6 +15,7 @@ def authenticated(view_func):
         except RequestExceptionByCode as r:
             return r.jsonResponse
 
+        kwargs['session_token'] = request.COOKIES[SESSION_COOKIE_NAME]
         response = view_func(request, *args, **kwargs)
         return response
 
@@ -40,6 +41,11 @@ def method(method_value):
             if not request.method == method_value:
                 return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
             else:
+                if method_value == 'POST':
+                    kwargs['data'] = request.POST
+                elif method_value == 'PUT':
+                    kwargs['data'] = request.PUT
+
                 response = view_func(request, *args, **kwargs)
                 return response
 
@@ -53,6 +59,14 @@ def methods(methods_list):
             if not request.method in methods_list:
                 return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
             else:
+
+                if 'POST' in methods_list:
+                    kwargs['data'] = request.POST
+                elif 'PUT' in methods_list:
+                    kwargs['data'] = request.PUT
+
+                # if request.FILES:
+                #     kwargs['files'] = request.FILES
                 response = view_func(request, *args, **kwargs)
                 return response
 

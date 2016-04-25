@@ -1,15 +1,12 @@
 from rest.JSONResponse import JSONResponse
 from rest.controllers.Exceptions.requestException import RequestExceptionByCode
 from rest.controllers.controllers import check_signed_in_request
-from rest.models import BannedHash, Rol, User
+from rest.models import BannedHash
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.serializers import *
-from rest.orm.serializers.rol import RolSerializer
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
 from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
-from rest.services.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
-    user_put_profile_pic
 
 # noinspection PyUnresolvedReferences
 from routers.file import *
@@ -19,6 +16,8 @@ from routers.auth import *
 from routers.level import *
 # noinspection PyUnresolvedReferences
 from routers.rol import *
+# noinspection PyUnresolvedReferences
+from routers.user import *
 
 @csrf_exempt
 def bannedhashList(request):
@@ -29,55 +28,6 @@ def bannedhashList(request):
         hashes = BannedHash.objects.all()
         serializer = BannedHashSerializer(hashes, many=True)
         return JSONResponse(serializer.data)
-
-
-# == Users ==
-@csrf_exempt
-def user(request):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'GET':
-            return user_get(request)
-        elif request.method == 'DELETE':
-            return user_delete(request)
-        elif request.method == 'POST':
-            return user_put(request)
-    except RequestException as r:
-        return r.jsonResponse
-
-
-@csrf_exempt
-def user_subjects(request):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'POST':
-            return user_subjects_put(request)
-    except RequestException as r:
-        return r.jsonResponse
-
-@csrf_exempt
-def user_profilepic(request):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'POST':
-            return user_put_profile_pic(request)
-    except RequestException as r:
-        return r.jsonResponse
-
-
-@csrf_exempt
-def userById(request, pk):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'GET':
-            return user_get_id(request, pk)
-    except RequestException as r:
-        return r.jsonResponse
-
-
-@csrf_exempt
-def usersByRol(request, pk):
-    return user_get_rol(request, pk)
 
 
 # == Notes ==

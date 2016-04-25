@@ -19,11 +19,11 @@ urlpatterns = patterns('',
     url(r'^recover_password/$', recover_password),
 
     # User
-    url(r'^user/$', user),
+    url(r'^user/$', user_endpoint),
     url(r'^user/subjects/$', user_subjects),
-    url(r'^user/profilePic/$', user_profilepic),
-    url(r'^user/(?P<pk>[0-9]+)/$', userById),
-    url(r'^users/rol/(?P<pk>[0-9]+)/$', usersByRol),
+    url(r'^user/profilePic/$', user_profile_pic),
+    url(r'^user/(?P<pk>[0-9]+)/$', user_by_id),
+    url(r'^users/rol/(?P<pk>[0-9]+)/$', users_by_rol),
 
     # Notes
     url(r'^note/level/(?P<level>[0-9]+)/$', noteByLevel),
