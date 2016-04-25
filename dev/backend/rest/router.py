@@ -1,5 +1,7 @@
+from django.views.decorators.csrf import csrf_exempt
+
 from rest.JSONResponse import JSONResponse
-from rest.controllers.Exceptions.requestException import RequestExceptionByCode
+from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestException
 from rest.controllers.controllers import check_signed_in_request
 from rest.models import BannedHash
 from rest.models.message.errorMessage import ErrorMessageType
@@ -8,17 +10,7 @@ from rest.services.calendar import calendar_get_by_period, calendar_get, calenda
     calendar_post
 
 # noinspection PyUnresolvedReferences
-from routers.file import *
-# noinspection PyUnresolvedReferences
 from routers.auth import *
-# noinspection PyUnresolvedReferences
-from routers.level import *
-# noinspection PyUnresolvedReferences
-from routers.rol import *
-# noinspection PyUnresolvedReferences
-from routers.user import *
-# noinspection PyUnresolvedReferences
-from routers.note import *
 
 @csrf_exempt
 def bannedhashList(request):
