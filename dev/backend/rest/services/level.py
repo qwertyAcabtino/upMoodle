@@ -3,9 +3,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest.JSONResponse import JSONResponse
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode
 from rest.controllers.controllers import check_signed_in_request
-from rest.models import Level
+from rest.models import Level, File
 from rest.models.message.errorMessage import ErrorMessageType
-from rest.orm.serializers import LevelSerializer
+from rest.orm.serializers import LevelSerializer, FileSerializer
 
 
 class LevelService:
@@ -22,14 +22,8 @@ class LevelService:
         return LevelSerializer(level, many=True).data
 
     @staticmethod
-    def get_tree(request, level_id=None):
-        try:
-            check_signed_in_request(request, 'GET')
-            return LevelService.__get_tree_from_id(level_id)
-        except RequestException as r:
-            return r.jsonResponse
-        except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+    def get_tree(level_id=None):
+        return LevelService.__get_tree_from_id(level_id)
 
     @staticmethod
     def __get_tree_from_id(level_id=None):
@@ -72,3 +66,22 @@ class LevelService:
                 ids.append(subject.id)
                 ids.extend(LevelService.__get_ids_tree(subject.id))
             return list(set(ids))
+
+
+class SubjectService:
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def get_files_list(pk):
+        try:
+            level = Level.objects.get(id=pk)
+            if level.is_subject():
+                files = File.objects.filter(subject=pk, visible=True)
+                serializer = FileSerializer(files, many=True)
+                return JSONResponse(serializer.data)
+            elif not level.is_subject():
+                return RequestExceptionByCode(ErrorMessageType.INVALID_LEVEL).jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse

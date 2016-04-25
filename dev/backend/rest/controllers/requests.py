@@ -47,6 +47,19 @@ def method(method_value):
     return _method_decorator
 
 
+def methods(methods_list):
+    def _method_decorator(view_func):
+        def _decorator(request, *args, **kwargs):
+            if not request.method in methods_list:
+                return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
+            else:
+                response = view_func(request, *args, **kwargs)
+                return response
+
+        return wraps(view_func)(_decorator)
+    return _method_decorator
+
+
 def _check_cookies(request):
     if not cookies_are_ok(request):
         exception = RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES)

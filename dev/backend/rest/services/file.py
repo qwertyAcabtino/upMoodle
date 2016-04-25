@@ -25,7 +25,6 @@ class FileService:
         try:
 
             uploader = int(request.POST['uploader_id'])
-            check_signed_in_request(request, method='POST')
             check_authorized_author(request, uploader, level=True)
 
             form = request.POST
@@ -41,7 +40,6 @@ class FileService:
     @staticmethod
     def delete(request, file_hash):
         try:
-            check_signed_in_request(request, method='DELETE')
             model = File.objects.get(hash=file_hash)
             check_authorized_author(request, model.uploader_id, level=True, same=False)
             model.visible = False
@@ -53,9 +51,8 @@ class FileService:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
     @staticmethod
-    def metadata_get(request, file_hash):
+    def metadata_get(file_hash):
         try:
-            check_signed_in_request(request, 'GET')
             file_returning = File.objects.filter(hash=file_hash, visible=True)
             serializer = FileSerializer(file_returning, many=True)
             return JSONResponse(serializer.data)
@@ -67,7 +64,6 @@ class FileService:
     @staticmethod
     def metadata_update(request, file_hash):
         try:
-            check_signed_in_request(request, method='PUT')
 
             file_original = File.objects.get(hash=file_hash)
             check_authorized_author(request, file_original.uploader_id, level=True, same=False)
@@ -89,9 +85,8 @@ class FileService:
             return RequestExceptionByMessage(v).jsonResponse
 
     @staticmethod
-    def binary_get(request, file_hash):
+    def binary_get(file_hash):
         try:
-            check_signed_in_request(request, 'GET')
             response_file = File.objects.get(hash=file_hash)
 
             response = HttpResponse(response_file.file)
