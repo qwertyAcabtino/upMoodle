@@ -4,11 +4,11 @@ from django.contrib import admin
 
 from backend import settings
 from rest.router import *
-
 urlpatterns = patterns('',
-    url(r'^bannedhashes/$', bannedhashList),
-    url(r'^roles/$', rolesList),
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^bannedhashes/$', bannedhashList),
+    url(r'^roles/$', roles_list),
 
     # APIs
     # System
@@ -45,3 +45,4 @@ urlpatterns = patterns('',
     url(r'^fileTypes/$', filetype_list),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

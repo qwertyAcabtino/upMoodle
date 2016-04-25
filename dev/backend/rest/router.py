@@ -17,6 +17,8 @@ from routers.file import *
 from routers.auth import *
 # noinspection PyUnresolvedReferences
 from routers.level import *
+# noinspection PyUnresolvedReferences
+from routers.rol import *
 
 @csrf_exempt
 def bannedhashList(request):
@@ -27,29 +29,6 @@ def bannedhashList(request):
         hashes = BannedHash.objects.all()
         serializer = BannedHashSerializer(hashes, many=True)
         return JSONResponse(serializer.data)
-
-
-@csrf_exempt
-def usersList(request):
-    """
-    Retrieves an user's list.
-    """
-    if request.method == 'GET':
-        users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return JSONResponse(serializer.data)
-
-
-@csrf_exempt
-def rolesList(request):
-    """
-    Retrieves an user's list filtered by rol.
-    """
-    if request.method == 'GET':
-        roles = Rol.objects.all()
-        serializer = RolSerializer(roles, many=True)
-        return JSONResponse(serializer.data)
-
 
 
 # == Users ==

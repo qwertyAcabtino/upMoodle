@@ -125,3 +125,14 @@ class AuthService:
             return r.jsonResponse
         except Exception:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+
+    @staticmethod
+    def is_authenticated(session_token):
+        try:
+            user = User.objects.get(sessionToken=session_token)
+            if user.banned:
+                return False
+            else:
+                return True
+        except ObjectDoesNotExist:
+            return False

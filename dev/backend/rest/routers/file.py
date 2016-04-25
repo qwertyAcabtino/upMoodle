@@ -9,7 +9,6 @@ from rest.services.file import FileService, FileTypeService
 @authenticated
 @methods(('GET', 'PUT', 'DELETE'))
 def file_by_hash_endpoint(request, file_hash):
-
     try:
         accept = request.META['HTTP_ACCEPT'].split(',')[0].lower()
         content_type = request.META['CONTENT_TYPE'].split(',')[0].lower()
