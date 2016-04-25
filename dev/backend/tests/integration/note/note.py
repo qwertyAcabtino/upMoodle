@@ -41,7 +41,7 @@ class NoteTestCase(AuthenticationTestBase):
         self.addDefaultNote()
         pk = 1
         topic = 'topic'
-        response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'level_id': 1})
+        response = self.client.put('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'level_id': 1})
         self.assertEqual(response.status_code, 200)
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(topic, note.topic)
@@ -50,7 +50,7 @@ class NoteTestCase(AuthenticationTestBase):
         self.logout()
         pk = 1
         topic = 'topic'
-        response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'level_id': 1})
+        response = self.client.put('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'level_id': 1})
         assert_error_response(response, ErrorMessageType.NOT_SIGNED_IN)
 
     def test_06_postNote_forbiddenFields(self):
@@ -58,7 +58,7 @@ class NoteTestCase(AuthenticationTestBase):
         self.addDefaultNote()
         pk = 1
         topic = 'topic'
-        response = self.client.post('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'author_id': 2})
+        response = self.client.put('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'author_id': 2})
         assert_error_response(response, ErrorMessageType.INVALID_LEVEL)
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(note.author_id, User.objects.get(id=1).id)
@@ -66,14 +66,14 @@ class NoteTestCase(AuthenticationTestBase):
     def test_07_postNote_emptyQuery(self):
         self.login()
         pk = 1
-        response = self.client.post('/note/' + str(pk) + '/', {})
+        response = self.client.put('/note/' + str(pk) + '/', {})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_08_postNote_length_overflows(self):
         self.login()
         pk = 1
         # Topic
-        response = self.client.post('/note/' + str(pk) + '/', {'topic': get_random_string(2001), 'text': 'text', 'level_id': 1})
+        response = self.client.put('/note/' + str(pk) + '/', {'topic': get_random_string(2001), 'text': 'text', 'level_id': 1})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
         # Text
         response = self.client.post('/note/' + str(pk) + '/',
@@ -141,18 +141,18 @@ class NoteTestCase(AuthenticationTestBase):
     def test_16_getNote_level_basic(self):
         self.login()
         pk = 1
-        response = self.client.get('/note/level/' + str(pk) + '/')
+        response = self.client.get('/level/' + str(pk) + '/notes/')
         self.assertEqual(response.status_code, 200)
 
     def test_17_getNote_level_notExisting(self):
         self.login()
         pk = 200
-        response = self.client.get('/note/level/' + str(pk) + '/')
+        response = self.client.get('/level/' + str(pk) + '/notes/')
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_18_getNote_level_empty(self):
         self.login()
         pk = 2
-        response = self.client.get('/note/level/' + str(pk) + '/')
+        response = self.client.get('/level/' + str(pk) + '/notes/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, '[]')

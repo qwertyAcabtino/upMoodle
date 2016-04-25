@@ -108,13 +108,32 @@ def check_authorized_author(request, author_id, level=False, same=True):
     :return:
     """
 
-    userSigned = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
-    userAuthor = User.objects.get(id=author_id)
-    rolAuthor = userAuthor.rol
-    rolSigned = userSigned.rol
-    if same and not author_id == userSigned.id:
+    auth_user = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
+    auth_user_rol = auth_user.rol
+    original_user = User.objects.get(id=author_id)
+    original_user_rol = original_user.rol
+    if same and not author_id == auth_user.id:
         raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
-    elif level and rolSigned.priority < rolAuthor.priority:
+    elif level and auth_user_rol.priority < original_user_rol.priority:
+        raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+
+
+def is_authorized_author(session_token=None, author_id=None, level=False, same=True):
+    """
+    :param session_token: authentication token
+    :param author_id: original author of the information.
+    :param level: check the hierarchy. If the signed user has a lower value, exception is raised
+    :param same: checks if the user that is trying to push changes is the same than the original.
+    :return:
+    """
+
+    auth_user = User.objects.get(sessionToken=session_token)
+    auth_user_rol = auth_user.rol
+    original_user = User.objects.get(id=author_id)
+    original_user_rol = original_user.rol
+    if same and not author_id == auth_user.id:
+        raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+    elif level and auth_user_rol.priority < original_user_rol.priority:
         raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
 
 

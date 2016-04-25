@@ -24,7 +24,7 @@ class Level(models.Model):
             fk = form['level_id']
             Level.objects.get(id=fk)
             Level.validate_exists_level(fk)
-        except MultiValueDictKeyError:
+        except (MultiValueDictKeyError, KeyError):
             raise ValidationError(ErrorMessageType.INVALID_LEVEL.value)
 
     @staticmethod

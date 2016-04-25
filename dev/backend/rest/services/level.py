@@ -2,7 +2,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from rest.JSONResponse import JSONResponse
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode
-from rest.controllers.controllers import check_signed_in_request
 from rest.models import Level, File
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.serializers import LevelSerializer, FileSerializer
@@ -41,9 +40,8 @@ class LevelService:
             return level_object
 
     @staticmethod
-    def get_level_children_ids_list(request, level_id=None):
+    def get_level_children_ids_list(level_id=None):
         try:
-            check_signed_in_request(request, 'GET')
             return LevelService.__get_ids_tree(level_id)
         except RequestException as r:
             return r.jsonResponse

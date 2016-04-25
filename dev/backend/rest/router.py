@@ -6,7 +6,6 @@ from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.serializers import *
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
-from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
 
 # noinspection PyUnresolvedReferences
 from routers.file import *
@@ -18,6 +17,8 @@ from routers.level import *
 from routers.rol import *
 # noinspection PyUnresolvedReferences
 from routers.user import *
+# noinspection PyUnresolvedReferences
+from routers.note import *
 
 @csrf_exempt
 def bannedhashList(request):
@@ -28,45 +29,6 @@ def bannedhashList(request):
         hashes = BannedHash.objects.all()
         serializer = BannedHashSerializer(hashes, many=True)
         return JSONResponse(serializer.data)
-
-
-# == Notes ==
-@csrf_exempt
-def noteById(request, pk):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'GET':
-            return note_get(request, pk)
-        elif request.method == 'DELETE':
-            return note_delete(request, pk)
-        elif request.method == 'POST':
-            return note_put(request, pk)
-    except RequestException as r:
-        return r.jsonResponse
-    except OverflowError:
-        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-
-
-@csrf_exempt
-def note(request):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'POST':
-            return note_post(request)
-    except RequestException as r:
-        return r.jsonResponse
-
-
-def noteByLevel(request, level):
-    try:
-        check_signed_in_request(request)
-        if request.method == 'GET':
-            return note_get_by_level(request, level)
-    except RequestException as r:
-        return r.jsonResponse
-    except OverflowError:
-        return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-
 
 # == Calendar ==
 def calendarByPeriod(request, period, initDate):

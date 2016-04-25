@@ -26,9 +26,9 @@ urlpatterns = patterns('',
     url(r'^users/rol/(?P<pk>[0-9]+)/$', users_by_rol),
 
     # Notes
-    url(r'^note/level/(?P<level>[0-9]+)/$', noteByLevel),
-    url(r'^note/(?P<pk>[0-9]+)/$', noteById),
-    url(r'^note/$', note),
+    url(r'^level/(?P<level_id>[0-9]+)/notes(/?)$', notes_by_level_id),
+    url(r'^note/(?P<note_id>[0-9]+)/$', note_by_id),
+    url(r'^note/$', note_endpoint),
 
     # Calendar
     url(r'^calendar/(?P<period>(month|day))/(?P<initDate>([0-9]|-)*)/$', calendarByPeriod),
