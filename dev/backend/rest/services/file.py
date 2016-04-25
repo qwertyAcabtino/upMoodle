@@ -6,7 +6,7 @@ from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
-from rest.controllers.controllers import check_signed_in_request, check_authorized_author
+from rest.controllers.controllers import check_authorized_author, is_authorized_author
 from rest.models import File, Level, User, FileType
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
@@ -20,27 +20,26 @@ class FileService:
         pass
 
     @staticmethod
-    def add(request):
+    def add(session_token=None, data=None, files=None):
         try:
 
-            uploader = int(request.POST['uploader_id'])
-            check_authorized_author(request, uploader, level=True)
+            uploader_id = User.objects.get(sessionToken=session_token).id
+            is_authorized_author(session_token=session_token, author_id=uploader_id, level=True)
 
-            form = request.POST
-            Level.validate_exists_level(form['subject_id'])
+            Level.validate_exists_level(data['subject_id'])
 
             fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
-            new_file = unserialize_file_binary(form, fields=fields, optional=True, binary=request.FILES['file'])
+            new_file = unserialize_file_binary(data, fields=fields, optional=True, binary=files['file'])
             new_file.save()
             return JSONResponseID(MessageType.FILE_UPLOADED)
-        except Exception as e:
+        except Exception:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
     @staticmethod
-    def delete(request, file_hash):
+    def delete(session_token=None, file_hash=None, **kwargs):
         try:
             model = File.objects.get(hash=file_hash)
-            check_authorized_author(request, model.uploader_id, level=True, same=False)
+            is_authorized_author(session_token=session_token, author_id=model.uploader_id, level=True, same=False)
             model.visible = False
             model.save()
             return JSONResponseID(MessageType.FILE_REMOVED)
@@ -50,7 +49,7 @@ class FileService:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
     @staticmethod
-    def metadata_get(file_hash):
+    def metadata_get(file_hash=None, **kwargs):
         try:
             file_returning = File.objects.filter(hash=file_hash, visible=True)
             serializer = FileSerializer(file_returning, many=True)
@@ -61,18 +60,17 @@ class FileService:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
     @staticmethod
-    def metadata_update(request, file_hash):
+    def metadata_update(session_token=None, file_hash=None, data=None):
         try:
 
             file_original = File.objects.get(hash=file_hash)
-            check_authorized_author(request, file_original.uploader_id, level=True, same=False)
+            is_authorized_author(session_token=session_token, author_id=file_original.uploader_id, level=True, same=False)
 
-            form = request.POST
             fields = ['name', 'text', 'fileType_id']
-            file_updated = unserialize_file(form, fields=fields, optional=True)
+            file_updated = unserialize_file(data, fields=fields, optional=True)
 
             file_original.update(file_updated, fields)
-            file_original.lastUpdater_id = User.get_signed_user_id(request.COOKIES[SESSION_COOKIE_NAME])
+            file_original.lastUpdater_id = User.get_signed_user_id(session_token)
             file_original.save()
 
             return JSONResponseID(MessageType.FILE_UPDATED)
@@ -84,7 +82,7 @@ class FileService:
             return RequestExceptionByMessage(v).jsonResponse
 
     @staticmethod
-    def binary_get(file_hash):
+    def binary_get(file_hash=None, **kwargs):
         try:
             response_file = File.objects.get(hash=file_hash)
 
@@ -102,9 +100,8 @@ class FileTypeService:
         pass
 
     @staticmethod
-    def get(request):
+    def get():
         try:
-            check_signed_in_request(request, 'GET')
             return FileTypeService.__get__file_types()
         except RequestException as r:
             return r.jsonResponse
