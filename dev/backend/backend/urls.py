@@ -40,7 +40,7 @@ urlpatterns = patterns('',
     url(r'^file/$', file_add_endpoint),
 
     # Subjects
-    url(r'^subject/(?P<pk>[0-9]+)/files(/?)$', fileListSubject),
+    url(r'^subject/(?P<pk>[0-9]+)/files(/?)$', subject_files_list),
     url(r'^subjectsTree/$', level_tree),
     url(r'^fileTypes/$', filetype_list),
 

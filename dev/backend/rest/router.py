@@ -1,13 +1,10 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from rest.JSONResponse import JSONResponse
-from rest.models import BannedHash, Rol, File, Level, User
+from rest.models import BannedHash, Rol, User
 from rest.orm.serializers import *
 from rest.orm.serializers.rol import RolSerializer
 from rest.services.calendar import calendar_get_by_period, calendar_get, calendar_delete, calendar_put, \
     calendar_post
 from rest.services.notes import note_get, note_delete, note_put, note_post, note_get_by_level
-from rest.services.system import fileTypes_get
 from rest.services.users import user_get, user_delete, user_put, user_get_id, user_get_rol, user_subjects_put, \
     user_put_profile_pic
 
@@ -50,25 +47,6 @@ def rolesList(request):
         serializer = RolSerializer(roles, many=True)
         return JSONResponse(serializer.data)
 
-
-def filesList(request):
-    """
-    Retrieves a file's list .
-    """
-    if request.method == 'GET':
-        files = File.objects.all()
-        serializer = FileSerializer(files, many=True)
-        return JSONResponse(serializer.data)
-
-
-def fileListSubject(request, pk):
-    level = Level.objects.get(id=pk)
-    if level.is_subject() and request.method == 'GET':
-        files = File.objects.filter(subject=pk, visible=True)
-        serializer = FileSerializer(files, many=True)
-        return JSONResponse(serializer.data)
-    elif not level.is_subject():
-        return RequestExceptionByCode(ErrorMessageType.INVALID_LEVEL).jsonResponse
 
 
 # == Users ==
