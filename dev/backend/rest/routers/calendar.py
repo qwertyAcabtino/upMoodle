@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 
-from rest.controllers.requests import authenticated, methods, method
+from rest.routers.decorators.routing_decorators import authenticated, methods, method
 from rest.services.calendar import CalendarService
 
 

@@ -1,7 +1,7 @@
-from rest.controllers.controllers import get_random_email
 from rest.models import User, Rol
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
+from rest.services.utils.email import EmailService
 
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response, assert_ok_response
@@ -65,7 +65,7 @@ class UserTestCase(AuthenticationTestBase):
 
     def test_9_userUpdate_basic(self):
         self.login()
-        newEmail = get_random_email()
+        newEmail = EmailService.get_random_email()
         response = self.client.post('/user/', {'email': newEmail})
         self.assertEqual(response.status_code, 200)
         userUpdated = User.objects.get(id=1)

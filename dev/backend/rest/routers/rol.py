@@ -1,4 +1,4 @@
-from rest.controllers.requests import authenticated, method
+from rest.routers.decorators.routing_decorators import authenticated, method
 from rest.services.rol import RolService
 
 

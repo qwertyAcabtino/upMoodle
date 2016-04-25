@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 
+from rest.exceptions.requestException import RequestException, RequestExceptionByCode
 from rest.JSONResponse import JSONResponse
-from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode
 from rest.models import Level, File
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.serializers import LevelSerializer, FileSerializer

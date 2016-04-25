@@ -3,15 +3,16 @@ import ast
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
-from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
+from rest.exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
-from rest.controllers.controllers import get_random_email, get_random_password
+from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
 from rest.orm.serializers import UserSerializer
 from rest.orm.unserializer import unserialize_user
+from rest.services.utils.email import EmailService
+from rest.services.utils.password import PasswordService
 
 
 class UserService:
@@ -34,8 +35,8 @@ class UserService:
         deleting_user = User.objects.get(sessionToken=session_token)
         deleting_user.name = 'RemovedUser ' + str(deleting_user.id)
         deleting_user.nick = 'RemovedUser ' + str(deleting_user.id)
-        deleting_user.email = get_random_email()
-        deleting_user.password = get_random_password()
+        deleting_user.email = EmailService.get_random_email()
+        deleting_user.password = PasswordService.get_random()
         deleting_user.profilePic = '_default.png'
         deleting_user.banned = True
         deleting_user.confirmedEmail = False

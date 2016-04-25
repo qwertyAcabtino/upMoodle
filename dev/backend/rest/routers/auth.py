@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 
-from rest.controllers.requests import method, authenticated
+from rest.routers.decorators.routing_decorators import method, authenticated
 from rest.services.auth import AuthService
 
 

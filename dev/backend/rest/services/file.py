@@ -2,15 +2,14 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
+from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
-    RequestExceptionByMessage
-from rest.controllers.controllers import is_authorized_author
 from rest.models import File, Level, User, FileType, BannedHash
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
 from rest.orm.serializers import FileSerializer, FileTypeSerializer, BannedHashSerializer
 from rest.orm.unserializer import unserialize_file_binary, unserialize_file
+from rest.services.auth import AuthService
 
 
 class FileService:
@@ -23,7 +22,7 @@ class FileService:
         try:
 
             uploader_id = User.objects.get(sessionToken=session_token).id
-            is_authorized_author(session_token=session_token, author_id=uploader_id, level=True)
+            AuthService.is_authorized_author(session_token=session_token, author_id=uploader_id, level=True)
 
             Level.validate_exists_level(data['subject_id'])
 
@@ -38,7 +37,7 @@ class FileService:
     def delete(session_token=None, file_hash=None, **kwargs):
         try:
             model = File.objects.get(hash=file_hash)
-            is_authorized_author(session_token=session_token, author_id=model.uploader_id, level=True, same=False)
+            AuthService.is_authorized_author(session_token=session_token, author_id=model.uploader_id, level=True, same=False)
             model.visible = False
             model.save()
             return JSONResponseID(MessageType.FILE_REMOVED)
@@ -63,7 +62,7 @@ class FileService:
         try:
 
             file_original = File.objects.get(hash=file_hash)
-            is_authorized_author(session_token=session_token, author_id=file_original.uploader_id, level=True, same=False)
+            AuthService.is_authorized_author(session_token=session_token, author_id=file_original.uploader_id, level=True, same=False)
 
             fields = ['name', 'text', 'fileType_id']
             file_updated = unserialize_file(data, fields=fields, optional=True)

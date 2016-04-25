@@ -1,15 +1,14 @@
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
+from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
-    RequestExceptionByMessage
-from rest.controllers.controllers import is_authorized_author
 from rest.models import NoteBoard, Level, User, Message
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializer import unserialize_note
+from rest.services.auth import AuthService
 from rest.services.level import LevelService
 
 
@@ -33,7 +32,7 @@ class NoteService:
         try:
             original_note = NoteBoard.objects.get(id=note_id)
 
-            is_authorized_author(session_token=session_token, author_id=original_note.author_id, level=True)
+            AuthService.is_authorized_author(session_token=session_token, author_id=original_note.author_id, level=True)
 
             Level.validate_exists(data)
             fields = ['topic', 'text', 'level_id']
@@ -52,7 +51,7 @@ class NoteService:
     def delete_note_by_id(session_token=None, note_id=None, data=None, **kwargs):
         try:
             original_note = NoteBoard.objects.get(id=note_id)
-            is_authorized_author(session_token=session_token, author_id=original_note.author_id, level=True)
+            AuthService.is_authorized_author(session_token=session_token, author_id=original_note.author_id, level=True)
 
             original_note.visible = False
             original_note.save()

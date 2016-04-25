@@ -1,6 +1,8 @@
 import json
+import string
 
 from django.core.management import call_command
+from django.utils.crypto import random
 
 from rest.models import ErrorMessage, Message
 
@@ -25,3 +27,7 @@ def assert_ok_response(response, ok_type):
     decoded = json.loads(response.content)
 
     assert message.message == decoded['message']
+
+
+def get_random_string(length):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))

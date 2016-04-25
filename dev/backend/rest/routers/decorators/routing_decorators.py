@@ -4,8 +4,7 @@ from functools import wraps
 import demjson as demjson
 
 from backend.settings import SESSION_COOKIE_NAME
-from rest.controllers.Exceptions.requestException import RequestExceptionByCode
-from rest.controllers.controllers import cookies_are_ok
+from rest.exceptions.requestException import RequestExceptionByCode
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.services.auth import AuthService
 
@@ -112,7 +111,11 @@ def _ensure_cookie(response, session_token):
 
 
 def _check_cookies(request):
-    if not cookies_are_ok(request):
+
+    def cookies_are_ok():
+        return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME] and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
+
+    if not cookies_are_ok():
         exception = RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES)
         exception.jsonResponse.set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
         raise exception

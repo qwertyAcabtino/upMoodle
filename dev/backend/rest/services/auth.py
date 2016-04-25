@@ -7,15 +7,15 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
-from rest.JSONResponse import JSONResponseID, JSONResponse
-from rest.controllers.Exceptions.requestException import RequestExceptionByCode, RequestException, \
+from rest.exceptions.requestException import RequestExceptionByCode, RequestException, \
     RequestExceptionByMessage
-from rest.controllers.controllers import cookies_are_ok, get_email_confirmation_message, \
-    get_random_password, send_recover_password_email
+from rest.JSONResponse import JSONResponseID, JSONResponse
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
 from rest.orm.unserializer import unserialize_user
+from rest.services.utils.email import EmailService
+from rest.services.utils.password import PasswordService
 
 
 class AuthService:
@@ -62,7 +62,7 @@ class AuthService:
             user = unserialize_user(data, sessionToken=session_token,
                                     fields=['email', 'password', 'nick', 'name'])
             send_mail('Email confirmation',
-                      get_email_confirmation_message(request, cookie=session_token),
+                      EmailService.get_email_confirmation_message(request, cookie=session_token),
                       'info@upmoodle.com', [user.email],
                       fail_silently=False)
             user.save()
@@ -107,6 +107,7 @@ class AuthService:
 
     @staticmethod
     def recover_password(data=None):
+
         try:
             email_request = data['email']
             user = User.objects.get(email=email_request)
@@ -115,8 +116,8 @@ class AuthService:
             elif user.banned:
                 raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
             else:
-                password = get_random_password()
-                send_recover_password_email(user.email, password)
+                password = PasswordService.get_random()
+                EmailService.send_recover_password_email(user.email, password)
                 user.password = password
                 user.save()
             return JSONResponseID(MessageType.RECOVER_PASS_EMAIL)
@@ -135,3 +136,22 @@ class AuthService:
                 return True
         except ObjectDoesNotExist:
             return False
+
+    @staticmethod
+    def is_authorized_author(session_token=None, author_id=None, level=False, same=True):
+        """
+        :param session_token: authentication token
+        :param author_id: original author of the information.
+        :param level: check the hierarchy. If the signed user has a lower value, exception is raised
+        :param same: checks if the user that is trying to push changes is the same than the original.
+        :return:
+        """
+
+        auth_user = User.objects.get(sessionToken=session_token)
+        auth_user_rol = auth_user.rol
+        original_user = User.objects.get(id=author_id)
+        original_user_rol = original_user.rol
+        if same and not author_id == auth_user.id:
+            raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+        elif level and auth_user_rol.priority < original_user_rol.priority:
+            raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)

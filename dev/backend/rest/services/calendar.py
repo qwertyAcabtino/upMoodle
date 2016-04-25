@@ -3,11 +3,9 @@ from sets import Set
 
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
+import calendar
+from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from rest.JSONResponse import JSONResponse, JSONResponseID
-from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
-    RequestExceptionByMessage
-from rest.controllers.controllers import is_valid_initDate_by_period, get_date_range, \
-    is_authorized_author
 from rest.models import CalendarDate, Calendar, Level, User
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
@@ -15,6 +13,7 @@ from rest.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
 from rest.orm.unserializer import unserialize_calendar
+from rest.services.auth import AuthService
 
 
 class CalendarService:
@@ -23,7 +22,7 @@ class CalendarService:
 
     @staticmethod
     def get_calendar_by_period(period=None, init_date=None):
-        if is_valid_initDate_by_period(period, init_date):
+        if is_valid_init_date_by_period(period, init_date):
             range_date = get_date_range(period, init_date)
             ids = Set()
             events = CalendarDate.objects.filter(date__range=range_date)
@@ -49,7 +48,7 @@ class CalendarService:
     def delete_calendar_by_id(session_token=None, calendar_id=None, **kwargs):
         try:
             event = Calendar.objects.get(id=calendar_id)
-            is_authorized_author(session_token=session_token, author_id=event.author_id, level=True)
+            AuthService.is_authorized_author(session_token=session_token, author_id=event.author_id, level=True)
             event.delete()
             return JSONResponseID(MessageType.CEVENT_REMOVED)
         except RequestException as r:
@@ -62,13 +61,13 @@ class CalendarService:
         try:
             original_calendar = Calendar.objects.get(id=calendar_id)
 
-            is_authorized_author(session_token=session_token, author_id=original_calendar.author_id, level=True)
+            AuthService.is_authorized_author(session_token=session_token, author_id=original_calendar.author_id, level=True)
             Level.validate_exists(data)
             fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency']
-            calendar = unserialize_calendar(data, fields=fields, optional=True)
-            calendar.lastUpdated_id = User.get_signed_user_id(session_token)
-            calendar.lastUpdate = datetime.now()
-            original_calendar.update(calendar, fields)
+            calendar_object = unserialize_calendar(data, fields=fields, optional=True)
+            calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
+            calendar_object.lastUpdate = datetime.now()
+            original_calendar.update(calendar_object, fields)
             original_calendar.save()
             return JSONResponseID(MessageType.CALENDAR_UPDATED)
         except RequestException as r:
@@ -81,17 +80,57 @@ class CalendarService:
         try:
             Level.validate_exists(data)
             fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency_id']
-            calendar = unserialize_calendar(data, fields=fields, optional=True)
-            calendar.author_id = User.get_signed_user_id(session_token)
-            calendar.lastUpdated_id = User.get_signed_user_id(session_token)
-            is_authorized_author(session_token=session_token, author_id=calendar.author_id, level=True)
-            calendar.lastUpdate = datetime.now()
-            calendar.save()
-            return JSONResponse({"calendarId": calendar.id}, status=200)
+            calendar_object = unserialize_calendar(data, fields=fields, optional=True)
+            calendar_object.author_id = User.get_signed_user_id(session_token)
+            calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
+            AuthService.is_authorized_author(session_token=session_token, author_id=calendar_object.author_id, level=True)
+            calendar_object.lastUpdate = datetime.now()
+            calendar_object.save()
+            return JSONResponse({"calendarId": calendar_object.id}, status=200)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:
             return RequestExceptionByMessage(v).jsonResponse
 
 
+def is_valid_month_init_date(init_date):
+    values = init_date.split('-')
+    return 0 < int(values[1]) < 13 and 2010 < int(values[0]) < 2100
+
+
+def is_valid_day_init_date(init_date):
+    try:
+        datetime.datetime.strptime(init_date, '%Y-%m-%d')
+        return True
+    except ValueError:
+        return False
+
+
+def is_valid_init_date_by_period(period, init_date):
+    try:
+        valid_date = True
+        if period == "month":
+            valid_date = is_valid_month_init_date(init_date)
+        elif period == "day":
+            valid_date = is_valid_day_init_date(init_date)
+        if not valid_date:
+            raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
+        else:
+            return True
+    except ValueError:
+        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
+
+
+def get_date_range(period, init_date):
+    date_format = '%Y-%m-%d'
+    values = init_date.split('-')
+    day = int(values[2]) if period == "day" else 1
+    date = datetime.datetime(int(values[0]), int(values[1]), day)
+    start_range = date.strftime(date_format)
+    if period == "day":
+        return [start_range, start_range]
+    else:
+        month_days = calendar.monthrange(date.year, date.month)[1] - 1
+        end_range = (date + datetime.timedelta(month_days)).strftime(date_format)
+    return [start_range, end_range]
 
