@@ -156,15 +156,15 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 
 		notePut : function(note){
 			return $http({
-				method: 'post', 
+				method: 'PUT', 
 				url:  base_url + 'note/' + note.id +'/',
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
+				// transformRequest: function(obj) {
+				// 	var str = [];
+				// 	for(var p in obj)
+				// 		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+				// 	return str.join("&");
+				// },
 				data : {text: note.text, topic: note.topic, level_id: note.level.id}
 			});
 		},
