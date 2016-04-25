@@ -3,20 +3,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from backend import settings
-from rest.router import *
-from rest.routers.auth import confirm_email, login, signup, logout, recover_password
-from rest.routers.note import *
-from rest.routers.user import *
-from rest.routers.rol import *
-from rest.routers.level import *
-from rest.routers.file import *
-
-# from rest.routers.auth import *
+from rest.routers import *
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
-    # url(r'^bannedhashes/$', bannedhashList),
     url(r'^roles/$', roles_list),
 
     # APIs
@@ -40,11 +31,12 @@ urlpatterns = patterns('',
     url(r'^note/$', note_endpoint),
 
     # Calendar
-    # url(r'^calendar/(?P<period>(month|day))/(?P<initDate>([0-9]|-)*)/$', calendarByPeriod),
-    # url(r'^calendar/(?P<pk>[0-9]+)/$', calendarById),
-    # url(r'^calendar/$', calendar),
+    url(r'^calendar/(?P<period>(month|day))/(?P<init_date>([0-9]|-)*)/$', calendar_by_period),
+    url(r'^calendar/(?P<pk>[0-9]+)/$', calendar_by_id),
+    url(r'^calendar/$', calendar_endpoint),
 
     # Files
+    url(r'^file/banned/$', files_banned_hashes),
     url(r'^file/(?P<file_hash>(\w|_)+)(/?)$', file_by_hash_endpoint),
     url(r'^file/$', file_add_endpoint),
 

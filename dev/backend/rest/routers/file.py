@@ -42,3 +42,9 @@ def file_add_endpoint(request, session_token=None, data=None):
 @method('GET')
 def filetype_list(request, **kwargs):
     return FileTypeService.get()
+
+
+@authenticated
+@method('GET')
+def files_banned_hashes(request, **kwargs):
+    return FileService.get_banned_hashes()

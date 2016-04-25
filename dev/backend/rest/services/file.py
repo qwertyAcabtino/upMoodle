@@ -2,15 +2,14 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
-from backend.settings import SESSION_COOKIE_NAME
 from rest.JSONResponse import JSONResponse, JSONResponseID
 from rest.controllers.Exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
-from rest.controllers.controllers import check_authorized_author, is_authorized_author
-from rest.models import File, Level, User, FileType
+from rest.controllers.controllers import is_authorized_author
+from rest.models import File, Level, User, FileType, BannedHash
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
-from rest.orm.serializers import FileSerializer, FileTypeSerializer
+from rest.orm.serializers import FileSerializer, FileTypeSerializer, BannedHashSerializer
 from rest.orm.unserializer import unserialize_file_binary, unserialize_file
 
 
@@ -93,6 +92,12 @@ class FileService:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+
+    @staticmethod
+    def get_banned_hashes():
+        hashes = BannedHash.objects.all()
+        serializer = BannedHashSerializer(hashes, many=True)
+        return JSONResponse(serializer.data)
 
 
 class FileTypeService:

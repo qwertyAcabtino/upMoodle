@@ -1,11 +1,5 @@
-import json
-
-from django.test import RequestFactory
-
-from backend.settings import SESSION_COOKIE_NAME
-from rest.models import User, ErrorMessage
+from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
-from rest.router import login
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
 

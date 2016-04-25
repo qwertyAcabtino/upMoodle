@@ -150,7 +150,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			var recuriveIn = recursive || false;
 			return $http({
 				method: 'GET',
-				url: base_url + 'note/level/' + level +"/" + "?recursive="+recursive
+				url: base_url + 'level/' + level +"/notes" + "?recursive="+recursive
 			});
 		},
 
