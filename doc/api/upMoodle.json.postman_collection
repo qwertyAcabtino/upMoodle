@@ -1,0 +1,942 @@
+{
+	"id": "005f51fe-af3e-5732-53b2-ba794d046305",
+	"name": "upMoodle",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"id": "86beeee1-ec88-d428-c570-1ee25e9fffa3",
+			"name": "Auth",
+			"description": "",
+			"order": [
+				"111825b8-89c4-d498-0f36-87b1b83dfd8a",
+				"09451bb2-9509-877c-4848-e436e7168e3c",
+				"5c207949-2cb6-1b92-d109-4f73ceec8743",
+				"2aab5372-12b9-b873-b890-e09eeaaa8ed7",
+				"6af100da-1718-7c8c-d282-221f5d3c812b"
+			],
+			"owner": "336812"
+		},
+		{
+			"id": "640d7fce-1fa1-e057-00e3-96d9477c48c8",
+			"name": "Calendar",
+			"description": "",
+			"order": [
+				"d70763f6-72dc-9e08-3709-4758c6f44878",
+				"6b23a496-d9ed-9f1d-886a-c5525ac38813",
+				"97767f38-23bb-9f5a-1e80-46d742c6e891",
+				"9a6d5b57-33de-1685-196b-342c79e6532e",
+				"734daff8-8c48-2759-64d6-e2c7f73fb575",
+				"dffb259a-81cb-5192-1c71-34ff8765d9fa"
+			],
+			"owner": "336812"
+		},
+		{
+			"id": "1cb1fe17-5fc6-282d-0618-6562410089e4",
+			"name": "File",
+			"description": "",
+			"order": [
+				"52dd27c7-984e-d075-ba2c-404195268c01",
+				"2a4c0898-4cf3-84c7-8cad-e4ddeba9b794",
+				"a9b71bd8-3581-4b17-9c9a-7ad4ea2d0f20",
+				"2c7ecd7c-3f85-e1ae-9e3d-ea4ca0303515",
+				"a6ace5e3-0764-c437-5baa-15070c3a22b5",
+				"5fcf9a34-d7ea-a761-f5e2-89f6ac22b15e"
+			],
+			"owner": "336812"
+		},
+		{
+			"id": "565fd45c-30e6-7872-0674-b9647d27955e",
+			"name": "Level",
+			"description": "",
+			"order": [
+				"4cd559e2-803f-6dcc-18f0-7555af624863",
+				"067fb94a-679a-818a-8a9a-cdcfaf13e4c9",
+				"2db2925a-ab3e-df4c-5dbf-5f80dd33e434"
+			],
+			"owner": "336812",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305"
+		},
+		{
+			"id": "e56c0a8c-fdaa-92c5-3138-073e4a337051",
+			"name": "Note",
+			"description": "",
+			"order": [
+				"31af7110-028b-38d5-aa39-ca20c894df33",
+				"c3224a0b-0869-677d-a806-f30ce561588b",
+				"3b415fd1-621b-a3f6-d2b1-1b291b959f7f",
+				"b91826ea-e778-5044-54e6-74e909794828",
+				"ff565631-b54d-0ccc-7989-b263d9f9f011"
+			],
+			"owner": "336812"
+		},
+		{
+			"id": "d11b0f94-48b6-8f4b-169f-79be29ddc3a6",
+			"name": "Rol",
+			"description": "",
+			"order": [
+				"d42bfd40-8bde-1310-b75b-b05808418272",
+				"c55bd63b-65a5-05d6-21eb-d695fb5ad7b4"
+			],
+			"owner": "336812",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305"
+		},
+		{
+			"id": "e8c064e1-a116-9734-8e44-f46caff5e7b2",
+			"name": "User",
+			"description": "",
+			"order": [
+				"b3c8108e-227a-30fa-70e8-0129d4aef715",
+				"7d30eae9-c88e-41a4-43a5-40f5f9e23cfa",
+				"4a28f911-bfb4-dbdd-1bb3-156763e17691",
+				"ba2db82c-ac84-b431-367f-b624b67b70f1",
+				"802d657f-79d5-b372-6880-185e49244c2c",
+				"3a4bc026-045d-82d3-e9dd-0ef31ec1010b"
+			],
+			"owner": "336812"
+		}
+	],
+	"timestamp": 1413756825135,
+	"owner": "336812",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "067fb94a-679a-818a-8a9a-cdcfaf13e4c9",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/level/1/notes",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462372581555,
+			"name": "level/{id}/notes",
+			"description": "",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": []
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "09451bb2-9509-877c-4848-e436e7168e3c",
+			"name": "confirm_email/",
+			"description": "Confirms user's email through a session token.",
+			"url": "http://127.0.0.1:8000/confirm_email/.eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt38y8F9vcPuK2d2pbdD2yMwNLSigTNGjlpUVY0KhFohBaUljB2tUo6wI7sUF9-Fpzotk9a8uEc_25BOczFZwU767cKve1jJaAfxV-0M6vFelxOdy_gzRb-f4A8_04kw%3A1Xpov9%3AVIjXJBEDXzKMLOFQLOotGn1xPDw/",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "nick",
+					"value": "qwerqwereerer",
+					"type": "text"
+				},
+				{
+					"key": "email",
+					"value": "viperey@gmail.com",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "qwerqwerwe",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
+		},
+		{
+			"id": "111825b8-89c4-d498-0f36-87b1b83dfd8a",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/signup/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "vipvip@eui.upm.es",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "asasdfasdf",
+					"type": "text"
+				},
+				{
+					"key": "nick",
+					"value": "asasdfsadfasd",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462371771366,
+			"name": "signup/",
+			"description": "200. Returns user's id.\n\n40X When:\nEmail is not a valid one.\nEmail is in use.\nPassword is not strong enough.\nNick is not longer enough.\nIf the request is not correct.\nReturns a specific error in every case.\n",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "2a4c0898-4cf3-84c7-8cad-e4ddeba9b794",
+			"name": "file/{hash}",
+			"description": "Retrieves a file's information",
+			"url": "http://127.0.0.1:8000/file/6/",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "text",
+					"value": "CapitalLetter",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"timestamp": 0,
+			"version": 2,
+			"time": 1429025299359,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "2aab5372-12b9-b873-b890-e09eeaaa8ed7",
+			"name": "/logout/",
+			"description": "Logouts the user, removing the session_cookie from the system and from the db.\n\nFor security reasons, this API call throws always the same information, this way not sensitive information can be revealed",
+			"url": "http://127.0.0.1:8000/logout/",
+			"method": "POST",
+			"headers": "",
+			"data": [],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
+		},
+		{
+			"id": "2c7ecd7c-3f85-e1ae-9e3d-ea4ca0303515",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/file/6/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462371392465,
+			"name": "file/{hash}",
+			"description": "Deletes a file.",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+		},
+		{
+			"id": "2db2925a-ab3e-df4c-5dbf-5f80dd33e434",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/level/1/files",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462372633021,
+			"name": "level/{id}/files",
+			"description": "",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": []
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "31af7110-028b-38d5-aa39-ca20c894df33",
+			"name": "level/{id}/notes",
+			"description": "Retrieves a list of notes in a certain level.",
+			"url": "http://127.0.0.1:8000/note/level/1?recursive=true",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "topic",
+					"value": "qwer2",
+					"type": "text"
+				},
+				{
+					"key": "text",
+					"value": "qwerqwer",
+					"type": "text"
+				},
+				{
+					"key": "level_id",
+					"value": "1",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"version": 2,
+			"time": 1428876080469,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "3a4bc026-045d-82d3-e9dd-0ef31ec1010b",
+			"name": "/user/{id}",
+			"description": "Retrieves user's information",
+			"url": "http://127.0.0.1:8000/user/2",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "viperey@gmail.com",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "qwerqwer",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "3b415fd1-621b-a3f6-d2b1-1b291b959f7f",
+			"name": "/note/{id}",
+			"description": "Updates the note.",
+			"url": "http://127.0.0.1:8000/note/1/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "topic",
+					"value": "qwer2",
+					"type": "text"
+				},
+				{
+					"key": "text",
+					"value": "qwerqwer",
+					"type": "text"
+				},
+				{
+					"key": "level_id",
+					"value": "1",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"version": 2,
+			"time": 1428771650409,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "4a28f911-bfb4-dbdd-1bb3-156763e17691",
+			"name": "/user/",
+			"description": "Removes user from the ddbb",
+			"url": "http://127.0.0.1:8000/user/",
+			"method": "DELETE",
+			"headers": "",
+			"data": [],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+		},
+		{
+			"id": "4cd559e2-803f-6dcc-18f0-7555af624863",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/level/_tree",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462372479940,
+			"name": "level/_tree",
+			"description": "",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": []
+		},
+		{
+			"id": "52dd27c7-984e-d075-ba2c-404195268c01",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/file/banned",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462371046291,
+			"name": "file/banned",
+			"description": "Get a list of hashes from blacklisted files.",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "5c207949-2cb6-1b92-d109-4f73ceec8743",
+			"name": "login/",
+			"description": "ApiRest's call for signing in.",
+			"url": "http://127.0.0.1:8000/login/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "viperey@eui.upm.es",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "qwerqwer",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"version": 2,
+			"time": 1418408641287,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
+		},
+		{
+			"id": "5fcf9a34-d7ea-a761-f5e2-89f6ac22b15e",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/fileTypes/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462371389579,
+			"name": "fileTypes",
+			"description": "",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "6af100da-1718-7c8c-d282-221f5d3c812b",
+			"name": "/recover_password/",
+			"description": "Sends a new password to user's email account.",
+			"url": "http://127.0.0.1:8000/recover_password/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "viperey@gmail.com",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "6b23a496-d9ed-9f1d-886a-c5525ac38813",
+			"name": "calendar/month/{date}",
+			"description": "Returns the calendar event asociated to a certain month and requesting user",
+			"url": "http://127.0.0.1:8000/calendar/month/2015-03",
+			"method": "GET",
+			"headers": "",
+			"data": [],
+			"dataMode": "params",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "640d7fce-1fa1-e057-00e3-96d9477c48c8"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "734daff8-8c48-2759-64d6-e2c7f73fb575",
+			"name": "calendar/{id}",
+			"description": "Updates the calendar event.",
+			"url": "http://127.0.0.1:8000/calendar/1/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "text",
+					"value": "qwerqwer",
+					"type": "text"
+				},
+				{
+					"key": "level_id",
+					"value": "1",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "640d7fce-1fa1-e057-00e3-96d9477c48c8"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "7d30eae9-c88e-41a4-43a5-40f5f9e23cfa",
+			"name": "/user/",
+			"description": "Updates user's profile.",
+			"url": "http://127.0.0.1:8000/user/",
+			"method": "POST",
+			"headers": "",
+			"data": [],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"version": 2,
+			"time": 1426354380978,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "802d657f-79d5-b372-6880-185e49244c2c",
+			"name": "user/subjects",
+			"description": "",
+			"url": "http://127.0.0.1:8000/user/subjects/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "ids",
+					"value": "[4,5,6]",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"timestamp": 0,
+			"version": 2,
+			"time": 1428771687845,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "97767f38-23bb-9f5a-1e80-46d742c6e891",
+			"name": "calendar/{id}",
+			"description": "Returns the calendar event and asociated dates.",
+			"url": "http://127.0.0.1:8000/calendar/4/",
+			"method": "GET",
+			"headers": "",
+			"data": [],
+			"dataMode": "params",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "640d7fce-1fa1-e057-00e3-96d9477c48c8"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "9a6d5b57-33de-1685-196b-342c79e6532e",
+			"name": "calendar/{id}",
+			"description": "Deletes the calendar event and asociated dates.",
+			"url": "http://127.0.0.1:8000/calendar/4/",
+			"method": "DELETE",
+			"headers": "",
+			"data": [],
+			"dataMode": "params",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "640d7fce-1fa1-e057-00e3-96d9477c48c8"
+		},
+		{
+			"id": "a6ace5e3-0764-c437-5baa-15070c3a22b5",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/files",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "viperey@gmail.com",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462371232696,
+			"name": "file/",
+			"description": "Adds a new file",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "a9b71bd8-3581-4b17-9c9a-7ad4ea2d0f20",
+			"name": "file/{hash}",
+			"description": "Updates file's information",
+			"url": "http://127.0.0.1:8000/file/6/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "text",
+					"value": "CapitalLetter",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "b3c8108e-227a-30fa-70e8-0129d4aef715",
+			"name": "/user/",
+			"description": "Retrieves self user's information",
+			"url": "http://127.0.0.1:8000/user/",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "test@test.com",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "12341234",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"version": 2,
+			"time": 1416769309056,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "b91826ea-e778-5044-54e6-74e909794828",
+			"name": "/note/{id}",
+			"description": "Deletes the note.",
+			"url": "http://127.0.0.1:8000/note/4/",
+			"method": "DELETE",
+			"headers": "",
+			"data": [
+				{
+					"key": "topic",
+					"value": "qwer2",
+					"type": "text"
+				},
+				{
+					"key": "text",
+					"value": "qwerqwer",
+					"type": "text"
+				},
+				{
+					"key": "level_id",
+					"value": "1",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
+		},
+		{
+			"id": "ba2db82c-ac84-b431-367f-b624b67b70f1",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/user/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462371708669,
+			"name": "/user/profilePic",
+			"description": "Updates user's profile.",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "c3224a0b-0869-677d-a806-f30ce561588b",
+			"name": "/note/{id}",
+			"description": "Retrieves a note by its id.",
+			"url": "http://127.0.0.1:8000/note/1",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "name",
+					"value": "Viperey",
+					"type": "text"
+				},
+				{
+					"key": "nick",
+					"value": "testes",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "c55bd63b-65a5-05d6-21eb-d695fb5ad7b4",
+			"name": "rol/({id}/users",
+			"description": "User's raw list. FIltered by rol",
+			"url": "http://127.0.0.1:8000/users/rol/1",
+			"method": "GET",
+			"headers": "",
+			"data": [
+				{
+					"key": "email",
+					"value": "viperey@gmail.com",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "d11b0f94-48b6-8f4b-169f-79be29ddc3a6"
+		},
+		{
+			"id": "d42bfd40-8bde-1310-b75b-b05808418272",
+			"headers": "",
+			"url": "http://127.0.0.1:8000/rol/_all",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "topic",
+					"value": "qwer2",
+					"type": "text"
+				},
+				{
+					"key": "text",
+					"value": "qwerqwer",
+					"type": "text"
+				},
+				{
+					"key": "level_id",
+					"value": "1",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462372408355,
+			"name": "rol/_all",
+			"description": "Roles' list",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "d70763f6-72dc-9e08-3709-4758c6f44878",
+			"name": "calendar/day/{date}",
+			"description": "Returns the calendar event asociated to a certain day and requesting user",
+			"url": "http://127.0.0.1:8000/calendar/day/2015-02-03",
+			"method": "GET",
+			"headers": "",
+			"data": [],
+			"dataMode": "params",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "640d7fce-1fa1-e057-00e3-96d9477c48c8"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "dffb259a-81cb-5192-1c71-34ff8765d9fa",
+			"name": "calendar/",
+			"description": "Creates a calendar event.",
+			"url": "http://127.0.0.1:8000/calendar/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "text",
+					"value": "qwerqwer",
+					"type": "text"
+				},
+				{
+					"key": "level_id",
+					"value": "1",
+					"type": "text"
+				},
+				{
+					"key": "title",
+					"value": "POST POST",
+					"type": "text"
+				},
+				{
+					"key": "hourStart",
+					"value": "21:41:17",
+					"type": "text"
+				},
+				{
+					"key": "hourEnd",
+					"value": "21:41:17",
+					"type": "text"
+				},
+				{
+					"key": "allDay",
+					"value": "True",
+					"type": "text"
+				},
+				{
+					"key": "frequency",
+					"value": "4",
+					"type": "text"
+				},
+				{
+					"key": "firstDate",
+					"value": "2015-02-03",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "640d7fce-1fa1-e057-00e3-96d9477c48c8"
+		},
+		{
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"id": "ff565631-b54d-0ccc-7989-b263d9f9f011",
+			"name": "/note/",
+			"description": "Creates a note.",
+			"url": "http://127.0.0.1:8000/note/",
+			"method": "POST",
+			"headers": "",
+			"data": [
+				{
+					"key": "topic",
+					"value": "qwer2",
+					"type": "text"
+				},
+				{
+					"key": "text",
+					"value": "qwerqwer",
+					"type": "text"
+				},
+				{
+					"key": "level_id",
+					"value": "1",
+					"type": "text"
+				}
+			],
+			"dataMode": "urlencoded",
+			"timestamp": 0,
+			"responses": [],
+			"version": 2,
+			"preRequestScript": "",
+			"tests": "",
+			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
+		}
+	]
+}
