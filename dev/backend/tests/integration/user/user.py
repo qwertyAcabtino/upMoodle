@@ -108,5 +108,11 @@ class UserTestCase(AuthenticationTestBase):
     def update_avatar(self):
         with open('data/tests/default_update_avatar_pic.jpeg') as fp:
             self.login()
-            response = self.file_client.post('/user/avatar/', data={'name': 'avatar', 'avatar': fp})
+            response = self.file_client.post('/user/avatar/', data={'avatar': fp})
             assert_ok_response(response, MessageType.USER_UPDATED)
+
+    def update_avatar_bad_reference(self):
+        with open('data/tests/default_update_avatar_pic.jpeg') as fp:
+            self.login()
+            response = self.file_client.post('/user/avatar/', data={'profilePic': fp})
+            assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
