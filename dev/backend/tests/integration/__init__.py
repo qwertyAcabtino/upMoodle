@@ -8,7 +8,7 @@ from tests.integration.level.levelType import LevelTypeTestCase
 from tests.integration.message.errorMessage import ErrorMessageTestCase
 from tests.integration.message.message import MessageTestCase
 from tests.integration.note.note import NoteTestCase
-from tests.integration.rol.rol import RolTestCase
+from tests.integration.rol.rol import RolEndpointTestCase
 from tests.integration.rol.users import RolUsersTestCase
 from tests.integration.user.subject import EditSubjectsTestCase
 from tests.integration.user.userMe import UserMeTestCase
