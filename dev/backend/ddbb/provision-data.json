@@ -363,6 +363,13 @@
     }
   },
   {
+    "model": "rest.message",
+    "pk": 15,
+    "fields": {
+      "message": "Successfully logged out"
+    }
+  },
+  {
     "model": "rest.errormessage",
     "pk": 1,
     "fields": {

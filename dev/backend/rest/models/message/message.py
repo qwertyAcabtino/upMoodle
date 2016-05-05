@@ -26,3 +26,4 @@ class MessageType(Enum):
     NOTE_CREATED = 12
     FILE_UPLOADED = 13
     FILE_UPDATED = 14
+    SUCCESS_LOGOUT = 15

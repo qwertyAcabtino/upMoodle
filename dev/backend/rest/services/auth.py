@@ -82,7 +82,7 @@ class AuthService:
             user = User.objects.get(sessionToken=session_token)
             user.sessionToken = ''
             user.save()
-            json_response = JSONResponse({"null"}, status=200)
+            json_response = JSONResponseID(MessageType.SUCCESS_LOGOUT)
             json_response.set_cookie(SESSION_COOKIE_NAME, '')
             return json_response
         except Exception:
