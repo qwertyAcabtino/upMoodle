@@ -14,47 +14,47 @@ class EditSubjectsTestCase(AuthenticationTestBase):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': [5, 6]})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(len(userUpdated.subjects.all()), 2)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(len(updated_user.subjects.all()), 2)
 
     def test_editSubjects_basic_2(self):
         self.login()
 
         response = self.client.post('/user/subjects/', {'ids': [5, 6, 4]})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(len(userUpdated.subjects.all()), 3)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(len(updated_user.subjects.all()), 3)
 
     def test_editSubjects_empty(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': []})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(len(userUpdated.subjects.all()), 0)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(len(updated_user.subjects.all()), 0)
 
     def test_editSubjects_empty_2(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': []})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(len(userUpdated.subjects.all()), 0)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(len(updated_user.subjects.all()), 0)
 
     def test_editSubjects_empty_3(self):
         self.login()
-        response = self.client.post('/user/subjects/', {'ids': [5,6]})
+        self.client.post('/user/subjects/', {'ids': [5, 6]})
         response = self.client.post('/user/subjects/', {})
         self.assertEqual(response.status_code, 400)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(len(userUpdated.subjects.all()), 2)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(len(updated_user.subjects.all()), 2)
 
     def test_editSubjects_notSubjects(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': []})
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(len(userUpdated.subjects.all()), 0)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(len(updated_user.subjects.all()), 0)
         self.assertEqual(response.status_code, 200)
         response = self.client.post('/user/subjects/', {'ids': [1, 5, 6]})
         self.assertEqual(response.status_code, 400)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(len(userUpdated.subjects.all()), 0)
-        self.assertEqual(len(userUpdated.subjects.all()), 0)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(len(updated_user.subjects.all()), 0)
+        self.assertEqual(len(updated_user.subjects.all()), 0)

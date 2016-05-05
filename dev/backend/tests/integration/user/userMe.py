@@ -29,45 +29,45 @@ class UserMeTestCase(AuthenticationTestBase):
 
     def test_userUpdate_basic(self):
         self.login()
-        newEmail = EmailService.get_random_email()
-        response = self.client.post('/user/', {'email': newEmail})
+        new_email = EmailService.get_random_email()
+        response = self.client.post('/user/', {'email': new_email})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(userUpdated.email, newEmail)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(updated_user.email, new_email)
 
     def test_userUpdate_change_forbidden_field(self):
         self.login()
-        sessionToken = 'kaasdfbqwbiqwebibiweibef'
-        response = self.client.post('/user/', {'sessionToken': sessionToken})
+        token = 'kaasdfbqwbiqwebibiweibef'
+        response = self.client.post('/user/', {'sessionToken': token})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertNotEqual(userUpdated.sessionToken, sessionToken)
+        updated_user = User.objects.get(id=1)
+        self.assertNotEqual(updated_user.sessionToken, token)
 
     def test_userUpdate_change_password(self):
         self.login()
-        newPassword = 'qwerqwer'
-        response = self.client.post('/user/', {'oldPassword': self.DEFAULT_USER_PASS, 'password': newPassword})
+        new_pass = 'qwerqwer'
+        response = self.client.post('/user/', {'oldPassword': self.DEFAULT_USER_PASS, 'password': new_pass})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(userUpdated.password, newPassword)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(updated_user.password, new_pass)
 
     def test_userUpdate_change_password_bad(self):
         self.login()
-        newPassword = 'qwerqwer'
-        response = self.client.post('/user/', {'oldPassword': newPassword, 'password': newPassword})
+        new_password = 'qwerqwer'
+        response = self.client.post('/user/', {'oldPassword': new_password, 'password': new_password})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_userUpdate_basic_several(self):
         self.login()
-        newEmail = 'email@upm.es'
-        newName = 'Victor Perez rey'
-        newNick = 'newNick'
-        response = self.client.post('/user/', {'email': newEmail, 'name': newName, 'nick': newNick})
+        new_email = 'email@upm.es'
+        new_name = 'Victor Perez rey'
+        new_nick = 'newNick'
+        response = self.client.post('/user/', {'email': new_email, 'name': new_name, 'nick': new_nick})
         self.assertEqual(response.status_code, 200)
-        userUpdated = User.objects.get(id=1)
-        self.assertEqual(userUpdated.name, newName)
-        self.assertEqual(userUpdated.email, newEmail)
-        self.assertEqual(userUpdated.nick, newNick)
+        updated_user = User.objects.get(id=1)
+        self.assertEqual(updated_user.name, new_name)
+        self.assertEqual(updated_user.email, new_email)
+        self.assertEqual(updated_user.nick, new_nick)
 
     def test_update_avatar(self):
         with open('data/tests/default_update_avatar_pic.jpeg') as fp:
