@@ -86,9 +86,9 @@ class UserService:
             return RequestExceptionByMessage(v).jsonResponse
 
     @staticmethod
-    def update_me_profile_pic(session_token=None, files=None):
+    def update_me_avatar(session_token=None, files=None):
         try:
-            profile_pic = files['profilePic']
+            profile_pic = files['avatar']
             if "image/" not in profile_pic.content_type:
                 return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
             else:

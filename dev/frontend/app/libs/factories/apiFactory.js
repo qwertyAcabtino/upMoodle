@@ -47,16 +47,16 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
-		updateUserProfilePic : function( profilePic ){
-			console.log( profilePic );
+		updateAvatar : function( avatar ){
+			console.log( avatar );
 			return $http({
 				method: 'POST',
-				url: base_url + 'user/profilePic/',
+				url: base_url + 'user/avatar/',
 				headers: {
 					'Content-Type': 'multipart/form-data'
 				},
 				data: {
-					profilePic: profilePic
+					avatar: avatar
 				},
 				transformRequest: function (data, headersGetter) {
 					var formData = new FormData();
@@ -74,15 +74,9 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 
 		login : function(userEmail, userPassword){
 			return $http({ 
-				method: 'post', 
-				url:  base_url + 'login/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
+				method: 'POST', 
+				url:  base_url + 'auth/login/',
+				headers: {'Content-Type': 'application/json'},
 				data : {email: userEmail, password: userPassword}
 			});
 		},

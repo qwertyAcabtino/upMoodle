@@ -21,8 +21,8 @@
  		});
  	};
 
- 	$scope.updateUserProfilePic = function ( profilePic ) {
- 		api.updateUserProfilePic(profilePic[0])
+ 	$scope.updateAvatar = function ( avatar ) {
+ 		api.updateAvatar(avatar[0])
  		.success(function(data, status, headers, config) {
  			snackbar.message(data);
  			User.destroy();
@@ -39,7 +39,7 @@
 
  	$scope.upload = function ( profilePic ) {
  		if ( profilePic ) {
- 			$scope.updateUserProfilePic(profilePic);
+ 			$scope.updateAvatar(profilePic);
  		}
  	};
 

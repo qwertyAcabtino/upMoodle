@@ -29,9 +29,9 @@ def user_subjects(request, session_token=None, data=None):
 @csrf_exempt
 @authenticated
 @method('POST')
-def user_profile_pic(request, session_token=None, **kwargs):
+def user_avatar(request, session_token=None, **kwargs):
     files = request.FILES
-    return UserService.update_me_profile_pic(session_token=session_token, files=files)
+    return UserService.update_me_avatar(session_token=session_token, files=files)
 
 
 @authenticated
