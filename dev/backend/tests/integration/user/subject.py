@@ -10,14 +10,14 @@ class EditSubjectsTestCase(AuthenticationTestBase):
         load_fixture("provision-data")
         self.createUser()
 
-    def test_1_editSubjects_basic(self):
+    def test_editSubjects_basic(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': [5, 6]})
         self.assertEqual(response.status_code, 200)
         userUpdated = User.objects.get(id=1)
         self.assertEqual(len(userUpdated.subjects.all()), 2)
 
-    def test_2_editSubjects_basic(self):
+    def test_editSubjects_basic_2(self):
         self.login()
 
         response = self.client.post('/user/subjects/', {'ids': [5, 6, 4]})
@@ -25,21 +25,21 @@ class EditSubjectsTestCase(AuthenticationTestBase):
         userUpdated = User.objects.get(id=1)
         self.assertEqual(len(userUpdated.subjects.all()), 3)
 
-    def test_3_editSubjects_empty(self):
+    def test_editSubjects_empty(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': []})
         self.assertEqual(response.status_code, 200)
         userUpdated = User.objects.get(id=1)
         self.assertEqual(len(userUpdated.subjects.all()), 0)
 
-    def test_4_editSubjects_empty(self):
+    def test_editSubjects_empty_2(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': []})
         self.assertEqual(response.status_code, 200)
         userUpdated = User.objects.get(id=1)
         self.assertEqual(len(userUpdated.subjects.all()), 0)
 
-    def test_5_editSubjects_empty(self):
+    def test_editSubjects_empty_3(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': [5,6]})
         response = self.client.post('/user/subjects/', {})
@@ -47,7 +47,7 @@ class EditSubjectsTestCase(AuthenticationTestBase):
         userUpdated = User.objects.get(id=1)
         self.assertEqual(len(userUpdated.subjects.all()), 2)
 
-    def test_6_editSubjects_notSubjects(self):
+    def test_editSubjects_notSubjects(self):
         self.login()
         response = self.client.post('/user/subjects/', {'ids': []})
         userUpdated = User.objects.get(id=1)

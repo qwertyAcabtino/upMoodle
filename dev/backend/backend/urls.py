@@ -22,9 +22,7 @@ urlpatterns = patterns('',
     url(r'^user/(?P<pk>[0-9]+)/$', user_by_id),
 
     # Rol
-    url(r'^roles/$', roles_list),  # Deprecated
     url(r'^rol/_all$', roles_list),
-    url(r'^users/rol/(?P<pk>[0-9]+)/$', users_by_rol),  # Deprecated
     url(r'^rol/(?P<pk>[0-9]+)/users$', users_by_rol),
 
     # Notes
