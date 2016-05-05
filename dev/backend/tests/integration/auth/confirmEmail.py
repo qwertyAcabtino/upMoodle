@@ -18,7 +18,7 @@ class ConfirmEmailTestCase(AuthenticationTestBase):
 
     def test_1_basic_confirm(self):
         user = User.objects.get(id=1)
-        response = self.client.post('/confirm_email/', {'token': user.sessionToken})
+        response = self.client.post('/auth/confirm_email/', {'token': user.sessionToken})
         self.assertEqual(response.status_code, 200)
         user = User.objects.get(id=1)
         self.assertTrue(user.confirmedEmail)
@@ -28,14 +28,14 @@ class ConfirmEmailTestCase(AuthenticationTestBase):
         user.confirmedEmail = True
         user.save()
 
-        response = self.client.post('/confirm_email/', {'token': user.sessionToken})
+        response = self.client.post('/auth/confirm_email/', {'token': user.sessionToken})
         assert_error_response(response, ErrorMessageType.ALREADY_CONFIRMED)
 
     def test_3_invalid_token(self):
-        response = self.client.post('/confirm_email/', {'token': 'randomdata'})
+        response = self.client.post('/auth/confirm_email/', {'token': 'randomdata'})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_4_long_token(self):
-        response = self.client.post('/confirm_email/', {
+        response = self.client.post('/auth/confirm_email/', {
             'token': '/confirm_email/.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70adfsalsldflkasdjflaksjdflkasdjfkasdasdfhasdfasjdfijaosdifjaosidff/'})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)

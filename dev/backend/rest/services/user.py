@@ -51,7 +51,7 @@ class UserService:
                 assert data['password']
                 if not auth_user.password == data['oldPassword']:
                     raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
-            except MultiValueDictKeyError:
+            except KeyError:
                 pass
             fields = ['nick', 'name', 'password', 'email']
             updated_user = unserialize_user(data, fields=fields, optional=True)
@@ -60,7 +60,7 @@ class UserService:
             return JSONResponseID(MessageType.USER_UPDATED)
         except RequestException as r:
             return r.jsonResponse
-        except MultiValueDictKeyError:
+        except KeyError as k:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
         except ValidationError as v:
             return RequestExceptionByMessage(v).jsonResponse
@@ -80,7 +80,7 @@ class UserService:
             return JSONResponseID(MessageType.USER_UPDATED)
         except RequestException as r:
             return r.jsonResponse
-        except MultiValueDictKeyError:
+        except KeyError:
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
         except ValidationError as v:
             return RequestExceptionByMessage(v).jsonResponse

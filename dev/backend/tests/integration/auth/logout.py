@@ -10,6 +10,6 @@ class LogoutTestCase(AuthenticationTestBase):
         self.createUser()
 
     def test_1_logout_basic(self):
-        response = self.client.post('/logout/')
+        response = self.client.post('/auth/logout/')
         self.assertEqual(response.status_code, 200)
 

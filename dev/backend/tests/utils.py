@@ -2,6 +2,7 @@ import json
 import string
 
 from django.core.management import call_command
+from django.test import Client
 from django.utils.crypto import random
 
 from rest.models import ErrorMessage, Message
@@ -31,3 +32,9 @@ def assert_ok_response(response, ok_type):
 
 def get_random_string(length):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
+
+
+class JSONClient(Client):
+
+    def post(self, path, data=None, follow=False, secure=False, **extra):
+        return super(JSONClient, self).post(path, data=json.dumps(data), content_type="application/json")

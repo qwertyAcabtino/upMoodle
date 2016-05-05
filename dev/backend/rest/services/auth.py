@@ -47,9 +47,7 @@ class AuthService:
                 json_response = JSONResponseID(MessageType.SUCCESS_LOGIN)
                 json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
                 return json_response
-        except ObjectDoesNotExist or MultiValueDictKeyError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-        except MultiValueDictKeyError:
+        except (ObjectDoesNotExist, KeyError):
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
         except RequestException as r:
             return r.jsonResponse

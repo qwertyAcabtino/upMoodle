@@ -1,4 +1,5 @@
 from rest.models import User
+from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.unserializer.internal import *
 
 
@@ -13,7 +14,7 @@ def unserialize_user(form, *args, **kwargs):
             # If the field doesnt exists raises an MultiValueDictKeyError
             try:
                 setattr(user, field, form[field])
-            except MultiValueDictKeyError as m:
+            except KeyError as m:
                 if not optional:
                     raise m
                 else:
@@ -22,4 +23,4 @@ def unserialize_user(form, *args, **kwargs):
             user.sessionToken = sessionToken
         return user
     else:
-        raise RequestExceptionByCode(INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)

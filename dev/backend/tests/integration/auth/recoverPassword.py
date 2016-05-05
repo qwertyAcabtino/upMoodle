@@ -18,7 +18,7 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         email = 'test@eui.upm.es'
         user = User.objects.get(email=email)
         passOld = user.password
-        response = self.client.post('/recover_password/', {'email': email})
+        response = self.client.post('/auth/recover_password/', {'email': email})
         self.assertEqual(response.status_code, 200)
         user_new = User.objects.get(email=email)
         pass_new = user_new.password
@@ -27,12 +27,12 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
 
     def test_2_unexisting_email(self):
         email = 'notExisting@test.com'
-        response = self.client.post('/recover_password/', {'email': email})
+        response = self.client.post('/auth/recover_password/', {'email': email})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_3_empty_email(self):
         email = ''
-        response = self.client.post('/recover_password/', {'email': email})
+        response = self.client.post('/auth/recover_password/', {'email': email})
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_4_banned_user(self):
@@ -40,7 +40,7 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         user = User.objects.get(email=email)
         user.banned = True
         user.save()
-        response = self.client.post('/recover_password/', {'email': email})
+        response = self.client.post('/auth/recover_password/', {'email': email})
         assert_error_response(response, ErrorMessageType.UNAUTHORIZED)
         user.banned = False
         user.save()
@@ -50,7 +50,7 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         user = User.objects.get(email=email)
         user.confirmedEmail = False
         user.save()
-        response = self.client.post('/recover_password/', {'email': email})
+        response = self.client.post('/auth/recover_password/', {'email': email})
         assert_error_response(response, ErrorMessageType.UNCONFIRMED_EMAIL)
         user.confirmedEmail = True
         user.save()

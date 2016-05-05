@@ -5,6 +5,7 @@ from django.test import TestCase, Client
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
 from rest.models import User, NoteBoard
+from tests.utils import JSONClient
 
 
 class CookiesTestCase(TestCase):
@@ -12,7 +13,7 @@ class CookiesTestCase(TestCase):
     DEFAULT_TOKEN = 'DEFAULT_TOKEN'
 
     def setUp(self):
-        self.client = Client()
+        self.client = JSONClient()
         engine = import_module(settings.SESSION_ENGINE)
         session = engine.SessionStore()
         session[SESSION_COOKIE_NAME] = self.DEFAULT_TOKEN

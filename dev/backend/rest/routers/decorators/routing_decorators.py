@@ -70,7 +70,7 @@ def method(method_value):
                 return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
             else:
                 if method_value == 'POST':
-                    kwargs['data'] = request.POST
+                    kwargs['data'] = demjson.decode(request.body)
                 elif method_value == 'GET':
                     kwargs['data'] = request.GET
                 elif method_value == 'PUT':
@@ -91,7 +91,7 @@ def methods(methods_list):
             else:
 
                 if 'POST' in methods_list and request.method == 'POST':
-                    kwargs['data'] = request.POST
+                    kwargs['data'] = demjson.decode(request.body)
                 elif 'PUT' in methods_list and request.method == 'PUT':
                     kwargs['data'] = demjson.decode(request.body)
                 elif 'PUT' in methods_list and request.method == 'GET':
