@@ -11,7 +11,8 @@ pre/*
 dev/backend/rest/migrations
 dev/backend/ddbb/db.sqlite3
 dev/backend/.idea/
-dev/backend/data/
+dev/backend/data/files/
+dev/backend/data/pics/
 dev/frontend/node_modules
 dev/frontend/bower_components
 dev/frontend/node_modules/*

@@ -104,3 +104,9 @@ class UserTestCase(AuthenticationTestBase):
         self.assertEqual(userUpdated.name, newName)
         self.assertEqual(userUpdated.email, newEmail)
         self.assertEqual(userUpdated.nick, newNick)
+
+    def update_avatar(self):
+        with open('data/tests/default_update_avatar_pic.jpeg') as fp:
+            self.login()
+            response = self.file_client.post('/user/avatar/', data={'name': 'avatar', 'avatar': fp})
+            assert_ok_response(response, MessageType.USER_UPDATED)

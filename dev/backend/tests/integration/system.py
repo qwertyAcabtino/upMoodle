@@ -14,12 +14,15 @@ class CookiesTestCase(TestCase):
 
     def setUp(self):
         self.client = JSONClient()
+        self.file_client = Client()
+
         engine = import_module(settings.SESSION_ENGINE)
         session = engine.SessionStore()
         session[SESSION_COOKIE_NAME] = self.DEFAULT_TOKEN
         session.save()
         cookies = self.client.cookies
         cookies[SESSION_COOKIE_NAME] = self.DEFAULT_TOKEN
+        self.file_client.cookies[SESSION_COOKIE_NAME] = self.DEFAULT_TOKEN
 
 
 class AuthenticationTestBase(CookiesTestCase):
