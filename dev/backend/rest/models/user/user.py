@@ -16,7 +16,7 @@ class User(models.Model):
     nick = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=100, blank=True)
     password = models.CharField(max_length=100)
-    profilePic = models.ImageField(upload_to='pics/users', default='pics/users/_default.png')
+    profilePic = models.ImageField(upload_to='pics/users', default='static/default_update_avatar_pic.jpeg')
     lastTimeActive = models.DateTimeField(default=timezone.now, null=False, editable=True)
     joined = models.DateTimeField(default=timezone.now, editable=True, null=False)
     banned = models.BooleanField(default=False)

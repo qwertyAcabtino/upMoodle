@@ -37,7 +37,7 @@ class UserService:
         deleting_user.nick = 'RemovedUser ' + str(deleting_user.id)
         deleting_user.email = EmailService.get_random_email()
         deleting_user.password = PasswordService.get_random()
-        deleting_user.profilePic = '_default.png'
+        deleting_user.profilePic = 'static/default_update_avatar_pic.jpeg'
         deleting_user.banned = True
         deleting_user.confirmedEmail = False
         deleting_user.save()
@@ -86,12 +86,12 @@ class UserService:
     @staticmethod
     def update_me_avatar(session_token=None, files=None):
         try:
-            profile_pic = files['avatar']
-            if "image/" not in profile_pic.content_type:
+            avatar = files['avatar']
+            if "image/" not in avatar.content_type:
                 return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
             else:
                 auth_user = User.objects.get(sessionToken=session_token)
-                auth_user.profilePic = profile_pic
+                auth_user.profilePic = avatar
                 auth_user.save()
                 return JSONResponseID(MessageType.USER_UPDATED)
         except RequestException as r:
@@ -109,11 +109,7 @@ class UserService:
             return JSONResponse(serializer.data)
         except RequestException as r:
             return r.jsonResponse
-        except ObjectDoesNotExist:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-        except OverflowError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
-        except ValueError:
+        except (ObjectDoesNotExist, OverflowError, ValueError):
             return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
 
     @staticmethod
