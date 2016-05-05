@@ -18,8 +18,7 @@ urlpatterns = patterns('',
     # User
     url(r'^user/$', user_endpoint),
     url(r'^user/subjects/$', user_subjects),
-    url(r'^user/profilePic/$', user_profile_pic),  # Deprecated
-    url(r'^user/avatar/$', user_profile_pic),
+    url(r'^user/avatar/$', user_avatar),
     url(r'^user/(?P<pk>[0-9]+)/$', user_by_id),
 
     # Rol
