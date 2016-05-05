@@ -183,21 +183,24 @@
 			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "2aab5372-12b9-b873-b890-e09eeaaa8ed7",
-			"name": "/logout/",
-			"description": "Logouts the user, removing the session_cookie from the system and from the db.\n\nFor security reasons, this API call throws always the same information, this way not sensitive information can be revealed",
-			"url": "http://127.0.0.1:8000/logout/",
-			"method": "POST",
-			"headers": "",
-			"data": [],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"responses": [],
-			"version": 2,
+			"headers": "Content-Type: application/json\n",
+			"url": "http://127.0.0.1:8000/auth/logout/",
 			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
 			"tests": "",
-			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462446511387,
+			"name": "Logout",
+			"description": "Logouts the user, removing the session_cookie from the system and from the db.\n\nFor security reasons, this API call throws always the same information, this way not sensitive information can be revealed",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"rawModeData": ""
 		},
 		{
 			"id": "2c7ecd7c-3f85-e1ae-9e3d-ea4ca0303515",
@@ -272,13 +275,12 @@
 			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "3a4bc026-045d-82d3-e9dd-0ef31ec1010b",
-			"name": "/user/{id}",
-			"description": "Retrieves user's information",
-			"url": "http://127.0.0.1:8000/user/2",
-			"method": "GET",
 			"headers": "",
+			"url": "http://127.0.0.1:8000/user/6",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
 			"data": [
 				{
 					"key": "email",
@@ -292,12 +294,15 @@
 				}
 			],
 			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"responses": [],
 			"version": 2,
-			"preRequestScript": "",
 			"tests": "",
-			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462456896340,
+			"name": "User by id",
+			"description": "Retrieves user's information",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": []
 		},
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
@@ -333,21 +338,24 @@
 			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "4a28f911-bfb4-dbdd-1bb3-156763e17691",
-			"name": "/user/",
-			"description": "Removes user from the ddbb",
+			"headers": "Content-Type: application/json\n",
 			"url": "http://127.0.0.1:8000/user/",
-			"method": "DELETE",
-			"headers": "",
-			"data": [],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"responses": [],
-			"version": 2,
 			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
 			"tests": "",
-			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462453465570,
+			"name": "User",
+			"description": "Removes user from the ddbb",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"rawModeData": ""
 		},
 		{
 			"id": "4cd559e2-803f-6dcc-18f0-7555af624863",
@@ -401,11 +409,11 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462445633853,
+			"time": 1462446424408,
 			"name": "Login",
 			"description": "ApiRest's call for signing in.",
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
-			"rawModeData": ""
+			"rawModeData": "{\n    \"email\":\"fool@eui.upm.es\",\n    \"password\":\"password\"\n}"
 		},
 		{
 			"id": "5fcf9a34-d7ea-a761-f5e2-89f6ac22b15e",
@@ -427,27 +435,24 @@
 			"responses": []
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "6af100da-1718-7c8c-d282-221f5d3c812b",
-			"name": "/recover_password/",
-			"description": "Sends a new password to user's email account.",
-			"url": "http://127.0.0.1:8000/recover_password/",
-			"method": "POST",
-			"headers": "",
-			"data": [
-				{
-					"key": "email",
-					"value": "viperey@gmail.com",
-					"type": "text"
-				}
-			],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"responses": [],
-			"version": 2,
+			"headers": "Content-Type: application/json\n",
+			"url": "http://127.0.0.1:8000/auth/recover_password/",
 			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
 			"tests": "",
-			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462446811569,
+			"name": "Password recovery",
+			"description": "Sends a new password to user's email account.",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"rawModeData": "{\n    \"email\":\"fool@eui.upm.es\"\n}"
 		},
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
@@ -495,44 +500,42 @@
 			"folder": "640d7fce-1fa1-e057-00e3-96d9477c48c8"
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "7d30eae9-c88e-41a4-43a5-40f5f9e23cfa",
-			"name": "/user/",
-			"description": "Updates user's profile.",
+			"headers": "Content-Type: application/json\n",
 			"url": "http://127.0.0.1:8000/user/",
-			"method": "POST",
-			"headers": "",
-			"data": [],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"version": 2,
-			"time": 1426354380978,
 			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
 			"tests": "",
-			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462453460650,
+			"name": "User",
+			"description": "Updates user's profile.",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"rawModeData": "{\n    \"nick\":\"newNick\"\n}"
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "802d657f-79d5-b372-6880-185e49244c2c",
-			"name": "user/subjects",
-			"description": "",
+			"headers": "Content-Type: application/json\n",
 			"url": "http://127.0.0.1:8000/user/subjects/",
-			"method": "POST",
-			"headers": "",
-			"data": [
-				{
-					"key": "ids",
-					"value": "[4,5,6]",
-					"type": "text"
-				}
-			],
-			"dataMode": "params",
-			"timestamp": 0,
-			"version": 2,
-			"time": 1428771687845,
 			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
 			"tests": "",
-			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462456804508,
+			"name": "User's subjects",
+			"description": "",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"rawModeData": "{\n    \"ids\": [4,5,6]\n}"
 		},
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
@@ -625,7 +628,7 @@
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "b3c8108e-227a-30fa-70e8-0129d4aef715",
-			"name": "/user/",
+			"name": "User",
 			"description": "Retrieves self user's information",
 			"url": "http://127.0.0.1:8000/user/",
 			"method": "GET",
@@ -686,21 +689,29 @@
 		{
 			"id": "ba2db82c-ac84-b431-367f-b624b67b70f1",
 			"headers": "",
-			"url": "http://127.0.0.1:8000/user/",
+			"url": "http://127.0.0.1:8000/user/avatar/",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
-			"data": [],
-			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "profilePic",
+					"value": {
+						"0": {}
+					},
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
 			"version": 2,
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462371708669,
-			"name": "/user/profilePic",
-			"description": "Updates user's profile.",
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
-			"folder": "e8c064e1-a116-9734-8e44-f46caff5e7b2"
+			"time": 1462454872296,
+			"name": "User's avatar",
+			"description": "",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305"
 		},
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
