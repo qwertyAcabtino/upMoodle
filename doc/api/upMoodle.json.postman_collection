@@ -9,7 +9,7 @@
 			"name": "Auth",
 			"description": "",
 			"order": [
-				"111825b8-89c4-d498-0f36-87b1b83dfd8a",
+				"24a7b183-7991-f324-3880-e116a568f7cf",
 				"09451bb2-9509-877c-4848-e436e7168e3c",
 				"5c207949-2cb6-1b92-d109-4f73ceec8743",
 				"2aab5372-12b9-b873-b890-e09eeaaa8ed7",
@@ -121,71 +121,43 @@
 			"responses": []
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "09451bb2-9509-877c-4848-e436e7168e3c",
-			"name": "confirm_email/",
-			"description": "Confirms user's email through a session token.",
-			"url": "http://127.0.0.1:8000/confirm_email/.eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt38y8F9vcPuK2d2pbdD2yMwNLSigTNGjlpUVY0KhFohBaUljB2tUo6wI7sUF9-Fpzotk9a8uEc_25BOczFZwU767cKve1jJaAfxV-0M6vFelxOdy_gzRb-f4A8_04kw%3A1Xpov9%3AVIjXJBEDXzKMLOFQLOotGn1xPDw/",
-			"method": "GET",
-			"headers": "",
-			"data": [
-				{
-					"key": "nick",
-					"value": "qwerqwereerer",
-					"type": "text"
-				},
-				{
-					"key": "email",
-					"value": "viperey@gmail.com",
-					"type": "text"
-				},
-				{
-					"key": "password",
-					"value": "qwerqwerwe",
-					"type": "text"
-				}
-			],
-			"dataMode": "params",
-			"timestamp": 0,
-			"responses": [],
-			"version": 2,
-			"preRequestScript": "",
-			"tests": "",
-			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
-		},
-		{
-			"id": "111825b8-89c4-d498-0f36-87b1b83dfd8a",
-			"headers": "",
-			"url": "http://127.0.0.1:8000/signup/",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://127.0.0.1:8000/auth/confirm_email/",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
-			"data": [
-				{
-					"key": "email",
-					"value": "vipvip@eui.upm.es",
-					"type": "text"
-				},
-				{
-					"key": "password",
-					"value": "asasdfasdf",
-					"type": "text"
-				},
-				{
-					"key": "nick",
-					"value": "asasdfsadfasd",
-					"type": "text"
-				}
-			],
-			"dataMode": "params",
+			"data": [],
+			"dataMode": "raw",
 			"version": 2,
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462371771366,
-			"name": "signup/",
+			"time": 1462445313587,
+			"name": "Confirm email",
+			"description": "Confirms user's email through a session token.",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"responses": [],
+			"rawModeData": "{\n    \"token\":\".eJxVjLEOAiEQBf-F2hAIuQMs7f2GC8sughhIgIuF8d_F5Apt38y8F9vcPuK2d2pbdD2yMwNLSigTNGjlpUVY0KhFohBaUljB2tUo6wI7sUF9-Fpzotk9a8uEc_25BOczFZwU767cKve1jJaAfxV-0M6vFelxOdy_gzRb-f4A8_04kw%3A1Xpov9%3AVIjXJBEDXzKMLOFQLOotGn1xPDw\"\n}"
+		},
+		{
+			"id": "24a7b183-7991-f324-3880-e116a568f7cf",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://127.0.0.1:8000/auth/signup/",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462444051026,
+			"name": "Signup",
 			"description": "200. Returns user's id.\n\n40X When:\nEmail is not a valid one.\nEmail is in use.\nPassword is not strong enough.\nNick is not longer enough.\nIf the request is not correct.\nReturns a specific error in every case.\n",
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305"
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"rawModeData": "{\n    \"email\":\"fool@eui.upm.es\",\n    \"password\":\"password\",\n    \"nick\":\"fooUser\",\n    \"name\":\"foo foo\"\n}"
 		},
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
@@ -417,37 +389,28 @@
 			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "5c207949-2cb6-1b92-d109-4f73ceec8743",
-			"name": "login/",
-			"description": "ApiRest's call for signing in.",
-			"url": "http://127.0.0.1:8000/login/",
-			"method": "POST",
-			"headers": "",
-			"data": [
-				{
-					"key": "email",
-					"value": "viperey@eui.upm.es",
-					"type": "text"
-				},
-				{
-					"key": "password",
-					"value": "qwerqwer",
-					"type": "text"
-				}
-			],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"version": 2,
-			"time": 1418408641287,
+			"headers": "Content-Type: application/json\n",
+			"url": "http://127.0.0.1:8000/auth/login/",
 			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
 			"tests": "",
-			"folder": "86beeee1-ec88-d428-c570-1ee25e9fffa3"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462445633853,
+			"name": "Login",
+			"description": "ApiRest's call for signing in.",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
+			"rawModeData": ""
 		},
 		{
 			"id": "5fcf9a34-d7ea-a761-f5e2-89f6ac22b15e",
 			"headers": "",
-			"url": "http://127.0.0.1:8000/fileTypes/",
+			"url": "http://127.0.0.1:8000/filetypes/_all",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -457,12 +420,11 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462371389579,
-			"name": "fileTypes",
+			"time": 1462372685025,
+			"name": "filetypes/_all",
 			"description": "",
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
-			"responses": [],
-			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+			"responses": []
 		},
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
