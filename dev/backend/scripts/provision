@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #install python dependencies, this is more about deployment
 sudo pip install -r requirements.txt
-python manage.py createsuperuser --username admin --email viperey@gmail.com
+python scripts/provision-create-super-user.py
 #init migrate needed database data
 bash scripts/model-migration
 #provision database with minimum structure
