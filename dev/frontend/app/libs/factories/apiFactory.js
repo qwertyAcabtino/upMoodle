@@ -19,13 +19,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			return $http({ 
 				method: 'post', 
 				url:  base_url + 'user/subjects/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
+				headers: {'Content-Type': 'application/json'},
 				data : {ids: subjects || [] }
 			});
 		},

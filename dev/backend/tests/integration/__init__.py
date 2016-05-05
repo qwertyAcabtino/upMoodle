@@ -9,7 +9,7 @@ from tests.integration.message.errorMessage import ErrorMessageTestCase
 from tests.integration.message.message import MessageTestCase
 from tests.integration.user.rol import RolTestCase
 from tests.integration.user.user import UserTestCase
-from tests.integration.user.editSubjectsTestCase import EditSubjectsTestCase
+from tests.integration.user.subject import EditSubjectsTestCase
 from tests.integration.note.note import NoteTestCase
 
 

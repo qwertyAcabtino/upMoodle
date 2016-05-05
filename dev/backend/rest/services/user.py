@@ -68,10 +68,8 @@ class UserService:
     @staticmethod
     def update_me_subjects(session_token=None, data=None):
         try:
-            if data['ids'] and len(data['ids']) > 1:
-                subjects = ast.literal_eval(data['ids'])
-            elif data['ids'] and len(data['ids']) == 1:
-                subjects = [ast.literal_eval(data['ids'])]
+            if data['ids']:
+                subjects = data['ids']
             else:
                 subjects = []
             updating_user = User.objects.get(sessionToken=session_token)
