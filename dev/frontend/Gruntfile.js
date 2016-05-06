@@ -1,6 +1,28 @@
 module.exports = function(grunt) {
+	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-bg-shell');
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+
+		'meta': {
+			'externalDependencies': [
+				'bower_components/angular/angular.js',
+				'bower_components/angular-cookies/angular-cookies.js',
+				'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+				'bower_components/angular-route/angular-route.js',
+				'bower_components/ng-file-upload/angular-file-upload.js',
+				'bower_components/ng-file-upload/ng-file-upload.js',
+				'bower_components/angular-loading-bar/build/loading-bar.js',
+				'manual_components/snackbar/angular.snackbar.js',
+			],
+
+			'projectJsFiles': ['app/js/**/*.js']
+		},
 		
 		bgShell: {
 			runNode: {
@@ -21,44 +43,45 @@ module.exports = function(grunt) {
 				files: '**/*.scss',
 				tasks: ['compass'],
 				options: {
-			      livereload: true,
-			    }			
+					livereload: true,
+				}			
 			},
 			jsShelf:{
-				files: 'app/libs/{controllers,services,factories,directives}/*.js',
-				tasks: ['uglify:my_target'],
+				files: 'app/js/**/*.js',
+				tasks: ['build'],
 				options: {
-			      livereload: true,
-			    }			
+					livereload: true,
+				}			
 			},
-			jsThid:{
-				files: 'app/libs/third-party/**/*.js',
-				tasks: ['uglify:my_target_third_party']
-			}
 		},
-		uglify: {
-			options: {
-				mangle: false
-			},
-			my_target: {
-				files: {
-					'app/libs/services.min.js': ['app/libs/services/*.js'],
-					'app/libs/factories.min.js': ['app/libs/factories/*.js'],
-					'app/libs/controllers.min.js': ['app/libs/controllers/*.js'],
-					'app/libs/directives.min.js': ['app/libs/directives/*.js']
-				}
-			},
-			my_target_third_party: {
-				files: {
-					'app/libs/third-party/snackbar/angular.snackbar.min.js': ['app/libs/third-party/snackbar/angular.snackbar.js'],
-					'app/libs/_dependencies.min.js': ['app/libs/third-party/**/*min.js']
-				}
-			}
-		}
+
+		'jshint': {
+      		'beforeconcat': ['<%= meta.projectJsFiles %>'],
+		},
+
+		'concat': {
+	    	'dist': {
+        		'src': ['<%= meta.externalDependencies %>','<%= meta.projectJsFiles %>'],
+		        'dest': 'app/dist/<%= pkg.namelower %>-<%= pkg.version %>.js'
+      		}
+    	},
+
+		'uglify': {
+      		'options': {
+        		'mangle': false
+      		},  
+	      	'dist': {
+        		'files': {
+          			'app/dist/<%= pkg.namelower %>-<%= pkg.version %>.min.js': ['app/dist/<%= pkg.namelower %>-<%= pkg.version %>.js']
+        		}
+      		}
+    	},
 	});
-	grunt.loadNpmTasks('grunt-contrib-compass');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-uglify');
-	grunt.loadNpmTasks('grunt-bg-shell');
-	grunt.registerTask('server', ['bgShell:runNode', 'uglify', 'watch']);
+	grunt.registerTask('build',
+    [
+      'jshint',
+      'concat',
+      'uglify'
+    ]);
+	grunt.registerTask('server', ['bgShell:runNode', 'build', 'watch']);
 };

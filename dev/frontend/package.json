@@ -1,33 +1,38 @@
 {
-  "name": "angular-place",
+  "name": "UPMoodle",
+  "namelower": "upmoodle",
   "version": "0.0.1",
   "description": "Simple Angular app",
   "main": "server.js",
   "author": "Victor Perez",
   "dependencies": {
+    "bower": "^1.7.9",
     "express": "3.4.4"
   },
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-compass": "~0.7.1",
-    "grunt-contrib-uglify": "~0.8.0",
-    "path": "~0.4.9",
-    "open": "0.0.4",
+    "angular-route": "~1.3.0",
     "async": "~0.2.10",
     "chokidar": "~0.6.3",
-    "ua-parser-js": "~0.6.2",
-    "lodash": "~1.3.1",
-    "portscanner": "~0.1.3",
-    "connect": "~2.8.8",
     "cli-color": "~0.2.3",
-    "socket.io": "~0.9.16",
-    "url": "~0.7.9",
-    "grunt-style-injector": "~0.1.9",
+    "connect": "~2.8.8",
+    "grunt": "~0.4.2",
     "grunt-bg-shell": "~2.3.1",
-    "angular-route": "~1.3.0",
-    "angular": "~1.3.13",
-    "angular-cookies": "~1.3.13",
-    "grunt-obfuscator": "~0.1.0"
+    "grunt-contrib-compass": "~0.7.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-obfuscator": "~0.1.0",
+    "grunt-style-injector": "~0.1.9",
+    "lodash": "~1.3.1",
+    "open": "0.0.4",
+    "path": "~0.4.9",
+    "portscanner": "~0.1.3",
+    "socket.io": "~0.9.16",
+    "ua-parser-js": "~0.6.2",
+    "url": "~0.7.9"
+  },
+  "scripts": {
+    "postinstall": "bower install"
   }
 }

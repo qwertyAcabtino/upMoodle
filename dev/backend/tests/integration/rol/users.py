@@ -29,4 +29,3 @@ class RolUsersTestCase(AuthenticationTestBase):
         rol = '191289347901273481236498712634971234123481263984'
         response = self.client.get('/rol/' + rol + '/users')
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
-
