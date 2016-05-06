@@ -16,6 +16,6 @@ dev/backend/data/pics/
 dev/frontend/node_modules
 dev/frontend/bower_components
 dev/frontend/app/dist/
-dev/frontend/.sass-cache/
+dev/frontend/app/stylesheets/.sass-cache/
 */.sass-cache/*
 .sass-cache/*
