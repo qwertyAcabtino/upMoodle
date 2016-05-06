@@ -17,12 +17,12 @@
     		</a>
         </li>
     </ul>
-	<span class="dropdown pull-right" dropdown on-toggle="toggled(open)">
-		<a href class="dropdown-toggle" dropdown-toggle >
+	<span class="uib-dropdown pull-right" uib-dropdown  on-toggle="toggled(open)">
+		<a href class="uib-dropdown-toggle" uib-dropdown-toggle >
 			<span>{{user.name}} ({{user.nick}})</span>
 			<img alt="Brand" ng-src="{{profilePic}}" class="img-circle img-thumbnail" width="48px" height="48px">
 		</a>
-		<ul class="dropdown-menu">
+		<ul class="uib-dropdown-menu">
 			<li>
 				<a href="#/profile/">See profile</a>
 				<a href ng-click="logout()">Logout</a>

@@ -1,7 +1,7 @@
  angular.module('upmApp')
  .controller( 'notesCtrl', 
-    ['$scope', '$cookies', 'api', 'User', 'userModel', '$location', 'SubjectsTree', '$modal', 'snackbar', 
-    function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $modal, snackbar){
+    ['$scope', '$cookies', 'api', 'User', 'userModel', '$location', 'SubjectsTree', '$uibModal', 'snackbar', 
+    function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $uibModal, snackbar){
 
  	$scope.getNotesByLevelId = function ( levelId, recursive ) {
  		api.notesByLevelId(levelId, recursive || false)
@@ -16,7 +16,7 @@
 
   $scope.openLevelModal = function () {
 
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
       templateUrl: 'views/_modalSubjectsList.html',
       controller: 'ModalLevelsLists',
       size: 'lg',
@@ -35,7 +35,7 @@
   };
 
   $scope.openNewNoteModal = function(){
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
       templateUrl: 'views/_modalNewNote.html',
       controller: 'ModalNewNote',
       size: 'lg',
@@ -54,7 +54,7 @@
   };
 
   $scope.openEditNoteModal = function(note){
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
       templateUrl: 'views/_modalEditNote.html',
       controller: 'ModalEditNote',
       size: 'lg',
@@ -88,14 +88,14 @@
  $scope.init();
 }]);  
 
-angular.module('upmApp').controller('ModalLevelsLists', function ($scope, $modalInstance, levels) {
+angular.module('upmApp').controller('ModalLevelsLists', function ($scope, $uibModalInstance, levels) {
   $scope.root = levels;
   $scope.filterByLevel = function(level) {
-    $modalInstance.close(level);
+    $uibModalInstance.close(level);
   };
 }); 
 
-angular.module('upmApp').controller('ModalEditNote', function ($scope, $modalInstance, levels, api, snackbar, note, SubjectsTree, levelsUnested) {
+angular.module('upmApp').controller('ModalEditNote', function ($scope, $uibModalInstance, levels, api, snackbar, note, SubjectsTree, levelsUnested) {
 
   $scope.getLevelsDropdown = function(node, depthParam){
     var depth = depthParam || 0; 
@@ -138,7 +138,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $modalIns
   $scope.saveNewNote = function (newNote) {
     api.notePut( newNote )
     .success(function (data) {
-      $modalInstance.close(data);
+      $uibModalInstance.close(data);
     })
     .error(function(data, status, headers, config) {
          snackbar.error(data.error);
@@ -149,7 +149,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $modalIns
   $scope.deleteNote = function(){
     api.noteDelete($scope.note.id)
     .success(function (data) {
-      $modalInstance.close(data.message);  
+      $uibModalInstance.close(data.message);  
     })
     .error(function(data, status, headers, config) {
          snackbar.error(data.error);
@@ -168,7 +168,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $modalIns
   $scope.init();
 });
 
-angular.module('upmApp').controller('ModalNewNote', function ($scope, $modalInstance, levels, api, snackbar) {
+angular.module('upmApp').controller('ModalNewNote', function ($scope, $uibModalInstance, levels, api, snackbar) {
 
   $scope.post = function(note) {
     note = note || {};
@@ -178,7 +178,7 @@ angular.module('upmApp').controller('ModalNewNote', function ($scope, $modalInst
     note.level_id = note.level.id || -1;
     api.notePost(note)
     .success(function(data, status, headers, config) {
-      $modalInstance.close(data.message);   
+      $uibModalInstance.close(data.message);   
     })
     .error(function(data, status, headers, config) {
       snackbar.error(data.error, 5000);

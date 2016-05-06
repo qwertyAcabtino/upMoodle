@@ -1,7 +1,7 @@
  angular.module('upmApp')
  .controller( 'subjectCtrl', 
- 	['$scope', '$cookies', 'api', 'User', 'userModel', '$location', 'SubjectsTree', '$modal', 'snackbar', '$routeParams', '$upload',
- 	function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $modal, snackbar, $routeParams, $upload){
+ 	['$scope', '$cookies', 'api', 'User', 'userModel', '$location', 'SubjectsTree', '$uibModal', 'snackbar', '$routeParams', '$upload',
+ 	function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $uibModal, snackbar, $routeParams, $upload){
 
  		$scope.getFileTypes = function(){
  			api.fileTypesGet()
@@ -34,7 +34,7 @@
  		};
 
  		$scope.openEditFileModal = function(file){
- 			var modalInstance = $modal.open({
+ 			var modalInstance = $uibModal.open({
  				templateUrl: 'views/_modalEditFileInfo.html',
  				controller: 'ModalEditFileInfo',
  				size: 'lg',
@@ -57,7 +57,7 @@
  		};
 
  		$scope.openNewFileModal = function(file){
- 			var modalInstance = $modal.open({
+ 			var modalInstance = $uibModal.open({
  				templateUrl: 'views/_modalNewFile.html',
  				controller: 'ModalNewFileInfo',
  				size: 'lg',
@@ -99,7 +99,7 @@
  	}]);  
 
 
-angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $modalInstance, file, fileTypes, api, snackbar, User, subject) {
+angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $uibModalInstance, file, fileTypes, api, snackbar, User, subject) {
 
 	$scope.getFilesFileTypeIndex = function(){
 		for(var i=0; i<$scope.fileTypes.length; i++){
@@ -112,7 +112,7 @@ angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $modal
 	$scope.uploadNewFile = function (newFileInfo) {
 		api.uploadFile( $scope.newFile, {userId : User.get().id, subjectId : $scope.subject.id, fileInfo: newFileInfo, fileType: $scope.fileTypeSelected})
 		.success(function (data) {
-			$modalInstance.close(data);
+			$uibModalInstance.close(data);
 		})
  		.error(function(data, status, headers, config) {
 	       snackbar.error(data.error);
@@ -133,7 +133,7 @@ angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $modal
 });
 
 
-angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $modalInstance, file, fileTypes, api, snackbar) {
+angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibModalInstance, file, fileTypes, api, snackbar) {
 
 	$scope.getFilesFileTypeIndex = function(){
 		for(var i=0; i<$scope.fileTypes.length; i++){
@@ -150,7 +150,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $moda
 	$scope.deleteFile = function(file){
 		api.fileDelete(file.hash)
 		.success(function (data) {
-			$modalInstance.close(data.message);  
+			$uibModalInstance.close(data.message);  
 		})
  		.error(function(data, status, headers, config) {
 	       snackbar.error(data.error);

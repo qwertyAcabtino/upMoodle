@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 		},
 		
 		bgShell: {
-			runNode: {
+			runExpress: {
 				cmd: 'node server.js',
 				bg: true
 			}
@@ -77,11 +77,6 @@ module.exports = function(grunt) {
       		}
     	},
 	});
-	grunt.registerTask('build',
-    [
-      'jshint',
-      'concat',
-      'uglify'
-    ]);
-	grunt.registerTask('server', ['bgShell:runNode', 'build', 'watch']);
+	grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
+	grunt.registerTask('server', ['bgShell:runExpress', 'build', 'watch']);
 };
