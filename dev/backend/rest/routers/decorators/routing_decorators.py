@@ -1,3 +1,4 @@
+import json
 import uuid
 from functools import wraps
 
@@ -36,33 +37,6 @@ def check_cookies(view_func):
     return wraps(view_func)(_decorator)
 
 
-# def authorized(same=True, level=False):
-#     def _authorized_decorator(view_func):
-#         def _decorator(request, *args, **kwargs):
-#             """
-#             :param request: here comes the information for the signed user.
-#             :param author_id: original author of the information.
-#             :param level: check the hierarchy. If the signed user has a lower value, exception is raised
-#             :param same: checks if the user that is trying to push changes is the same than the original.
-#             :return:
-#             """
-#
-#             auth_user = User.objects.get(sessionToken=request.COOKIES[SESSION_COOKIE_NAME])
-#             auth_user_rol = auth_user.rol
-#             original_user = User.objects.get(id=author_id)
-#             original_user_rol = original_user.rol
-#             if same and not author_id == userSigned.id:
-#                 raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
-#             elif level and rolSigned.priority < rolAuthor.priority:
-#                 raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
-#             else:
-#                 response = view_func(request, *args, **kwargs)
-#                 return response
-#
-#         return wraps(view_func)(_decorator)
-#     return _authorized_decorator()
-
-
 def method(method_value):
     def _method_decorator(view_func):
         def _decorator(request, *args, **kwargs):
@@ -71,6 +45,8 @@ def method(method_value):
             else:
                 if method_value == 'POST':
                     kwargs['data'] = body_to_json(request.body)
+                    if request.POST:
+                        kwargs['data'].update(request.POST.dict())
                 elif method_value == 'GET':
                     kwargs['data'] = request.GET
                 elif method_value == 'PUT':
@@ -86,7 +62,7 @@ def method(method_value):
 def methods(methods_list):
     def _method_decorator(view_func):
         def _decorator(request, *args, **kwargs):
-            if not request.method in methods_list:
+            if request.method not in methods_list:
                 return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
             else:
 
