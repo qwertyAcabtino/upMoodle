@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 				'app/libs/snackbar/angular.snackbar.js',
 			],
 
-			'projectJsFiles': ['app/js/**/*.js']
+			'projectJsFiles': ['app/source/**/*.js']
 		},
 		
 		bgShell: {
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 				}			
 			},
 			jsShelf:{
-				files: 'app/js/**/*.js',
+				files: 'app/source/**/*.js',
 				tasks: ['build'],
 				options: {
 					livereload: true,
