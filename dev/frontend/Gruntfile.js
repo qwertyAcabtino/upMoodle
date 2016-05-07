@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 				'bower_components/ng-file-upload/angular-file-upload.js',
 				'bower_components/ng-file-upload/ng-file-upload.js',
 				'bower_components/angular-loading-bar/build/loading-bar.js',
-				'manual_components/snackbar/angular.snackbar.js',
+				'app/libs/snackbar/angular.snackbar.js',
 			],
 
 			'projectJsFiles': ['app/js/**/*.js']
