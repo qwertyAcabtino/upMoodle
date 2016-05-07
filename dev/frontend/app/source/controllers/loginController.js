@@ -4,7 +4,7 @@ angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', '
 	$scope.sendForm = function(user){
 		var email = (user && user.email ) ? user.email : null;
 		var password = (user && user.password ) ? user.password : null;
-		api.login( email, password )
+		api.auth.login( email, password )
 			.success(function(data, status, headers, config) {
 				snackbar.message(data.message);
 				$location.path('/dashboard');

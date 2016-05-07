@@ -7,7 +7,7 @@ angular.module('upmApp').directive('navbar', function(){
 			$scope.user = User.model;
 			$scope.profilePic = api.getPic( $scope.user.profilePic );
 			$scope.logout = function() {
-				api.logout().
+				api.auth.logout().
 				success(function(data, status, headers, config) {
 					User.destroy();
 					$location.path('/login'); 

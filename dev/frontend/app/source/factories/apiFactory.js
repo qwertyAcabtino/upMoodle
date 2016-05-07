@@ -1,8 +1,66 @@
 angular.module('upmApp').factory('api', function($http, $cookies, $upload, $window){
 	var base_url = 'http://127.0.0.1:8000/';
-	var user_pics_url = base_url /*+ "media/"*/;
+	var user_pics_url = base_url;
 
 	return {
+
+		auth : {
+
+			login : function(userEmail, userPassword){
+				return $http({ 
+					method: 'POST', 
+					url:  base_url + 'auth/login/',
+					headers: {'Content-Type': 'application/json'},
+					data : {
+						email: userEmail, 
+						password: userPassword
+					}
+				});
+			},
+
+			logout : function(){
+				return $http({ 
+					method: 'POST', 
+					url:  base_url + 'auth/logout/'
+				});	
+			},
+
+			signup : function(user){
+				return $http({ 
+					method: 'post', 
+					url:  base_url + 'auth/signup/',
+					headers: {'Content-Type': 'application/json'},
+					data : {
+						email: user.email, 
+						password: user.password, 
+						nick: user.nick, name: 
+						user.name
+					}
+				});
+			},
+
+			confirmEmail : function(token){  
+				return $http({     
+					method: 'POST',      
+					url:  base_url + 'confirm_email/',
+					headers: {'Content-Type': 'application/json'},
+					data: {
+						token: token
+					}
+				});
+			},
+
+			recoverPassword : function(email){
+				return $http({ 
+					method: 'POST', 
+					url:  base_url + 'auth/recover_password/',
+					headers: {'Content-Type': 'application/json'},
+					data: {
+						email: email
+					}
+				});	
+			}
+		},
 
 		getPic : function(url){
 			return user_pics_url + url;			
@@ -66,67 +124,6 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			});
 		},
 
-		login : function(userEmail, userPassword){
-			return $http({ 
-				method: 'POST', 
-				url:  base_url + 'auth/login/',
-				headers: {'Content-Type': 'application/json'},
-				data : {email: userEmail, password: userPassword}
-			});
-		},
-
-		signup : function(user){
-			return $http({ 
-				method: 'post', 
-				url:  base_url + 'signup/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
-				data : {email: user.email, password: user.password, nick: user.nick, name: user.name}
-			});
-		},
-
-		logout : function(){
-			return $http({ 
-				method: 'POST', 
-				url:  base_url + 'auth/logout/'
-			});	
-		},
-
-		recoverPassword : function(email){
-			return $http({ 
-				method: 'POST', 
-				url:  base_url + 'recover_password/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
-				data: {email: email}
-			});	
-		},
-
-		confirmEmail : function(token){  
-			return $http({     
-				method: 'POST',      
-				url:  base_url + 'confirm_email/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
-				data: {token: token}
-			});
-		},
-
 		subjectsTree : function(){
 			return $http({
 				method: 'GET',
@@ -146,13 +143,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			return $http({
 				method: 'PUT', 
 				url:  base_url + 'note/' + note.id +'/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				// transformRequest: function(obj) {
-				// 	var str = [];
-				// 	for(var p in obj)
-				// 		str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-				// 	return str.join("&");
-				// },
+				headers: {'Content-Type': 'application/json'},
 				data : {text: note.text, topic: note.topic, level_id: note.level.id}
 			});
 		},

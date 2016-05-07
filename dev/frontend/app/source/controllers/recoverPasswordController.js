@@ -1,6 +1,6 @@
 angular.module('upmApp').controller( 'recoverPasswordCtrl', ['$scope', '$cookies', 'api', 'snackbar', '$location', function($scope, $cookies, api, snackbar, $location) {
 	$scope.sendForm = function(email){
-		api.recoverPassword(email)
+		api.auth.recoverPassword(email)
 		.success(function(data, status, headers, config) {
 			snackbar.message(data.message, 3000);
 			$location.path('/login');
