@@ -62,66 +62,68 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			}
 		},
 
-		getPic : function(url){
-			return user_pics_url + url;			
-		},
- 
-		getUser : function(){
-			return $http({ 
-				method: 'GET', 
-				url:  base_url + 'user/'
-			});
-		},
+		userMe : {
+			get : function(){
+				return $http({ 
+					method: 'GET', 
+					url:  base_url + 'user/'
+				});
+			},
 
-		updateUserSubjects : function (subjects) {
-			return $http({ 
-				method: 'post', 
-				url:  base_url + 'user/subjects/',
-				headers: {'Content-Type': 'application/json'},
-				data : {ids: subjects || [] }
-			});
-		},
+			update : function(user){
+				var userData = {
+					email: user.email, 
+					name: user.name, 
+					nick: user.nick, 
+					password: user.password
+				};
 
-		updateUser : function(user){
-			return $http({ 
-				method: 'POST', 
-				url:  base_url + 'user/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
-				data: user.password ? 
-				{email: user.email, name: user.name, nick: user.nick, password: user.password} :
-				{email: user.email, name: user.name, nick: user.nick}
-			});
-		},
-
-		updateAvatar : function( avatar ){
-			console.log( avatar );
-			return $http({
-				method: 'POST',
-				url: base_url + 'user/avatar/',
-				headers: {
-					'Content-Type': 'multipart/form-data'
-				},
-				data: {
-					avatar: avatar
-				},
-				transformRequest: function (data, headersGetter) {
-					var formData = new FormData();
-					angular.forEach(data, function (value, key) {
-						formData.append(key, value);
-					});
-
-					var headers = headersGetter();
-					delete headers['Content-Type'];
-
-					return formData;
+				if(user.password){
+					userData.password = user.password;
 				}
-			});
+				return $http({ 
+					method: 'POST', 
+					url:  base_url + 'user/',
+					headers: {'Content-Type': 'application/json'},
+					data: userData
+				});
+			},
+
+			updateSubjects : function (subjects) {
+				return $http({ 
+					method: 'post', 
+					url:  base_url + 'user/subjects/',
+					headers: {'Content-Type': 'application/json'},
+					data : {
+						ids: subjects || [] 
+					}
+				});
+			},
+
+			updateAvatar : function( avatar ){
+				console.log( avatar );
+				return $http({
+					method: 'POST',
+					url: base_url + 'user/avatar/',
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					},
+					data: {
+						avatar: avatar
+					},
+					transformRequest: function (data, headersGetter) {
+						var formData = new FormData();
+						angular.forEach(data, function (value, key) {
+							formData.append(key, value);
+						});
+
+						var headers = headersGetter();
+						delete headers['Content-Type'];
+
+						return formData;
+					}
+				});
+			},
 		},
 
 		subjectsTree : function(){

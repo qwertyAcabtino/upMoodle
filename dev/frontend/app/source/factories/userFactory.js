@@ -8,10 +8,11 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 
 	    get : function(){
 	    	if( this.model===undefined )
-	    		return api.getUser()
+	    		return api.userMe.get()
 				.then(
 					function success(response) { 
 						returno.model = response.data;
+						returno.model.profilePic = 'http://127.0.0.1:8000/' + returno.model.profilePic;
 						return returno.model; 
 					},
 					function error(){

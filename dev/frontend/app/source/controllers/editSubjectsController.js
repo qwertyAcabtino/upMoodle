@@ -23,7 +23,7 @@
 
  		$scope.updateUserSubjects = function(){
  			var subjectsCheck = $scope.getSubjectsCheckedList();
- 			api.updateUserSubjects(subjectsCheck)
+ 			api.userMe.updateSubjects(subjectsCheck)
  			.success(function(data, status, headers, config) {
  				$scope.updateUserSubjectsCallback(data);
  			})
@@ -34,7 +34,7 @@
 
  		$scope.updateUserSubjectsCallback = function(message){
  			snackbar.message(message);
- 			api.getUser().
+ 			api.userMe.get().
  			success(function(data, status, headers, config) {
  				User.set(data);
  				$location.path('/subjects');

@@ -2,10 +2,10 @@
  .controller( 'profileCtrl', ['$scope', '$cookies', 'api', 'User', 'userModel', 'snackbar', '$upload', '$location', function($scope, $cookies, api, User, userModel, snackbar, $upload, $location){
  	$scope.editMode = false;
  	$scope.user = User.model;
- 	$scope.profilePic = api.getPic( $scope.user.profilePic );
+ 	$scope.avatar = $scope.user.profilePic;
 
  	$scope.update = function (userModel) {
- 		api.updateUser(userModel)
+ 		api.userMe.update(userModel)
  		.success(function(data, status, headers, config){
  			snackbar.message(data);
  			$scope.editMode = false;
@@ -22,13 +22,13 @@
  	};
 
  	$scope.updateAvatar = function ( avatar ) {
- 		api.updateAvatar(avatar[0])
+ 		api.userMe.updateAvatar(avatar[0])
  		.success(function(data, status, headers, config) {
  			snackbar.message(data);
  			User.destroy();
  			User.get().then(function success(response){
 				$scope.user = User.get();
-			 	$scope.profilePic = api.getPic( $scope.user.profilePic );
+			 	$scope.avatar = $scope.user.profilePic;
 			});
 
  		})
@@ -37,14 +37,14 @@
  		});  
  	};
 
- 	$scope.upload = function ( profilePic ) {
- 		if ( profilePic ) {
- 			$scope.updateAvatar(profilePic);
+ 	$scope.upload = function ( avatar ) {
+ 		if ( avatar ) {
+ 			$scope.updateAvatar(avatar);
  		}
  	};
 
- 	$scope.$watch('newProfilePic', function () {
- 		$scope.upload($scope.newProfilePic);
+ 	$scope.$watch('newAvatar', function () {
+ 		$scope.upload($scope.newAvatar);
  	});
 
 

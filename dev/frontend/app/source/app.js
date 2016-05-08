@@ -83,7 +83,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'cfpLoadingB
 		});
 	}])
 .run(function($location, $http, $cookies, api, User){
-	api.getUser().
+	api.userMe.get().
 	success(function(data, status, headers, config) {
 		User.set(data);
 	})	
