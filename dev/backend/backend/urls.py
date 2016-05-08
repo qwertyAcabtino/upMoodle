@@ -36,11 +36,11 @@ urlpatterns = patterns('',
     url(r'^calendar/$', calendar_endpoint),
 
     # Files
-    url(r'^file/banned/$', files_banned_hashes),
+    # url(r'^file/banned$', files_banned_hashes), Disabled
     url(r'^file/(?P<file_hash>(\w|_)+)(/?)$', file_by_hash_endpoint),
     url(r'^file/$', file_add_endpoint),
-    url(r'^fileTypes/$', filetype_list),  # Deprecated.
-    url(r'^filetypes/_all$', filetype_list),
+
+    url(r'^filetype/_all$', filetype_list),
 
     # Level
     url(r'^level/_tree$', level_tree),

@@ -13,6 +13,7 @@ from tests.integration.rol.users import RolUsersTestCase
 from tests.integration.user.subject import EditSubjectsTestCase
 from tests.integration.user.userMe import UserMeTestCase
 from tests.integration.user.userThird import UserThirdTestCase
+from tests.integration.file.filetype import FileTypeTestCase
 
 
 

@@ -178,77 +178,97 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			},
 		},
 
-		fileTypesGet : function(){
-			return $http({
-				method: 'GET',
-				url: base_url + 'fileTypes/'
-			});
+		filetype : {
+
+			getAll : function(){
+				return $http({
+					method: 'GET',
+					url: base_url + 'filetype/_all'
+				});
+			}
 		},
 
-		uploadFile : function(file, data){
-			return $http({
-				method: 'POST',
-				url: base_url + 'file/',
-				headers: {
-					'Content-Type': 'multipart/form-data'
-				},
-				data: {
-					subject_id: data.subjectId,
-					uploader_id : data.userId,
-					name : data.fileInfo.name,
-					text : data.fileInfo.text,
-					fileType_id : data.fileType.id,
-					file: file
-				},
-				transformRequest: function (data, headersGetter) {
-					var formData = new FormData();
-					angular.forEach(data, function (value, key) {
-						formData.append(key, value);
-					});
+		file : {
 
-					var headers = headersGetter();
-					delete headers['Content-Type'];
+			_getBinary : function(hash){
+				var url = base_url + 'file/' + hash;
+				$window.open( url );
+			},
 
-					return formData;
+			_getMetadata : function(hash){
+				return $http.get(
+					base_url + 'file/' + hash,
+					{
+						headers: {'Accept': 'application/json'}
+					}
+				);
+			},
+
+			get : function (hash, type) {
+				switch (type) {
+					case 'binary':
+						return this._getBinary(hash);
+					case 'metadata':
+						return this._getMetadata(hash);
+					default:
+						throw "Not implemented function";
 				}
-			});
-		},
+			},
 
-		filePost : function(file){
-			return $http({
-				method: 'PUT', 
-				url:  base_url + 'file/' + file.hash,
-				headers: {'Content-Type': 'application/json'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
-				data : {
-					text: file.text, 
-					name: file.name,
-					fileType_id : file.fileType.id
+			delete : function (hash) {
+				return $http.delete(base_url + 'file/' + hash);
+			},
+
+			_updateMetadata : function (file){
+				return $http({
+					method: 'PUT', 
+					url:  base_url + 'file/' + file.hash,
+					headers: {'Content-Type': 'application/json'},
+					data : {
+						text: file.text, 
+						name: file.name,
+						fileType_id : file.fileType.id
+					}
+				});
+			},
+
+			update : function(data, type){
+				switch (type) {
+					case 'metadata':
+						return this._updateMetadata(data);
+					default:
+						throw "Not implemented function";
 				}
-			});
-		},
+			},
 
-		fileGet : function(hash){
-			return $http.get(
-				base_url + 'file/' + hash,
-				{
-					headers: {'Accept': 'application/json'}
-				}
-			);
-		},
+			create : function(binary, metadata) {
+				return $http({
+					method: 'POST',
+					url: base_url + 'file/',
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					},
+					data: {
+						subject_id: metadata.subjectId,
+						uploader_id : metadata.userId,
+						name : metadata.fileInfo.name,
+						text : metadata.fileInfo.text,
+						fileType_id : metadata.fileType.id,
+						file: binary
+					},
+					transformRequest: function (metadata, headersGetter) {
+						var formData = new FormData();
+						angular.forEach(metadata, function (value, key) {
+							formData.append(key, value);
+						});
 
-		fileDownload : function(hash){
-			var url = base_url + 'file/' + hash;
-			$window.open( url );
-		},
+						var headers = headersGetter();
+						delete headers['Content-Type'];
 
-		fileDelete : function(hash){
-			return $http.delete(base_url + 'file/' + hash);
+						return formData;
+					}
+				});
+			}
 		},
 	};
 });  

@@ -4,7 +4,7 @@
  	function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $uibModal, snackbar, $routeParams, $upload){
 
  		$scope.getFileTypes = function(){
- 			api.fileTypesGet()
+ 			api.filetype.getAll()
  			.success(function(data, status, headers, config){
  				$scope.fileTypes = data;	
  			})
@@ -110,7 +110,7 @@ angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $uibMo
 	};
 
 	$scope.uploadNewFile = function (newFileInfo) {
-		api.uploadFile( $scope.newFile, {userId : User.get().id, subjectId : $scope.subject.id, fileInfo: newFileInfo, fileType: $scope.fileTypeSelected})
+		api.file.create( $scope.newFile, {userId : User.get().id, subjectId : $scope.subject.id, fileInfo: newFileInfo, fileType: $scope.fileTypeSelected})
 		.success(function (data) {
 			$uibModalInstance.close(data);
 		})
@@ -144,11 +144,11 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 	};
 
 	$scope.downloadFile = function(file){
-		api.fileDownload(file.hash);
+		api.file.get(file.hash, 'binary');
 	};
 
 	$scope.deleteFile = function(file){
-		api.fileDelete(file.hash)
+		api.file.delete(file.hash)
 		.success(function (data) {
 			$uibModalInstance.close(data.message);  
 		})
@@ -159,7 +159,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 
 	$scope.saveFileInfo = function(newFileInfo){
 		newFileInfo.fileType = $scope.fileTypeSelected;
-		api.filePost(newFileInfo)
+		api.file.update(newFileInfo, 'metadata')
 		.success(function (data) {
 			$scope.saveFileInfoCallback(data.message);
 		})
@@ -175,7 +175,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 	};
 
 	$scope.getFileInfo = function (hash, previousMessage) {
-		api.fileGet(hash)
+		api.file.get(hash, 'metadata')
 		.success(function (data) {
 			if( previousMessage )
 				snackbar.message( previousMessage, 5000);

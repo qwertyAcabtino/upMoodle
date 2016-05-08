@@ -1,6 +1,6 @@
 import json
 
-from rest.models import User, ErrorMessage, NoteBoard
+from rest.models import User, NoteBoard
 from rest.models.message.errorMessage import ErrorMessageType
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response, get_random_string

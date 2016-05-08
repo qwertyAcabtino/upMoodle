@@ -7,10 +7,10 @@ from rest.exceptions.requestException import RequestExceptionByCode
 
 
 def unserialize(model, fields, form, *args, **kwargs):
-    fieldsCopy = copy(fields)
+    fields_copy = copy(fields)
     optional = kwargs.get('optional', False)
 
-    for field in fieldsCopy:
+    for field in fields_copy:
         # If the field doesnt exists raises an MultiValueDictKeyError
         try:
             setattr(model, field, form[field])
