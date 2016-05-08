@@ -7,7 +7,7 @@
         <label>Filter </label><input class="form-control" ng-model="searchText"><br>
 		<ul class="nav nav-pills nav-stacked">
 			<li ng-repeat="file in subject.files | filter:searchText | orderBy:'-lastUpdate'">
-				<a ng-click="openEditFileModal(file)">[{{file.year.verbose}}][{{file.fileType.name}}] {{file.name}}.{{file.file | split:'.':1}} <i> by {{file.uploader.nick}}</i></a>
+				<a ng-click="openEditFileModal(file)">[{{file.year.verbose}}][{{file.fileType.name}}] {{file.name}} <i> by {{file.uploader.nick}}</i></a>
 			</li>
 			<li ng-show="!subject.files.length">There are not files yet for this subject.</li>
 		</ul>

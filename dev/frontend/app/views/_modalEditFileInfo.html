@@ -1,5 +1,5 @@
 <div class="modal-header">
-	<h3 class="modal-title" ng-show="!editMode">[{{file.fileType.name}}] {{file.name}}.{{file.file | split:'.':1}}</h3>
+	<h3 class="modal-title" ng-show="!editMode">[{{file.fileType.name}}] {{file.name}}</h3>
 	<div class="row">
 	      <div class="col-xs-2">
 				<select ng-show="editMode" class="form-control" ng-init="fileTypeSelected = fileTypes[filesFileTypeIndex]" ng-model="fileTypeSelected" ng-options="fileType.name for fileType in fileTypes">
