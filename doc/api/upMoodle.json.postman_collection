@@ -62,7 +62,6 @@
 			"name": "Note",
 			"description": "",
 			"order": [
-				"31af7110-028b-38d5-aa39-ca20c894df33",
 				"c3224a0b-0869-677d-a806-f30ce561588b",
 				"3b415fd1-621b-a3f6-d2b1-1b291b959f7f",
 				"b91826ea-e778-5044-54e6-74e909794828",
@@ -104,7 +103,7 @@
 		{
 			"id": "067fb94a-679a-818a-8a9a-cdcfaf13e4c9",
 			"headers": "",
-			"url": "http://127.0.0.1:8000/level/1/notes",
+			"url": "http://127.0.0.1:8000/level/1/notes?recursive=true",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -114,7 +113,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462372581555,
+			"time": 1462728110330,
 			"name": "level/{id}/notes",
 			"description": "",
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
@@ -240,39 +239,6 @@
 			"description": "",
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"responses": []
-		},
-		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
-			"id": "31af7110-028b-38d5-aa39-ca20c894df33",
-			"name": "level/{id}/notes",
-			"description": "Retrieves a list of notes in a certain level.",
-			"url": "http://127.0.0.1:8000/note/level/1?recursive=true",
-			"method": "GET",
-			"headers": "",
-			"data": [
-				{
-					"key": "topic",
-					"value": "qwer2",
-					"type": "text"
-				},
-				{
-					"key": "text",
-					"value": "qwerqwer",
-					"type": "text"
-				},
-				{
-					"key": "level_id",
-					"value": "1",
-					"type": "text"
-				}
-			],
-			"dataMode": "urlencoded",
-			"timestamp": 0,
-			"version": 2,
-			"time": 1428876080469,
-			"preRequestScript": "",
-			"tests": "",
-			"folder": "e56c0a8c-fdaa-92c5-3138-073e4a337051"
 		},
 		{
 			"id": "3a4bc026-045d-82d3-e9dd-0ef31ec1010b",
