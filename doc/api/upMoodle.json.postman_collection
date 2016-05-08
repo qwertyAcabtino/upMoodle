@@ -36,11 +36,18 @@
 			"name": "File",
 			"description": "",
 			"order": [
-				"52dd27c7-984e-d075-ba2c-404195268c01",
 				"2a4c0898-4cf3-84c7-8cad-e4ddeba9b794",
 				"a9b71bd8-3581-4b17-9c9a-7ad4ea2d0f20",
 				"2c7ecd7c-3f85-e1ae-9e3d-ea4ca0303515",
-				"a6ace5e3-0764-c437-5baa-15070c3a22b5",
+				"a6ace5e3-0764-c437-5baa-15070c3a22b5"
+			],
+			"owner": "336812"
+		},
+		{
+			"id": "20783319-687f-803c-a755-87cd961f2f13",
+			"name": "File type",
+			"description": "",
+			"order": [
 				"5fcf9a34-d7ea-a761-f5e2-89f6ac22b15e"
 			],
 			"owner": "336812"
@@ -159,13 +166,12 @@
 			"rawModeData": "{\n    \"email\":\"fool@eui.upm.es\",\n    \"password\":\"password\",\n    \"nick\":\"fooUser\",\n    \"name\":\"foo foo\"\n}"
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "2a4c0898-4cf3-84c7-8cad-e4ddeba9b794",
-			"name": "file/{hash}",
-			"description": "Retrieves a file's information",
-			"url": "http://127.0.0.1:8000/file/6/",
+			"headers": "Accept: application/json\n",
+			"url": "http://127.0.0.1:8000/file/ce6c281c447c5da1c85b97943cc3ab83ba409f636ba070a44c49555d4e410b8e",
+			"preRequestScript": "",
+			"pathVariables": {},
 			"method": "GET",
-			"headers": "",
 			"data": [
 				{
 					"key": "text",
@@ -174,12 +180,14 @@
 				}
 			],
 			"dataMode": "params",
-			"timestamp": 0,
 			"version": 2,
-			"time": 1429025299359,
-			"preRequestScript": "",
 			"tests": "",
-			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462746393271,
+			"name": "file/{hash}",
+			"description": "Retrieves a file's information",
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305"
 		},
 		{
 			"id": "2aab5372-12b9-b873-b890-e09eeaaa8ed7",
@@ -204,22 +212,22 @@
 		{
 			"id": "2c7ecd7c-3f85-e1ae-9e3d-ea4ca0303515",
 			"headers": "",
-			"url": "http://127.0.0.1:8000/file/6/",
+			"url": "http://127.0.0.1:8000/file/ce6c281c447c5da1c85b97943cc3ab83ba409f636ba070a44c49555d4e410b8e",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "DELETE",
 			"data": [],
-			"dataMode": "params",
+			"dataMode": "raw",
 			"version": 2,
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462371392465,
+			"time": 1462747203284,
 			"name": "file/{hash}",
 			"description": "Deletes a file.",
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"responses": [],
-			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+			"rawModeData": ""
 		},
 		{
 			"id": "2db2925a-ab3e-df4c-5dbf-5f80dd33e434",
@@ -329,26 +337,6 @@
 			"responses": []
 		},
 		{
-			"id": "52dd27c7-984e-d075-ba2c-404195268c01",
-			"headers": "",
-			"url": "http://127.0.0.1:8000/file/banned",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "GET",
-			"data": [],
-			"dataMode": "params",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1462371046291,
-			"name": "file/banned",
-			"description": "Get a list of hashes from blacklisted files.",
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
-			"responses": [],
-			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
-		},
-		{
 			"id": "5c207949-2cb6-1b92-d109-4f73ceec8743",
 			"headers": "Content-Type: application/json\n",
 			"url": "http://127.0.0.1:8000/auth/login/",
@@ -370,7 +358,7 @@
 		{
 			"id": "5fcf9a34-d7ea-a761-f5e2-89f6ac22b15e",
 			"headers": "",
-			"url": "http://127.0.0.1:8000/filetypes/_all",
+			"url": "http://127.0.0.1:8000/filetype/_all",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -380,7 +368,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462372685025,
+			"time": 1462743571309,
 			"name": "filetypes/_all",
 			"description": "",
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
@@ -526,56 +514,80 @@
 		{
 			"id": "a6ace5e3-0764-c437-5baa-15070c3a22b5",
 			"headers": "",
-			"url": "http://127.0.0.1:8000/files",
+			"url": "http://127.0.0.1:8000/file/",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
 			"data": [
 				{
-					"key": "email",
-					"value": "viperey@gmail.com",
-					"type": "text"
+					"key": "subject_id",
+					"value": "4",
+					"type": "text",
+					"enabled": true
 				},
 				{
-					"key": "password",
-					"value": "password",
-					"type": "text"
+					"key": "uploader_id",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "Filename",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "text",
+					"value": "Description",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fileType_id",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "file",
+					"value": {
+						"0": {}
+					},
+					"type": "file",
+					"enabled": true
 				}
 			],
-			"dataMode": "urlencoded",
+			"dataMode": "params",
 			"version": 2,
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1462371232696,
+			"time": 1462747559031,
 			"name": "file/",
 			"description": "Adds a new file",
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
-			"responses": [],
-			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+			"responses": []
 		},
 		{
-			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"id": "a9b71bd8-3581-4b17-9c9a-7ad4ea2d0f20",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://127.0.0.1:8000/file/ce6c281c447c5da1c85b97943cc3ab83ba409f636ba070a44c49555d4e410b8e",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462747079077,
 			"name": "file/{hash}",
 			"description": "Updates file's information",
-			"url": "http://127.0.0.1:8000/file/6/",
-			"method": "POST",
-			"headers": "",
-			"data": [
-				{
-					"key": "text",
-					"value": "CapitalLetter",
-					"type": "text"
-				}
-			],
-			"dataMode": "params",
-			"timestamp": 0,
+			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",
 			"responses": [],
-			"version": 2,
-			"preRequestScript": "",
-			"tests": "",
-			"folder": "1cb1fe17-5fc6-282d-0618-6562410089e4"
+			"rawModeData": "{\n    \"text\": \"New text\"\n}"
 		},
 		{
 			"collectionId": "005f51fe-af3e-5732-53b2-ba794d046305",

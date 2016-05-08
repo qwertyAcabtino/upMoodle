@@ -13,7 +13,7 @@ def file_by_hash_endpoint(request, file_hash, session_token=None, data=None):
         accept = request.META['HTTP_ACCEPT'].split(',')[0].lower()
         content_type = request.META['CONTENT_TYPE'].split(',')[0].lower()
 
-        if 'application/json' == content_type or 'application/json' == accept:
+        if 'application/json' == content_type or 'application/json' == accept or request.method == 'DELETE':
             service_metadata_methods = {
                 'GET': FileService.metadata_get,
                 'PUT': FileService.metadata_update,

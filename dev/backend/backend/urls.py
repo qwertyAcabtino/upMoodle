@@ -37,7 +37,7 @@ urlpatterns = patterns('',
 
     # Files
     # url(r'^file/banned$', files_banned_hashes), Disabled
-    url(r'^file/(?P<file_hash>(\w|_)+)(/?)$', file_by_hash_endpoint),
+    url(r'^file/(?P<file_hash>(\w|_)+)/?$', file_by_hash_endpoint),
     url(r'^file/$', file_add_endpoint),
 
     url(r'^filetype/_all$', filetype_list),

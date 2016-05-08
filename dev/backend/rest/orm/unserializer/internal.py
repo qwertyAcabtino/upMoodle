@@ -14,7 +14,7 @@ def unserialize(model, fields, form, *args, **kwargs):
         # If the field doesnt exists raises an MultiValueDictKeyError
         try:
             setattr(model, field, form[field])
-        except MultiValueDictKeyError as m:
+        except KeyError as m:
             if not optional:
                 raise m
             else:
