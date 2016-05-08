@@ -136,7 +136,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $uibModal
   };
 
   $scope.saveNewNote = function (newNote) {
-    api.notePut( newNote )
+    api.note.update( newNote )
     .success(function (data) {
       $uibModalInstance.close(data);
     })
@@ -147,7 +147,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $uibModal
   };
 
   $scope.deleteNote = function(){
-    api.noteDelete($scope.note.id)
+    api.note.delete($scope.note.id)
     .success(function (data) {
       $uibModalInstance.close(data.message);  
     })
@@ -176,7 +176,7 @@ angular.module('upmApp').controller('ModalNewNote', function ($scope, $uibModalI
     note.text = note.text || "";
     note.level = note.level || {};
     note.level_id = note.level.id || -1;
-    api.notePost(note)
+    api.note.create(note)
     .success(function(data, status, headers, config) {
       $uibModalInstance.close(data.message);   
     })

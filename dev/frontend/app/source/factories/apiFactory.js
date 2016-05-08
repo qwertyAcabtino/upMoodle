@@ -126,6 +126,35 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			},
 		},
 
+		note : {
+
+			update: function (data) {
+				return $http({
+					method: 'PUT', 
+					url:  base_url + 'note/' + data.id +'/',
+					headers: {'Content-Type': 'application/json'},
+					data : {text: data.text, topic: data.topic, level_id: data.level.id}
+				});
+			},
+
+			delete : function(noteId){
+				return $http.delete(base_url + 'note/' + noteId +'/');
+			},
+
+			create : function(data){
+				return $http({
+					method: 'post', 
+					url:  base_url + 'note/',
+					headers: {'Content-Type': 'application/json'},
+					data : {
+						text: data.text, 
+						topic: data.topic, 
+						level_id: data.level_id
+					}
+				});
+			},
+		},
+		
 		subjectsTree : function(){
 			return $http({
 				method: 'GET',
@@ -139,34 +168,6 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 				method: 'GET',
 				url: base_url + 'level/' + level +"/notes" + "?recursive="+recursive
 			});
-		},
-
-		notePut : function(note){
-			return $http({
-				method: 'PUT', 
-				url:  base_url + 'note/' + note.id +'/',
-				headers: {'Content-Type': 'application/json'},
-				data : {text: note.text, topic: note.topic, level_id: note.level.id}
-			});
-		},
-
-		notePost : function(note){
-			return $http({
-				method: 'post', 
-				url:  base_url + 'note/',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				transformRequest: function(obj) {
-					var str = [];
-					for(var p in obj)
-						str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-					return str.join("&");
-				},
-				data : {text: note.text, topic: note.topic, level_id: note.level_id}
-			});
-		},
-
-		noteDelete : function(noteId){
-			return $http.delete(base_url + 'note/' + noteId +'/');
 		},
 
 		subjectFiles : function(subjectId){
