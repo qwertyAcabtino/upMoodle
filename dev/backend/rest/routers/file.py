@@ -10,10 +10,8 @@ from rest.services.file import FileService, FileTypeService
 @methods(('GET', 'PUT', 'DELETE'))
 def file_by_hash_endpoint(request, file_hash, session_token=None, data=None):
     try:
-        accept = request.META['HTTP_ACCEPT'].split(',')[0].lower()
-        content_type = request.META['CONTENT_TYPE'].split(',')[0].lower()
 
-        if 'application/json' == content_type or 'application/json' == accept or request.method == 'DELETE':
+        if request.method == 'DELETE' or _get_media_type(request) == 'application/json':
             service_metadata_methods = {
                 'GET': FileService.metadata_get,
                 'PUT': FileService.metadata_update,
@@ -48,3 +46,10 @@ def filetype_list(request, **kwargs):
 @method('GET')
 def files_banned_hashes(request, **kwargs):
     return FileService.get_banned_hashes()
+
+
+def _get_media_type(request):
+    try:
+        return request.META['HTTP_ACCEPT'].split(',')[0].lower()
+    except:
+        return request.META['CONTENT_TYPE'].split(',')[0].lower()
