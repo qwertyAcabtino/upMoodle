@@ -72,11 +72,11 @@ class SubjectService:
         pass
 
     @staticmethod
-    def get_files_list(pk):
+    def get_files_list(level_id=None):
         try:
-            level = Level.objects.get(id=pk)
+            level = Level.objects.get(id=level_id)
             if level.is_subject():
-                files = File.objects.filter(subject=pk, visible=True)
+                files = File.objects.filter(subject=level_id, visible=True)
                 serializer = FileSerializer(files, many=True)
                 return JSONResponse(serializer.data)
             elif not level.is_subject():

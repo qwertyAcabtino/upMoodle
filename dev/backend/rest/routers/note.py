@@ -21,9 +21,3 @@ def note_by_id(request, note_id, session_token=None, data=None, **kwargs):
 @method('POST')
 def note_endpoint(request, session_token=None, data=None, **kwargs):
     return NoteService.add(session_token=session_token, data=data)
-
-
-@authenticated
-@method('GET')
-def notes_by_level_id(request, level_id, data=None, **kwargs):
-    return NoteService.get_notes_by_level_id(level_id=level_id, data=data)

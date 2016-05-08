@@ -4,6 +4,7 @@ from django.contrib import admin
 
 from backend import settings
 from rest.routers import *
+
 urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
@@ -42,12 +43,8 @@ urlpatterns = patterns('',
     url(r'^filetypes/_all$', filetype_list),
 
     # Level
-    url(r'^level/(?P<level_id>[0-9]+)/notes(/?)$', notes_by_level_id),
-    url(r'^subject/(?P<pk>[0-9]+)/files(/?)$', subject_files_list),  # Deprecated
-    url(r'^level/(?P<level_id>[0-9]+)/files(/?)$', subject_files_list),
-    url(r'^subjectsTree/$', level_tree),  # Deprecated
     url(r'^level/_tree$', level_tree),
+    url(r'^level/(?P<level_id>[0-9]+)/notes$', level_notes_list),
+    url(r'^level/(?P<level_id>[0-9]+)/files$', level_files_list),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-

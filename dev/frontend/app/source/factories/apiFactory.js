@@ -127,8 +127,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 		},
 
 		note : {
-
-			update: function (data) {
+			update : function (data) {
 				return $http({
 					method: 'PUT', 
 					url:  base_url + 'note/' + data.id +'/',
@@ -137,7 +136,7 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 				});
 			},
 
-			delete : function(noteId){
+			delete:  function(noteId){
 				return $http.delete(base_url + 'note/' + noteId +'/');
 			},
 
@@ -155,26 +154,28 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			},
 		},
 		
-		subjectsTree : function(){
-			return $http({
-				method: 'GET',
-				url: base_url + 'subjectsTree/'
-			});
-		},
+		level : {
+			getTree : function(){
+				return $http({
+					method: 'GET',
+					url: base_url + 'level/_tree'
+				});
+			},
 
-		notesByLevelId : function(level, recursive){
-			var recuriveIn = recursive || false;
-			return $http({
-				method: 'GET',
-				url: base_url + 'level/' + level +"/notes" + "?recursive="+recursive
-			});
-		},
+			getNotes : function(levelId, recursive){
+				recursive = recursive || false;
+				return $http({
+					method: 'GET',
+					url: base_url + 'level/' + levelId +"/notes" + "?recursive=" + recursive
+				});
+			},
 
-		subjectFiles : function(subjectId){
-			return $http({
-				method: 'GET',
-				url: base_url + 'subject/' + subjectId +"/files"
-			});
+			getFiles : function(levelId){
+				return $http({
+					method: 'GET',
+					url: base_url + 'level/' + levelId +"/files"
+				});
+			},
 		},
 
 		fileTypesGet : function(){

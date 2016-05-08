@@ -13,7 +13,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'cfpLoadingB
 
 		var userPromise = ['User', function(User){ return User.get(); }];
 		var subjectsPromise = ['SubjectsTree', function(SubjectsTree){ return SubjectsTree.get(); }];
-		var subjectsTreePromise = ['api', function(api){ return api.subjectsTree(); }];
+		var subjectsTreePromise = ['api', function(api){ return api.level.getTree(); }];
 
 		$httpProvider.defaults.withCredentials = true;
 		$routeProvider

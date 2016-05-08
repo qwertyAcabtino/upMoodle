@@ -5,7 +5,7 @@ angular.module('upmApp').factory('SubjectsTree', ['$location', 'api', function($
 
 	    get : function(){
 	    	if( this.model===undefined )
-	    		return api.subjectsTree()
+	    		return api.level.getTree()
 				.then(
 					function success(response) { 
 						returno.model = response.data[0];

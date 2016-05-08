@@ -140,18 +140,18 @@ class NoteTestCase(AuthenticationTestBase):
     def test_getNote_level_basic(self):
         self.login()
         pk = 1
-        response = self.client.get('/level/' + str(pk) + '/notes/')
+        response = self.client.get('/level/' + str(pk) + '/notes')
         self.assertEqual(response.status_code, 200)
 
     def test_getNote_level_notExisting(self):
         self.login()
         pk = 200
-        response = self.client.get('/level/' + str(pk) + '/notes/')
+        response = self.client.get('/level/' + str(pk) + '/notes')
         assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
 
     def test_getNote_level_empty(self):
         self.login()
         pk = 2
-        response = self.client.get('/level/' + str(pk) + '/notes/')
+        response = self.client.get('/level/' + str(pk) + '/notes')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.content, '[]')

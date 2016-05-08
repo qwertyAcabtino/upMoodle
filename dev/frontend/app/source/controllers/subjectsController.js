@@ -55,7 +55,7 @@
 	$scope.subjectsTree = {};
 	$scope.returnStack = {};
 
- 	api.subjectsTree()
+ 	api.level.getTree()
  	.success(function(data, status, headers, config){
 		$scope.subjectsTree = data[0];
 		$scope.navigateTo($scope.subjectsTree.id);

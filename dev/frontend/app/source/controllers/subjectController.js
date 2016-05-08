@@ -14,7 +14,7 @@
  		};
 
  		$scope.getSubjectFiles = function(){
- 			api.subjectFiles( $scope.subject.id )
+ 			api.level.getFiles( $scope.subject.id )
  			.success(function(data, status, headers, config){
  				$scope.subject.files = data;	
  			})

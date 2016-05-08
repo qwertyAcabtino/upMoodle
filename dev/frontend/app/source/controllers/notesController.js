@@ -4,7 +4,7 @@
     function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $uibModal, snackbar){
 
  	$scope.getNotesByLevelId = function ( levelId, recursive ) {
- 		api.notesByLevelId(levelId, recursive || false)
+ 		api.level.getNotes(levelId, recursive || false)
  		.success(function(data, status, headers, config){
        $scope.notes = data;	
      })
