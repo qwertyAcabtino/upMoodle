@@ -1,49 +1,43 @@
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
-from rest.models import Message, OkMessage, ErrorMessage
-from rest.orm.serializers import MessageSerializer
-
-
-class JSONResponse(HttpResponse):
-
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
-        self['Access-Control-Expose-Headers'] = '*'
-        self['Access-Control-Allow-Credentials'] = 'true'
+from rest.models import OkMessage, ErrorMessage
 
 
 class ResponseJson(HttpResponse):
+
+    response_content = dict()
+    http_code = 200
+    media_type = 'application/json'
+
     def __init__(self, body=None, message_id=None, **kwargs):
 
-        global response_message
-        http_code = 200
-        response_content = dict()
-        if body is not None:
-            try:
-                response_content['id'] = body.id
-            except AttributeError:
-                response_content = body
+        self._set_response_body(body)
+        self._set_response_message(message_id, **kwargs)
+        content = JSONRenderer().render(self.response_content)
+        super(ResponseJson, self).__init__(content, status=self.http_code)
+        self._ensure_headers()
 
+    def _set_response_message(self, message_id, **kwargs):
+        global response_message
         if message_id:
             if type(message_id.get()) == OkMessage:
                 response_message = OkMessage.objects.get(pk=message_id.value).json
             elif type(message_id.get()) == ErrorMessage:
-                response_message = ErrorMessage.objects.get(pk=message_id.value)
-            http_code = response_message['http_code']
-            response_content['message'] = response_message
+                response_message = ErrorMessage.objects.get(pk=message_id.value).json
 
-        content = JSONRenderer().render(response_content)
+            self.http_code = response_message['http_code']
+            self.response_content['message'] = response_message
+            if 'stack_trace' in kwargs:
+                self.response_content['message']['text'] += ". " + kwargs['stack_trace']
 
-        kwargs['content_type'] = 'application/json'
-        super(ResponseJson, self).__init__(content, status=http_code, **kwargs)
+    def _set_response_body(self, body):
+        if body is not None:
+            try:
+                self.response_content['id'] = body.id
+            except AttributeError:
+                self.response_content = body
+
+    def _ensure_headers(self):
+        self['Content-Type'] = self.media_type
         self['Access-Control-Expose-Headers'] = '*'
         self['Access-Control-Allow-Credentials'] = 'true'
-
-
-class JSONResponseID(JSONResponse):
-    def __init__(self, code):
-        message = Message.objects.get(pk=code.value)
-        serializer = MessageSerializer(message, many=False)
-        super(JSONResponseID, self).__init__(serializer.data, status=200)

@@ -1,5 +1,5 @@
 from rest.models import User
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from rest.orm.unserializer.internal import *
 
 
@@ -23,4 +23,4 @@ def unserialize_user(form, *args, **kwargs):
             user.sessionToken = sessionToken
         return user
     else:
-        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)

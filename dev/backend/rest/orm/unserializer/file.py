@@ -1,5 +1,5 @@
 from rest.models import File, ErrorMessage
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from rest.orm.unserializer.internal import *
 
 
@@ -10,7 +10,7 @@ def unserialize_file(form, *args, **kwargs):
         filez = File()
         return unserialize(filez, fields, form, optional=optional)
     else:
-        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
 
 def unserialize_file_binary(form, *args, **kwargs):
@@ -21,4 +21,4 @@ def unserialize_file_binary(form, *args, **kwargs):
         filez = File(file=binary)
         return unserialize(filez, fields, form, optional=optional)
     else:
-        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)

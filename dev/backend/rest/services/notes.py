@@ -2,10 +2,9 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID, ResponseJson
+from rest.JSONResponse import ResponseJson
 from rest.models import NoteBoard, Level, User, OkMessage
-from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType
+from rest.models.message.errorMessage import ErrorMessage
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializer import unserialize_note
 from rest.services.auth import AuthService
@@ -25,7 +24,7 @@ class NoteService:
         except RequestException as r:
             return r.jsonResponse
         except (ObjectDoesNotExist, OverflowError, ValueError):
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def update_note_by_id(session_token=None, note_id=None, data=None, **kwargs):
@@ -39,11 +38,11 @@ class NoteService:
             updated_note = unserialize_note(data, fields=fields, optional=True)
             original_note.update(updated_note, fields)
             original_note.save()
-            return JSONResponseID(MessageType.NOTE_UPDATED)
+            return ResponseJson(message_id=OkMessage.Type.NOTE_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or MultiValueDictKeyError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
         except ValidationError as v:
             return RequestExceptionByMessage(v).jsonResponse
 
@@ -55,11 +54,11 @@ class NoteService:
 
             original_note.visible = False
             original_note.save()
-            return JSONResponseID(MessageType.NOTE_REMOVED)
+            return ResponseJson(message_id=OkMessage.Type.NOTE_REMOVED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def add(session_token=None, data=None):
@@ -75,7 +74,7 @@ class NoteService:
         except ValidationError as v:
             return RequestExceptionByMessage(v).jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def get_notes_by_level_id(level_id=None, data=None):
@@ -91,4 +90,4 @@ class NoteService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse

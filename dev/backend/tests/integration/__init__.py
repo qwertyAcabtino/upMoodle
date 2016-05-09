@@ -6,7 +6,7 @@ from tests.integration.auth.signup import SignUpTestCase
 from tests.integration.level.level import LevelTestCase, LevelNotesTestCase, LevelFilesTestCase
 from tests.integration.level.levelType import LevelTypeTestCase
 from tests.integration.message.errorMessage import ErrorMessageTestCase
-from tests.integration.message.message import MessageTestCase
+from tests.integration.message.message import OkMessageTestCase
 from tests.integration.note.note import NoteTestCase
 from tests.integration.rol.rol import RolEndpointTestCase
 from tests.integration.rol.users import RolUsersTestCase

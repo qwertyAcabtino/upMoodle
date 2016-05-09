@@ -10,7 +10,7 @@ from rest.models.calendar.calendarFrequency import CalendarFrequency
 from rest.models.level.level import Level
 from rest.models.level.levelType import LevelType
 from rest.models.message.errorMessage import ErrorMessage
-from rest.models.message.message import Message, OkMessage
+from rest.models.message.message import OkMessage
 from rest.models.note.noteBoard import NoteBoard
 from rest.models.user.rol import Rol
 from rest.models.user.user import User

@@ -1,5 +1,5 @@
 from rest.models import Rol
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
@@ -22,10 +22,10 @@ class RolUsersTestCase(AuthenticationTestBase):
         self.logout()
         rol = Rol.objects.get(name='Alumno')
         response = self.client.get('/rol/' + str(rol.id) + '/users')
-        assert_error_response(response, ErrorMessageType.NOT_SIGNED_IN)
+        assert_error_response(response, ErrorMessage.Type.NOT_SIGNED_IN)
 
     def test_userRol_id_overflow(self):
         self.login()
         rol = '191289347901273481236498712634971234123481263984'
         response = self.client.get('/rol/' + rol + '/users')
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)

@@ -3,16 +3,15 @@ import uuid
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.mail import send_mail
 from django.utils import timezone
-from django.utils.datastructures import MultiValueDictKeyError
 
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
 from rest.exceptions.requestException import RequestExceptionByCode, RequestException, \
     RequestExceptionByMessage
-from rest.JSONResponse import JSONResponseID, JSONResponse, ResponseJson
+from rest.JSONResponse import ResponseJson
 from rest.models import User
-from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType, OkMessage
+from rest.models.message.errorMessage import ErrorMessage
+from rest.models.message.message import OkMessage
 from rest.orm.unserializer import unserialize_user
 from rest.services.utils.email import EmailService
 from rest.services.utils.password import PasswordService
@@ -39,16 +38,16 @@ class AuthService:
             request_pass = data['password']
             user = User.objects.get(email=request_email, password=request_pass)
             if not user.confirmedEmail:
-                return RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL).jsonResponse
+                return RequestExceptionByCode(ErrorMessage.Type.UNCONFIRMED_EMAIL).jsonResponse
             else:
                 user.sessionToken = session_token
                 user.lastTimeActive = timezone.now()
                 user.save()
-                json_response = JSONResponseID(MessageType.SUCCESS_LOGIN)
+                json_response = ResponseJson(message_id=OkMessage.Type.SUCCESS_LOGIN)
                 json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
                 return json_response
         except (ObjectDoesNotExist, KeyError):
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
         except RequestException as r:
             return r.jsonResponse
 
@@ -73,7 +72,7 @@ class AuthService:
         except RequestException as r:
             return r.jsonResponse
         except Exception:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def logout(session_token=None):
@@ -82,7 +81,7 @@ class AuthService:
             user = User.objects.get(sessionToken=session_token)
             user.sessionToken = ''
             user.save()
-            json_response = JSONResponseID(MessageType.SUCCESS_LOGOUT)
+            json_response = ResponseJson(message_id=OkMessage.Type.SUCCESS_LOGOUT)
             json_response.set_cookie(SESSION_COOKIE_NAME, '')
             return json_response
         except Exception:
@@ -93,15 +92,15 @@ class AuthService:
         try:
             user = User.objects.get(sessionToken=session_token)
             if user.confirmedEmail:
-                return RequestExceptionByCode(ErrorMessageType.ALREADY_CONFIRMED).jsonResponse
+                return RequestExceptionByCode(ErrorMessage.Type.ALREADY_CONFIRMED).jsonResponse
             else:
                 user.confirmedEmail = True
                 user.save()
-                return JSONResponseID(MessageType.ACCOUNT_VALIDATED)
+                return ResponseJson(message_id=OkMessage.Type.ACCOUNT_VALIDATED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def recover_password(data=None):
@@ -110,19 +109,19 @@ class AuthService:
             email_request = data['email']
             user = User.objects.get(email=email_request)
             if not user.confirmedEmail:
-                raise RequestExceptionByCode(ErrorMessageType.UNCONFIRMED_EMAIL)
+                raise RequestExceptionByCode(ErrorMessage.Type.UNCONFIRMED_EMAIL)
             elif user.banned:
-                raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+                raise RequestExceptionByCode(ErrorMessage.Type.UNAUTHORIZED)
             else:
                 password = PasswordService.get_random()
                 EmailService.send_recover_password_email(user.email, password)
                 user.password = password
                 user.save()
-            return JSONResponseID(MessageType.RECOVER_PASS_EMAIL)
+                return ResponseJson(message_id=OkMessage.Type.RECOVER_PASS_EMAIL)
         except RequestException as r:
             return r.jsonResponse
         except Exception:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def is_authenticated(session_token):
@@ -150,6 +149,6 @@ class AuthService:
         original_user = User.objects.get(id=author_id)
         original_user_rol = original_user.rol
         if same and not author_id == auth_user.id:
-            raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+            raise RequestExceptionByCode(ErrorMessage.Type.UNAUTHORIZED)
         elif level and auth_user_rol.priority < original_user_rol.priority:
-            raise RequestExceptionByCode(ErrorMessageType.UNAUTHORIZED)
+            raise RequestExceptionByCode(ErrorMessage.Type.UNAUTHORIZED)

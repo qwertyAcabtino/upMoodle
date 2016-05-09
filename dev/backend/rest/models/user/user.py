@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from rest.finals import STUDENT
 from rest.models.level import Level
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from rest.validators import validate_length
 
 
@@ -48,21 +48,21 @@ class User(models.Model):
         try:
             validate_email(self.email)
             if not "@eui.upm.es" in self.email and not "@upm.es" in self.email and not "@alumnos.upm.es" in self.email:
-                raise ValidationError(ErrorMessageType.EMAIL_INVALID.value)
+                raise ValidationError(ErrorMessage.Type.EMAIL_INVALID.value)
         except ValidationError as v:
-            raise ValidationError(ErrorMessageType.EMAIL_INVALID.value)
+            raise ValidationError(ErrorMessage.Type.EMAIL_INVALID.value)
 
     def validate_password(self):
         lengthMax = User._meta.get_field('password').max_length
-        validate_length(self.password, lengthMax, 8, ErrorMessageType.PASSWORD_LENGTH)
+        validate_length(self.password, lengthMax, 8, ErrorMessage.Type.PASSWORD_LENGTH)
 
     def validate_nick(self):
         lengthMax = User._meta.get_field('nick').max_length
-        validate_length(self.nick, lengthMax, 4, ErrorMessageType.NICK_LENGTH)
+        validate_length(self.nick, lengthMax, 4, ErrorMessage.Type.NICK_LENGTH)
 
     def validate_name(self):
         lengthMax = User._meta.get_field('name').max_length
-        validate_length(self.name, lengthMax, 4, ErrorMessageType.NAME_LENGTH)
+        validate_length(self.name, lengthMax, 4, ErrorMessage.Type.NAME_LENGTH)
 
     def update(self, userUpdate, fields):
         if fields:
@@ -74,14 +74,14 @@ class User(models.Model):
         if level.is_subject():
             self.subjects.add(level)
         else:
-            raise ValidationError(ErrorMessageType.INCORRECT_DATA.value)
+            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
 
     def remove_subject(self, subjectPk):
         level = Level.objects.get(id=subjectPk)
         if level.is_subject():
             self.subjects.remove(level)
         else:
-            raise ValidationError(ErrorMessageType.INCORRECT_DATA.value)
+            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
 
     def update_subjects(self, subjects):
         self.subjects.clear()

@@ -1,9 +1,9 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode
-from rest.JSONResponse import JSONResponse, ResponseJson
+from rest.JSONResponse import ResponseJson
 from rest.models import Level, File
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from rest.orm.serializers import LevelSerializer, FileSerializer
 
 
@@ -46,7 +46,7 @@ class LevelService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def __get_ids_tree(level_id=None):
@@ -80,6 +80,6 @@ class SubjectService:
                 files_dict = FileSerializer(files, many=True).data
                 return ResponseJson(body=files_dict)
             elif not level.is_subject():
-                return RequestExceptionByCode(ErrorMessageType.INVALID_LEVEL).jsonResponse
+                return RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL).jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse

@@ -2,7 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 from django.utils.datastructures import MultiValueDictKeyError
 
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 
 
 class Level(models.Model):
@@ -25,7 +25,7 @@ class Level(models.Model):
             Level.objects.get(id=fk)
             Level.validate_exists_level(fk)
         except (MultiValueDictKeyError, KeyError):
-            raise ValidationError(ErrorMessageType.INVALID_LEVEL.value)
+            raise ValidationError(ErrorMessage.Type.INVALID_LEVEL.value)
 
     @staticmethod
     def validate_exists_level(fk):

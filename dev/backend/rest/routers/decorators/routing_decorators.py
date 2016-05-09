@@ -6,7 +6,7 @@ import demjson as demjson
 
 from backend.settings import SESSION_COOKIE_NAME
 from rest.exceptions.requestException import RequestExceptionByCode
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from rest.services.auth import AuthService
 
 
@@ -41,7 +41,7 @@ def method(method_value):
     def _method_decorator(view_func):
         def _decorator(request, *args, **kwargs):
             if not request.method == method_value:
-                return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
+                return RequestExceptionByCode(ErrorMessage.Type.NOT_ALLOWED_METHOD).jsonResponse
             else:
                 if method_value == 'POST':
                     kwargs['data'] = _body_to_json(request.body)
@@ -63,7 +63,7 @@ def methods(methods_list):
     def _method_decorator(view_func):
         def _decorator(request, *args, **kwargs):
             if request.method not in methods_list:
-                return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
+                return RequestExceptionByCode(ErrorMessage.Type.NOT_ALLOWED_METHOD).jsonResponse
             else:
 
                 if 'POST' in methods_list and request.method == 'POST':
@@ -92,7 +92,7 @@ def _check_cookies(request):
         return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME] and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
 
     if not cookies_are_ok():
-        exception = RequestExceptionByCode(ErrorMessageType.DISABLED_COOKIES)
+        exception = RequestExceptionByCode(ErrorMessage.Type.DISABLED_COOKIES)
         exception.jsonResponse.set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
         raise exception
 
@@ -100,7 +100,7 @@ def _check_cookies(request):
 def _check_signed_in(request):
     _check_cookies(request)
     if not AuthService.is_authenticated(request.COOKIES[SESSION_COOKIE_NAME]):
-        raise RequestExceptionByCode(ErrorMessageType.NOT_SIGNED_IN)
+        raise RequestExceptionByCode(ErrorMessage.Type.NOT_SIGNED_IN)
 
 
 def _body_to_json(body):

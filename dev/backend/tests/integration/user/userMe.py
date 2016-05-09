@@ -1,5 +1,5 @@
 from rest.models import User
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from rest.models.message.message import MessageType
 from rest.services.utils.email import EmailService
 
@@ -25,7 +25,7 @@ class UserMeTestCase(AuthenticationTestBase):
     def test_userRemove_not_signedIn(self):
         self.logout()
         response = self.client.delete('/user/')
-        assert_error_response(response, ErrorMessageType.NOT_SIGNED_IN)
+        assert_error_response(response, ErrorMessage.Type.NOT_SIGNED_IN)
 
     def test_userUpdate_basic(self):
         self.login()
@@ -55,7 +55,7 @@ class UserMeTestCase(AuthenticationTestBase):
         self.login()
         new_password = 'qwerqwer'
         response = self.client.post('/user/', {'oldPassword': new_password, 'password': new_password})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_userUpdate_basic_several(self):
         self.login()
@@ -79,4 +79,4 @@ class UserMeTestCase(AuthenticationTestBase):
         with open('data/tests/default_update_avatar_pic.jpeg') as fp:
             self.login()
             response = self.file_client.post('/user/avatar/', data={'incorrect_field_name': fp})
-            assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+            assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)

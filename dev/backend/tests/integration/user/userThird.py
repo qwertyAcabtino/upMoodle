@@ -1,4 +1,4 @@
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
@@ -21,10 +21,10 @@ class UserThirdTestCase(AuthenticationTestBase):
         self.logout()
         pk = '1'
         response = self.client.get('/user/' + pk + '/')
-        assert_error_response(response, ErrorMessageType.NOT_SIGNED_IN)
+        assert_error_response(response, ErrorMessage.Type.NOT_SIGNED_IN)
 
     def test_getUser_id_overflow(self):
         self.login()
         pk = '191289347901273481236498712634971234123481263984'
         response = self.client.get('/user/' + pk + '/')
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)

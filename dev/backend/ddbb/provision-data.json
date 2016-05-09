@@ -269,8 +269,8 @@
     "pk": 1,
     "fields": {
       "http_code": 200,
-      "message_code": "auth_operation",
-      "message": "Successfully signed in"
+      "msg_key": "auth_operation",
+      "text": "Successfully signed in"
     }
   },
   {
@@ -278,80 +278,80 @@
     "pk": 2,
     "fields": {
       "http_code": 204,
-      "message_code": "auth_operation",
-      "message": "Email is now confirmed"
+      "msg_key": "auth_operation",
+      "text": "Email is now confirmed"
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 3,
     "fields": {
-      "http_code": 204,
-      "message_code": "auth_operation",
-      "message": "A new password has been sent to your email adress. Check your inbox"
+      "http_code": 200,
+      "msg_key": "auth_operation",
+      "text": "A new password has been sent to your email address. Check your inbox"
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 4,
     "fields": {
-      "http_code": 204,
-      "message_code": "auth_operation",
-      "message": "Your user account has been removed."
+      "http_code": 200,
+      "msg_key": "auth_operation",
+      "text": "Your user account has been removed."
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 5,
     "fields": {
-      "http_code": 204,
-      "message_code": "auth_operation",
-      "message": "Your profile has been updated"
+      "http_code": 200,
+      "msg_key": "auth_operation",
+      "text": "Your profile has been updated"
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 6,
     "fields": {
-      "http_code": 204,
-      "message_code": "put_operation",
-      "message": "Note updated"
+      "http_code": 200,
+      "msg_key": "put_operation",
+      "text": "Note updated"
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 7,
     "fields": {
-      "http_code": 204,
-      "message_code": "delete_operation",
-      "message": "The note is been removed"
+      "http_code": 200,
+      "msg_key": "delete_operation",
+      "text": "The note is been removed"
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 8,
     "fields": {
-      "http_code": 204,
-      "message_code": "delete_operation",
-      "message": "The calendar event is been removed"
+      "http_code": 200,
+      "msg_key": "delete_operation",
+      "text": "The calendar event is been removed"
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 9,
     "fields": {
-      "http_code": 204,
-      "message_code": "put_operation",
-      "message": "Calendar event has been updated."
+      "http_code": 200,
+      "msg_key": "put_operation",
+      "text": "Calendar event has been updated."
     }
   },
   {
     "model": "rest.okmessage",
     "pk": 10,
     "fields": {
-      "http_code": 204,
-      "message_code": "delete_operation",
-      "message": "The file has been removed"
+      "http_code": 200,
+      "msg_key": "delete_operation",
+      "text": "The file has been removed"
     }
   },
   {
@@ -359,8 +359,8 @@
     "pk": 11,
     "fields": {
       "http_code": 200,
-      "message_code": "auth_operation",
-      "message": "Account successfully validated."
+      "msg_key": "auth_operation",
+      "text": "Account successfully validated."
     }
   },
   {
@@ -368,8 +368,8 @@
     "pk": 12,
     "fields": {
       "http_code": 201,
-      "message_code": "create_operation",
-      "message": "Your note was successfully created"
+      "msg_key": "create_operation",
+      "text": "Your note was successfully created"
     }
   },
   {
@@ -377,8 +377,8 @@
     "pk": 13,
     "fields": {
       "http_code": 201,
-      "message_code": "create_operation",
-      "message": "Your file was successfully uploaded"
+      "msg_key": "create_operation",
+      "text": "Your file was successfully uploaded"
     }
   },
   {
@@ -386,8 +386,8 @@
     "pk": 14,
     "fields": {
       "http_code": 204,
-      "message_code": "put_operation",
-      "message": "File's info has been updated"
+      "msg_key": "put_operation",
+      "text": "File's info has been updated"
     }
   },
   {
@@ -395,8 +395,8 @@
     "pk": 15,
     "fields": {
       "http_code": 200,
-      "message_code": "auth_operation",
-      "message": "Successfully logged out"
+      "msg_key": "auth_operation",
+      "text": "Successfully logged out"
     }
   },
   {
@@ -404,8 +404,8 @@
     "pk": 16,
     "fields": {
       "http_code": 200,
-      "message_code": "success",
-      "message": "Successful request"
+      "msg_key": "success",
+      "text": "Successful request"
     }
   },
   {
@@ -524,7 +524,8 @@
     "model": "rest.errormessage",
     "pk": 1,
     "fields": {
-      "error": "REQUEST_CANNOT",
+      "text": "REQUEST_CANNOT",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -532,7 +533,8 @@
     "model": "rest.errormessage",
     "pk": 2,
     "fields": {
-      "error": "INCORRECT_DATA",
+      "text": "INCORRECT_DATA",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -540,7 +542,8 @@
     "model": "rest.errormessage",
     "pk": 3,
     "fields": {
-      "error": "DISABLED_COOKIES",
+      "text": "DISABLED_COOKIES",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -548,7 +551,8 @@
     "model": "rest.errormessage",
     "pk": 4,
     "fields": {
-      "error": "ALREADY_CONFIRMED",
+      "text": "ALREADY_CONFIRMED",
+      "msg_key": "_",
       "http_code": 409
     }
   },
@@ -556,7 +560,8 @@
     "model": "rest.errormessage",
     "pk": 5,
     "fields": {
-      "error": "INVALID_TOKEN",
+      "text": "INVALID_TOKEN",
+      "msg_key": "_",
       "http_code": 401
     }
   },
@@ -564,7 +569,8 @@
     "model": "rest.errormessage",
     "pk": 6,
     "fields": {
-      "error": "USER_IN_USE",
+      "text": "USER_IN_USE",
+      "msg_key": "_",
       "http_code": 409
     }
   },
@@ -572,7 +578,8 @@
     "model": "rest.errormessage",
     "pk": 7,
     "fields": {
-      "error": "UNAUTHORIZED",
+      "text": "UNAUTHORIZED",
+      "msg_key": "_",
       "http_code": 401
     }
   },
@@ -580,7 +587,8 @@
     "model": "rest.errormessage",
     "pk": 8,
     "fields": {
-      "error": "INCORRECT_FILE_DATA",
+      "text": "INCORRECT_FILE_DATA",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -588,7 +596,8 @@
     "model": "rest.errormessage",
     "pk": 9,
     "fields": {
-      "error": "PASSWORD_LENGTH",
+      "text": "PASSWORD_LENGTH",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -596,7 +605,8 @@
     "model": "rest.errormessage",
     "pk": 10,
     "fields": {
-      "error": "NICK_LENGTH",
+      "text": "NICK_LENGTH",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -604,7 +614,8 @@
     "model": "rest.errormessage",
     "pk": 11,
     "fields": {
-      "error": "EMAIL_INVALID",
+      "text": "EMAIL_INVALID",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -612,7 +623,8 @@
     "model": "rest.errormessage",
     "pk": 12,
     "fields": {
-      "error": "UNCONFIRMED_EMAIL",
+      "text": "UNCONFIRMED_EMAIL",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -620,7 +632,8 @@
     "model": "rest.errormessage",
     "pk": 13,
     "fields": {
-      "error": "NOT_SIGNED_IN",
+      "text": "NOT_SIGNED_IN",
+      "msg_key": "_",
       "http_code": 401
     }
   },
@@ -628,7 +641,8 @@
     "model": "rest.errormessage",
     "pk": 14,
     "fields": {
-      "error": "NAME_LENGTH",
+      "text": "NAME_LENGTH",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -636,7 +650,8 @@
     "model": "rest.errormessage",
     "pk": 15,
     "fields": {
-      "error": "INVALID_LEVEL",
+      "text": "INVALID_LEVEL",
+      "msg_key": "_",
       "http_code": 400
     }
   },
@@ -644,7 +659,8 @@
     "model": "rest.errormessage",
     "pk": 16,
     "fields": {
-      "error": "Method not allowed",
+      "text": "Method not allowed",
+      "msg_key": "_",
       "http_code": 405
     }
   }

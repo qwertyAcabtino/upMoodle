@@ -1,5 +1,5 @@
 from rest.models import User
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
 
@@ -22,23 +22,23 @@ class LoginTestCase(AuthenticationTestBase):
         user.confirmedEmail = False
         user.save()
         response = self.client.post('/auth/login/', {'email': 'test@eui.upm.es', 'password': '12341234'})
-        assert_error_response(response, ErrorMessageType.UNCONFIRMED_EMAIL)
+        assert_error_response(response, ErrorMessage.Type.UNCONFIRMED_EMAIL)
         user = User.objects.get(email='test@eui.upm.es')
         user.confirmedEmail = True
         user.save()
 
     def test_3_login_empty_email(self):
         response = self.client.post('/auth/login/', {'email': '', 'password': '12341234'})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_4_login_empty_email_2(self):
         response = self.client.post('/auth/login/', {'password': '12341234'})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_5_login_empty_password(self):
         response = self.client.post('/auth/login/', {'email': 'test@eui.upm.es', 'password': ''})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_6_login_empty_password_2(self):
         response = self.client.post('/auth/login/', {'email': 'test@eui.upm.es'})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)

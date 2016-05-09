@@ -4,8 +4,8 @@ from enum import Enum
 
 class BaseMessage(models.Model):
     id = models.AutoField(primary_key=True)
-    message = models.CharField(max_length=200)
-    message_code = models.CharField(max_length=20)
+    text = models.CharField(max_length=200)
+    msg_key = models.CharField(max_length=20)
     http_code = models.IntegerField(default=None)
 
     class Meta:
@@ -20,7 +20,7 @@ class BaseMessage(models.Model):
             pass
 
     def __unicode__(self):
-        return self.message
+        return self.text
 
 
 class OkMessage(BaseMessage):

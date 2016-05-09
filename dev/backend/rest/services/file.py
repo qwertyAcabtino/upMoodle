@@ -3,10 +3,9 @@ from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID, ResponseJson
-from rest.models import File, Level, User, FileType, BannedHash
-from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType
+from rest.JSONResponse import ResponseJson
+from rest.models import File, Level, User, FileType, BannedHash, OkMessage
+from rest.models.message.errorMessage import ErrorMessage
 from rest.orm.serializers import FileSerializer, FileTypeSerializer, BannedHashSerializer
 from rest.orm.unserializer import unserialize_file_binary, unserialize_file
 from rest.services.auth import AuthService
@@ -29,9 +28,9 @@ class FileService:
             fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
             new_file = unserialize_file_binary(data, fields=fields, optional=True, binary=files['file'])
             new_file.save()
-            return JSONResponseID(MessageType.FILE_UPLOADED)
+            return ResponseJson(message_id=OkMessage.Type.FILE_UPLOADED)
         except Exception:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def delete(session_token=None, file_hash=None, **kwargs):
@@ -40,11 +39,11 @@ class FileService:
             AuthService.is_authorized_author(session_token=session_token, author_id=model.uploader_id, level=True, same=False)
             model.visible = False
             model.save()
-            return JSONResponseID(MessageType.FILE_REMOVED)
+            return ResponseJson(message_id=OkMessage.Type.FILE_REMOVED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def metadata_get(file_hash=None, **kwargs):
@@ -55,7 +54,7 @@ class FileService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def metadata_update(session_token=None, file_hash=None, data=None):
@@ -70,12 +69,11 @@ class FileService:
             file_original.update(file_updated, fields)
             file_original.lastUpdater_id = User.get_signed_user_id(session_token)
             file_original.save()
-
-            return JSONResponseID(MessageType.FILE_UPDATED)
+            return ResponseJson(message_id=OkMessage.Type.FILE_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError or MultiValueDictKeyError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
         except ValidationError as v:
             return RequestExceptionByMessage(v).jsonResponse
 
@@ -90,7 +88,7 @@ class FileService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def get_banned_hashes():
@@ -110,7 +108,7 @@ class FileTypeService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def __get__file_types():

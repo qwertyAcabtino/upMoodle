@@ -5,7 +5,7 @@ from django.core.management import call_command
 from django.test import Client
 from django.utils.crypto import random
 
-from rest.models import ErrorMessage, Message, File
+from rest.models import ErrorMessage, File, OkMessage
 from rest.models.message.message import MessageType
 
 
@@ -17,18 +17,18 @@ def assert_error_response(response, error_type):
     error = ErrorMessage.objects.get(pk=error_type.value)
     decoded = json.loads(response.content)
 
-    assert response.status_code == error.http_code
+    assert response.status_code == decoded['message']['http_code']
     try:
-        assert error.error == decoded['error']
+        assert error.text == decoded['message']['text']
     except AssertionError:
-        assert (error.error in decoded['error'])
+        assert (error.text in decoded['message']['text'])
 
 
 def assert_ok_response(response, ok_type):
-    message = Message.objects.get(pk=ok_type.value)
+    message = OkMessage.objects.get(pk=ok_type.value)
     decoded = json.loads(response.content)
 
-    assert message.message == decoded['message']
+    assert message.text == decoded['message']['text']
 
 
 def get_random_string(length):

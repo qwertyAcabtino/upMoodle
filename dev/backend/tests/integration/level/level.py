@@ -3,7 +3,7 @@ import json
 from django.test import TestCase
 
 from rest.models import Level, NoteBoard
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from tests import utils
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
@@ -63,4 +63,4 @@ class LevelFilesTestCase(AuthenticationTestBase):
     def test_get_files_no_subject(self):
         file_uploaded = utils._upload_file(self, level_id=4)
         response = self.client.get('/level/1/files')
-        assert_error_response(response, ErrorMessageType.INVALID_LEVEL)
+        assert_error_response(response, ErrorMessage.Type.INVALID_LEVEL)

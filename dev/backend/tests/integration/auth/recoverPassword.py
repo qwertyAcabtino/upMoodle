@@ -1,7 +1,5 @@
-import json
-
-from rest.models import User, Message, ErrorMessage
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models import User
+from rest.models.message.errorMessage import ErrorMessage
 from rest.models.message.message import MessageType
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response, assert_ok_response
@@ -28,12 +26,12 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
     def test_2_unexisting_email(self):
         email = 'notExisting@test.com'
         response = self.client.post('/auth/recover_password/', {'email': email})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_3_empty_email(self):
         email = ''
         response = self.client.post('/auth/recover_password/', {'email': email})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_4_banned_user(self):
         email = 'test@eui.upm.es'
@@ -41,7 +39,7 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         user.banned = True
         user.save()
         response = self.client.post('/auth/recover_password/', {'email': email})
-        assert_error_response(response, ErrorMessageType.UNAUTHORIZED)
+        assert_error_response(response, ErrorMessage.Type.UNAUTHORIZED)
         user.banned = False
         user.save()
 
@@ -51,6 +49,6 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         user.confirmedEmail = False
         user.save()
         response = self.client.post('/auth/recover_password/', {'email': email})
-        assert_error_response(response, ErrorMessageType.UNCONFIRMED_EMAIL)
+        assert_error_response(response, ErrorMessage.Type.UNCONFIRMED_EMAIL)
         user.confirmedEmail = True
         user.save()

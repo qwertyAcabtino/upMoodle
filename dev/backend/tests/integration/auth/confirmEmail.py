@@ -1,7 +1,7 @@
 import json
 
 from rest.models import User, ErrorMessage
-from rest.models.message.errorMessage import ErrorMessageType
+from rest.models.message.errorMessage import ErrorMessage
 from tests.integration.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
 
@@ -29,13 +29,13 @@ class ConfirmEmailTestCase(AuthenticationTestBase):
         user.save()
 
         response = self.client.post('/auth/confirm_email/', {'token': user.sessionToken})
-        assert_error_response(response, ErrorMessageType.ALREADY_CONFIRMED)
+        assert_error_response(response, ErrorMessage.Type.ALREADY_CONFIRMED)
 
     def test_3_invalid_token(self):
         response = self.client.post('/auth/confirm_email/', {'token': 'randomdata'})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_4_long_token(self):
         response = self.client.post('/auth/confirm_email/', {
             'token': '/confirm_email/.eJxVjEEOwiAQRe8ya0MgpKV06d4zEIaZ2oqBBGi6MN5dTLrQ7fvv_Rc4v7fV7ZWLW31dYQa0rKWeFoNGB2UJB5r0oEhKo3gZ0dpx0tYvcIHGtYWc48a9O3KJTJ3-XG4Es_oj6EPk1DHQw6d7FiGnVjYUX0WcaxW3TPy8nu77A9mHOJM:1Xpov5:Bnfuxp-BIVKSwSsUv7msEffLK70adfsalsldflkasdjflaksjdflkasdjfkasdasdfhasdfasjdfijaosdifjaosidff/'})
-        assert_error_response(response, ErrorMessageType.INCORRECT_DATA)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)

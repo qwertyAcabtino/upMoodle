@@ -5,10 +5,10 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 import calendar
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID, ResponseJson
+from rest.JSONResponse import ResponseJson
 from rest.models import CalendarDate, Calendar, Level, User
-from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType, OkMessage
+from rest.models.message.errorMessage import ErrorMessage
+from rest.models.message.message import OkMessage
 from rest.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
@@ -42,7 +42,7 @@ class CalendarService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def delete_calendar_by_id(session_token=None, calendar_id=None, **kwargs):
@@ -50,11 +50,11 @@ class CalendarService:
             event = Calendar.objects.get(id=calendar_id)
             AuthService.is_authorized_author(session_token=session_token, author_id=event.author_id, level=True)
             event.delete()
-            return JSONResponseID(MessageType.CEVENT_REMOVED)
+            return ResponseJson(message_id=OkMessage.Type.CALENDAR_EVENT_REMOVED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA).jsonResponse
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
     def update_calendar_by_id(session_token=None, calendar_id=None, data=None, **kwargs):
@@ -69,7 +69,7 @@ class CalendarService:
             calendar_object.lastUpdate = datetime.now()
             original_calendar.update(calendar_object, fields)
             original_calendar.save()
-            return JSONResponseID(MessageType.CALENDAR_UPDATED)
+            return ResponseJson(message_id=OkMessage.Type.CALENDAR_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:
@@ -114,11 +114,11 @@ def is_valid_init_date_by_period(period, init_date):
         elif period == "day":
             valid_date = is_valid_day_init_date(init_date)
         if not valid_date:
-            raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
         else:
             return True
     except ValueError:
-        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
 
 def get_date_range(period, init_date):
