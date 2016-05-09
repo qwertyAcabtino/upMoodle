@@ -32,7 +32,7 @@ class LevelNotesTestCase(AuthenticationTestBase):
             'text': 'text',
             'level_id': level_id
         })
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
     def test_get_notes(self):
         self._create_random_note(level_id=1)

@@ -84,7 +84,7 @@ class NoteTestCase(AuthenticationTestBase):
         pk = 1
         topic = 'Create'
         response = self.client.post('/note/', {'topic': topic, 'text': 'text', 'level_id': 1})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(topic, note.topic)
 
@@ -100,7 +100,7 @@ class NoteTestCase(AuthenticationTestBase):
         pk = 1
         topic = 'topic'
         response = self.client.post('/note/', {'topic': topic, 'text': 'text', 'level_id': 1, 'author_id': 2})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(note.author_id, User.objects.get(id=1).id)
 

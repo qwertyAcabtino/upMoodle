@@ -3,9 +3,9 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from rest.JSONResponse import JSONResponse, JSONResponseID, JsonOkResponse
-from rest.models import NoteBoard, Level, User, Message
+from rest.models import NoteBoard, Level, User, OkMessage
 from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType, OkMessageType
+from rest.models.message.message import MessageType
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializer import unserialize_note
 from rest.services.auth import AuthService
@@ -69,7 +69,7 @@ class NoteService:
             note = unserialize_note(data, fields=fields, optional=True)
             note.author_id = User.get_signed_user_id(session_token)
             note.save()
-            return JsonOkResponse(body=note, message_id=OkMessageType.SUCCESS)
+            return JsonOkResponse(body=note, message_id=OkMessage.Type.NOTE_CREATED)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:

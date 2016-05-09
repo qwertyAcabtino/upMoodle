@@ -18,4 +18,4 @@ class MessageSerializer(serializers.ModelSerializer):
 class OkMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = OkMessage
-        field = ('message', 'message_code', 'http_code', )
+        field = ('message', 'message_code', )

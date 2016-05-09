@@ -269,7 +269,142 @@
     "pk": 1,
     "fields": {
       "http_code": 200,
-      "message_code": "SUCCESS",
+      "message_code": "auth_operation",
+      "message": "Successfully signed in"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 2,
+    "fields": {
+      "http_code": 204,
+      "message_code": "auth_operation",
+      "message": "Email is now confirmed"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 3,
+    "fields": {
+      "http_code": 204,
+      "message_code": "auth_operation",
+      "message": "A new password has been sent to your email adress. Check your inbox"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 4,
+    "fields": {
+      "http_code": 204,
+      "message_code": "auth_operation",
+      "message": "Your user account has been removed."
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 5,
+    "fields": {
+      "http_code": 204,
+      "message_code": "auth_operation",
+      "message": "Your profile has been updated"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 6,
+    "fields": {
+      "http_code": 204,
+      "message_code": "put_operation",
+      "message": "Note updated"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 7,
+    "fields": {
+      "http_code": 204,
+      "message_code": "delete_operation",
+      "message": "The note is been removed"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 8,
+    "fields": {
+      "http_code": 204,
+      "message_code": "delete_operation",
+      "message": "The calendar event is been removed"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 9,
+    "fields": {
+      "http_code": 204,
+      "message_code": "put_operation",
+      "message": "Calendar event has been updated."
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 10,
+    "fields": {
+      "http_code": 204,
+      "message_code": "delete_operation",
+      "message": "The file has been removed"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 11,
+    "fields": {
+      "http_code": 200,
+      "message_code": "auth_operation",
+      "message": "Account successfully validated."
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 12,
+    "fields": {
+      "http_code": 201,
+      "message_code": "create_operation",
+      "message": "Your note was successfully created"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 13,
+    "fields": {
+      "http_code": 201,
+      "message_code": "create_operation",
+      "message": "Your file was successfully uploaded"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 14,
+    "fields": {
+      "http_code": 204,
+      "message_code": "put_operation",
+      "message": "File's info has been updated"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 15,
+    "fields": {
+      "http_code": 200,
+      "message_code": "auth_operation",
+      "message": "Successfully logged out"
+    }
+  },
+  {
+    "model": "rest.okmessage",
+    "pk": 16,
+    "fields": {
+      "http_code": 200,
+      "message_code": "success",
       "message": "Successful request"
     }
   },

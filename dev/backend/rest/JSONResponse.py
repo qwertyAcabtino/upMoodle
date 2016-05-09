@@ -22,16 +22,13 @@ class JsonOkResponse(HttpResponse):
     def __init__(self, body=None, message_id=None, **kwargs):
 
         message = OkMessage.objects.get(pk=message_id.value)
-        message_serialized = OkMessageSerializer(message, many=False)
         content = JSONRenderer().render({
             "id": body.id,
-            "message": message_serialized
+            "message": message.json
         })
-        content.id = body.id
-        content.__setattr__('message', message_serialized.data)
 
         kwargs['content_type'] = 'application/json'
-        super(JsonOkResponse, self).__init__(content, status=message.http_code ** kwargs)
+        super(JsonOkResponse, self).__init__(content, status=message.http_code, **kwargs)
         self['Access-Control-Expose-Headers'] = '*'
         self['Access-Control-Allow-Credentials'] = 'true'
 
