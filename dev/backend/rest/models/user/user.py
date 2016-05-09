@@ -88,6 +88,11 @@ class User(models.Model):
         for subject in subjects:
             self.add_subject(subject)
 
+    @property
+    def json(self):
+        from rest.orm.serializers import UserSerializer
+        return UserSerializer(self, many=False).data
+
     @staticmethod
     def get_signed_user_id(sessionToken):
         return User.objects.get(sessionToken=sessionToken).id

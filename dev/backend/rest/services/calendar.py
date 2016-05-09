@@ -5,10 +5,10 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 import calendar
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID
+from rest.JSONResponse import JSONResponse, JSONResponseID, ResponseJson
 from rest.models import CalendarDate, Calendar, Level, User
 from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType
+from rest.models.message.message import MessageType, OkMessage
 from rest.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
@@ -30,15 +30,15 @@ class CalendarService:
                 ids.add(event.calendarId.id)
 
             events = Calendar.objects.filter(id__in=list(ids))
-            serializer = CalendarEventSerializer(events, many=True)
-            return JSONResponse(serializer.data)
+            event_list = CalendarEventSerializer(events, many=True).data
+            return ResponseJson(body=event_list)
 
     @staticmethod
     def get_calendar_by_id(calendar_id=None, **kwargs):
         try:
             event = Calendar.objects.get(id=calendar_id)
-            serializer = CalendarEventSerializer(event, many=False)
-            return JSONResponse(serializer.data)
+            event_dict = CalendarEventSerializer(event, many=False).data
+            return ResponseJson(body=event_dict)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -86,7 +86,7 @@ class CalendarService:
             AuthService.is_authorized_author(session_token=session_token, author_id=calendar_object.author_id, level=True)
             calendar_object.lastUpdate = datetime.now()
             calendar_object.save()
-            return JSONResponse({"calendarId": calendar_object.id}, status=200)
+            return ResponseJson(body=calendar_object, message_id=OkMessage.Type.CALENDAR_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:

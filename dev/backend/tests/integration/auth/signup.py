@@ -18,7 +18,7 @@ class SignUpTestCase(CookiesTestCase):
             data={'email': 'test@eui.upm.es', 'password': '12341234', 'nick': 'vipvip', 'name': 'vip vip'})
         decoded = json.loads(response.content)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(decoded['userId'], 1)
+        self.assertEqual(decoded['id'], 1)
         self.assertEqual(len(User.objects.all()), 1)
 
     def test_duplicate_email(self):

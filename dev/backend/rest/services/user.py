@@ -5,7 +5,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID
+from rest.JSONResponse import JSONResponse, JSONResponseID, ResponseJson
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
@@ -22,9 +22,8 @@ class UserService:
     @staticmethod
     def get_me(session_token=None, **kwargs):
         try:
-            users = User.objects.get(sessionToken=session_token)
-            serializer = UserSerializer(users, many=False)
-            return JSONResponse(serializer.data)
+            user = User.objects.get(sessionToken=session_token)
+            return ResponseJson(body=user.json)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -104,9 +103,8 @@ class UserService:
     @staticmethod
     def get_user_by_id(user_id=None):
         try:
-            users = User.objects.get(id=user_id)
-            serializer = UserSerializer(users, many=False)
-            return JSONResponse(serializer.data)
+            user = User.objects.get(id=user_id)
+            return ResponseJson(body=user.json)
         except RequestException as r:
             return r.jsonResponse
         except (ObjectDoesNotExist, OverflowError, ValueError):
@@ -116,8 +114,8 @@ class UserService:
     def get_users_by_rol(rol_id=None):
         try:
             users = User.objects.filter(rol=rol_id, banned=False)
-            serializer = UserSerializer(users, many=True)
-            return JSONResponse(serializer.data)
+            users_dict = UserSerializer(users, many=True).data
+            return ResponseJson(body=users_dict)
         except RequestException as r:
             return r.jsonResponse
         except OverflowError:

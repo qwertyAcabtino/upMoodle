@@ -11,6 +11,14 @@ class BaseMessage(models.Model):
     class Meta:
         abstract = True
 
+    class Type(Enum):
+
+        class Meta:
+            abstract = True
+
+        def get(self):
+            pass
+
     def __unicode__(self):
         return self.message
 
@@ -42,6 +50,9 @@ class OkMessage(BaseMessage):
         FILE_UPDATED = 14
         SUCCESS_LOGOUT = 15
         SUCCESS = 16
+
+        def get(self):
+            return OkMessage.objects.get(pk=self.value)
 
 
 class Message(models.Model):

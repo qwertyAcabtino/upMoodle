@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID
+from rest.JSONResponse import JSONResponse, JSONResponseID, ResponseJson
 from rest.models import File, Level, User, FileType, BannedHash
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
@@ -50,8 +50,8 @@ class FileService:
     def metadata_get(file_hash=None, **kwargs):
         try:
             file_returning = File.objects.filter(hash=file_hash, visible=True)
-            serializer = FileSerializer(file_returning, many=True)
-            return JSONResponse(serializer.data)
+            file_dict = FileSerializer(file_returning, many=True).data
+            return ResponseJson(body=file_dict)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -95,8 +95,8 @@ class FileService:
     @staticmethod
     def get_banned_hashes():
         hashes = BannedHash.objects.all()
-        serializer = BannedHashSerializer(hashes, many=True)
-        return JSONResponse(serializer.data)
+        hash_list = BannedHashSerializer(hashes, many=True).data
+        return ResponseJson(body=hash_list)
 
 
 class FileTypeService:
@@ -115,5 +115,5 @@ class FileTypeService:
     @staticmethod
     def __get__file_types():
         files_types = FileType.objects.all()
-        serializer = FileTypeSerializer(files_types, many=True)
-        return JSONResponse(serializer.data)
+        file_types_list = FileTypeSerializer(files_types, many=True).data
+        return ResponseJson(body=file_types_list)

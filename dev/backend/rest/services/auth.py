@@ -9,10 +9,10 @@ from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
 from rest.exceptions.requestException import RequestExceptionByCode, RequestException, \
     RequestExceptionByMessage
-from rest.JSONResponse import JSONResponseID, JSONResponse
+from rest.JSONResponse import JSONResponseID, JSONResponse, ResponseJson
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType
+from rest.models.message.message import MessageType, OkMessage
 from rest.orm.unserializer import unserialize_user
 from rest.services.utils.email import EmailService
 from rest.services.utils.password import PasswordService
@@ -64,7 +64,7 @@ class AuthService:
                       'info@upmoodle.com', [user.email],
                       fail_silently=False)
             user.save()
-            json_response = JSONResponse({"userId": user.id}, status=200)
+            json_response = ResponseJson(body=user)
             json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
             return json_response
         except ValidationError as v:
@@ -86,7 +86,7 @@ class AuthService:
             json_response.set_cookie(SESSION_COOKIE_NAME, '')
             return json_response
         except Exception:
-            return JSONResponse({"null"}, status=400)
+            return ResponseJson(message_id=OkMessage.Type.SUCCESS_LOGOUT)
 
     @staticmethod
     def confirm_email(session_token=None):

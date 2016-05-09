@@ -2,7 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID, JsonOkResponse
+from rest.JSONResponse import JSONResponse, JSONResponseID, ResponseJson
 from rest.models import NoteBoard, Level, User, OkMessage
 from rest.models.message.errorMessage import ErrorMessageType
 from rest.models.message.message import MessageType
@@ -20,8 +20,8 @@ class NoteService:
     def get_note_by_id(note_id=None, **kwargs):
         try:
             note = NoteBoard.objects.get(id=note_id, visible=True)
-            serializer = NoteBoardSerializer(note, many=False)
-            return JSONResponse(serializer.data)
+            note_dict = NoteBoardSerializer(note, many=False).data
+            return ResponseJson(body=note_dict)
         except RequestException as r:
             return r.jsonResponse
         except (ObjectDoesNotExist, OverflowError, ValueError):
@@ -69,7 +69,7 @@ class NoteService:
             note = unserialize_note(data, fields=fields, optional=True)
             note.author_id = User.get_signed_user_id(session_token)
             note.save()
-            return JsonOkResponse(body=note, message_id=OkMessage.Type.NOTE_CREATED)
+            return ResponseJson(body=note, message_id=OkMessage.Type.NOTE_CREATED)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:
@@ -85,9 +85,9 @@ class NoteService:
                 level_group = LevelService.get_level_children_ids_list(level_id=level_id)
             else:
                 level_group = (level_id,)
-            note = NoteBoard.objects.filter(level_id__in=level_group, visible=True)
-            serializer = NoteBoardSerializer(note, many=True)
-            return JSONResponse(serializer.data)
+            notes = NoteBoard.objects.filter(level_id__in=level_group, visible=True)
+            notes_list = NoteBoardSerializer(notes, many=True).data
+            return ResponseJson(body=notes_list)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:

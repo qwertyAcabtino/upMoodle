@@ -1,4 +1,4 @@
-from rest.JSONResponse import JSONResponse
+from rest.JSONResponse import ResponseJson
 from rest.models import Rol
 from rest.orm.serializers.rol import RolSerializer
 
@@ -10,5 +10,5 @@ class RolService:
     @staticmethod
     def get_roles_list():
         roles = Rol.objects.all()
-        serializer = RolSerializer(roles, many=True)
-        return JSONResponse(serializer.data)
+        roles_dict = RolSerializer(roles, many=True).data
+        return ResponseJson(roles_dict)
