@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from rest.models import Message, ErrorMessage
+from rest.models import Message, ErrorMessage, OkMessage
 
 
 class ErrorMessageSerializer(serializers.ModelSerializer):
@@ -13,3 +13,9 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         field = ('message',)
+
+
+class OkMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OkMessage
+        field = ('message', 'message_code', 'http_code', )

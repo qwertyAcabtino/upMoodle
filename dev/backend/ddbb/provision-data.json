@@ -265,6 +265,15 @@
     }
   },
   {
+    "model": "rest.okmessage",
+    "pk": 1,
+    "fields": {
+      "http_code": 200,
+      "message_code": "SUCCESS",
+      "message": "Successful request"
+    }
+  },
+  {
     "model": "rest.message",
     "pk": 1,
     "fields": {
@@ -367,6 +376,13 @@
     "pk": 15,
     "fields": {
       "message": "Successfully logged out"
+    }
+  },
+  {
+    "model": "rest.message",
+    "pk": 16,
+    "fields": {
+      "message": "Successful request"
     }
   },
   {

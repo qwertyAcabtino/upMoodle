@@ -2,6 +2,28 @@ from django.db import models
 from enum import Enum
 
 
+class BaseMessage(models.Model):
+    id = models.AutoField(primary_key=True)
+    message = models.CharField(max_length=200)
+    message_code = models.CharField(max_length=20)
+    http_code = models.IntegerField(default=None)
+
+    class Meta:
+        abstract = True
+
+    def __unicode__(self):
+        return self.message
+
+
+class OkMessage(BaseMessage):
+    pass
+
+
+class OkMessageType(Enum):
+
+    SUCCESS = 1
+
+
 class Message(models.Model):
     id = models.AutoField(primary_key=True)
     message = models.CharField(max_length=200)
@@ -27,3 +49,4 @@ class MessageType(Enum):
     FILE_UPLOADED = 13
     FILE_UPDATED = 14
     SUCCESS_LOGOUT = 15
+    SUCCESS = 16

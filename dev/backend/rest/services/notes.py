@@ -2,10 +2,10 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
 from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import JSONResponse, JSONResponseID
+from rest.JSONResponse import JSONResponse, JSONResponseID, JsonOkResponse
 from rest.models import NoteBoard, Level, User, Message
 from rest.models.message.errorMessage import ErrorMessageType
-from rest.models.message.message import MessageType
+from rest.models.message.message import MessageType, OkMessageType
 from rest.orm.serializers import NoteBoardSerializer
 from rest.orm.unserializer import unserialize_note
 from rest.services.auth import AuthService
@@ -69,8 +69,7 @@ class NoteService:
             note = unserialize_note(data, fields=fields, optional=True)
             note.author_id = User.get_signed_user_id(session_token)
             note.save()
-            message = Message.objects.get(pk=MessageType.NOTE_CREATED.value)
-            return JSONResponse({"noteId": note.id, "message": message.message}, status=200)
+            return JsonOkResponse(body=note, message_id=OkMessageType.SUCCESS)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:

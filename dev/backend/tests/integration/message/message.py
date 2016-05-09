@@ -10,4 +10,4 @@ class MessageTestCase(TestCase):
         load_fixture("provision-data")
 
     def test_message_exists_in_db(self):
-        self.assertEqual(len(Message.objects.all()), 15)
+        self.assertEqual(len(Message.objects.all()), 16)
