@@ -3,7 +3,7 @@ from rest_framework.renderers import JSONRenderer
 from rest.models import OkMessage, ErrorMessage
 
 
-class ResponseJson(HttpResponse):
+class JsonResponse(HttpResponse):
 
     response_content = dict()
     http_code = 200
@@ -14,7 +14,7 @@ class ResponseJson(HttpResponse):
         self._set_response_body(body)
         self._set_response_message(message_id, **kwargs)
         content = JSONRenderer().render(self.response_content)
-        super(ResponseJson, self).__init__(content, status=self.http_code)
+        super(JsonResponse, self).__init__(content, status=self.http_code)
         self._ensure_headers()
 
     def _set_response_message(self, message_id, **kwargs):

@@ -1,9 +1,9 @@
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessage
-from rest.models.message.message import MessageType
+from rest.models.message.okMessage import OkMessage
 from rest.services.utils.email import EmailService
 
-from tests.integration.system import AuthenticationTestBase
+from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response, assert_ok_response
 
 
@@ -20,7 +20,7 @@ class UserMeTestCase(AuthenticationTestBase):
         self.assertEqual(response.status_code, 200)
         user = User.objects.get(id=1)
         self.assertEqual(user.nick, 'RemovedUser ' + str(user.id))
-        assert_ok_response(response, MessageType.USER_REMOVED)
+        assert_ok_response(response, OkMessage.Type.USER_REMOVED)
 
     def test_userRemove_not_signedIn(self):
         self.logout()
@@ -73,7 +73,7 @@ class UserMeTestCase(AuthenticationTestBase):
         with open('data/tests/default_update_avatar_pic.jpeg') as fp:
             self.login()
             response = self.file_client.post('/user/avatar/', data={'avatar': fp})
-            assert_ok_response(response, MessageType.USER_UPDATED)
+            assert_ok_response(response, OkMessage.Type.USER_UPDATED)
 
     def test_update_avatar_bad_reference(self):
         with open('data/tests/default_update_avatar_pic.jpeg') as fp:

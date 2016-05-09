@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 
-from rest.exceptions.requestException import RequestException
+from rest.models.utils.requestException import RequestException
 from rest.routers.decorators.routing_decorators import method, authenticated, methods
 from rest.services.file import FileService, FileTypeService
 

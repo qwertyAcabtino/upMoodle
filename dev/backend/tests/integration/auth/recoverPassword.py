@@ -1,7 +1,7 @@
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessage
-from rest.models.message.message import MessageType
-from tests.integration.system import AuthenticationTestBase
+from rest.models.message.okMessage import OkMessage
+from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response, assert_ok_response
 
 
@@ -21,7 +21,7 @@ class RecoverPasswordTestCase(AuthenticationTestBase):
         user_new = User.objects.get(email=email)
         pass_new = user_new.password
         self.assertNotEqual(pass_new, passOld)
-        assert_ok_response(response, MessageType.RECOVER_PASS_EMAIL)
+        assert_ok_response(response, OkMessage.Type.RECOVER_PASS_EMAIL)
 
     def test_2_unexisting_email(self):
         email = 'notExisting@test.com'

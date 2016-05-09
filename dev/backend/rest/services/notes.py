@@ -1,14 +1,14 @@
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
-from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import ResponseJson
 from rest.models import NoteBoard, Level, User, OkMessage
 from rest.models.message.errorMessage import ErrorMessage
-from rest.orm.serializers import NoteBoardSerializer
-from rest.orm.unserializer import unserialize_note
+from rest.models.utils.jsonResponse import JsonResponse
+from rest.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from rest.services.auth import AuthService
 from rest.services.level import LevelService
+from rest.services.orm.serializers import NoteBoardSerializer
+from rest.services.orm.unserializer import unserialize_note
 
 
 class NoteService:
@@ -20,7 +20,7 @@ class NoteService:
         try:
             note = NoteBoard.objects.get(id=note_id, visible=True)
             note_dict = NoteBoardSerializer(note, many=False).data
-            return ResponseJson(body=note_dict)
+            return JsonResponse(body=note_dict)
         except RequestException as r:
             return r.jsonResponse
         except (ObjectDoesNotExist, OverflowError, ValueError):
@@ -38,7 +38,7 @@ class NoteService:
             updated_note = unserialize_note(data, fields=fields, optional=True)
             original_note.update(updated_note, fields)
             original_note.save()
-            return ResponseJson(message_id=OkMessage.Type.NOTE_UPDATED)
+            return JsonResponse(message_id=OkMessage.Type.NOTE_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or MultiValueDictKeyError:
@@ -54,7 +54,7 @@ class NoteService:
 
             original_note.visible = False
             original_note.save()
-            return ResponseJson(message_id=OkMessage.Type.NOTE_REMOVED)
+            return JsonResponse(message_id=OkMessage.Type.NOTE_REMOVED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist:
@@ -68,7 +68,7 @@ class NoteService:
             note = unserialize_note(data, fields=fields, optional=True)
             note.author_id = User.get_signed_user_id(session_token)
             note.save()
-            return ResponseJson(body=note, message_id=OkMessage.Type.NOTE_CREATED)
+            return JsonResponse(body=note, message_id=OkMessage.Type.NOTE_CREATED)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:
@@ -86,7 +86,7 @@ class NoteService:
                 level_group = (level_id,)
             notes = NoteBoard.objects.filter(level_id__in=level_group, visible=True)
             notes_list = NoteBoardSerializer(notes, many=True).data
-            return ResponseJson(body=notes_list)
+            return JsonResponse(body=notes_list)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:

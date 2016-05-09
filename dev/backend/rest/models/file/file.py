@@ -1,16 +1,15 @@
+import datetime
 import hashlib
-
 import time
 
-import datetime
 from django.core.exceptions import ValidationError
 from django.db import models
 
 from rest.models.file.fileType import FileType
+from rest.models.file.year import Year
 from rest.models.level import Level
 from rest.models.message.errorMessage import ErrorMessage
 from rest.models.user import User
-from rest.models.year import Year
 
 
 class File(models.Model):

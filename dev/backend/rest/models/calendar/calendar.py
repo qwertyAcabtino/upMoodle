@@ -4,10 +4,10 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 import rest.models.calendar
-from rest.finals import *
 from rest.models.calendar.calendarDate import CalendarDate
 from rest.models.message.errorMessage import ErrorMessage
 from rest.models.user import User
+from rest.models.utils.finals import *
 
 
 class Calendar(models.Model):

@@ -3,10 +3,10 @@ from django.core.validators import validate_email
 from django.db import models
 from django.utils import timezone
 
-from rest.finals import STUDENT
 from rest.models.level import Level
 from rest.models.message.errorMessage import ErrorMessage
-from rest.validators import validate_length
+from rest.models.utils.finals import STUDENT
+from rest.models.utils.validators import validate_length
 
 
 class User(models.Model):
@@ -90,7 +90,7 @@ class User(models.Model):
 
     @property
     def json(self):
-        from rest.orm.serializers import UserSerializer
+        from rest.services.orm.serializers import UserSerializer
         return UserSerializer(self, many=False).data
 
     @staticmethod

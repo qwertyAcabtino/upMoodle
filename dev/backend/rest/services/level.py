@@ -1,10 +1,10 @@
 from django.core.exceptions import ObjectDoesNotExist
 
-from rest.exceptions.requestException import RequestException, RequestExceptionByCode
-from rest.JSONResponse import ResponseJson
 from rest.models import Level, File
 from rest.models.message.errorMessage import ErrorMessage
-from rest.orm.serializers import LevelSerializer, FileSerializer
+from rest.models.utils.jsonResponse import JsonResponse
+from rest.models.utils.requestException import RequestException, RequestExceptionByCode
+from rest.services.orm.serializers import LevelSerializer, FileSerializer
 
 
 class LevelService:
@@ -31,7 +31,7 @@ class LevelService:
         if not level_id:
             for item in level_object:
                 item['children'] = LevelService.__get_tree_from_id(item.get('id'))
-            return ResponseJson(body=level_object)
+            return JsonResponse(body=level_object)
         else:
             for item in level_object:
                 item['children'] = LevelService.__get_tree_from_id(item.get('id'))
@@ -78,7 +78,7 @@ class SubjectService:
             if level.is_subject():
                 files = File.objects.filter(subject=level_id, visible=True)
                 files_dict = FileSerializer(files, many=True).data
-                return ResponseJson(body=files_dict)
+                return JsonResponse(body=files_dict)
             elif not level.is_subject():
                 return RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL).jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:

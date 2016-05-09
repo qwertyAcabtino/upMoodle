@@ -1,7 +1,6 @@
-from django.db import models
 from enum import Enum
 
-from rest.models.message.message import BaseMessage
+from rest.models.message.okMessage import BaseMessage
 
 
 class ErrorMessage(BaseMessage):
@@ -11,7 +10,7 @@ class ErrorMessage(BaseMessage):
 
     @property
     def json(self):
-        from rest.orm.serializers import ErrorMessageSerializer
+        from rest.services.orm.serializers import ErrorMessageSerializer
         data = ErrorMessageSerializer(self, many=False).data
         return dict(data)
 

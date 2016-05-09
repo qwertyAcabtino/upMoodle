@@ -2,10 +2,10 @@ import json
 
 from django.test import TestCase
 
-from rest.models import Level, NoteBoard
+from rest.models import Level
 from rest.models.message.errorMessage import ErrorMessage
 from tests import utils
-from tests.integration.system import AuthenticationTestBase
+from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
 
 

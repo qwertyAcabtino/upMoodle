@@ -4,15 +4,15 @@ from sets import Set
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 import calendar
-from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import ResponseJson
 from rest.models import CalendarDate, Calendar, Level, User
 from rest.models.message.errorMessage import ErrorMessage
-from rest.models.message.message import OkMessage
-from rest.orm.serializers import CalendarEventSerializer
+from rest.models.message.okMessage import OkMessage
+from rest.models.utils.jsonResponse import JsonResponse
+from rest.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
+from rest.services.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
-from rest.orm.unserializer import unserialize_calendar
+from rest.services.orm.unserializer import unserialize_calendar
 from rest.services.auth import AuthService
 
 
@@ -31,14 +31,14 @@ class CalendarService:
 
             events = Calendar.objects.filter(id__in=list(ids))
             event_list = CalendarEventSerializer(events, many=True).data
-            return ResponseJson(body=event_list)
+            return JsonResponse(body=event_list)
 
     @staticmethod
     def get_calendar_by_id(calendar_id=None, **kwargs):
         try:
             event = Calendar.objects.get(id=calendar_id)
             event_dict = CalendarEventSerializer(event, many=False).data
-            return ResponseJson(body=event_dict)
+            return JsonResponse(body=event_dict)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -50,7 +50,7 @@ class CalendarService:
             event = Calendar.objects.get(id=calendar_id)
             AuthService.is_authorized_author(session_token=session_token, author_id=event.author_id, level=True)
             event.delete()
-            return ResponseJson(message_id=OkMessage.Type.CALENDAR_EVENT_REMOVED)
+            return JsonResponse(message_id=OkMessage.Type.CALENDAR_EVENT_REMOVED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -69,7 +69,7 @@ class CalendarService:
             calendar_object.lastUpdate = datetime.now()
             original_calendar.update(calendar_object, fields)
             original_calendar.save()
-            return ResponseJson(message_id=OkMessage.Type.CALENDAR_UPDATED)
+            return JsonResponse(message_id=OkMessage.Type.CALENDAR_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:
@@ -86,7 +86,7 @@ class CalendarService:
             AuthService.is_authorized_author(session_token=session_token, author_id=calendar_object.author_id, level=True)
             calendar_object.lastUpdate = datetime.now()
             calendar_object.save()
-            return ResponseJson(body=calendar_object, message_id=OkMessage.Type.CALENDAR_UPDATED)
+            return JsonResponse(body=calendar_object, message_id=OkMessage.Type.CALENDAR_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:

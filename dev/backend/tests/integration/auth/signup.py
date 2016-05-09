@@ -1,8 +1,8 @@
 import json
 
-from rest.models import User, ErrorMessage
+from rest.models import User
 from rest.models.message.errorMessage import ErrorMessage
-from tests.integration.system import CookiesTestCase
+from tests.integration.auth.system import CookiesTestCase
 from tests.utils import load_fixture, assert_error_response
 
 

@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 from rest.models.user import User
-from rest.validators import validate_length
+from rest.models.utils.validators import validate_length
 
 
 class NoteBoard(models.Model):

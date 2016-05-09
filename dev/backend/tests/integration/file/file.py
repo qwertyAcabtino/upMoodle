@@ -1,7 +1,6 @@
-from rest.models import File
-from rest.models.message.message import MessageType
+from rest.models.message.okMessage import OkMessage
 from tests import utils
-from tests.integration.system import AuthenticationTestBase
+from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_ok_response
 
 
@@ -22,12 +21,12 @@ class FileTestCase(AuthenticationTestBase):
                                             'name': 'NewFilename',
                                             'text': 'New Description',
                                         })
-        assert_ok_response(response, MessageType.FILE_UPDATED)
+        assert_ok_response(response, OkMessage.Type.FILE_UPDATED)
 
     def test_delete_file(self):
         test_file = utils._upload_file(self)
         response = self.file_client.delete('/file/' + test_file.hash)
-        assert_ok_response(response, MessageType.FILE_REMOVED)
+        assert_ok_response(response, OkMessage.Type.FILE_REMOVED)
 
     def test_get_file(self):
         test_file = utils._upload_file(self)

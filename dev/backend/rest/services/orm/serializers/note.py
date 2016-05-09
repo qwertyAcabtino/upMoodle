@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
 from rest.models import NoteBoard
-from rest.orm.serializers import LevelSerializer
-from rest.orm.serializers import UserSimpleSerializer
+from rest.services.orm.serializers import LevelSerializer
+from rest.services.orm.serializers import UserSimpleSerializer
 
 
 class NoteBoardSerializer(serializers.ModelSerializer):

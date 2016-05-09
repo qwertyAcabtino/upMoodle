@@ -1,7 +1,7 @@
 from rest.models import Rol
 from rest.models.message.errorMessage import ErrorMessage
 
-from tests.integration.system import AuthenticationTestBase
+from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
 
 

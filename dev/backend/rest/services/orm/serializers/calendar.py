@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from rest.models import Calendar
-from rest.orm.serializers import UserSerializer
+from rest.services.orm.serializers import UserSerializer
 
 
 class CalendarEventSerializer(serializers.ModelSerializer):

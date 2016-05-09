@@ -1,10 +1,6 @@
 # noinspection PyUnresolvedReferences
 from copy import copy
 
-from django.utils.datastructures import MultiValueDictKeyError
-
-from rest.exceptions.requestException import RequestExceptionByCode
-
 
 def unserialize(model, fields, form, *args, **kwargs):
     fields_copy = copy(fields)

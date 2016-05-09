@@ -6,13 +6,13 @@ from django.utils import timezone
 
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
-from rest.exceptions.requestException import RequestExceptionByCode, RequestException, \
-    RequestExceptionByMessage
-from rest.JSONResponse import ResponseJson
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessage
-from rest.models.message.message import OkMessage
-from rest.orm.unserializer import unserialize_user
+from rest.models.message.okMessage import OkMessage
+from rest.models.utils.jsonResponse import JsonResponse
+from rest.models.utils.requestException import RequestExceptionByCode, RequestException, \
+    RequestExceptionByMessage
+from rest.services.orm.unserializer import unserialize_user
 from rest.services.utils.email import EmailService
 from rest.services.utils.password import PasswordService
 
@@ -43,7 +43,7 @@ class AuthService:
                 user.sessionToken = session_token
                 user.lastTimeActive = timezone.now()
                 user.save()
-                json_response = ResponseJson(message_id=OkMessage.Type.SUCCESS_LOGIN)
+                json_response = JsonResponse(message_id=OkMessage.Type.SUCCESS_LOGIN)
                 json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
                 return json_response
         except (ObjectDoesNotExist, KeyError):
@@ -63,7 +63,7 @@ class AuthService:
                       'info@upmoodle.com', [user.email],
                       fail_silently=False)
             user.save()
-            json_response = ResponseJson(body=user)
+            json_response = JsonResponse(body=user)
             json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
             return json_response
         except ValidationError as v:
@@ -81,11 +81,11 @@ class AuthService:
             user = User.objects.get(sessionToken=session_token)
             user.sessionToken = ''
             user.save()
-            json_response = ResponseJson(message_id=OkMessage.Type.SUCCESS_LOGOUT)
+            json_response = JsonResponse(message_id=OkMessage.Type.SUCCESS_LOGOUT)
             json_response.set_cookie(SESSION_COOKIE_NAME, '')
             return json_response
         except Exception:
-            return ResponseJson(message_id=OkMessage.Type.SUCCESS_LOGOUT)
+            return JsonResponse(message_id=OkMessage.Type.SUCCESS_LOGOUT)
 
     @staticmethod
     def confirm_email(session_token=None):
@@ -96,7 +96,7 @@ class AuthService:
             else:
                 user.confirmedEmail = True
                 user.save()
-                return ResponseJson(message_id=OkMessage.Type.ACCOUNT_VALIDATED)
+                return JsonResponse(message_id=OkMessage.Type.ACCOUNT_VALIDATED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -117,7 +117,7 @@ class AuthService:
                 EmailService.send_recover_password_email(user.email, password)
                 user.password = password
                 user.save()
-                return ResponseJson(message_id=OkMessage.Type.RECOVER_PASS_EMAIL)
+                return JsonResponse(message_id=OkMessage.Type.RECOVER_PASS_EMAIL)
         except RequestException as r:
             return r.jsonResponse
         except Exception:

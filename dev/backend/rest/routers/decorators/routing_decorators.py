@@ -1,12 +1,11 @@
-import json
 import uuid
 from functools import wraps
 
 import demjson as demjson
 
 from backend.settings import SESSION_COOKIE_NAME
-from rest.exceptions.requestException import RequestExceptionByCode
 from rest.models.message.errorMessage import ErrorMessage
+from rest.models.utils.requestException import RequestExceptionByCode
 from rest.services.auth import AuthService
 
 

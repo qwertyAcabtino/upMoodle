@@ -2,13 +2,13 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
-from rest.exceptions.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from rest.JSONResponse import ResponseJson
 from rest.models import File, Level, User, FileType, BannedHash, OkMessage
 from rest.models.message.errorMessage import ErrorMessage
-from rest.orm.serializers import FileSerializer, FileTypeSerializer, BannedHashSerializer
-from rest.orm.unserializer import unserialize_file_binary, unserialize_file
+from rest.models.utils.jsonResponse import JsonResponse
+from rest.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from rest.services.auth import AuthService
+from rest.services.orm.serializers import FileSerializer, FileTypeSerializer, BannedHashSerializer
+from rest.services.orm.unserializer import unserialize_file_binary, unserialize_file
 
 
 class FileService:
@@ -28,7 +28,7 @@ class FileService:
             fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
             new_file = unserialize_file_binary(data, fields=fields, optional=True, binary=files['file'])
             new_file.save()
-            return ResponseJson(message_id=OkMessage.Type.FILE_UPLOADED)
+            return JsonResponse(message_id=OkMessage.Type.FILE_UPLOADED)
         except Exception:
             return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
@@ -39,7 +39,7 @@ class FileService:
             AuthService.is_authorized_author(session_token=session_token, author_id=model.uploader_id, level=True, same=False)
             model.visible = False
             model.save()
-            return ResponseJson(message_id=OkMessage.Type.FILE_REMOVED)
+            return JsonResponse(message_id=OkMessage.Type.FILE_REMOVED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist:
@@ -50,7 +50,7 @@ class FileService:
         try:
             file_returning = File.objects.filter(hash=file_hash, visible=True)
             file_dict = FileSerializer(file_returning, many=True).data
-            return ResponseJson(body=file_dict)
+            return JsonResponse(body=file_dict)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -69,7 +69,7 @@ class FileService:
             file_original.update(file_updated, fields)
             file_original.lastUpdater_id = User.get_signed_user_id(session_token)
             file_original.save()
-            return ResponseJson(message_id=OkMessage.Type.FILE_UPDATED)
+            return JsonResponse(message_id=OkMessage.Type.FILE_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError or MultiValueDictKeyError:
@@ -94,7 +94,7 @@ class FileService:
     def get_banned_hashes():
         hashes = BannedHash.objects.all()
         hash_list = BannedHashSerializer(hashes, many=True).data
-        return ResponseJson(body=hash_list)
+        return JsonResponse(body=hash_list)
 
 
 class FileTypeService:
@@ -114,4 +114,4 @@ class FileTypeService:
     def __get__file_types():
         files_types = FileType.objects.all()
         file_types_list = FileTypeSerializer(files_types, many=True).data
-        return ResponseJson(body=file_types_list)
+        return JsonResponse(body=file_types_list)

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from rest.models import User
-from rest.orm.serializers.level import LevelSerializer
+from rest.services.orm.serializers import LevelSerializer
 
 
 class UserLoginSerializer(serializers.ModelSerializer):

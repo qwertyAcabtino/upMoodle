@@ -1,5 +1,7 @@
 from rest.models import Calendar
-from rest.orm.unserializer.internal import *
+from rest.models.message.errorMessage import ErrorMessage
+from rest.models.utils.requestException import RequestExceptionByCode
+from rest.services.orm.unserializer import unserialize
 
 
 def unserialize_calendar(form, *args, **kwargs):
@@ -9,4 +11,4 @@ def unserialize_calendar(form, *args, **kwargs):
         calendar = Calendar()
         return unserialize(calendar, fields, form, optional=optional)
     else:
-        raise RequestExceptionByCode(INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)

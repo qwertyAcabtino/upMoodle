@@ -1,16 +1,14 @@
-import ast
-
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
-from rest.exceptions.requestException import RequestException, RequestExceptionByCode, \
-    RequestExceptionByMessage
-from rest.JSONResponse import ResponseJson
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessage
-from rest.models.message.message import OkMessage
-from rest.orm.serializers import UserSerializer
-from rest.orm.unserializer import unserialize_user
+from rest.models.message.okMessage import OkMessage
+from rest.models.utils.jsonResponse import JsonResponse
+from rest.models.utils.requestException import RequestException, RequestExceptionByCode, \
+    RequestExceptionByMessage
+from rest.services.orm.serializers import UserSerializer
+from rest.services.orm.unserializer import unserialize_user
 from rest.services.utils.email import EmailService
 from rest.services.utils.password import PasswordService
 
@@ -23,7 +21,7 @@ class UserService:
     def get_me(session_token=None, **kwargs):
         try:
             user = User.objects.get(sessionToken=session_token)
-            return ResponseJson(body=user.json)
+            return JsonResponse(body=user.json)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -40,7 +38,7 @@ class UserService:
         deleting_user.banned = True
         deleting_user.confirmedEmail = False
         deleting_user.save()
-        return ResponseJson(message_id=OkMessage.Type.USER_REMOVED)
+        return JsonResponse(message_id=OkMessage.Type.USER_REMOVED)
 
     @staticmethod
     def update_me(session_token=None, data=None):
@@ -56,7 +54,7 @@ class UserService:
             updated_user = unserialize_user(data, fields=fields, optional=True)
             auth_user.update(updated_user, fields)
             auth_user.save()
-            return ResponseJson(message_id=OkMessage.Type.USER_UPDATED)
+            return JsonResponse(message_id=OkMessage.Type.USER_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except KeyError as k:
@@ -74,7 +72,7 @@ class UserService:
             updating_user = User.objects.get(sessionToken=session_token)
             updating_user.update_subjects(subjects)
             updating_user.save()
-            return ResponseJson(message_id=OkMessage.Type.USER_UPDATED)
+            return JsonResponse(message_id=OkMessage.Type.USER_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except KeyError:
@@ -92,7 +90,7 @@ class UserService:
                 auth_user = User.objects.get(sessionToken=session_token)
                 auth_user.profilePic = avatar
                 auth_user.save()
-                return ResponseJson(message_id=OkMessage.Type.USER_UPDATED)
+                return JsonResponse(message_id=OkMessage.Type.USER_UPDATED)
         except RequestException as r:
             return r.jsonResponse
         except MultiValueDictKeyError:
@@ -104,7 +102,7 @@ class UserService:
     def get_user_by_id(user_id=None):
         try:
             user = User.objects.get(id=user_id)
-            return ResponseJson(body=user.json)
+            return JsonResponse(body=user.json)
         except RequestException as r:
             return r.jsonResponse
         except (ObjectDoesNotExist, OverflowError, ValueError):
@@ -115,7 +113,7 @@ class UserService:
         try:
             users = User.objects.filter(rol=rol_id, banned=False)
             users_dict = UserSerializer(users, many=True).data
-            return ResponseJson(body=users_dict)
+            return JsonResponse(body=users_dict)
         except RequestException as r:
             return r.jsonResponse
         except OverflowError:

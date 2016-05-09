@@ -1,2 +1,2 @@
-from message import OkMessage
+from okMessage import OkMessage
 from errorMessage import ErrorMessage

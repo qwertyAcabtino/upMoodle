@@ -1,5 +1,5 @@
 from rest.models import FileType
-from tests.integration.system import AuthenticationTestBase
+from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture
 
 

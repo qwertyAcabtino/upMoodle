@@ -1,7 +1,7 @@
 import json
 
 from rest.models import Rol
-from tests.integration.system import AuthenticationTestBase
+from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture
 
 

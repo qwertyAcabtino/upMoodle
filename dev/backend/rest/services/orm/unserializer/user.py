@@ -1,6 +1,8 @@
+from copy import copy
+
 from rest.models import User
 from rest.models.message.errorMessage import ErrorMessage
-from rest.orm.unserializer.internal import *
+from rest.models.utils.requestException import RequestExceptionByCode
 
 
 def unserialize_user(form, *args, **kwargs):

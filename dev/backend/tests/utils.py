@@ -6,7 +6,6 @@ from django.test import Client
 from django.utils.crypto import random
 
 from rest.models import ErrorMessage, File, OkMessage
-from rest.models.message.message import MessageType
 
 
 def load_fixture(fixture_name):
@@ -51,5 +50,5 @@ def _upload_file(self, level_id=4):
             'text': 'Description',
             'file': fp
         })
-        assert_ok_response(response, MessageType.FILE_UPLOADED)
+        assert_ok_response(response, OkMessage.Type.FILE_UPLOADED)
         return File.objects.get(pk=1)
