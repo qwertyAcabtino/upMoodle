@@ -1,7 +1,7 @@
-from rest.models import User
-from rest.models.message.errorMessage import ErrorMessage
-from rest.models.message.okMessage import OkMessage
-from rest.services.utils.email import EmailService
+from upmoodle.models import User
+from upmoodle.models.message.errorMessage import ErrorMessage
+from upmoodle.models.message.okMessage import OkMessage
+from upmoodle.services.utils.email import EmailService
 
 from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response, assert_ok_response

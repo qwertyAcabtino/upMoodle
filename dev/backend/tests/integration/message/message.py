@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from rest.models import OkMessage
+from upmoodle.models import OkMessage
 from tests.utils import load_fixture
 
 

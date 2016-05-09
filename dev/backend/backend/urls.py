@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from backend import settings
-from rest.routers import *
+from upmoodle.routers import *
 
 urlpatterns = patterns('',
 

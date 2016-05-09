@@ -1,4 +1,4 @@
-from rest.models import User, ErrorMessage
+from upmoodle.models import User, ErrorMessage
 from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_error_response
 

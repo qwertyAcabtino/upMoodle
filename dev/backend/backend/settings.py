@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'corsheaders',
     'rest_framework',
-    'rest',
+    'upmoodle',
 )
 
 SITE_ID = 1

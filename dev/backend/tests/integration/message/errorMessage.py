@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from rest.models import ErrorMessage
+from upmoodle.models import ErrorMessage
 from tests.utils import load_fixture
 
 

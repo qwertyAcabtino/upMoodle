@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from rest.models import LevelType
+from upmoodle.models import LevelType
 from tests.utils import load_fixture
 
 

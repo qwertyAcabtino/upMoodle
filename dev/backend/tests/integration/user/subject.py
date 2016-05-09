@@ -1,4 +1,4 @@
-from rest.models import User
+from upmoodle.models import User
 from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture
 

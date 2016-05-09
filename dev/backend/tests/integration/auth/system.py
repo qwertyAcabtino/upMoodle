@@ -4,7 +4,7 @@ from django.test import TestCase, Client
 
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
-from rest.models import User, NoteBoard
+from upmoodle.models import User, NoteBoard
 from tests.utils import JSONClient
 
 

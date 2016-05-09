@@ -1,48 +1,48 @@
 [
   {
-    "model": "rest.filetype",
+    "model": "upmoodle.filetype",
     "pk": 1,
     "fields": {
       "name": "Theory"
     }
   },
   {
-    "model": "rest.filetype",
+    "model": "upmoodle.filetype",
     "pk": 2,
     "fields": {
       "name": "Practice"
     }
   },
   {
-    "model": "rest.filetype",
+    "model": "upmoodle.filetype",
     "pk": 3,
     "fields": {
       "name": "Classwork"
     }
   },
   {
-    "model": "rest.filetype",
+    "model": "upmoodle.filetype",
     "pk": 4,
     "fields": {
       "name": "Bibliography"
     }
   },
   {
-    "model": "rest.filetype",
+    "model": "upmoodle.filetype",
     "pk": 5,
     "fields": {
       "name": "Exam"
     }
   },
   {
-    "model": "rest.filetype",
+    "model": "upmoodle.filetype",
     "pk": 6,
     "fields": {
       "name": "Exercise"
     }
   },
   {
-    "model": "rest.level",
+    "model": "upmoodle.level",
     "pk": 1,
     "fields": {
       "name": "Ingenieria del software",
@@ -52,7 +52,7 @@
     }
   },
   {
-    "model": "rest.level",
+    "model": "upmoodle.level",
     "pk": 2,
     "fields": {
       "name": "Ingenieria de computadores",
@@ -62,7 +62,7 @@
     }
   },
   {
-    "model": "rest.level",
+    "model": "upmoodle.level",
     "pk": 3,
     "fields": {
       "name": "3ro de software",
@@ -72,7 +72,7 @@
     }
   },
   {
-    "model": "rest.level",
+    "model": "upmoodle.level",
     "pk": 4,
     "fields": {
       "name": "Verificacion y Validacion",
@@ -82,7 +82,7 @@
     }
   },
   {
-    "model": "rest.level",
+    "model": "upmoodle.level",
     "pk": 5,
     "fields": {
       "name": "Calidad del software",
@@ -92,7 +92,7 @@
     }
   },
   {
-    "model": "rest.level",
+    "model": "upmoodle.level",
     "pk": 6,
     "fields": {
       "name": "Gestion de proyectos",
@@ -102,7 +102,7 @@
     }
   },
   {
-    "model": "rest.level",
+    "model": "upmoodle.level",
     "pk": 7,
     "fields": {
       "name": "UPM",
@@ -112,42 +112,42 @@
     }
   },
   {
-    "model": "rest.leveltype",
+    "model": "upmoodle.leveltype",
     "pk": 1,
     "fields": {
       "name": "carrer"
     }
   },
   {
-    "model": "rest.leveltype",
+    "model": "upmoodle.leveltype",
     "pk": 2,
     "fields": {
       "name": "course"
     }
   },
   {
-    "model": "rest.leveltype",
+    "model": "upmoodle.leveltype",
     "pk": 3,
     "fields": {
       "name": "subject"
     }
   },
   {
-    "model": "rest.leveltype",
+    "model": "upmoodle.leveltype",
     "pk": 4,
     "fields": {
       "name": "student"
     }
   },
   {
-    "model": "rest.leveltype",
+    "model": "upmoodle.leveltype",
     "pk": 5,
     "fields": {
       "name": "university"
     }
   },
   {
-    "model": "rest.rol",
+    "model": "upmoodle.rol",
     "pk": 1,
     "fields": {
       "name": "Alumno",
@@ -155,7 +155,7 @@
     }
   },
   {
-    "model": "rest.rol",
+    "model": "upmoodle.rol",
     "pk": 2,
     "fields": {
       "name": "Profesor",
@@ -163,7 +163,7 @@
     }
   },
   {
-    "model": "rest.rol",
+    "model": "upmoodle.rol",
     "pk": 3,
     "fields": {
       "name": "Coordinador de asignatura",
@@ -171,7 +171,7 @@
     }
   },
   {
-    "model": "rest.rol",
+    "model": "upmoodle.rol",
     "pk": 4,
     "fields": {
       "name": "Delegado de curso",
@@ -179,7 +179,7 @@
     }
   },
   {
-    "model": "rest.rol",
+    "model": "upmoodle.rol",
     "pk": 5,
     "fields": {
       "name": "Administrador",
@@ -187,7 +187,7 @@
     }
   },
   {
-    "model": "rest.rol",
+    "model": "upmoodle.rol",
     "pk": 6,
     "fields": {
       "name": "g0d",
@@ -195,77 +195,77 @@
     }
   },
   {
-    "model": "rest.year",
+    "model": "upmoodle.year",
     "pk": 3,
     "fields": {
       "verbose": "2015/2016"
     }
   },
   {
-    "model": "rest.tag",
+    "model": "upmoodle.tag",
     "pk": 1,
     "fields": {
       "name": "Notes"
     }
   },
   {
-    "model": "rest.tag",
+    "model": "upmoodle.tag",
     "pk": 2,
     "fields": {
       "name": "Practices"
     }
   },
   {
-    "model": "rest.tag",
+    "model": "upmoodle.tag",
     "pk": 3,
     "fields": {
       "name": "Bibliography"
     }
   },
   {
-    "model": "rest.tag",
+    "model": "upmoodle.tag",
     "pk": 4,
     "fields": {
       "name": "Exams"
     }
   },
   {
-    "model": "rest.tag",
+    "model": "upmoodle.tag",
     "pk": 5,
     "fields": {
       "name": "Others"
     }
   },
   {
-    "model": "rest.calendarfrequency",
+    "model": "upmoodle.calendarfrequency",
     "pk": 1,
     "fields": {
       "name": "daily"
     }
   },
   {
-    "model": "rest.calendarfrequency",
+    "model": "upmoodle.calendarfrequency",
     "pk": 2,
     "fields": {
       "name": "weekly"
     }
   },
   {
-    "model": "rest.calendarfrequency",
+    "model": "upmoodle.calendarfrequency",
     "pk": 3,
     "fields": {
       "name": "monthly"
     }
   },
   {
-    "model": "rest.calendarfrequency",
+    "model": "upmoodle.calendarfrequency",
     "pk": 4,
     "fields": {
       "name": "unique"
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 1,
     "fields": {
       "http_code": 200,
@@ -274,7 +274,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 2,
     "fields": {
       "http_code": 204,
@@ -283,7 +283,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 3,
     "fields": {
       "http_code": 200,
@@ -292,7 +292,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 4,
     "fields": {
       "http_code": 200,
@@ -301,7 +301,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 5,
     "fields": {
       "http_code": 200,
@@ -310,7 +310,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 6,
     "fields": {
       "http_code": 200,
@@ -319,7 +319,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 7,
     "fields": {
       "http_code": 200,
@@ -328,7 +328,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 8,
     "fields": {
       "http_code": 200,
@@ -337,7 +337,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 9,
     "fields": {
       "http_code": 200,
@@ -346,7 +346,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 10,
     "fields": {
       "http_code": 200,
@@ -355,7 +355,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 11,
     "fields": {
       "http_code": 200,
@@ -364,7 +364,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 12,
     "fields": {
       "http_code": 201,
@@ -373,7 +373,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 13,
     "fields": {
       "http_code": 201,
@@ -382,7 +382,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 14,
     "fields": {
       "http_code": 204,
@@ -391,7 +391,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 15,
     "fields": {
       "http_code": 200,
@@ -400,7 +400,7 @@
     }
   },
   {
-    "model": "rest.okmessage",
+    "model": "upmoodle.okmessage",
     "pk": 16,
     "fields": {
       "http_code": 200,
@@ -409,7 +409,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 1,
     "fields": {
       "text": "REQUEST_CANNOT",
@@ -418,7 +418,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 2,
     "fields": {
       "text": "INCORRECT_DATA",
@@ -427,7 +427,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 3,
     "fields": {
       "text": "DISABLED_COOKIES",
@@ -436,7 +436,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 4,
     "fields": {
       "text": "ALREADY_CONFIRMED",
@@ -445,7 +445,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 5,
     "fields": {
       "text": "INVALID_TOKEN",
@@ -454,7 +454,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 6,
     "fields": {
       "text": "USER_IN_USE",
@@ -463,7 +463,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 7,
     "fields": {
       "text": "UNAUTHORIZED",
@@ -472,7 +472,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 8,
     "fields": {
       "text": "INCORRECT_FILE_DATA",
@@ -481,7 +481,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 9,
     "fields": {
       "text": "PASSWORD_LENGTH",
@@ -490,7 +490,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 10,
     "fields": {
       "text": "NICK_LENGTH",
@@ -499,7 +499,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 11,
     "fields": {
       "text": "EMAIL_INVALID",
@@ -508,7 +508,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 12,
     "fields": {
       "text": "UNCONFIRMED_EMAIL",
@@ -517,7 +517,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 13,
     "fields": {
       "text": "NOT_SIGNED_IN",
@@ -526,7 +526,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 14,
     "fields": {
       "text": "NAME_LENGTH",
@@ -535,7 +535,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 15,
     "fields": {
       "text": "INVALID_LEVEL",
@@ -544,7 +544,7 @@
     }
   },
   {
-    "model": "rest.errormessage",
+    "model": "upmoodle.errormessage",
     "pk": 16,
     "fields": {
       "text": "Method not allowed",

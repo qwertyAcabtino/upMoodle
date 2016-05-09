@@ -5,7 +5,7 @@ from django.core.management import call_command
 from django.test import Client
 from django.utils.crypto import random
 
-from rest.models import ErrorMessage, File, OkMessage
+from upmoodle.models import ErrorMessage, File, OkMessage
 
 
 def load_fixture(fixture_name):

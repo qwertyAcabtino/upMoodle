@@ -1,4 +1,4 @@
-from rest.models.message.okMessage import OkMessage
+from upmoodle.models.message.okMessage import OkMessage
 from tests import utils
 from tests.integration.auth.system import AuthenticationTestBase
 from tests.utils import load_fixture, assert_ok_response
