@@ -44,13 +44,13 @@ def method(method_value):
                 return RequestExceptionByCode(ErrorMessageType.NOT_ALLOWED_METHOD).jsonResponse
             else:
                 if method_value == 'POST':
-                    kwargs['data'] = body_to_json(request.body)
+                    kwargs['data'] = _body_to_json(request.body)
                     if request.POST:
                         kwargs['data'].update(request.POST.dict())
                 elif method_value == 'GET':
                     kwargs['data'] = request.GET
                 elif method_value == 'PUT':
-                    kwargs['data'] = body_to_json(request.body)
+                    kwargs['data'] = _body_to_json(request.body)
 
                 response = view_func(request, *args, **kwargs)
                 return response
@@ -67,9 +67,9 @@ def methods(methods_list):
             else:
 
                 if 'POST' in methods_list and request.method == 'POST':
-                    kwargs['data'] = body_to_json(request.body)
+                    kwargs['data'] = _body_to_json(request.body)
                 elif 'PUT' in methods_list and request.method == 'PUT':
-                    kwargs['data'] = body_to_json(request.body)
+                    kwargs['data'] = _body_to_json(request.body)
                 elif 'PUT' in methods_list and request.method == 'GET':
                     kwargs['data'] = request.GET
 
@@ -103,7 +103,7 @@ def _check_signed_in(request):
         raise RequestExceptionByCode(ErrorMessageType.NOT_SIGNED_IN)
 
 
-def body_to_json(body):
+def _body_to_json(body):
     try:
         return demjson.decode(body)
     except:

@@ -3,7 +3,7 @@ from tests.integration.auth.login import LoginTestCase
 from tests.integration.auth.logout import LogoutTestCase
 from tests.integration.auth.recoverPassword import RecoverPasswordTestCase
 from tests.integration.auth.signup import SignUpTestCase
-from tests.integration.level.level import LevelTestCase
+from tests.integration.level.level import LevelTestCase, LevelNotesTestCase, LevelFilesTestCase
 from tests.integration.level.levelType import LevelTypeTestCase
 from tests.integration.message.errorMessage import ErrorMessageTestCase
 from tests.integration.message.message import MessageTestCase
