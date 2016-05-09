@@ -1,6 +1,8 @@
 import hashlib
 
 import time
+
+import datetime
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -34,7 +36,7 @@ class File(models.Model):
         md5 = hashlib.sha256()
         for chunk in self.file.chunks():
             md5.update(chunk)
-        return md5.hexdigest()
+        return md5.hexdigest() + str(datetime.datetime.now().microsecond)
 
     def get_hashed_filename(self):
         return "%s_%s" % (self.hash, str(int(time.time())))
