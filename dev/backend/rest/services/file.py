@@ -25,7 +25,7 @@ class FileService:
             AuthService.is_authorized_author(session_token=session_token, author_id=uploader_id, level=True)
 
             Level.validate_exists_level(data['subject_id'])
-
+            Level.validate_subject_type(data['subject_id'])
             fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
             new_file = unserialize_file_binary(data, fields=fields, optional=True, binary=files['file'])
             new_file.save()

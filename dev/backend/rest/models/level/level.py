@@ -34,3 +34,6 @@ class Level(models.Model):
         except ObjectDoesNotExist:
             raise ObjectDoesNotExist
 
+    @staticmethod
+    def validate_subject_type(level_id):
+        assert Level.objects.get(id=level_id).is_subject()

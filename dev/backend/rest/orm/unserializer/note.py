@@ -1,4 +1,5 @@
 from rest.models import NoteBoard
+from rest.models.message.errorMessage import ErrorMessageType
 from rest.orm.unserializer.internal import *
 
 
@@ -9,4 +10,4 @@ def unserialize_note(form, *args, **kwargs):
         note = NoteBoard()
         return unserialize(note, fields, form, optional=optional)
     else:
-        raise RequestExceptionByCode(INCORRECT_DATA)
+        raise RequestExceptionByCode(ErrorMessageType.INCORRECT_DATA)
