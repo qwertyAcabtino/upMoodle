@@ -1,4 +1,4 @@
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -25,7 +25,8 @@ class Level(models.Model):
             Level.objects.get(id=fk)
             Level.validate_exists_level(fk)
         except (MultiValueDictKeyError, KeyError):
-            raise ValidationError(ErrorMessage.Type.INVALID_LEVEL.value)
+            from upmoodle.models.utils.requestException import RequestExceptionByCode
+            raise RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL)
 
     @staticmethod
     def validate_exists_level(fk):

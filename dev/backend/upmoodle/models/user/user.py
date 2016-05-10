@@ -42,12 +42,13 @@ class User(models.Model):
         self.validate_name()
 
     def validate_email(self):
+        from upmoodle.models.utils.requestException import RequestExceptionByCode
         try:
             validate_email(self.email)
             if not "@eui.upm.es" in self.email and not "@upm.es" in self.email and not "@alumnos.upm.es" in self.email:
-                raise ValidationError(ErrorMessage.Type.EMAIL_INVALID.value)
+                raise RequestExceptionByCode(ErrorMessage.Type.EMAIL_INVALID)
         except ValidationError as v:
-            raise ValidationError(ErrorMessage.Type.EMAIL_INVALID.value)
+            raise RequestExceptionByCode(ErrorMessage.Type.EMAIL_INVALID)
 
     def validate_password(self):
         lengthMax = User._meta.get_field('password').max_length
@@ -71,14 +72,16 @@ class User(models.Model):
         if level.is_subject():
             self.subjects.add(level)
         else:
-            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
+            from upmoodle.models.utils.requestException import RequestExceptionByCode
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
     def remove_subject(self, subjectPk):
         level = Level.objects.get(id=subjectPk)
         if level.is_subject():
             self.subjects.remove(level)
         else:
-            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
+            from upmoodle.models.utils.requestException import RequestExceptionByCode
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
     def update_subjects(self, subjects):
         self.subjects.clear()

@@ -53,14 +53,16 @@ class Calendar(models.Model):
     # TODO. hourStart > hourEnd.
     def validateHours(self):
         if not self.allDay and (not self.hourStart or not self.hourEnd):
-            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
+            from upmoodle.models.utils.requestException import RequestExceptionByCode
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
     # TODO. Error message.
     def validateDates(self):
+        from upmoodle.models.utils.requestException import RequestExceptionByCode
         if self.frequency.id != FREQUENCY_UNIQUE and not self.lastDate:
-            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
         elif self.lastDate and self.firstDate > self.lastDate:
-            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
         elif not self.lastDate:
             self.lastDate = self.firstDate
 

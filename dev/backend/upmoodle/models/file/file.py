@@ -62,10 +62,11 @@ class File(models.Model):
         if not self.name and self.hash not in self.file.name:
             self.name = self.file.name.split('.')[0]
         elif not self.name:
-            raise ValidationError(ErrorMessage.Type.INCORRECT_DATA.value)
+            from upmoodle.models.utils.requestException import RequestExceptionByCode
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
-    def update(self, userUpdate, fields):
+    def update(self, user_update, fields):
         self.year = Year.get_actual_year()
         if fields:
             for field in fields:
-                setattr(self, field, getattr(userUpdate, field))
+                setattr(self, field, getattr(user_update, field))
