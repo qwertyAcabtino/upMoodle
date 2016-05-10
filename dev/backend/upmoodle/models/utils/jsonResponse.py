@@ -20,15 +20,19 @@ class JsonResponse(HttpResponse):
     def _set_response_message(self, message_id, **kwargs):
         global response_message
         if message_id:
+            message_key = 'message'
             if type(message_id.get()) == OkMessage:
                 response_message = OkMessage.objects.get(pk=message_id.value).json
+                message_key = 'message'
+                self.response_content['message'] = response_message
             elif type(message_id.get()) == ErrorMessage:
                 response_message = ErrorMessage.objects.get(pk=message_id.value).json
+                message_key = 'error'
 
             self.http_code = response_message['http_code']
-            self.response_content['message'] = response_message
+            self.response_content[message_key] = response_message
             if 'stack_trace' in kwargs:
-                self.response_content['message']['text'] += ". " + kwargs['stack_trace']
+                self.response_content[message_key]['text'] += ". " + kwargs['stack_trace']
 
     def _set_response_body(self, body):
         if body is not None:

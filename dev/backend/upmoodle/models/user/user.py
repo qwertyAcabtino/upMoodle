@@ -24,9 +24,6 @@ class User(models.Model):
     sessionToken = models.CharField(max_length=256, blank=True, unique=True)
     subjects = models.ManyToManyField(Level, blank=True)
 
-    class Meta:
-        app_label = 'upmoodle'
-
     def __unicode__(self):
         return self.nick
 

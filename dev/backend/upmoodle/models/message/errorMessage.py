@@ -1,9 +1,12 @@
+from django.db import models
 from enum import Enum
 
 from upmoodle.models.message.okMessage import BaseMessage
 
 
 class ErrorMessage(BaseMessage):
+
+    msg_key = models.CharField(max_length=20)
 
     def __unicode__(self):
         return self.error

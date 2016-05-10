@@ -5,7 +5,6 @@ from enum import Enum
 class BaseMessage(models.Model):
     id = models.AutoField(primary_key=True)
     text = models.CharField(max_length=200)
-    msg_key = models.CharField(max_length=20)
     http_code = models.IntegerField(default=None)
 
     class Meta:

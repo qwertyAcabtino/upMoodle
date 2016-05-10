@@ -269,7 +269,6 @@
     "pk": 1,
     "fields": {
       "http_code": 200,
-      "msg_key": "auth_operation",
       "text": "Successfully signed in"
     }
   },
@@ -278,7 +277,6 @@
     "pk": 2,
     "fields": {
       "http_code": 204,
-      "msg_key": "auth_operation",
       "text": "Email is now confirmed"
     }
   },
@@ -287,7 +285,6 @@
     "pk": 3,
     "fields": {
       "http_code": 200,
-      "msg_key": "auth_operation",
       "text": "A new password has been sent to your email address. Check your inbox"
     }
   },
@@ -296,7 +293,6 @@
     "pk": 4,
     "fields": {
       "http_code": 200,
-      "msg_key": "auth_operation",
       "text": "Your user account has been removed."
     }
   },
@@ -305,7 +301,6 @@
     "pk": 5,
     "fields": {
       "http_code": 200,
-      "msg_key": "auth_operation",
       "text": "Your profile has been updated"
     }
   },
@@ -314,7 +309,6 @@
     "pk": 6,
     "fields": {
       "http_code": 200,
-      "msg_key": "put_operation",
       "text": "Note updated"
     }
   },
@@ -323,7 +317,6 @@
     "pk": 7,
     "fields": {
       "http_code": 200,
-      "msg_key": "delete_operation",
       "text": "The note is been removed"
     }
   },
@@ -332,7 +325,6 @@
     "pk": 8,
     "fields": {
       "http_code": 200,
-      "msg_key": "delete_operation",
       "text": "The calendar event is been removed"
     }
   },
@@ -341,7 +333,6 @@
     "pk": 9,
     "fields": {
       "http_code": 200,
-      "msg_key": "put_operation",
       "text": "Calendar event has been updated."
     }
   },
@@ -350,7 +341,6 @@
     "pk": 10,
     "fields": {
       "http_code": 200,
-      "msg_key": "delete_operation",
       "text": "The file has been removed"
     }
   },
@@ -359,7 +349,6 @@
     "pk": 11,
     "fields": {
       "http_code": 200,
-      "msg_key": "auth_operation",
       "text": "Account successfully validated."
     }
   },
@@ -368,7 +357,6 @@
     "pk": 12,
     "fields": {
       "http_code": 201,
-      "msg_key": "create_operation",
       "text": "Your note was successfully created"
     }
   },
@@ -377,7 +365,6 @@
     "pk": 13,
     "fields": {
       "http_code": 201,
-      "msg_key": "create_operation",
       "text": "Your file was successfully uploaded"
     }
   },
@@ -386,7 +373,6 @@
     "pk": 14,
     "fields": {
       "http_code": 204,
-      "msg_key": "put_operation",
       "text": "File's info has been updated"
     }
   },
@@ -395,7 +381,6 @@
     "pk": 15,
     "fields": {
       "http_code": 200,
-      "msg_key": "auth_operation",
       "text": "Successfully logged out"
     }
   },
@@ -404,7 +389,6 @@
     "pk": 16,
     "fields": {
       "http_code": 200,
-      "msg_key": "success",
       "text": "Successful request"
     }
   },

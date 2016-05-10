@@ -16,11 +16,11 @@ def assert_error_response(response, error_type):
     error = ErrorMessage.objects.get(pk=error_type.value)
     decoded = json.loads(response.content)
 
-    assert response.status_code == decoded['message']['http_code']
+    assert response.status_code == decoded['error']['http_code']
     try:
-        assert error.text == decoded['message']['text']
+        assert error.text == decoded['error']['text']
     except AssertionError:
-        assert (error.text in decoded['message']['text'])
+        assert (error.text in decoded['error']['text'])
 
 
 def assert_ok_response(response, ok_type):
