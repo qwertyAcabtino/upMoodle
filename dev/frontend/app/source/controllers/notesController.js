@@ -141,7 +141,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $uibModal
       $uibModalInstance.close(data);
     })
     .error(function(data, status, headers, config) {
-         snackbar.error(data.error);
+         snackbar.error(data);
          $scope.newNote = angular.copy($scope.note);
       });
   };
@@ -152,7 +152,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $uibModal
       $uibModalInstance.close(data.message);  
     })
     .error(function(data, status, headers, config) {
-         snackbar.error(data.error);
+         snackbar.error(data);
       });
   };
 
@@ -181,7 +181,7 @@ angular.module('upmApp').controller('ModalNewNote', function ($scope, $uibModalI
       $uibModalInstance.close(data.message);   
     })
     .error(function(data, status, headers, config) {
-      snackbar.error(data.error, 5000);
+      snackbar.error(data, 5000);
     });  
   };
 

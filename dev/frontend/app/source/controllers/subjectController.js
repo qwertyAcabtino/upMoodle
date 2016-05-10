@@ -9,7 +9,7 @@
  				$scope.fileTypes = data;	
  			})
  			.error(function(data, status, headers, config) {
- 				console.log(data.error);
+ 				console.log(data);
  			}); 			
  		};
 
@@ -115,7 +115,7 @@ angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $uibMo
 			$uibModalInstance.close(data);
 		})
  		.error(function(data, status, headers, config) {
-	       snackbar.error(data.error);
+	       snackbar.error(data);
 	    });
 	};
 
@@ -153,7 +153,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 			$uibModalInstance.close(data.message);  
 		})
  		.error(function(data, status, headers, config) {
-	       snackbar.error(data.error);
+	       snackbar.error(data);
 	    });
 	};
 
@@ -164,7 +164,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 			$scope.saveFileInfoCallback(data.message);
 		})
  		.error(function(data, status, headers, config) {
-	       snackbar.error(data.error);
+	       snackbar.error(data);
 	       $scope.newFileInfo = angular.copy($scope.file);
 	    });
 	};
@@ -183,7 +183,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 			//TODO. Update main view.
 		})
  		.error(function(data, status, headers, config) {
-	       snackbar.error(data.error);
+	       snackbar.error(data);
 	       $scope.newFileInfo = angular.copy($scope.file);
 	    });
 	};

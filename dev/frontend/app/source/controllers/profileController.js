@@ -12,7 +12,7 @@
  			delete $scope.user.password;
  		})
  		.error(function(data, status, headers, config) {
- 			snackbar.error(data.error);
+ 			snackbar.error(data);
  			delete $scope.user.password;
  			User.destroy();
  			User.get().then(function success(response){
@@ -33,7 +33,7 @@
 
  		})
  		.error(function(data, status, headers, config) {
- 			snackbar.error(data.error, 5000);
+ 			snackbar.error(data, 5000);
  		});  
  	};
 

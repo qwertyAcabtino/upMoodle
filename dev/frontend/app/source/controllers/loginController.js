@@ -10,7 +10,7 @@ angular.module('upmApp').controller( 'loginController', ['$scope', '$cookies', '
 				$location.path('/dashboard');
 			})
 			.error(function(data, status, headers, config) {
-				snackbar.error(data.error);
+				snackbar.error(data);
 			});
 	};
 

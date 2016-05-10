@@ -6,7 +6,7 @@ angular.module('upmApp').controller( 'signUpCtrl', ['$scope', '$cookies', 'api',
 				$scope.signedup = true;
 			})
 			.error(function(data, status, headers, config) {
-				snackbar.error(data.error, 5000); 
+				snackbar.error(data, 5000); 
 			});
 	};
 }]);

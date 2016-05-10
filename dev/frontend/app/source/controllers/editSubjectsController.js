@@ -28,7 +28,7 @@
  				$scope.updateUserSubjectsCallback(data);
  			})
  			.error(function(data, status, headers, config) {
- 				snackbar.error(data.error);
+ 				snackbar.error(data);
  			});
  		};
 
