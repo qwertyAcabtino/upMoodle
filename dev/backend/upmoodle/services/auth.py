@@ -1,7 +1,6 @@
 import uuid
 
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.core.mail import send_mail
 from django.utils import timezone
 
 from backend import settings
@@ -14,7 +13,7 @@ from upmoodle.models.utils.requestException import RequestExceptionByCode, Reque
     RequestExceptionByMessage
 from upmoodle.services.orm.unserializer import unserialize_user
 from upmoodle.services.utils.email import EmailService
-from upmoodle.services.utils.password import PasswordService
+from upmoodle.services.utils.randoms import RandomStringsService
 
 
 class AuthService:
@@ -52,16 +51,13 @@ class AuthService:
             return r.jsonResponse
 
     @staticmethod
-    def signup(request, session_token=None, data=None):
+    def signup(session_token=None, data=None):
         try:
             session_token = AuthService.get_cookie(session_token)
 
             user = unserialize_user(data, sessionToken=session_token,
                                     fields=['email', 'password', 'nick', 'name'])
-            send_mail('Email confirmation',
-                      EmailService.get_email_confirmation_message(request, cookie=session_token),
-                      'info@upmoodle.com', [user.email],
-                      fail_silently=False)
+            EmailService.send_signup_confirmation_email(email=user.email, session_token=session_token)
             user.save()
             json_response = JsonResponse(body=user)
             json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
@@ -71,7 +67,7 @@ class AuthService:
             return r.jsonResponse
         except RequestException as r:
             return r.jsonResponse
-        except Exception:
+        except Exception as e:
             return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
@@ -113,7 +109,7 @@ class AuthService:
             elif user.banned:
                 raise RequestExceptionByCode(ErrorMessage.Type.UNAUTHORIZED)
             else:
-                password = PasswordService.get_random()
+                password = RandomStringsService.random_password()
                 EmailService.send_recover_password_email(user.email, password)
                 user.password = password
                 user.save()

@@ -9,8 +9,7 @@ from upmoodle.models.utils.requestException import RequestException, RequestExce
     RequestExceptionByMessage
 from upmoodle.services.orm.serializers import UserSerializer
 from upmoodle.services.orm.unserializer import unserialize_user
-from upmoodle.services.utils.email import EmailService
-from upmoodle.services.utils.password import PasswordService
+from upmoodle.services.utils.randoms import RandomStringsService
 
 
 class UserService:
@@ -32,8 +31,8 @@ class UserService:
         deleting_user = User.objects.get(sessionToken=session_token)
         deleting_user.name = 'RemovedUser ' + str(deleting_user.id)
         deleting_user.nick = 'RemovedUser ' + str(deleting_user.id)
-        deleting_user.email = EmailService.get_random_email()
-        deleting_user.password = PasswordService.get_random()
+        deleting_user.email = 'deprecated+' + deleting_user.email
+        deleting_user.password = RandomStringsService.random_password()
         deleting_user.profilePic = 'static/default_update_avatar_pic.jpeg'
         deleting_user.banned = True
         deleting_user.confirmedEmail = False

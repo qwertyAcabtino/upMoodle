@@ -34,6 +34,12 @@ def get_random_string(length):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
 
+def get_random_email():
+    length = 10
+    email = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
+    return email + '@upm.es'
+
+
 class JSONClient(Client):
 
     def post(self, path, data=None, follow=False, secure=False, **extra):

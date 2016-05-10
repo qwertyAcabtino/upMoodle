@@ -1,7 +1,6 @@
-import string
-
 from django.core.mail import send_mail
-from django.utils.crypto import random
+
+from backend import settings
 
 
 class EmailService:
@@ -9,15 +8,14 @@ class EmailService:
         pass
 
     @staticmethod
-    def get_email_confirmation_message(request, cookie=None):
-        host = request.META['SERVER_NAME'] + ':3000/#'  # TODO. Not for production.
-        # host = request.META['SERVER_NAME'] + ':' + request.META['SERVER_PORT']
+    def _get_email_confirmation_message(session_token=None):
+        host = settings.DOMAIN + ':3000/#'
         message = 'Please confirm your account at upMoodle.\n'
-        message += 'http://' + host + '/confirm_email/' + cookie
+        message += 'http://' + host + '/confirm_email/' + session_token
         return message
 
     @staticmethod
-    def get_password_recover_message(password):
+    def _get_password_recover_message(password):
         message = 'In theory, you\'ve forgotten your password.\n'
         message += 'This is your new password: ' + password + '\n'
         message += 'For security reasons, please, change this password as soon as possible.'
@@ -30,11 +28,11 @@ class EmailService:
     @staticmethod
     def send_recover_password_email(email, password):
         subject = 'Password recovery'
-        message = EmailService.get_password_recover_message(password)
+        message = EmailService._get_password_recover_message(password)
         EmailService.send_email(subject, message, [email])
 
     @staticmethod
-    def get_random_email():
-        length = 10
-        email = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
-        return email + '@upm.es'
+    def send_signup_confirmation_email(email=None, session_token=None):
+        subject = 'Email confirmation'
+        message = EmailService._get_email_confirmation_message(session_token=session_token)
+        EmailService.send_email(subject, message, [email])

@@ -124,3 +124,5 @@ EMAIL_HOST_USER = 'dropoodle@gmail.com'
 EMAIL_HOST_PASSWORD = 'qwdfqwdf'  # No, this is not my real password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+DOMAIN = "127.0.0.1"

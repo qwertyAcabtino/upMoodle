@@ -13,7 +13,7 @@ def login(request, session_token=None, data=None):
 @csrf_exempt
 @method('POST')
 def signup(request, session_token=None, data=None):
-    return AuthService.signup(request, session_token=session_token, data=data)
+    return AuthService.signup(session_token=session_token, data=data)
 
 
 @csrf_exempt

@@ -96,6 +96,19 @@ class FileService:
         hash_list = BannedHashSerializer(hashes, many=True).data
         return JsonResponse(body=hash_list)
 
+    @staticmethod
+    def get_files_by_level_id(level_id=None):
+        try:
+            level = Level.objects.get(id=level_id)
+            if level.is_subject():
+                files = File.objects.filter(subject=level_id, visible=True)
+                files_dict = FileSerializer(files, many=True).data
+                return JsonResponse(body=files_dict)
+            elif not level.is_subject():
+                return RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL).jsonResponse
+        except ObjectDoesNotExist or OverflowError or ValueError:
+            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+
 
 class FileTypeService:
     def __init__(self):
