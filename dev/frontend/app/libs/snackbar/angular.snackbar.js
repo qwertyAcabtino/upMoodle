@@ -16,12 +16,12 @@
 
 		return { 
 			message : function( content, duration ){
-				content = content.message || content;
+				content = content.text || content;
 				$rootScope.$broadcast('createSnackbar', { 'content': content, 'duration': duration, 'color': "green" });
 			}, 
 
 			error : function( content, duration ){
-				content = content.error || content;
+				content = content.text || content;
 				$rootScope.$broadcast('createSnackbar', { 'content': content, 'duration': duration, 'color': "red" });
 			},
 
