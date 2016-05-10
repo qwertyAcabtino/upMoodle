@@ -5,7 +5,7 @@ from django.contrib import admin
 from backend import settings
 from upmoodle.routers import *
 
-urlpatterns = patterns('',
+urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
@@ -47,4 +47,4 @@ urlpatterns = patterns('',
     url(r'^level/(?P<level_id>[0-9]+)/notes$', level_notes_list),
     url(r'^level/(?P<level_id>[0-9]+)/files$', level_files_list),
 
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

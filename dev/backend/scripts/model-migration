@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-python manage.py makemigrations rest
+python manage.py makemigrations upmoodle
 python manage.py migrate
-rm -rf rest/migrations/
+rm -rf upmoodle/migrations/
