@@ -6,9 +6,11 @@ from django.utils import timezone
 from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
 from upmoodle.models import User
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
+from upmoodle.models.utils.newJsonResponse import NewJsonResponse
 from upmoodle.models.utils.requestException import RequestExceptionByCode, RequestException, \
     RequestExceptionByMessage
 from upmoodle.services.utils.email import EmailService
@@ -60,6 +62,8 @@ class AuthService:
             json_response = JsonResponse(body=user)
             json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
             return json_response
+        except MessageBasedException as ex:
+            return NewJsonResponse(exception=ex)
         except ValidationError as v:
             r = RequestExceptionByMessage(v)
             return r.jsonResponse
@@ -103,9 +107,9 @@ class AuthService:
             email_request = data['email']
             user = User.objects.get(email=email_request)
             if not user.confirmedEmail:
-                raise RequestExceptionByCode(ErrorMessage.Type.UNCONFIRMED_EMAIL)
+                return JsonResponse(message_id=ErrorMessage.Type.UNCONFIRMED_EMAIL)
             elif user.banned:
-                raise RequestExceptionByCode(ErrorMessage.Type.UNAUTHORIZED)
+                return JsonResponse(message_id=ErrorMessage.Type.UNAUTHORIZED)
             else:
                 password = RandomStringsService.random_password()
                 EmailService.send_recover_password_email(user.email, password)

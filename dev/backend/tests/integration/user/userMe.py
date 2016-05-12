@@ -1,3 +1,5 @@
+import json
+
 from upmoodle.models import User
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
@@ -12,6 +14,20 @@ class UserMeTestCase(AuthenticationTestBase):
         super(UserMeTestCase, self).setUp()
         utils.load_fixture("provision-data")
         self.createUser()
+
+    def test_get_user(self):
+        self.login()
+        response = self.client.get('/user/')
+        self.assertEqual(response.status_code, 200)
+        decoded = json.loads(response.content)
+        self.assertIsNotNone(decoded)
+
+    def test_get_users(self):
+        self.login()
+        response = self.client.get('/user/')
+        self.assertEqual(response.status_code, 200)
+        decoded = json.loads(response.content)
+        self.assertIsNotNone(decoded)
 
     def test_userRemove_basic(self):
         self.login()

@@ -3,7 +3,8 @@ from django.core.validators import validate_email
 from django.db import models
 from django.utils import timezone
 
-from upmoodle.models.base_model import BaseModel
+from upmoodle.models._base_model import BaseModel
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.level import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.finals import STUDENT
@@ -27,14 +28,14 @@ class User(BaseModel):
     subjects = models.ManyToManyField(Level, blank=True)
 
     def __init__(self, *args, **kwargs):
-        from upmoodle.services.orm.serializers import UserSerializer
+        from upmoodle.models.serializers import UserSerializer
         super(User, self).__init__(UserSerializer, *args, **kwargs)
 
     def __unicode__(self):
         return self.nick
 
     def save(self, *args, **kwargs):
-        self.clean()  # Custom field validation.
+        self.clean()
         self.clean_fields()
         self.validate_unique()
         if not self.joined:
@@ -48,13 +49,12 @@ class User(BaseModel):
         self.validate_name()
 
     def validate_email(self):
-        from upmoodle.models.utils.requestException import RequestExceptionByCode
         try:
             validate_email(self.email)
             if "@eui.upm.es" not in self.email and "@upm.es" not in self.email and "@alumnos.upm.es" not in self.email:
-                raise RequestExceptionByCode(ErrorMessage.Type.EMAIL_INVALID)
+                raise MessageBasedException(message_id=ErrorMessage.Type.EMAIL_INVALID)
         except ValidationError as v:
-            raise RequestExceptionByCode(ErrorMessage.Type.EMAIL_INVALID)
+            raise MessageBasedException(message_id=ErrorMessage.Type.EMAIL_INVALID, exception=v)
 
     def validate_password(self):
         max_length = User._meta.get_field('password').max_length
@@ -78,7 +78,7 @@ class User(BaseModel):
         if level.is_subject():
             self.subjects.add(level)
         else:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
 
     def update_subjects(self, subjects):
         self.subjects.clear()

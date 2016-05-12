@@ -2,9 +2,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.utils.datastructures import MultiValueDictKeyError
 
-from upmoodle.models.base_model import BaseModel
+from upmoodle.models._base_model import BaseModel
 from upmoodle.models.message.errorMessage import ErrorMessage
-
 from upmoodle.models.utils.requestException import RequestExceptionByCode
 
 
@@ -16,7 +15,7 @@ class Level(BaseModel):
     parent = models.ForeignKey('Level', default=None, null=True, blank=True)
 
     def __init__(self, *args, **kwargs):
-        from upmoodle.services.orm.serializers import LevelSerializer
+        from upmoodle.models.serializers import LevelSerializer
         super(Level, self).__init__(LevelSerializer, *args, **kwargs)
 
     def __unicode__(self):

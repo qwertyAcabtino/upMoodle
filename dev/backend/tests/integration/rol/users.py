@@ -26,6 +26,6 @@ class RolUsersTestCase(AuthenticationTestBase):
 
     def test_userRol_id_overflow(self):
         self.login()
-        rol = '191289347901273481236498712634971234123481263984'
+        rol = '191289347901271234123412341234'
         response = self.client.get('/rol/' + rol + '/users')
         assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)

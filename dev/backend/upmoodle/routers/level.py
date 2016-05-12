@@ -1,4 +1,4 @@
-from upmoodle.routers.decorators.routing_decorators import authenticated, method
+from upmoodle.routers.decorators.routing_decorators import authenticated, method, response
 from upmoodle.services.file import FileService
 from upmoodle.services.level import LevelService
 from upmoodle.services.notes import NoteService
@@ -12,6 +12,7 @@ def level_tree(request, **kwargs):
 
 @authenticated
 @method('GET')
+@response(media_type='application/json')
 def level_notes_list(request, level_id, data=None, **kwargs):
     return NoteService.get_notes_by_level_id(level_id=level_id, data=data)
 

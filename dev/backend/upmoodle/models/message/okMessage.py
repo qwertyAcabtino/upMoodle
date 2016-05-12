@@ -7,7 +7,7 @@ class OkMessage(BaseMessage):
 
     @property
     def json(self):
-        from upmoodle.services.orm.serializers import OkMessageSerializer
+        from upmoodle.models.serializers import OkMessageSerializer
         data = OkMessageSerializer(self, many=False).data
         dict(data)
         del data['id']

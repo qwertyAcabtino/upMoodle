@@ -13,7 +13,7 @@ class ErrorMessage(BaseMessage):
 
     @property
     def json(self):
-        from upmoodle.services.orm.serializers import ErrorMessageSerializer
+        from upmoodle.models.serializers import ErrorMessageSerializer
         data = ErrorMessageSerializer(self, many=False).data
         return dict(data)
 

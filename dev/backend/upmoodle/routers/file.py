@@ -1,7 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 
 from upmoodle.models.utils.requestException import RequestException
-from upmoodle.routers.decorators.routing_decorators import method, authenticated, methods
+from upmoodle.routers.decorators.routing_decorators import method, authenticated, methods, response
 from upmoodle.services.file import FileService, FileTypeService
 
 
@@ -19,10 +19,15 @@ def file_by_hash_endpoint(request, file_hash, session_token=None, data=None):
             }
             return service_metadata_methods[request.method](session_token=session_token, file_hash=file_hash, data=data)
         else:
+
+            @response(media_type='application/octet-stream')
+            def binary_get(file_hash_in=file_hash):
+                return FileService.binary_get(file_hash=file_hash_in)
+
             service_binary_methods = {
-                'GET': FileService.binary_get
+                'GET': binary_get
             }
-            return service_binary_methods[request.method](file_hash=file_hash)
+            return service_binary_methods[request.method](file_hash_in=file_hash)
 
     except RequestException as r:
         return r.jsonResponse

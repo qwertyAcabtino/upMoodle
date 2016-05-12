@@ -4,13 +4,12 @@ import time
 
 from django.db import models
 
-from upmoodle.models.base_model import BaseModel
+from upmoodle.models._base_model import BaseModel
 from upmoodle.models.file.fileType import FileType
 from upmoodle.models.file.year import Year
 from upmoodle.models.level import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.user import User
-
 from upmoodle.models.utils.requestException import RequestExceptionByCode
 
 
@@ -31,7 +30,7 @@ class File(BaseModel):
     text = models.CharField(max_length=2000, blank=True)
 
     def __init__(self, *args, **kwargs):
-        from upmoodle.services.orm.serializers.file import FileSerializer
+        from upmoodle.models.serializers.file import FileSerializer
         super(File, self).__init__(FileSerializer, *args, **kwargs)
 
     def __unicode__(self):

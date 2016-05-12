@@ -4,10 +4,10 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from upmoodle.models import File, Level, User, FileType, BannedHash, OkMessage
 from upmoodle.models.message.errorMessage import ErrorMessage
+from upmoodle.models.serializers import FileTypeSerializer, BannedHashSerializer
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from upmoodle.services.auth import AuthService
-from upmoodle.services.orm.serializers import FileTypeSerializer, BannedHashSerializer
 
 
 class FileService:
@@ -78,10 +78,11 @@ class FileService:
     @staticmethod
     def binary_get(file_hash=None, **kwargs):
         try:
-            response_file = File.query_one(hash=file_hash)
+            return File.objects.get(hash=file_hash)
+            # response_file = File.objects.get(hash=file_hash)
 
-            response = HttpResponse(response_file.file)
-            response['Content-Disposition'] = 'attachment; filename=' + response_file.filename
+            # response = HttpResponse(response_file.file)
+            # response['Content-Disposition'] = 'attachment; filename=' + response_file.filename
             return response
         except RequestException as r:
             return r.jsonResponse

@@ -3,12 +3,11 @@ import datetime
 from django.db import models
 
 import upmoodle.models.calendar
-from upmoodle.models.base_model import BaseModel
+from upmoodle.models._base_model import BaseModel
 from upmoodle.models.calendar.calendarDate import CalendarDate
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.user import User
 from upmoodle.models.utils.finals import *
-
 from upmoodle.models.utils.requestException import RequestExceptionByCode
 
 
@@ -29,7 +28,7 @@ class Calendar(BaseModel):
     frequency = models.ForeignKey('CalendarFrequency', default=DEFAULT_FREQUENCY)
 
     def __init__(self, *args, **kwargs):
-        from upmoodle.services.orm.serializers.calendar import CalendarEventSerializer
+        from upmoodle.models.serializers.calendar import CalendarEventSerializer
         super(Calendar, self).__init__(CalendarEventSerializer, *args, **kwargs)
 
 

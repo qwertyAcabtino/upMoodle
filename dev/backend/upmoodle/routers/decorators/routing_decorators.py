@@ -2,11 +2,54 @@ import uuid
 from functools import wraps
 
 import demjson as demjson
+from django.db.models import QuerySet
+from django.http import HttpResponse
+from enum import Enum
 
 from backend.settings import SESSION_COOKIE_NAME
+from upmoodle.models._base_model import BaseModel
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
+from upmoodle.models.utils.newJsonResponse import NewJsonResponse
 from upmoodle.models.utils.requestException import RequestExceptionByCode
 from upmoodle.services.auth import AuthService
+
+
+def response(media_type=None):
+    def _method_decorator(view_func):
+
+        def model_instance_to_json(obj):
+            if isinstance(obj, BaseModel):
+                return type(obj).get_json(obj, collection=False)
+            elif isinstance(obj, QuerySet):
+                return obj.model.get_json(obj, collection=True)
+
+        def get_json_response(obj):
+            if isinstance(obj, Enum):
+                return NewJsonResponse(message_id=obj)
+            else:
+                json_object = model_instance_to_json(obj)
+                return NewJsonResponse(body=json_object)
+
+        def get_octet_stream_response(obj):
+            http_response = HttpResponse(obj.file)
+            http_response['Content-Disposition'] = 'attachment; filename=' + obj.filename
+            return http_response
+
+        def _decorator(*args, **kwargs):
+            try:
+                obj = view_func(*args, **kwargs)
+                switcher = {
+                    'application/json': get_json_response,
+                    'application/octet-stream': get_octet_stream_response
+                }
+                return switcher.get(media_type)(obj)
+            except MessageBasedException as m:
+                return m.get_json_response()
+            except Exception as e:
+                return MessageBasedException(exception=e).get_json_response()
+        return wraps(view_func)(_decorator)
+    return _method_decorator
 
 
 def authenticated(view_func):

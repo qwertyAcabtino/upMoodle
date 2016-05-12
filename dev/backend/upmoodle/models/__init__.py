@@ -15,7 +15,3 @@ from upmoodle.models.level.levelType import LevelType
 from upmoodle.models.note.noteBoard import NoteBoard
 from upmoodle.models.user.rol import Rol
 from upmoodle.models.user.user import User
-
-
-
-

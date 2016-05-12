@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from upmoodle.models.base_model import BaseModel
+from upmoodle.models._base_model import BaseModel
 from upmoodle.models.user import User
 from upmoodle.models.utils.validators import validate_length
 
@@ -17,7 +17,7 @@ class NoteBoard(BaseModel):
     created = models.DateTimeField(default=timezone.now, editable=True, null=False)
 
     def __init__(self, *args, **kwargs):
-        from upmoodle.services.orm.serializers import NoteBoardSerializer
+        from upmoodle.models.serializers import NoteBoardSerializer
         super(NoteBoard, self).__init__(NoteBoardSerializer, *args, **kwargs)
 
     def __unicode__(self):

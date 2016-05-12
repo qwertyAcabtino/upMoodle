@@ -138,7 +138,7 @@ angular.module('upmApp').controller('ModalEditNote', function ($scope, $uibModal
   $scope.saveNewNote = function (newNote) {
     api.note.update( newNote )
     .success(function (data) {
-      $uibModalInstance.close(data);
+      $uibModalInstance.close(data.message);
     })
     .error(function(data, status, headers, config) {
          snackbar.error(data);

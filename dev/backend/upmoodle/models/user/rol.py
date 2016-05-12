@@ -1,6 +1,6 @@
 from django.db import models
 
-from upmoodle.models.base_model import BaseModel
+from upmoodle.models._base_model import BaseModel
 
 
 class Rol(BaseModel):
@@ -9,7 +9,7 @@ class Rol(BaseModel):
     priority = models.IntegerField(default=0)  # The more high is the value, the more priority.
 
     def __init__(self, *args, **kwargs):
-        from upmoodle.services.orm.serializers import RolSerializer
+        from upmoodle.models.serializers import RolSerializer
         super(Rol, self).__init__(RolSerializer, *args, **kwargs)
 
     def __unicode__(self):

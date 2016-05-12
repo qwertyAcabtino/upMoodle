@@ -6,6 +6,7 @@ from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from upmoodle.services.auth import AuthService
 from upmoodle.services.level import LevelService
+from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
 
 
 class NoteService:
@@ -73,16 +74,11 @@ class NoteService:
             return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
 
     @staticmethod
+    @zero_exceptions
     def get_notes_by_level_id(level_id=None, data=None):
-        try:
-            Level.validate_exists_level(level_id)
-            if data.get('recursive') and data.get('recursive') == 'true':
-                level_group = LevelService.get_level_children_ids_list(level_id=level_id)
-            else:
-                level_group = (level_id,)
-            notes_list = NoteBoard.query_many(level_id__in=level_group, visible=True)
-            return JsonResponse(body=notes_list)
-        except RequestException as r:
-            return r.jsonResponse
-        except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+        Level.validate_exists_level(level_id)
+        if data.get('recursive') and data.get('recursive') == 'true':
+            level_group = LevelService.get_level_children_ids_list(level_id=level_id)
+        else:
+            level_group = (level_id,)
+        return NoteBoard.objects.filter(level_id__in=level_group, visible=True)
