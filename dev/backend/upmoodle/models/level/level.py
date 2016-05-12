@@ -18,12 +18,12 @@ class Level(models.Model):
     def is_subject(self):
         return self.type.name == 'subject'
 
-    @staticmethod
-    def validate_exists(form):
+    @classmethod
+    def validate_exists(cls, form):
         try:
             fk = form['level_id']
-            Level.objects.get(id=fk)
-            Level.validate_exists_level(fk)
+            cls.objects.get(id=fk)
+            cls.validate_exists_level(fk)
         except (MultiValueDictKeyError, KeyError):
             from upmoodle.models.utils.requestException import RequestExceptionByCode
             raise RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL)
