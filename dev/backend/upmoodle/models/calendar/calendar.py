@@ -8,6 +8,9 @@ from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.user import User
 from upmoodle.models.utils.finals import *
 
+from upmoodle.models.utils.requestException import RequestExceptionByCode
+from upmoodle.services.orm.unserializer.internal import unserialize
+
 
 class Calendar(models.Model):
     id = models.AutoField(primary_key=True)
@@ -52,7 +55,6 @@ class Calendar(models.Model):
     # TODO. hourStart > hourEnd.
     def validateHours(self):
         if not self.allDay and (not self.hourStart or not self.hourEnd):
-            from upmoodle.models.utils.requestException import RequestExceptionByCode
             raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
     # TODO. Error message.
@@ -107,3 +109,12 @@ class Calendar(models.Model):
             for field in fields:
                 setattr(self, field, getattr(newModel, field))
 
+    @classmethod
+    def parse(cls, form, *args, **kwargs):
+        fields = kwargs.get('fields', None)
+        optional = kwargs.get('optional', False)
+        if fields:
+            calendar = Calendar()
+            return unserialize(calendar, fields, form, optional=optional)
+        else:
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)

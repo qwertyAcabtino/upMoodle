@@ -7,8 +7,7 @@ from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from upmoodle.services.auth import AuthService
-from upmoodle.services.orm.serializers import FileSerializer, FileTypeSerializer, BannedHashSerializer
-from upmoodle.services.orm.unserializer import unserialize_file_binary, unserialize_file
+from upmoodle.services.orm.serializers import FileTypeSerializer, BannedHashSerializer
 
 
 class FileService:
@@ -26,7 +25,7 @@ class FileService:
             Level.validate_exists_level(data['subject_id'])
             Level.validate_subject_type(data['subject_id'])
             fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
-            new_file = unserialize_file_binary(data, fields=fields, optional=True, binary=files['file'])
+            new_file = File.parse(data, fields=fields, optional=True, binary=files['file'])
             new_file.save()
             return JsonResponse(message_id=OkMessage.Type.FILE_UPLOADED)
         except Exception:
@@ -48,8 +47,7 @@ class FileService:
     @staticmethod
     def metadata_get(file_hash=None, **kwargs):
         try:
-            file_returning = File.objects.filter(hash=file_hash, visible=True)
-            file_dict = FileSerializer(file_returning, many=True).data
+            file_dict = File.query_one(hash=file_hash, visible=True)
             return JsonResponse(body=file_dict)
         except RequestException as r:
             return r.jsonResponse
@@ -64,7 +62,7 @@ class FileService:
             AuthService.is_authorized_author(session_token=session_token, author_id=file_original.uploader_id, level=True, same=False)
 
             fields = ['name', 'text', 'fileType_id']
-            file_updated = unserialize_file(data, fields=fields, optional=True)
+            file_updated = File.parse(data, fields=fields, optional=True)
 
             file_original.update(file_updated, fields)
             file_original.lastUpdater_id = User.get_signed_user_id(session_token)
@@ -80,7 +78,7 @@ class FileService:
     @staticmethod
     def binary_get(file_hash=None, **kwargs):
         try:
-            response_file = File.objects.get(hash=file_hash)
+            response_file = File.query_one(hash=file_hash)
 
             response = HttpResponse(response_file.file)
             response['Content-Disposition'] = 'attachment; filename=' + response_file.filename
@@ -101,8 +99,7 @@ class FileService:
         try:
             level = Level.objects.get(id=level_id)
             if level.is_subject():
-                files = File.objects.filter(subject=level_id, visible=True)
-                files_dict = FileSerializer(files, many=True).data
+                files_dict = File.query_many(subject=level_id, visible=True)
                 return JsonResponse(body=files_dict)
             elif not level.is_subject():
                 return RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL).jsonResponse

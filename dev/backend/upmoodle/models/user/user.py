@@ -1,3 +1,5 @@
+from copy import copy
+
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
@@ -7,6 +9,7 @@ from upmoodle.models.base_model import BaseModel
 from upmoodle.models.level import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.finals import STUDENT
+from upmoodle.models.utils.requestException import RequestExceptionByCode
 from upmoodle.models.utils.validators import validate_length
 
 
@@ -77,7 +80,6 @@ class User(BaseModel):
         if level.is_subject():
             self.subjects.add(level)
         else:
-            from upmoodle.models.utils.requestException import RequestExceptionByCode
             raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
 
     def update_subjects(self, subjects):
@@ -85,7 +87,29 @@ class User(BaseModel):
         for subject in subjects:
             self.add_subject(subject)
 
-    @staticmethod
-    def get_signed_user_id(session_token):
-        return User.objects.get(sessionToken=session_token).id
+    @classmethod
+    def parse(cls, form, *args, **kwargs):
+        fields = kwargs.get('fields', None)
+        fields_copy = copy(fields)
+        session_token = kwargs.get('sessionToken', None)
+        optional = kwargs.get('optional', False)
+        if fields:
+            user = User()
+            for field in fields_copy:
+                try:
+                    setattr(user, field, form[field])
+                except KeyError as m:
+                    if not optional:
+                        raise m
+                    else:
+                        fields.remove(field)
+            if session_token:
+                user.sessionToken = session_token
+            return user
+        else:
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+
+    @classmethod
+    def get_signed_user_id(cls, session_token):
+        return cls.objects.get(sessionToken=session_token).id
 

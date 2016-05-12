@@ -8,7 +8,6 @@ from upmoodle.models.utils.requestException import RequestException, RequestExce
 from upmoodle.services.auth import AuthService
 from upmoodle.services.level import LevelService
 from upmoodle.services.orm.serializers import NoteBoardSerializer
-from upmoodle.services.orm.unserializer import unserialize_note
 
 
 class NoteService:
@@ -35,7 +34,7 @@ class NoteService:
 
             Level.validate_exists(data)
             fields = ['topic', 'text', 'level_id']
-            updated_note = unserialize_note(data, fields=fields, optional=True)
+            updated_note = NoteBoard.parse(data, fields=fields, optional=True)
             original_note.update(updated_note, fields)
             original_note.save()
             return JsonResponse(message_id=OkMessage.Type.NOTE_UPDATED)
@@ -65,7 +64,7 @@ class NoteService:
         try:
             Level.validate_exists(data)
             fields = ['topic', 'text', 'level_id']
-            note = unserialize_note(data, fields=fields, optional=True)
+            note = NoteBoard.parse(data, fields=fields, optional=True)
             note.author_id = User.get_signed_user_id(session_token)
             note.save()
             return JsonResponse(body=note, message_id=OkMessage.Type.NOTE_CREATED)

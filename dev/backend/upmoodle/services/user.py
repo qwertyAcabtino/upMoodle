@@ -7,7 +7,6 @@ from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
-from upmoodle.services.orm.unserializer import unserialize_user
 from upmoodle.services.utils.randoms import RandomStringsService
 
 
@@ -49,7 +48,7 @@ class UserService:
             except KeyError:
                 pass
             fields = ['nick', 'name', 'password', 'email']
-            updated_user = unserialize_user(data, fields=fields, optional=True)
+            updated_user = User.parse(data, fields=fields, optional=True)
             auth_user.update(updated_user, fields)
             auth_user.save()
             return JsonResponse(message_id=OkMessage.Type.USER_UPDATED)

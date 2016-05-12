@@ -1,8 +1,11 @@
 from django.db import models
 from django.utils import timezone
 
+from upmoodle.models import ErrorMessage
 from upmoodle.models.user import User
+from upmoodle.models.utils.requestException import RequestExceptionByCode
 from upmoodle.models.utils.validators import validate_length
+from upmoodle.services.orm.unserializer.internal import unserialize
 
 
 class NoteBoard(models.Model):
@@ -40,3 +43,13 @@ class NoteBoard(models.Model):
         if fields:
             for field in fields:
                 setattr(self, field, getattr(userUpdate, field))
+
+    @classmethod
+    def parse(cls, form, *args, **kwargs):
+        fields = kwargs.get('fields', None)
+        optional = kwargs.get('optional', False)
+        if fields:
+            note = NoteBoard()
+            return unserialize(note, fields, form, optional=optional)
+        else:
+            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)

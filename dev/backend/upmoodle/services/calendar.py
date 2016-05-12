@@ -12,7 +12,6 @@ from upmoodle.models.utils.requestException import RequestException, RequestExce
 from upmoodle.services.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
-from upmoodle.services.orm.unserializer import unserialize_calendar
 from upmoodle.services.auth import AuthService
 
 
@@ -64,7 +63,7 @@ class CalendarService:
             AuthService.is_authorized_author(session_token=session_token, author_id=original_calendar.author_id, level=True)
             Level.validate_exists(data)
             fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency']
-            calendar_object = unserialize_calendar(data, fields=fields, optional=True)
+            calendar_object = Calendar.parse(data, fields=fields, optional=True)
             calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
             calendar_object.lastUpdate = datetime.now()
             original_calendar.update(calendar_object, fields)
@@ -80,7 +79,7 @@ class CalendarService:
         try:
             Level.validate_exists(data)
             fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency_id']
-            calendar_object = unserialize_calendar(data, fields=fields, optional=True)
+            calendar_object = Calendar.parse(data, fields=fields, optional=True)
             calendar_object.author_id = User.get_signed_user_id(session_token)
             calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
             AuthService.is_authorized_author(session_token=session_token, author_id=calendar_object.author_id, level=True)

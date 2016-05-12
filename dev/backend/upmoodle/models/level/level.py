@@ -4,6 +4,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from upmoodle.models.message.errorMessage import ErrorMessage
 
+from upmoodle.models.utils.requestException import RequestExceptionByCode
+
 
 class Level(models.Model):
     id = models.AutoField(primary_key=True)
@@ -25,7 +27,6 @@ class Level(models.Model):
             cls.objects.get(id=fk)
             cls.validate_exists_level(fk)
         except (MultiValueDictKeyError, KeyError):
-            from upmoodle.models.utils.requestException import RequestExceptionByCode
             raise RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL)
 
     @staticmethod

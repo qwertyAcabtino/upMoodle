@@ -11,7 +11,6 @@ from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestExceptionByCode, RequestException, \
     RequestExceptionByMessage
-from upmoodle.services.orm.unserializer import unserialize_user
 from upmoodle.services.utils.email import EmailService
 from upmoodle.services.utils.randoms import RandomStringsService
 
@@ -55,8 +54,7 @@ class AuthService:
         try:
             session_token = AuthService.get_cookie(session_token)
 
-            user = unserialize_user(data, sessionToken=session_token,
-                                    fields=['email', 'password', 'nick', 'name'])
+            user = User.parse(data, sessionToken=session_token, fields=['email', 'password', 'nick', 'name'])
             EmailService.send_signup_confirmation_email(email=user.email, session_token=session_token)
             user.save()
             json_response = JsonResponse(body=user)
