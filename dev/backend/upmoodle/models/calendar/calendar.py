@@ -3,16 +3,16 @@ import datetime
 from django.db import models
 
 import upmoodle.models.calendar
+from upmoodle.models.base_model import BaseModel
 from upmoodle.models.calendar.calendarDate import CalendarDate
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.user import User
 from upmoodle.models.utils.finals import *
 
 from upmoodle.models.utils.requestException import RequestExceptionByCode
-from upmoodle.services.orm.unserializer.internal import unserialize
 
 
-class Calendar(models.Model):
+class Calendar(BaseModel):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     text = models.CharField(max_length=2000)
@@ -27,6 +27,11 @@ class Calendar(models.Model):
     lastDate = models.DateField(auto_created=False, blank=True, null=True)
     allDay = models.BooleanField(default=False)
     frequency = models.ForeignKey('CalendarFrequency', default=DEFAULT_FREQUENCY)
+
+    def __init__(self, *args, **kwargs):
+        from upmoodle.services.orm.serializers.calendar import CalendarEventSerializer
+        super(Calendar, self).__init__(CalendarEventSerializer, *args, **kwargs)
+
 
     def __unicode__(self):
         return self.title
@@ -110,11 +115,11 @@ class Calendar(models.Model):
                 setattr(self, field, getattr(newModel, field))
 
     @classmethod
-    def parse(cls, form, *args, **kwargs):
+    def parse(cls, json, **kwargs):
         fields = kwargs.get('fields', None)
         optional = kwargs.get('optional', False)
         if fields:
             calendar = Calendar()
-            return unserialize(calendar, fields, form, optional=optional)
+            return calendar.unserialize(fields, json, optional=optional)
         else:
             raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)

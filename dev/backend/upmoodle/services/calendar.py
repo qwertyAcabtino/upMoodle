@@ -9,7 +9,6 @@ from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
-from upmoodle.services.orm.serializers import CalendarEventSerializer
 
 # TODO. Return only related events.
 from upmoodle.services.auth import AuthService
@@ -28,15 +27,13 @@ class CalendarService:
             for event in events:
                 ids.add(event.calendarId.id)
 
-            events = Calendar.objects.filter(id__in=list(ids))
-            event_list = CalendarEventSerializer(events, many=True).data
+            event_list = Calendar.query_many(id__in=list(ids))
             return JsonResponse(body=event_list)
 
     @staticmethod
     def get_calendar_by_id(calendar_id=None, **kwargs):
         try:
-            event = Calendar.objects.get(id=calendar_id)
-            event_dict = CalendarEventSerializer(event, many=False).data
+            event_dict = Calendar.query_one(id=calendar_id)
             return JsonResponse(body=event_dict)
         except RequestException as r:
             return r.jsonResponse

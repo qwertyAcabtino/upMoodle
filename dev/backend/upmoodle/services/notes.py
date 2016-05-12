@@ -1,13 +1,11 @@
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.utils.datastructures import MultiValueDictKeyError
 
-from upmoodle.models import NoteBoard, Level, User, OkMessage
-from upmoodle.models.message.errorMessage import ErrorMessage
+from upmoodle.models import NoteBoard, Level, User, OkMessage, ErrorMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
 from upmoodle.services.auth import AuthService
 from upmoodle.services.level import LevelService
-from upmoodle.services.orm.serializers import NoteBoardSerializer
 
 
 class NoteService:
@@ -17,8 +15,7 @@ class NoteService:
     @staticmethod
     def get_note_by_id(note_id=None, **kwargs):
         try:
-            note = NoteBoard.objects.get(id=note_id, visible=True)
-            note_dict = NoteBoardSerializer(note, many=False).data
+            note_dict = NoteBoard.query_one(id=note_id, visible=True)
             return JsonResponse(body=note_dict)
         except RequestException as r:
             return r.jsonResponse
@@ -46,7 +43,7 @@ class NoteService:
             return RequestExceptionByMessage(v).jsonResponse
 
     @staticmethod
-    def delete_note_by_id(session_token=None, note_id=None, data=None, **kwargs):
+    def delete_note_by_id(session_token=None, note_id=None, **kwargs):
         try:
             original_note = NoteBoard.objects.get(id=note_id)
             AuthService.is_authorized_author(session_token=session_token, author_id=original_note.author_id, level=True)
@@ -83,8 +80,7 @@ class NoteService:
                 level_group = LevelService.get_level_children_ids_list(level_id=level_id)
             else:
                 level_group = (level_id,)
-            notes = NoteBoard.objects.filter(level_id__in=level_group, visible=True)
-            notes_list = NoteBoardSerializer(notes, many=True).data
+            notes_list = NoteBoard.query_many(level_id__in=level_group, visible=True)
             return JsonResponse(body=notes_list)
         except RequestException as r:
             return r.jsonResponse

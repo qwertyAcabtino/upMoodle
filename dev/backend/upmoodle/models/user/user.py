@@ -88,7 +88,7 @@ class User(BaseModel):
             self.add_subject(subject)
 
     @classmethod
-    def parse(cls, form, *args, **kwargs):
+    def parse(cls, json, **kwargs):
         fields = kwargs.get('fields', None)
         fields_copy = copy(fields)
         session_token = kwargs.get('sessionToken', None)
@@ -97,7 +97,7 @@ class User(BaseModel):
             user = User()
             for field in fields_copy:
                 try:
-                    setattr(user, field, form[field])
+                    setattr(user, field, json[field])
                 except KeyError as m:
                     if not optional:
                         raise m

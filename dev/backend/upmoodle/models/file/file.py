@@ -77,12 +77,12 @@ class File(BaseModel):
                 setattr(self, field, getattr(user_update, field))
 
     @classmethod
-    def parse(cls, form, *args, **kwargs):
+    def parse(cls, json, **kwargs):
         fields = kwargs.get('fields', None)
         optional = kwargs.get('optional', False)
         binary = kwargs.get('binary', None)
         if fields:
             filez = File(file=binary)
-            return filez.unserialize(fields, form, optional=optional)
+            return filez.unserialize(fields, json, optional=optional)
         else:
             raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)

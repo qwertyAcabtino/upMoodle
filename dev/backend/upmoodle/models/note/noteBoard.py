@@ -2,13 +2,13 @@ from django.db import models
 from django.utils import timezone
 
 from upmoodle.models import ErrorMessage
+from upmoodle.models.base_model import BaseModel
 from upmoodle.models.user import User
 from upmoodle.models.utils.requestException import RequestExceptionByCode
 from upmoodle.models.utils.validators import validate_length
-from upmoodle.services.orm.unserializer.internal import unserialize
 
 
-class NoteBoard(models.Model):
+class NoteBoard(BaseModel):
     id = models.AutoField(primary_key=True)
     topic = models.CharField(max_length=100)
     text = models.CharField(max_length=2000)
@@ -17,6 +17,10 @@ class NoteBoard(models.Model):
     visible = models.BooleanField(default=True)
     authorized = models.BooleanField(default=True)  # Todo. Remove.
     created = models.DateTimeField(default=timezone.now, editable=True, null=False)
+
+    def __init__(self, *args, **kwargs):
+        from upmoodle.services.orm.serializers import NoteBoardSerializer
+        super(NoteBoard, self).__init__(NoteBoardSerializer, *args, **kwargs)
 
     def __unicode__(self):
         return self.topic
@@ -45,11 +49,11 @@ class NoteBoard(models.Model):
                 setattr(self, field, getattr(userUpdate, field))
 
     @classmethod
-    def parse(cls, form, *args, **kwargs):
+    def parse(cls, json, **kwargs):
         fields = kwargs.get('fields', None)
         optional = kwargs.get('optional', False)
         if fields:
             note = NoteBoard()
-            return unserialize(note, fields, form, optional=optional)
+            return note.unserialize(fields, json, optional=optional)
         else:
             raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
