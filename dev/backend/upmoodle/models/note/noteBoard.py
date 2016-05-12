@@ -1,10 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
-from upmoodle.models import ErrorMessage
 from upmoodle.models.base_model import BaseModel
 from upmoodle.models.user import User
-from upmoodle.models.utils.requestException import RequestExceptionByCode
 from upmoodle.models.utils.validators import validate_length
 
 
@@ -43,17 +41,7 @@ class NoteBoard(BaseModel):
         length = NoteBoard._meta.get_field('text').max_length
         validate_length(self.text, length)
 
-    def update(self, userUpdate, fields):
+    def update(self, update_user, fields):
         if fields:
             for field in fields:
-                setattr(self, field, getattr(userUpdate, field))
-
-    @classmethod
-    def parse(cls, json, **kwargs):
-        fields = kwargs.get('fields', None)
-        optional = kwargs.get('optional', False)
-        if fields:
-            note = NoteBoard()
-            return note.unserialize(fields, json, optional=optional)
-        else:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+                setattr(self, field, getattr(update_user, field))

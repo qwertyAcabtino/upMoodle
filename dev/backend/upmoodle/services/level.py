@@ -4,7 +4,6 @@ from upmoodle.models import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode
-from upmoodle.services.orm.serializers import LevelSerializer
 
 
 class LevelService:
@@ -13,12 +12,8 @@ class LevelService:
         pass
 
     @staticmethod
-    def __get_level_object(level_id=None):
-        if not level_id:
-            level = Level.objects.filter(parent=None, visible=True)
-        else:
-            level = Level.objects.filter(parent=level_id, visible=True)
-        return LevelSerializer(level, many=True).data
+    def __get_level_json_object(level_id=None):
+        return Level.query_many(parent=level_id, visible=True)
 
     @staticmethod
     def get_tree(level_id=None):
@@ -26,18 +21,18 @@ class LevelService:
 
     @staticmethod
     def __get_tree_from_id(level_id=None):
-        level_object = LevelService.__get_level_object(level_id=level_id)
+        level_json = LevelService.__get_level_json_object(level_id=level_id)
 
         if not level_id:
-            for item in level_object:
+            for item in level_json:
                 item['children'] = LevelService.__get_tree_from_id(item.get('id'))
-            return JsonResponse(body=level_object)
+            return JsonResponse(body=level_json)
         else:
-            for item in level_object:
+            for item in level_json:
                 item['children'] = LevelService.__get_tree_from_id(item.get('id'))
                 if not item['children'] or len(item['children']) is 0:
                     del item['children']
-            return level_object
+            return level_json
 
     @staticmethod
     def get_level_children_ids_list(level_id=None):

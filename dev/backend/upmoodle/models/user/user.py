@@ -1,5 +1,3 @@
-from copy import copy
-
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
@@ -89,25 +87,9 @@ class User(BaseModel):
 
     @classmethod
     def parse(cls, json, **kwargs):
-        fields = kwargs.get('fields', None)
-        fields_copy = copy(fields)
-        session_token = kwargs.get('sessionToken', None)
-        optional = kwargs.get('optional', False)
-        if fields:
-            user = User()
-            for field in fields_copy:
-                try:
-                    setattr(user, field, json[field])
-                except KeyError as m:
-                    if not optional:
-                        raise m
-                    else:
-                        fields.remove(field)
-            if session_token:
-                user.sessionToken = session_token
-            return user
-        else:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+        user = super(User, cls).parse(json, **kwargs)
+        user.sessionToken = kwargs.get('sessionToken', None)
+        return user
 
     @classmethod
     def get_signed_user_id(cls, session_token):

@@ -78,11 +78,7 @@ class File(BaseModel):
 
     @classmethod
     def parse(cls, json, **kwargs):
-        fields = kwargs.get('fields', None)
-        optional = kwargs.get('optional', False)
         binary = kwargs.get('binary', None)
-        if fields:
-            filez = File(file=binary)
-            return filez.unserialize(fields, json, optional=optional)
-        else:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+        new_file = File(file=binary)
+        new_file._set_by_json(json, **kwargs)
+        return new_file

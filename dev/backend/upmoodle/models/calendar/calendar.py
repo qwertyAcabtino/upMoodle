@@ -116,10 +116,6 @@ class Calendar(BaseModel):
 
     @classmethod
     def parse(cls, json, **kwargs):
-        fields = kwargs.get('fields', None)
-        optional = kwargs.get('optional', False)
-        if fields:
-            calendar = Calendar()
-            return calendar.unserialize(fields, json, optional=optional)
-        else:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+        calendar = Calendar()
+        calendar._set_by_json(json, **kwargs)
+        return calendar
