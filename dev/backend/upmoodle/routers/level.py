@@ -19,5 +19,6 @@ def level_notes_list(request, level_id, data=None, **kwargs):
 
 @authenticated
 @method('GET')
+@response(media_type='application/json')
 def level_files_list(request, level_id, data=None, **kwargs):
     return FileService.get_files_by_level_id(level_id=level_id)

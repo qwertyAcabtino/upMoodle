@@ -372,7 +372,7 @@
     "model": "upmoodle.okmessage",
     "pk": 14,
     "fields": {
-      "http_code": 204,
+      "http_code": 200,
       "text": "File's info has been updated"
     }
   },

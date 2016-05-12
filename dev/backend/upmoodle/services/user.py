@@ -1,15 +1,7 @@
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.utils.datastructures import MultiValueDictKeyError
-
 from upmoodle.models import User
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
-from upmoodle.models.utils.jsonResponse import JsonResponse
-from upmoodle.models.utils.newJsonResponse import NewJsonResponse
-from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, \
-    RequestExceptionByMessage
-from upmoodle.services.rol import RolService
 from upmoodle.services.utils.randoms import RandomStringsService
 from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
 

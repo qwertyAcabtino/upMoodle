@@ -46,7 +46,8 @@ class File(BaseModel):
         return "%s_%s" % (self.hash, str(int(time.time())))
 
     def save(self, *args, **kwargs):
-        self.hash = self.get_binary_sha256()
+        if self.hash is None or self.hash == '':
+            self.hash = self.get_binary_sha256()
 
         self.clean()
         if not self.lastUpdater_id:
