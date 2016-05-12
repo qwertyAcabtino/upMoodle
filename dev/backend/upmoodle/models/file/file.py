@@ -2,7 +2,6 @@ import datetime
 import hashlib
 import time
 
-from django.core.exceptions import ValidationError
 from django.db import models
 
 from upmoodle.models.file.fileType import FileType

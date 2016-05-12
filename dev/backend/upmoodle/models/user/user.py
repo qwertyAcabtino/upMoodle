@@ -3,13 +3,14 @@ from django.core.validators import validate_email
 from django.db import models
 from django.utils import timezone
 
+from upmoodle.models.base_model import BaseModel
 from upmoodle.models.level import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.finals import STUDENT
 from upmoodle.models.utils.validators import validate_length
 
 
-class User(models.Model):
+class User(BaseModel):
     id = models.AutoField(primary_key=True)
     rol = models.ForeignKey('Rol', default=STUDENT)
     email = models.EmailField(max_length=100, unique=True)
@@ -23,6 +24,10 @@ class User(models.Model):
     confirmedEmail = models.BooleanField(default=False)
     sessionToken = models.CharField(max_length=256, blank=True, unique=True)
     subjects = models.ManyToManyField(Level, blank=True)
+
+    def __init__(self, *args, **kwargs):
+        from upmoodle.services.orm.serializers import UserSerializer
+        super(User, self).__init__(UserSerializer, *args, **kwargs)
 
     def __unicode__(self):
         return self.nick
@@ -45,40 +50,32 @@ class User(models.Model):
         from upmoodle.models.utils.requestException import RequestExceptionByCode
         try:
             validate_email(self.email)
-            if not "@eui.upm.es" in self.email and not "@upm.es" in self.email and not "@alumnos.upm.es" in self.email:
+            if "@eui.upm.es" not in self.email and "@upm.es" not in self.email and "@alumnos.upm.es" not in self.email:
                 raise RequestExceptionByCode(ErrorMessage.Type.EMAIL_INVALID)
         except ValidationError as v:
             raise RequestExceptionByCode(ErrorMessage.Type.EMAIL_INVALID)
 
     def validate_password(self):
-        lengthMax = User._meta.get_field('password').max_length
-        validate_length(self.password, lengthMax, 8, ErrorMessage.Type.PASSWORD_LENGTH)
+        max_length = User._meta.get_field('password').max_length
+        validate_length(self.password, max_length, 8, ErrorMessage.Type.PASSWORD_LENGTH)
 
     def validate_nick(self):
-        lengthMax = User._meta.get_field('nick').max_length
-        validate_length(self.nick, lengthMax, 4, ErrorMessage.Type.NICK_LENGTH)
+        max_length = User._meta.get_field('nick').max_length
+        validate_length(self.nick, max_length, 4, ErrorMessage.Type.NICK_LENGTH)
 
     def validate_name(self):
-        lengthMax = User._meta.get_field('name').max_length
-        validate_length(self.name, lengthMax, 4, ErrorMessage.Type.NAME_LENGTH)
+        max_length = User._meta.get_field('name').max_length
+        validate_length(self.name, max_length, 4, ErrorMessage.Type.NAME_LENGTH)
 
-    def update(self, userUpdate, fields):
+    def update(self, updated_user, fields):
         if fields:
             for field in fields:
-                setattr(self, field, getattr(userUpdate, field))
+                setattr(self, field, getattr(updated_user, field))
 
-    def add_subject(self, subjectPk):
-        level = Level.objects.get(id=subjectPk)
+    def add_subject(self, subject_id):
+        level = Level.objects.get(id=subject_id)
         if level.is_subject():
             self.subjects.add(level)
-        else:
-            from upmoodle.models.utils.requestException import RequestExceptionByCode
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
-
-    def remove_subject(self, subjectPk):
-        level = Level.objects.get(id=subjectPk)
-        if level.is_subject():
-            self.subjects.remove(level)
         else:
             from upmoodle.models.utils.requestException import RequestExceptionByCode
             raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
@@ -88,12 +85,7 @@ class User(models.Model):
         for subject in subjects:
             self.add_subject(subject)
 
-    @property
-    def json(self):
-        from upmoodle.services.orm.serializers import UserSerializer
-        return UserSerializer(self, many=False).data
-
     @staticmethod
-    def get_signed_user_id(sessionToken):
-        return User.objects.get(sessionToken=sessionToken).id
+    def get_signed_user_id(session_token):
+        return User.objects.get(sessionToken=session_token).id
 

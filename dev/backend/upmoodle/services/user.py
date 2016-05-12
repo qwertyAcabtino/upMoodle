@@ -7,7 +7,6 @@ from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, \
     RequestExceptionByMessage
-from upmoodle.services.orm.serializers import UserSerializer
 from upmoodle.services.orm.unserializer import unserialize_user
 from upmoodle.services.utils.randoms import RandomStringsService
 
@@ -19,8 +18,8 @@ class UserService:
     @staticmethod
     def get_me(session_token=None, **kwargs):
         try:
-            user = User.objects.get(sessionToken=session_token)
-            return JsonResponse(body=user.json)
+            user_json = User.query_one(sessionToken=session_token)
+            return JsonResponse(body=user_json)
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
@@ -100,8 +99,8 @@ class UserService:
     @staticmethod
     def get_user_by_id(user_id=None):
         try:
-            user = User.objects.get(id=user_id)
-            return JsonResponse(body=user.json)
+            user_json = User.query_one(id=user_id)
+            return JsonResponse(body=user_json)
         except RequestException as r:
             return r.jsonResponse
         except (ObjectDoesNotExist, OverflowError, ValueError):
@@ -110,9 +109,8 @@ class UserService:
     @staticmethod
     def get_users_by_rol(rol_id=None):
         try:
-            users = User.objects.filter(rol=rol_id, banned=False)
-            users_dict = UserSerializer(users, many=True).data
-            return JsonResponse(body=users_dict)
+            users_json = User.query_many(rol=rol_id, banned=False)
+            return JsonResponse(body=users_json)
         except RequestException as r:
             return r.jsonResponse
         except OverflowError:
