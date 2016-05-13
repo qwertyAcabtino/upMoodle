@@ -154,4 +154,5 @@ class NoteTestCase(AuthenticationTestBase):
         pk = 2
         response = self.client.get('/level/' + str(pk) + '/notes')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.content, '[]')
+        notes = json.loads(response.content)['data']
+        self.assertEqual(notes, [])

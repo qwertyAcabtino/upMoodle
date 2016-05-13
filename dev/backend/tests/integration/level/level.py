@@ -38,11 +38,11 @@ class LevelNotesTestCase(AuthenticationTestBase):
         self._create_random_note(level_id=1)
         self._create_random_note(level_id=3)
         response = self.client.get('/level/1/notes?recursive=true')
-        notes = json.loads(response.content)
+        notes = json.loads(response.content)['data']
         assert len(notes) is 2
 
         response = self.client.get('/level/1/notes?recursive=false')
-        notes = json.loads(response.content)
+        notes = json.loads(response.content)['data']
         assert len(notes) is 1
 
 

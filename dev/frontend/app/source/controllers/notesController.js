@@ -6,7 +6,7 @@
  	$scope.getNotesByLevelId = function ( levelId, recursive ) {
  		api.level.getNotes(levelId, recursive || false)
  		.success(function(data, status, headers, config){
-       $scope.notes = data;	
+       $scope.notes = data.data;	
      })
  		.error(function(data, status, headers, config) {
        console.log(data.error);

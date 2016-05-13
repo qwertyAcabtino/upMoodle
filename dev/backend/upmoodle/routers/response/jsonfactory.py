@@ -29,7 +29,7 @@ class JsonResponseFactory:
                 stack_trace = exception.stack_trace
             else:
                 stack_trace = self.__get_stack_trace(kwargs.get('exception'))
-            self.response.get('error', dict())['text'] = stack_trace
+            self.response.get('error')['text'] += stack_trace
         return self
 
     def __get_stack_trace(self, exception):
@@ -37,6 +37,8 @@ class JsonResponseFactory:
             return exception.message
         elif hasattr(exception, 'messages') and len(exception.messages):
             return '\n. '.join(exception.messages)
+        else:
+            return ''
 
     def body(self, obj=None):
         self.obj = obj
@@ -59,7 +61,7 @@ class JsonResponseFactory:
         return switcher.get(self._media_type)()
 
     def get_json_response(self):
-        if self.obj and not self._identity:
+        if self.obj is not None and not self._identity:
             global object_json
             try:
                 object_json = type(self.obj).get_json(self.obj, collection=False)
