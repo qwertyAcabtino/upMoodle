@@ -57,7 +57,7 @@ class LevelFilesTestCase(AuthenticationTestBase):
         file_uploaded = utils._upload_file(self, level_id=4)
         file_uploaded = utils._upload_file(self, level_id=4)
         response = self.client.get('/level/4/files')
-        files = json.loads(response.content)
+        files = json.loads(response.content)['data']
         assert len(files) is 2
 
     def test_get_files_no_subject(self):

@@ -46,6 +46,7 @@ def file_by_hash_endpoint(request, file_hash, session_token=None, data=None):
 def file_add_endpoint(request, session_token=None, data=None):
     files = request.FILES
     new_file = FileService.add(session_token=session_token, data=data, files=files)
+    new_file.id = new_file.hash
     return JsonResponseFactory().ok(message_id=OkMessage.Type.FILE_UPLOADED).identity(obj=new_file).build()
 
 

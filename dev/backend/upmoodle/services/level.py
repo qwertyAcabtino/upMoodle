@@ -3,7 +3,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from upmoodle.models import Level
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.models.utils.jsonResponse import JsonResponse
 
 
 class LevelService:
@@ -26,7 +25,7 @@ class LevelService:
         if not level_id:
             for item in level_json:
                 item['children'] = LevelService.__get_tree_from_id(item.get('id'))
-            return JsonResponse(body=level_json)
+            return level_json
         else:
             for item in level_json:
                 item['children'] = LevelService.__get_tree_from_id(item.get('id'))

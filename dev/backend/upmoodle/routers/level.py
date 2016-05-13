@@ -8,8 +8,10 @@ from upmoodle.services.notes import NoteService
 
 @authenticated
 @method('GET')
+@zero_exceptions
 def level_tree(request, **kwargs):
-    return LevelService.get_tree()
+    mapped_levels = LevelService.get_tree()
+    return JsonResponseFactory().ok().body(flatten=mapped_levels).build()
 
 
 @authenticated
