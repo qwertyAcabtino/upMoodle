@@ -18,6 +18,6 @@ class RolEndpointTestCase(AuthenticationTestBase):
     def test_get_all_roles(self):
         self.login()
         response = self.client.get('/rol/_all')
-        data = json.loads(response.content)
+        data = json.loads(response.content)['data']
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(data), 6)

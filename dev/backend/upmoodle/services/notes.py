@@ -1,4 +1,4 @@
-from upmoodle.models import NoteBoard, Level, User, OkMessage
+from upmoodle.models import NoteBoard, Level, User
 from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.auth import AuthService
 from upmoodle.services.level import LevelService
@@ -25,7 +25,6 @@ class NoteService:
         updated_note = NoteBoard.parse(data, fields=fields, optional=True)
         original_note.update(updated_note, fields)
         original_note.save()
-        return OkMessage.Type.NOTE_UPDATED
 
     @staticmethod
     @map_exceptions
@@ -35,7 +34,6 @@ class NoteService:
 
         original_note.visible = False
         original_note.save()
-        return OkMessage.Type.NOTE_REMOVED
 
     @staticmethod
     @map_exceptions
@@ -45,7 +43,7 @@ class NoteService:
         note = NoteBoard.parse(data, fields=fields, optional=True)
         note.author_id = User.get_signed_user_id(session_token)
         note.save()
-        return OkMessage.Type.NOTE_CREATED
+        return note
 
     @staticmethod
     @map_exceptions

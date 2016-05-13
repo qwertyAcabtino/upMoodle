@@ -20,8 +20,8 @@ class NoteTestCase(AuthenticationTestBase):
         response = self.client.get('/note/' + pk + '/')
         self.assertEqual(response.status_code, 200)
         decoded = json.loads(response.content)
-        self.assertIsNotNone(decoded['id'])
-        self.assertEqual(decoded['topic'], self.DEFAULT_NOTE_TOPIC)
+        self.assertIsNotNone(decoded['data'])
+        self.assertEqual(decoded['data']['topic'], self.DEFAULT_NOTE_TOPIC)
 
     def test_getNote_not_signed_in(self):
         self.logout()
