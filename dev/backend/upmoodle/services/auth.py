@@ -1,15 +1,12 @@
 import uuid
 
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 
-from backend import settings
 from backend.settings import SESSION_COOKIE_NAME
 from upmoodle.models import User
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.models.message.okMessage import OkMessage
-from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.utils.email import EmailService
 from upmoodle.services.utils.randoms import RandomStringsService
@@ -86,7 +83,6 @@ class AuthService:
             EmailService.send_recover_password_email(user.email, password)
             user.password = password
             user.save()
-            return JsonResponse(message_id=OkMessage.Type.RECOVER_PASS_EMAIL)
 
     @staticmethod
     def is_authenticated(session_token):

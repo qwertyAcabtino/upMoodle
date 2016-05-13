@@ -14,13 +14,13 @@ def login(request, session_token=None, data=None):
     cookies = AuthService.login(session_token=session_token, data=data)
     return JsonResponseFactory().ok(message_id=OkMessage.Type.SUCCESS_LOGIN).cookies(cookies=cookies).build()
 
+
 @csrf_exempt
 @method('POST')
 @zero_exceptions
 def signup(request, session_token=None, data=None):
     cookies = AuthService.signup(session_token=session_token, data=data)
     return JsonResponseFactory().ok(message_id=OkMessage.Type.SUCCESS_SIGNUP).cookies(cookies=cookies).build()
-
 
 
 @csrf_exempt

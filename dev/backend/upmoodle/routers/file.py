@@ -7,10 +7,10 @@ from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.file import FileService, FileTypeService
 
 
+@zero_exceptions
 @csrf_exempt
 @authenticated
 @methods(('GET', 'PUT', 'DELETE'))
-@zero_exceptions
 def file_by_hash_endpoint(request, file_hash, session_token=None, data=None):
 
     def binary(file_hash_in=file_hash):
@@ -39,10 +39,10 @@ def file_by_hash_endpoint(request, file_hash, session_token=None, data=None):
         return binary(file_hash_in=file_hash)
 
 
+@zero_exceptions
 @csrf_exempt
 @authenticated
 @method('POST')
-@zero_exceptions
 def file_add_endpoint(request, session_token=None, data=None):
     files = request.FILES
     new_file = FileService.add(session_token=session_token, data=data, files=files)
@@ -50,16 +50,17 @@ def file_add_endpoint(request, session_token=None, data=None):
     return JsonResponseFactory().ok(message_id=OkMessage.Type.FILE_UPLOADED).identity(obj=new_file).build()
 
 
+@csrf_exempt
+@zero_exceptions
 @authenticated
 @method('GET')
-@zero_exceptions
 def filetype_list(request, **kwargs):
     return JsonResponseFactory().ok().body(obj=FileTypeService.get()).build()
 
 
+@zero_exceptions
 @authenticated
 @method('GET')
-@zero_exceptions
 def files_banned_hashes(request, **kwargs):
     return JsonResponseFactory().ok().body(obj=FileService.get_banned_hashes()).build()
 

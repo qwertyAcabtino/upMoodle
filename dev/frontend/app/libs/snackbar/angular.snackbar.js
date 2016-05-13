@@ -24,7 +24,7 @@
 				if(content===null){
 					content = "Server is down";
 				} else {
-					content = content.data.text ||content.text || content;
+					content = content.error.text ||content.text || content;
 				}
 
 				$rootScope.$broadcast('createSnackbar', { 'content': content, 'duration': duration, 'color': "red" });

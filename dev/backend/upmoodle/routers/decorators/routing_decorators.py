@@ -6,6 +6,7 @@ import demjson as demjson
 from backend.settings import SESSION_COOKIE_NAME
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
+from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.auth import AuthService
 
 
@@ -13,8 +14,8 @@ def authenticated(view_func):
     def _decorator(request, *args, **kwargs):
         try:
             _check_signed_in(request)
-        except MessageBasedException as r:
-            return r.get_json_response()
+        except MessageBasedException as m:
+            return JsonResponseFactory().error(message_id=m.message_id, exception=m).build()
 
         kwargs['session_token'] = request.COOKIES[SESSION_COOKIE_NAME]
         response = view_func(request, *args, **kwargs)
@@ -23,24 +24,11 @@ def authenticated(view_func):
     return wraps(view_func)(_decorator)
 
 
-def check_cookies(view_func):
-    def _decorator(request, *args, **kwargs):
-        try:
-            _check_cookies(request)
-        except MessageBasedException as r:
-            return r.get_json_response()
-
-        response = view_func(request, *args, **kwargs)
-        return response
-
-    return wraps(view_func)(_decorator)
-
-
 def method(method_value):
     def _method_decorator(view_func):
         def _decorator(request, *args, **kwargs):
             if not request.method == method_value:
-                return MessageBasedException(message_id=ErrorMessage.Type.NOT_ALLOWED_METHOD).get_json_response()
+                raise MessageBasedException(message_id=ErrorMessage.Type.NOT_ALLOWED_METHOD)
             else:
                 if method_value == 'POST':
                     kwargs['data'] = _body_to_json(request.body)
@@ -62,7 +50,7 @@ def methods(methods_list):
     def _method_decorator(view_func):
         def _decorator(request, *args, **kwargs):
             if request.method not in methods_list:
-                return MessageBasedException(message_id=ErrorMessage.Type.NOT_ALLOWED_METHOD).get_json_response()
+                raise MessageBasedException(message_id=ErrorMessage.Type.NOT_ALLOWED_METHOD)
             else:
 
                 if 'POST' in methods_list and request.method == 'POST':
@@ -91,9 +79,7 @@ def _check_cookies(request):
         return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME] and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
 
     if not cookies_are_ok():
-        exception = MessageBasedException(message_id=ErrorMessage.Type.DISABLED_COOKIES)
-        exception.get_json_response().set_cookie(SESSION_COOKIE_NAME, uuid.uuid4().hex)
-        raise exception
+        return JsonResponseFactory().error(message_id=ErrorMessage.Type.DISABLED_COOKIES).cookies(cookies={SESSION_COOKIE_NAME: uuid.uuid4().hex}).build()
 
 
 def _check_signed_in(request):

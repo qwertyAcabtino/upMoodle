@@ -1,16 +1,13 @@
 from datetime import datetime
 from sets import Set
 
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
-
 import calendar
 from upmoodle.models import CalendarDate, Calendar, Level, User
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.models.message.okMessage import OkMessage
-from upmoodle.models.utils.jsonResponse import JsonResponse
 
 # TODO. Return only related events.
+from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.auth import AuthService
 
 
@@ -19,6 +16,7 @@ class CalendarService:
         pass
 
     @staticmethod
+    @map_exceptions
     def get_calendar_by_period(period=None, init_date=None):
         if is_valid_init_date_by_period(period, init_date):
             range_date = get_date_range(period, init_date)
@@ -27,58 +25,47 @@ class CalendarService:
             for event in events:
                 ids.add(event.calendarId.id)
 
-            event_list = Calendar.query_many(id__in=list(ids))
-            return JsonResponse(body=event_list)
+            return Calendar.objects.filter(id__in=list(ids))
 
     @staticmethod
+    @map_exceptions
     def get_calendar_by_id(calendar_id=None, **kwargs):
-        try:
-            event_dict = Calendar.query_one(id=calendar_id)
-            return JsonResponse(body=event_dict)
-        except ObjectDoesNotExist or OverflowError or ValueError:
-            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
+        return Calendar.objects.get(id=calendar_id)
 
     @staticmethod
+    @map_exceptions
     def delete_calendar_by_id(session_token=None, calendar_id=None, **kwargs):
-        try:
-            event = Calendar.objects.get(id=calendar_id)
-            AuthService.is_authorized_author(session_token=session_token, author_id=event.author_id, level=True)
-            event.delete()
-            return JsonResponse(message_id=OkMessage.Type.CALENDAR_EVENT_REMOVED)
-        except ObjectDoesNotExist or OverflowError or ValueError:
-            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
+        event = Calendar.objects.get(id=calendar_id)
+        AuthService.is_authorized_author(session_token=session_token, author_id=event.author_id, level=True)
+        event.delete()
 
     @staticmethod
+    @map_exceptions
     def update_calendar_by_id(session_token=None, calendar_id=None, data=None, **kwargs):
-        try:
-            original_calendar = Calendar.objects.get(id=calendar_id)
+        original_calendar = Calendar.objects.get(id=calendar_id)
 
-            AuthService.is_authorized_author(session_token=session_token, author_id=original_calendar.author_id, level=True)
-            Level.validate_exists(data)
-            fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency']
-            calendar_object = Calendar.parse(data, fields=fields, optional=True)
-            calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
-            calendar_object.lastUpdate = datetime.now()
-            original_calendar.update(calendar_object, fields)
-            original_calendar.save()
-            return JsonResponse(message_id=OkMessage.Type.CALENDAR_UPDATED)
-        except ValidationError as v:
-            return MessageBasedException(exception=v).get_json_response()
+        AuthService.is_authorized_author(session_token=session_token, author_id=original_calendar.author_id, level=True)
+        Level.validate_exists(data)
+        fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency']
+        calendar_object = Calendar.parse(data, fields=fields, optional=True)
+        calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
+        calendar_object.lastUpdate = datetime.now()
+        original_calendar.update(calendar_object, fields)
+        original_calendar.save()
+        return original_calendar
 
     @staticmethod
+    @map_exceptions
     def add_calendar(session_token=None, data=None):
-        try:
-            Level.validate_exists(data)
-            fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency_id']
-            calendar_object = Calendar.parse(data, fields=fields, optional=True)
-            calendar_object.author_id = User.get_signed_user_id(session_token)
-            calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
-            AuthService.is_authorized_author(session_token=session_token, author_id=calendar_object.author_id, level=True)
-            calendar_object.lastUpdate = datetime.now()
-            calendar_object.save()
-            return JsonResponse(body=calendar_object, message_id=OkMessage.Type.CALENDAR_UPDATED)
-        except ValidationError as v:
-            return MessageBasedException(exception=v).get_json_response()
+        Level.validate_exists(data)
+        fields = ['title', 'text', 'level_id', 'hourStart', 'hourEnd', 'firstDate', 'lastDate', 'allDay', 'frequency_id']
+        calendar_object = Calendar.parse(data, fields=fields, optional=True)
+        calendar_object.author_id = User.get_signed_user_id(session_token)
+        calendar_object.lastUpdated_id = User.get_signed_user_id(session_token)
+        AuthService.is_authorized_author(session_token=session_token, author_id=calendar_object.author_id, level=True)
+        calendar_object.lastUpdate = datetime.now()
+        calendar_object.save()
+        return calendar_object
 
 
 def is_valid_month_init_date(init_date):

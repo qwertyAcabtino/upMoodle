@@ -27,13 +27,16 @@ class JsonResponseFactory:
         message = message_id.get()
         self.response.__setitem__('error', message.json)
         self.http_code = message.http_code
-        exception = kwargs.get('exception', None)
-        if exception:
+        if 'exception' in kwargs:
+            exception = kwargs.get('exception', None)
             if hasattr(exception, 'stack_trace'):
                 stack_trace = exception.stack_trace
             else:
                 stack_trace = self.__get_stack_trace(kwargs.get('exception'))
             self.response.get('error')['text'] += stack_trace
+        elif 'stack_trace' in kwargs:
+            self.response.get('error')['text'] += kwargs.get('stack_trace')
+
         return self
 
     def body(self, obj=None, flatten=None):
