@@ -1,7 +1,7 @@
 from django.views.decorators.csrf import csrf_exempt
 
 from upmoodle.models import OkMessage
-from upmoodle.routers.decorators.routing_decorators import authenticated, methods, method, response
+from upmoodle.routers.decorators.routing_decorators import authenticated, methods, method
 from upmoodle.routers.decorators.zero_exception_decorator import zero_exceptions
 from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.notes import NoteService

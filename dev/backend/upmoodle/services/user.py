@@ -1,7 +1,6 @@
 from upmoodle.models import User
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.utils.randoms import RandomStringsService
 
@@ -27,7 +26,6 @@ class UserService:
         deleting_user.banned = True
         deleting_user.confirmedEmail = False
         deleting_user.save()
-        return OkMessage.Type.USER_REMOVED
 
     @staticmethod
     @map_exceptions
@@ -43,7 +41,6 @@ class UserService:
         updated_user = User.parse(data, fields=fields, optional=True)
         auth_user.update(updated_user, fields)
         auth_user.save()
-        return OkMessage.Type.USER_UPDATED
 
     @staticmethod
     @map_exceptions
@@ -55,7 +52,6 @@ class UserService:
         updating_user = User.objects.get(sessionToken=session_token)
         updating_user.update_subjects(subjects)
         updating_user.save()
-        return OkMessage.Type.USER_UPDATED
 
     @staticmethod
     @map_exceptions
@@ -67,7 +63,6 @@ class UserService:
             auth_user = User.objects.get(sessionToken=session_token)
             auth_user.profilePic = avatar
             auth_user.save()
-            return OkMessage.Type.USER_UPDATED
 
     @staticmethod
     @map_exceptions

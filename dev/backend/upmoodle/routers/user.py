@@ -1,31 +1,34 @@
 from django.views.decorators.csrf import csrf_exempt
 
+from upmoodle.models import OkMessage
 from upmoodle.routers.decorators.routing_decorators import authenticated, methods, method, response
+from upmoodle.routers.decorators.zero_exception_decorator import zero_exceptions
+from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.user import UserService
 
 
 @csrf_exempt
 @authenticated
 @methods(('GET', 'POST', 'DELETE'))
-@response(media_type='application/json')
+@zero_exceptions
 def user_endpoint(request, session_token=None, data=None):
 
-    # @response(media_type='application/json')
-    # def get_me(session_token=None, data=None):
-    #     return UserService.get_me(session_token=session_token, data=data)
-    #
-    # @response(media_type='application/json')
-    # def update_me(session_token=None, data=None):
-    #     return UserService.update_me(session_token=session_token, data=data)
-    #
-    # @response(media_type='application/json')
-    # def delete_me(session_token=None, data=None):
-    #     return UserService.delete_me(session_token=session_token, data=data)
+    def get_me(session_token=None, data=None):
+        user = UserService.get_me(session_token=session_token, data=data)
+        return JsonResponseFactory().ok().body(obj=user).build()
+
+    def update_me(session_token=None, data=None):
+        UserService.update_me(session_token=session_token, data=data)
+        return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
+
+    def delete_me(session_token=None, data=None):
+        UserService.delete_me(session_token=session_token, data=data)
+        return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_REMOVED).build()
 
     service_methods = {
-        'GET': UserService.get_me,
-        'DELETE': UserService.delete_me,
-        'POST': UserService.update_me,
+        'GET': get_me,
+        'DELETE': delete_me,
+        'POST': update_me,
     }
 
     return service_methods[request.method](session_token=session_token, data=data)
@@ -34,29 +37,33 @@ def user_endpoint(request, session_token=None, data=None):
 @csrf_exempt
 @authenticated
 @method('POST')
-@response(media_type='application/json')
+@zero_exceptions
 def user_subjects(request, session_token=None, data=None):
-    return UserService.update_me_subjects(session_token=session_token, data=data)
+    UserService.update_me_subjects(session_token=session_token, data=data)
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
 
 
 @csrf_exempt
 @authenticated
 @method('POST')
-@response(media_type='application/json')
+@zero_exceptions
 def user_avatar(request, session_token=None, **kwargs):
     files = request.FILES
-    return UserService.update_me_avatar(session_token=session_token, files=files)
+    UserService.update_me_avatar(session_token=session_token, files=files)
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
 
 
 @authenticated
 @method('GET')
-@response(media_type='application/json')
+@zero_exceptions
 def user_by_id(request, pk, **kwargs):
-    return UserService.get_user_by_id(user_id=pk)
+    user = UserService.get_user_by_id(user_id=pk)
+    return JsonResponseFactory().ok().body(obj=user).build()
 
 
 @authenticated
 @method('GET')
-@response(media_type='application/json')
+@zero_exceptions
 def users_by_rol(request, pk, **kwargs):
-    return UserService.get_users_by_rol(rol_id=pk)
+    users = UserService.get_user_by_id(user_id=pk)
+    return JsonResponseFactory().ok().body(obj=users).build()
