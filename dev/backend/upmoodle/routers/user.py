@@ -7,10 +7,10 @@ from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.user import UserService
 
 
+@zero_exceptions
 @csrf_exempt
 @authenticated
 @methods(('GET', 'POST', 'DELETE'))
-@zero_exceptions
 def user_endpoint(request, session_token=None, data=None):
 
     def get_me(session_token=None, data=None):
@@ -34,36 +34,36 @@ def user_endpoint(request, session_token=None, data=None):
     return service_methods[request.method](session_token=session_token, data=data)
 
 
+@zero_exceptions
 @csrf_exempt
 @authenticated
 @method('POST')
-@zero_exceptions
 def user_subjects(request, session_token=None, data=None):
     UserService.update_me_subjects(session_token=session_token, data=data)
     return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
 
 
+@zero_exceptions
 @csrf_exempt
 @authenticated
 @method('POST')
-@zero_exceptions
 def user_avatar(request, session_token=None, **kwargs):
     files = request.FILES
     UserService.update_me_avatar(session_token=session_token, files=files)
     return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
 
 
+@zero_exceptions
 @authenticated
 @method('GET')
-@zero_exceptions
 def user_by_id(request, pk, **kwargs):
     user = UserService.get_user_by_id(user_id=pk)
     return JsonResponseFactory().ok().body(obj=user).build()
 
 
+@zero_exceptions
 @authenticated
 @method('GET')
-@zero_exceptions
 def users_by_rol(request, pk, **kwargs):
     users = UserService.get_user_by_id(user_id=pk)
     return JsonResponseFactory().ok().body(obj=users).build()

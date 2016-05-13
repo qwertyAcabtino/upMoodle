@@ -50,8 +50,8 @@ def file_add_endpoint(request, session_token=None, data=None):
     return JsonResponseFactory().ok(message_id=OkMessage.Type.FILE_UPLOADED).identity(obj=new_file).build()
 
 
-@csrf_exempt
 @zero_exceptions
+@csrf_exempt
 @authenticated
 @method('GET')
 def filetype_list(request, **kwargs):
