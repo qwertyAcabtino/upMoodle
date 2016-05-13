@@ -95,9 +95,9 @@ class JsonResponseFactory:
         else:
             if self.obj is not None and not self._identity:
                 try:
-                    self.flatten_obj = type(self.obj).get_json(self.obj, collection=False)
+                    self.flatten_obj = type(self.obj).get_flatten_object(self.obj, collection=False)
                 except Exception:
-                    self.flatten_obj = self.obj.model.get_json(self.obj, collection=True)
+                    self.flatten_obj = self.obj.model.get_flatten_object(self.obj, collection=True)
             elif self.obj and self._identity:
                 self.flatten_obj = dict()
                 self.flatten_obj.__setitem__('id', self.obj)

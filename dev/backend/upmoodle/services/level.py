@@ -12,7 +12,8 @@ class LevelService:
 
     @staticmethod
     def __get_level_json_object(level_id=None):
-        return Level.query_many(parent=level_id, visible=True)
+        levels = Level.objects.filter(parent=level_id, visible=True)
+        return Level.get_flatten_object(data=levels, collection=True)
 
     @staticmethod
     def get_tree(level_id=None):

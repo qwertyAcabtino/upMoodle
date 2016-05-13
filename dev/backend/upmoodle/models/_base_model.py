@@ -18,26 +18,8 @@ class BaseModel(models.Model):
         super(BaseModel, self).__init__(*args, **kwargs)
         self.serializer = serializer
 
-    # TODO. Remove
     @classmethod
-    def query_one(cls, **kwargs):
-        user = cls.objects.get(**kwargs)
-        return cls.__query(user, many=False)
-
-    # TODO. Remove
-    @classmethod
-    def query_many(cls, **kwargs):
-        query_params = kwargs
-        users = cls.objects.filter(**query_params)
-        return cls.__query(users, many=True)
-
-    # TODO. Remove
-    @classmethod
-    def __query(cls, data=None, many=False):
-        return cls().serializer(data, many=many).data
-
-    @classmethod
-    def get_json(cls, data=None, collection=False):
+    def get_flatten_object(cls, data=None, collection=False):
         return cls().serializer(data, many=collection).data
 
     @classmethod
@@ -61,11 +43,3 @@ class BaseModel(models.Model):
                 fields.remove(field)
             else:
                 raise KeyError
-            # Todo. This is the old code and the new might not be correct. Has to be checked.
-            # try:
-            #     setattr(self, field, form[field])
-            # except KeyError as m:
-            #     if not optional:
-            #         raise m
-            #     else:
-            #         fields.remove(field)
