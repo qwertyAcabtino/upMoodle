@@ -4,7 +4,7 @@ from django.db import models
 from rest_framework.serializers import SerializerMetaclass
 
 from upmoodle.models import ErrorMessage
-from upmoodle.models.utils.requestException import RequestExceptionByCode
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 
 
 class BaseModel(models.Model):
@@ -48,7 +48,7 @@ class BaseModel(models.Model):
 
     def _set_by_json(self, json_dict, **kwargs):
         if 'fields' not in kwargs:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
 
         optional = kwargs.get('optional', False)
         fields = kwargs.get('fields', None)

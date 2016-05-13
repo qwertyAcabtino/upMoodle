@@ -3,8 +3,8 @@ from django.db import models
 from django.utils.datastructures import MultiValueDictKeyError
 
 from upmoodle.models._base_model import BaseModel
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.models.utils.requestException import RequestExceptionByCode
 
 
 class Level(BaseModel):
@@ -31,7 +31,7 @@ class Level(BaseModel):
             cls.objects.get(id=fk)
             cls.validate_exists_level(fk)
         except (MultiValueDictKeyError, KeyError):
-            raise RequestExceptionByCode(ErrorMessage.Type.INVALID_LEVEL)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INVALID_LEVEL)
 
     @staticmethod
     def validate_exists_level(fk):

@@ -30,7 +30,7 @@ class SignUpTestCase(CookiesTestCase):
                                      'nick': 'vqweripasdfvip', 'name': 'vip vip'})
         self.assertEqual(response.status_code, 400)
         decoded = json.loads(response.content)
-        self.assertIsNotNone(decoded['message'])
+        self.assertIsNotNone(decoded['error'])
         self.assertEqual(len(User.objects.all()), 1)
 
     def test_1_invalid_email(self):

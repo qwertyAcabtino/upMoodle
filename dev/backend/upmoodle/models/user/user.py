@@ -8,7 +8,6 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from upmoodle.models.level import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.finals import STUDENT
-from upmoodle.models.utils.requestException import RequestExceptionByCode
 from upmoodle.models.utils.validators import validate_length
 
 

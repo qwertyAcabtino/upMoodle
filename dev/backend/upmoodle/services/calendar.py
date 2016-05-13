@@ -5,10 +5,11 @@ from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 import calendar
 from upmoodle.models import CalendarDate, Calendar, Level, User
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
-from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode, RequestExceptionByMessage
+from upmoodle.models.utils.requestException import RequestException
 
 # TODO. Return only related events.
 from upmoodle.services.auth import AuthService
@@ -38,7 +39,7 @@ class CalendarService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
     @staticmethod
     def delete_calendar_by_id(session_token=None, calendar_id=None, **kwargs):
@@ -50,7 +51,7 @@ class CalendarService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
     @staticmethod
     def update_calendar_by_id(session_token=None, calendar_id=None, data=None, **kwargs):
@@ -69,7 +70,7 @@ class CalendarService:
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:
-            return RequestExceptionByMessage(v).jsonResponse
+            return MessageBasedException(exception=v).get_json_response()
 
     @staticmethod
     def add_calendar(session_token=None, data=None):
@@ -86,7 +87,7 @@ class CalendarService:
         except RequestException as r:
             return r.jsonResponse
         except ValidationError as v:
-            return RequestExceptionByMessage(v).jsonResponse
+            return MessageBasedException(exception=v).get_json_response()
 
 
 def is_valid_month_init_date(init_date):
@@ -110,11 +111,11 @@ def is_valid_init_date_by_period(period, init_date):
         elif period == "day":
             valid_date = is_valid_day_init_date(init_date)
         if not valid_date:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
         else:
             return True
     except ValueError:
-        raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+        raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
 
 
 def get_date_range(period, init_date):

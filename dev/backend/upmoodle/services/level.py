@@ -1,9 +1,10 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from upmoodle.models import Level
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
-from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode
+from upmoodle.models.utils.requestException import RequestException
 
 
 class LevelService:
@@ -41,7 +42,7 @@ class LevelService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
     @staticmethod
     def __get_ids_tree(level_id=None):

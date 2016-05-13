@@ -5,10 +5,10 @@ from django.db import models
 import upmoodle.models.calendar
 from upmoodle.models._base_model import BaseModel
 from upmoodle.models.calendar.calendarDate import CalendarDate
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.user import User
 from upmoodle.models.utils.finals import *
-from upmoodle.models.utils.requestException import RequestExceptionByCode
 
 
 class Calendar(BaseModel):
@@ -59,15 +59,14 @@ class Calendar(BaseModel):
     # TODO. hourStart > hourEnd.
     def validateHours(self):
         if not self.allDay and (not self.hourStart or not self.hourEnd):
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
 
     # TODO. Error message.
     def validateDates(self):
-        from upmoodle.models.utils.requestException import RequestExceptionByCode
         if self.frequency.id != FREQUENCY_UNIQUE and not self.lastDate:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
         elif self.lastDate and self.firstDate > self.lastDate:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
         elif not self.lastDate:
             self.lastDate = self.firstDate
 

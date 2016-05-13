@@ -11,8 +11,7 @@ from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.newJsonResponse import NewJsonResponse
-from upmoodle.models.utils.requestException import RequestExceptionByCode, RequestException, \
-    RequestExceptionByMessage
+from upmoodle.models.utils.requestException import RequestException
 from upmoodle.services.utils.email import EmailService
 from upmoodle.services.utils.randoms import RandomStringsService
 
@@ -38,7 +37,7 @@ class AuthService:
             request_pass = data['password']
             user = User.objects.get(email=request_email, password=request_pass)
             if not user.confirmedEmail:
-                return RequestExceptionByCode(ErrorMessage.Type.UNCONFIRMED_EMAIL).jsonResponse
+                return MessageBasedException(message_id=ErrorMessage.Type.UNCONFIRMED_EMAIL).get_json_response()
             else:
                 user.sessionToken = session_token
                 user.lastTimeActive = timezone.now()
@@ -47,7 +46,7 @@ class AuthService:
                 json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
                 return json_response
         except (ObjectDoesNotExist, KeyError):
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
         except RequestException as r:
             return r.jsonResponse
 
@@ -65,12 +64,12 @@ class AuthService:
         except MessageBasedException as ex:
             return NewJsonResponse(exception=ex)
         except ValidationError as v:
-            r = RequestExceptionByMessage(v)
-            return r.jsonResponse
+            r = MessageBasedException(exception=v)
+            return r.get_json_response()
         except RequestException as r:
             return r.jsonResponse
         except Exception as e:
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
     @staticmethod
     def logout(session_token=None):
@@ -90,7 +89,7 @@ class AuthService:
         try:
             user = User.objects.get(sessionToken=session_token)
             if user.confirmedEmail:
-                return RequestExceptionByCode(ErrorMessage.Type.ALREADY_CONFIRMED).jsonResponse
+                return MessageBasedException(message_id=ErrorMessage.Type.ALREADY_CONFIRMED).get_json_response()
             else:
                 user.confirmedEmail = True
                 user.save()
@@ -98,7 +97,7 @@ class AuthService:
         except RequestException as r:
             return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
     @staticmethod
     def recover_password(data=None):
@@ -119,7 +118,7 @@ class AuthService:
         except RequestException as r:
             return r.jsonResponse
         except Exception:
-            return RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA).jsonResponse
+            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
     @staticmethod
     def is_authenticated(session_token):
@@ -147,6 +146,6 @@ class AuthService:
         original_user = User.objects.get(id=author_id)
         original_user_rol = original_user.rol
         if same and not author_id == auth_user.id:
-            raise RequestExceptionByCode(ErrorMessage.Type.UNAUTHORIZED)
+            raise MessageBasedException(message_id=ErrorMessage.Type.UNAUTHORIZED)
         elif level and auth_user_rol.priority < original_user_rol.priority:
-            raise RequestExceptionByCode(ErrorMessage.Type.UNAUTHORIZED)
+            raise MessageBasedException(message_id=ErrorMessage.Type.UNAUTHORIZED)

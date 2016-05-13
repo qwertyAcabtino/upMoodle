@@ -7,7 +7,7 @@
  	$scope.update = function (userModel) {
  		api.userMe.update(userModel)
  		.success(function(data, status, headers, config){
- 			snackbar.message(data);
+ 			snackbar.message(data.message);
  			$scope.editMode = false;
  			delete $scope.user.password;
  		})
