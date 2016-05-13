@@ -21,7 +21,7 @@ class FileService:
         fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
         new_file = File.parse(data, fields=fields, optional=True, binary=files['file'])
         new_file.save()
-        return OkMessage.Type.FILE_UPLOADED, "id"
+        return OkMessage.Type.FILE_UPLOADED
 
     @staticmethod
     @zero_exceptions

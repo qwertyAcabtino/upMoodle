@@ -1,12 +1,13 @@
 from django.views.decorators.csrf import csrf_exempt
 
-from upmoodle.routers.decorators.routing_decorators import authenticated, methods, method
+from upmoodle.routers.decorators.routing_decorators import authenticated, methods, method, response
 from upmoodle.services.notes import NoteService
 
 
 @csrf_exempt
 @authenticated
 @methods(('GET', 'PUT', 'DELETE'))
+@response(media_type='application/json')
 def note_by_id(request, note_id, session_token=None, data=None, **kwargs):
     service_methods = {
         'GET': NoteService.get_note_by_id,
@@ -19,5 +20,6 @@ def note_by_id(request, note_id, session_token=None, data=None, **kwargs):
 @csrf_exempt
 @authenticated
 @method('POST')
+@response(media_type='application/json')
 def note_endpoint(request, session_token=None, data=None, **kwargs):
     return NoteService.add(session_token=session_token, data=data)

@@ -5,12 +5,12 @@ import time
 from django.db import models
 
 from upmoodle.models._base_model import BaseModel
+from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.file.fileType import FileType
 from upmoodle.models.file.year import Year
 from upmoodle.models.level import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.user import User
-from upmoodle.models.utils.requestException import RequestExceptionByCode
 
 
 class File(BaseModel):
@@ -68,7 +68,7 @@ class File(BaseModel):
         if not self.name and self.hash not in self.file.name:
             self.name = self.file.name.split('.')[0]
         elif not self.name:
-            raise RequestExceptionByCode(ErrorMessage.Type.INCORRECT_DATA)
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
 
     def update(self, user_update, fields):
         self.year = Year.get_actual_year()

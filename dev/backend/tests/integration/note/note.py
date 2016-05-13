@@ -58,7 +58,7 @@ class NoteTestCase(AuthenticationTestBase):
         pk = 1
         topic = 'topic'
         response = self.client.put('/note/' + str(pk) + '/', {'topic': topic, 'text': 'text', 'author_id': 2})
-        assert_error_response(response, ErrorMessage.Type.INVALID_LEVEL)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
         note = NoteBoard.objects.get(id=1)
         self.assertEqual(note.author_id, User.objects.get(id=1).id)
 
@@ -108,7 +108,7 @@ class NoteTestCase(AuthenticationTestBase):
         self.login()
         pk = 1
         response = self.client.post('/note/', {})
-        assert_error_response(response, ErrorMessage.Type.INVALID_LEVEL)
+        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)
 
     def test_createNote_length_overflows(self):
         self.login()
