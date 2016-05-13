@@ -4,7 +4,7 @@ from rest_framework.renderers import JSONRenderer
 from upmoodle.models import ErrorMessage
 
 
-class JsonResponseFactory:
+class ResponseFactory:
 
     def __init__(self):
         self.response = dict()

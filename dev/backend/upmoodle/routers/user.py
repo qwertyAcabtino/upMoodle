@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from upmoodle.controllers.decorators.exceptions import zero_exceptions
 from upmoodle.controllers.decorators.router import authenticated, methods, method
 from upmoodle.models import OkMessage
-from upmoodle.routers.response.jsonfactory import JsonResponseFactory
+from upmoodle.routers.response.factory import ResponseFactory
 from upmoodle.services.user import UserService
 
 
@@ -15,15 +15,15 @@ def user_endpoint(request, session_token=None, data=None):
 
     def get_me(session_token=None, data=None):
         user = UserService.get_me(session_token=session_token, data=data)
-        return JsonResponseFactory().ok().body(obj=user).build()
+        return ResponseFactory().ok().body(obj=user).build()
 
     def update_me(session_token=None, data=None):
         UserService.update_me(session_token=session_token, data=data)
-        return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
+        return ResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
 
     def delete_me(session_token=None, data=None):
         UserService.delete_me(session_token=session_token, data=data)
-        return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_REMOVED).build()
+        return ResponseFactory().ok(message_id=OkMessage.Type.USER_REMOVED).build()
 
     service_methods = {
         'GET': get_me,
@@ -40,7 +40,7 @@ def user_endpoint(request, session_token=None, data=None):
 @method('POST')
 def user_subjects(request, session_token=None, data=None):
     UserService.update_me_subjects(session_token=session_token, data=data)
-    return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
+    return ResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
 
 
 @zero_exceptions
@@ -50,7 +50,7 @@ def user_subjects(request, session_token=None, data=None):
 def user_avatar(request, session_token=None, **kwargs):
     files = request.FILES
     UserService.update_me_avatar(session_token=session_token, files=files)
-    return JsonResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
+    return ResponseFactory().ok(message_id=OkMessage.Type.USER_UPDATED).build()
 
 
 @zero_exceptions
@@ -58,7 +58,7 @@ def user_avatar(request, session_token=None, **kwargs):
 @method('GET')
 def user_by_id(request, pk, **kwargs):
     user = UserService.get_user_by_id(user_id=pk)
-    return JsonResponseFactory().ok().body(obj=user).build()
+    return ResponseFactory().ok().body(obj=user).build()
 
 
 @zero_exceptions
@@ -66,4 +66,4 @@ def user_by_id(request, pk, **kwargs):
 @method('GET')
 def users_by_rol(request, pk, **kwargs):
     users = UserService.get_user_by_id(user_id=pk)
-    return JsonResponseFactory().ok().body(obj=users).build()
+    return ResponseFactory().ok().body(obj=users).build()

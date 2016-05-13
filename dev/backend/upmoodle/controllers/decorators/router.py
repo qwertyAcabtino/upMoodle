@@ -6,7 +6,7 @@ import demjson as demjson
 from backend.settings import SESSION_COOKIE_NAME
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.routers.response.jsonfactory import JsonResponseFactory
+from upmoodle.routers.response.factory import ResponseFactory
 from upmoodle.services.auth import AuthService
 
 
@@ -15,7 +15,7 @@ def authenticated(view_func):
         try:
             _check_signed_in(request)
         except MessageBasedException as m:
-            return JsonResponseFactory().error(message_id=m.message_id, exception=m).build()
+            return ResponseFactory().error(message_id=m.message_id, exception=m).build()
 
         kwargs['session_token'] = request.COOKIES[SESSION_COOKIE_NAME]
         response = view_func(request, *args, **kwargs)
@@ -79,7 +79,7 @@ def _check_cookies(request):
         return len(request.COOKIES) != 0 and request.COOKIES[SESSION_COOKIE_NAME] and not len(request.COOKIES[SESSION_COOKIE_NAME]) == 0
 
     if not cookies_are_ok():
-        return JsonResponseFactory().error(message_id=ErrorMessage.Type.DISABLED_COOKIES).cookies(cookies={SESSION_COOKIE_NAME: uuid.uuid4().hex}).build()
+        return ResponseFactory().error(message_id=ErrorMessage.Type.DISABLED_COOKIES).cookies(cookies={SESSION_COOKIE_NAME: uuid.uuid4().hex}).build()
 
 
 def _check_signed_in(request):
