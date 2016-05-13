@@ -30,6 +30,7 @@ class OkMessage(BaseMessage):
         FILE_UPDATED = 14
         SUCCESS_LOGOUT = 15
         SUCCESS = 16
+        SUCCESS_SIGNUP = 17
 
         def get(self):
             return OkMessage.objects.get(pk=self.value)

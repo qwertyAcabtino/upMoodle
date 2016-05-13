@@ -1,7 +1,9 @@
 from django.views.decorators.csrf import csrf_exempt
 
+from upmoodle.models import OkMessage
 from upmoodle.routers.decorators.routing_decorators import method, authenticated
 from upmoodle.routers.decorators.zero_exception_decorator import zero_exceptions
+from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.auth import AuthService
 
 
@@ -9,29 +11,38 @@ from upmoodle.services.auth import AuthService
 @method('POST')
 @zero_exceptions
 def login(request, session_token=None, data=None):
-    return AuthService.login(session_token=session_token, data=data)
+    cookies = AuthService.login(session_token=session_token, data=data)
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.SUCCESS_LOGIN).cookies(cookies=cookies).build()
 
 @csrf_exempt
 @method('POST')
+@zero_exceptions
 def signup(request, session_token=None, data=None):
-    return AuthService.signup(session_token=session_token, data=data)
+    cookies = AuthService.signup(session_token=session_token, data=data)
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.SUCCESS_SIGNUP).cookies(cookies=cookies).build()
+
 
 
 @csrf_exempt
 @authenticated
 @method('POST')
+@zero_exceptions
 def logout(request, session_token=None, **kwargs):
-    return AuthService.logout(session_token=session_token)
+    cookies = AuthService.logout(session_token=session_token)
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.SUCCESS_LOGOUT).cookies(cookies=cookies).build()
 
 
 @csrf_exempt
 @method('POST')
+@zero_exceptions
 def confirm_email(request, data=None, **kwargs):
-    session_token = data['token']
-    return AuthService.confirm_email(session_token=session_token)
+    AuthService.confirm_email(session_token=data['token'])
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.ACCOUNT_VALIDATED).build()
 
 
 @csrf_exempt
 @method('POST')
+@zero_exceptions
 def recover_password(request, data=None, **kwargs):
-    return AuthService.recover_password(data)
+    AuthService.recover_password(data)
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.RECOVER_PASS_EMAIL).build()

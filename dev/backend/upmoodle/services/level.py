@@ -38,7 +38,7 @@ class LevelService:
         try:
             return LevelService.__get_ids_tree(level_id)
         except ObjectDoesNotExist or OverflowError or ValueError:
-            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
+            raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA)
 
     @staticmethod
     def __get_ids_tree(level_id=None):

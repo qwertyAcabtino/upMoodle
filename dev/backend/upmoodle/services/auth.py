@@ -10,6 +10,7 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
+from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.utils.email import EmailService
 from upmoodle.services.utils.randoms import RandomStringsService
 
@@ -27,88 +28,65 @@ class AuthService:
             return session_token
 
     @staticmethod
+    @map_exceptions
     def login(session_token=None, data=None):
-        try:
-            session_token = AuthService.get_cookie(session_token)
+        session_token = AuthService.get_cookie(session_token)
 
-            request_email = data['email']
-            request_pass = data['password']
-            user = User.objects.get(email=request_email, password=request_pass)
-            if not user.confirmedEmail:
-                return MessageBasedException(message_id=ErrorMessage.Type.UNCONFIRMED_EMAIL).get_json_response()
-            else:
-                user.sessionToken = session_token
-                user.lastTimeActive = timezone.now()
-                user.save()
-                json_response = JsonResponse(message_id=OkMessage.Type.SUCCESS_LOGIN)
-                json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
-                return json_response
-        except (ObjectDoesNotExist, KeyError):
-            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
+        request_email = data['email']
+        request_pass = data['password']
+        user = User.objects.get(email=request_email, password=request_pass)
+        if not user.confirmedEmail:
+            raise MessageBasedException(message_id=ErrorMessage.Type.UNCONFIRMED_EMAIL)
+        else:
+            user.sessionToken = session_token
+            user.lastTimeActive = timezone.now()
+            user.save()
+            return {SESSION_COOKIE_NAME: session_token}
 
     @staticmethod
+    @map_exceptions
     def signup(session_token=None, data=None):
-        try:
-            session_token = AuthService.get_cookie(session_token)
+        session_token = AuthService.get_cookie(session_token)
 
-            user = User.parse(data, sessionToken=session_token, fields=['email', 'password', 'nick', 'name'])
-            EmailService.send_signup_confirmation_email(email=user.email, session_token=session_token)
-            user.save()
-            json_response = JsonResponse(body=user)
-            json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
-            return json_response
-        except MessageBasedException as ex:
-            return ex.get_json_response()
-        except ValidationError as v:
-            r = MessageBasedException(exception=v)
-            return r.get_json_response()
-        except Exception as e:
-            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
+        user = User.parse(data, sessionToken=session_token, fields=['email', 'password', 'nick', 'name'])
+        EmailService.send_signup_confirmation_email(email=user.email, session_token=session_token)
+        user.save()
+        return {SESSION_COOKIE_NAME: session_token}
 
     @staticmethod
+    @map_exceptions
     def logout(session_token=None):
-        try:
-            session_token = AuthService.get_cookie(session_token)
-            user = User.objects.get(sessionToken=session_token)
-            user.sessionToken = ''
-            user.save()
-            json_response = JsonResponse(message_id=OkMessage.Type.SUCCESS_LOGOUT)
-            json_response.set_cookie(SESSION_COOKIE_NAME, '')
-            return json_response
-        except Exception:
-            return JsonResponse(message_id=OkMessage.Type.SUCCESS_LOGOUT)
+        session_token = AuthService.get_cookie(session_token)
+        user = User.objects.get(sessionToken=session_token)
+        user.sessionToken = ''
+        user.save()
+        return {SESSION_COOKIE_NAME: ''}
 
     @staticmethod
+    @map_exceptions
     def confirm_email(session_token=None):
-        try:
-            user = User.objects.get(sessionToken=session_token)
-            if user.confirmedEmail:
-                return MessageBasedException(message_id=ErrorMessage.Type.ALREADY_CONFIRMED).get_json_response()
-            else:
-                user.confirmedEmail = True
-                user.save()
-                return JsonResponse(message_id=OkMessage.Type.ACCOUNT_VALIDATED)
-        except ObjectDoesNotExist or OverflowError or ValueError:
-            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
+        user = User.objects.get(sessionToken=session_token)
+        if user.confirmedEmail:
+            raise MessageBasedException(message_id=ErrorMessage.Type.ALREADY_CONFIRMED)
+        else:
+            user.confirmedEmail = True
+            user.save()
 
     @staticmethod
+    @map_exceptions
     def recover_password(data=None):
-
-        try:
-            email_request = data['email']
-            user = User.objects.get(email=email_request)
-            if not user.confirmedEmail:
-                return JsonResponse(message_id=ErrorMessage.Type.UNCONFIRMED_EMAIL)
-            elif user.banned:
-                return JsonResponse(message_id=ErrorMessage.Type.UNAUTHORIZED)
-            else:
-                password = RandomStringsService.random_password()
-                EmailService.send_recover_password_email(user.email, password)
-                user.password = password
-                user.save()
-                return JsonResponse(message_id=OkMessage.Type.RECOVER_PASS_EMAIL)
-        except Exception:
-            return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
+        email_request = data['email']
+        user = User.objects.get(email=email_request)
+        if not user.confirmedEmail:
+            raise MessageBasedException(message_id=ErrorMessage.Type.UNCONFIRMED_EMAIL)
+        elif user.banned:
+            raise MessageBasedException(message_id=ErrorMessage.Type.UNAUTHORIZED)
+        else:
+            password = RandomStringsService.random_password()
+            EmailService.send_recover_password_email(user.email, password)
+            user.password = password
+            user.save()
+            return JsonResponse(message_id=OkMessage.Type.RECOVER_PASS_EMAIL)
 
     @staticmethod
     def is_authenticated(session_token):

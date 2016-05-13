@@ -393,6 +393,14 @@
     }
   },
   {
+    "model": "upmoodle.okmessage",
+    "pk": 17,
+    "fields": {
+      "http_code": 200,
+      "text": "Correctly signed up"
+    }
+  },
+  {
     "model": "upmoodle.errormessage",
     "pk": 1,
     "fields": {

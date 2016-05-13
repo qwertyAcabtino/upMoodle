@@ -13,6 +13,8 @@ class JsonResponseFactory:
         self._identity = False
         self._media_type = 'application/json'
         self.http_code = 200
+        self._cookies = {}
+        self.http_response = HttpResponse()
 
     def ok(self, message_id=None):
         if message_id:
@@ -50,6 +52,10 @@ class JsonResponseFactory:
         self._media_type = media_type
         return self
 
+    def cookies(self, cookies=None):
+        self._cookies = cookies
+        return self
+
     def build(self):
         switcher = {
             'application/json': self.get_json_response,
@@ -60,13 +66,19 @@ class JsonResponseFactory:
     def get_json_response(self):
         self.response.__setitem__('data', self.get_flatten_object())
         response_json = JSONRenderer().render(self.response)
-        http_response = self._ensure_headers(HttpResponse(response_json, content_type=self._media_type, status=self.http_code))
-        return http_response
+        self.http_response = self._ensure_headers(HttpResponse(response_json, content_type=self._media_type, status=self.http_code))
+        self.set_cookies()
+        return self.http_response
 
     def get_octet_stream_response(self):
         http_response = HttpResponse(self.obj.file)
         http_response['Content-Disposition'] = 'attachment; filename=' + self.obj.filename
         return http_response
+
+    def set_cookies(self):
+        if self._cookies:
+            for key, value in self._cookies.iteritems():
+                self.http_response.set_cookie(key=key, value=value)
 
     def _ensure_headers(self, http_response):
         http_response['Content-Type'] = self._media_type
