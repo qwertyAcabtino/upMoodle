@@ -1,5 +1,5 @@
 from upmoodle.models import Rol
-from upmoodle.models.utils.jsonResponse import JsonResponse
+from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
 
 
 class RolService:
@@ -8,6 +8,6 @@ class RolService:
         pass
 
     @staticmethod
+    @zero_exceptions
     def get_roles_list():
-        roles_dict = Rol.query_many()
-        return JsonResponse(body=roles_dict)
+        return Rol.objects.all()
