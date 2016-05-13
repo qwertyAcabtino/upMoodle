@@ -1,14 +1,17 @@
 from django.views.decorators.csrf import csrf_exempt
 
+from upmoodle.models import OkMessage
 from upmoodle.routers.decorators.routing_decorators import method, authenticated
+from upmoodle.routers.response.factory import JsonResponseFactory
 from upmoodle.services.auth import AuthService
+from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
 
 
 @csrf_exempt
 @method('POST')
+@zero_exceptions
 def login(request, session_token=None, data=None):
     return AuthService.login(session_token=session_token, data=data)
-
 
 @csrf_exempt
 @method('POST')

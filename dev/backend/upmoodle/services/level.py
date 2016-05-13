@@ -4,7 +4,7 @@ from upmoodle.models import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
 from upmoodle.models.utils.requestException import RequestException, RequestExceptionByCode
-from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
+from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class LevelService:

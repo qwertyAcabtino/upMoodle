@@ -1,5 +1,5 @@
 from upmoodle.models import Rol
-from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
+from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class RolService:
@@ -8,6 +8,6 @@ class RolService:
         pass
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_roles_list():
         return Rol.objects.all()

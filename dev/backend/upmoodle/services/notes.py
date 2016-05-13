@@ -1,7 +1,7 @@
 from upmoodle.models import NoteBoard, Level, User, OkMessage
 from upmoodle.services.auth import AuthService
 from upmoodle.services.level import LevelService
-from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
+from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class NoteService:
@@ -9,12 +9,12 @@ class NoteService:
         pass
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_note_by_id(note_id=None, **kwargs):
         return NoteBoard.objects.get(id=note_id, visible=True)
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def update_note_by_id(session_token=None, note_id=None, data=None, **kwargs):
         original_note = NoteBoard.objects.get(id=note_id)
 
@@ -28,7 +28,7 @@ class NoteService:
         return OkMessage.Type.NOTE_UPDATED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def delete_note_by_id(session_token=None, note_id=None, **kwargs):
         original_note = NoteBoard.objects.get(id=note_id)
         AuthService.is_authorized_author(session_token=session_token, author_id=original_note.author_id, level=True)
@@ -38,7 +38,7 @@ class NoteService:
         return OkMessage.Type.NOTE_REMOVED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def add(session_token=None, data=None):
         Level.validate_exists(data)
         fields = ['topic', 'text', 'level_id']
@@ -48,7 +48,7 @@ class NoteService:
         return OkMessage.Type.NOTE_CREATED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_notes_by_level_id(level_id=None, data=None):
         Level.validate_exists_level(level_id)
         if data.get('recursive') and data.get('recursive') == 'true':

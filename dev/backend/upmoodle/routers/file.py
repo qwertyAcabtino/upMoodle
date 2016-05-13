@@ -1,59 +1,67 @@
 from django.views.decorators.csrf import csrf_exempt
 
+from upmoodle.models import OkMessage
 from upmoodle.models.utils.requestException import RequestException
 from upmoodle.routers.decorators.routing_decorators import method, authenticated, methods, response
+from upmoodle.routers.response.factory import JsonResponseFactory
 from upmoodle.services.file import FileService, FileTypeService
+from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
 
 
 @csrf_exempt
 @authenticated
 @methods(('GET', 'PUT', 'DELETE'))
+@zero_exceptions
 def file_by_hash_endpoint(request, file_hash, session_token=None, data=None):
 
-    @response(media_type='application/octet-stream')
     def binary(file_hash_in=file_hash):
-        return FileService.get_by_id(file_hash=file_hash_in)
+        file_obj = FileService.get_by_id(file_hash=file_hash_in)
+        return JsonResponseFactory().ok().body(obj=file_obj).media_type(media_type='application/octet-stream').build()
 
-    @response(media_type='application/json')
-    def metadata(session_token=session_token, file_hash=file_hash, data=data):
-        service_metadata_methods = {
-            'GET': FileService.get_by_id,
-            'PUT': FileService.metadata_update,
-            'DELETE': FileService.delete
-        }
-        return service_metadata_methods[request.method](session_token=session_token, file_hash=file_hash, data=data)
+    def delete(session_token=session_token, file_hash=file_hash, data=data):
+        FileService.delete(session_token=session_token, file_hash=file_hash, data=data)
+        return JsonResponseFactory().ok(message_id=OkMessage.Type.FILE_REMOVED).build()
 
-    try:
-        if request.method == 'DELETE' or _get_media_type(request) == 'application/json':
-            return metadata(session_token=session_token, file_hash=file_hash, data=data)
-        else:
-            return binary(file_hash_in=file_hash)
+    def metadata_update(session_token=session_token, file_hash=file_hash, data=data):
+        FileService.metadata_update(session_token=session_token, file_hash=file_hash, data=data)
+        return JsonResponseFactory().ok(message_id=OkMessage.Type.FILE_UPDATED).build()
 
-    except RequestException as r:
-        return r.jsonResponse
+    def get_by_id(session_token=session_token, file_hash=file_hash, data=data):
+        file_in = FileService.get_by_id(session_token=session_token, file_hash=file_hash, data=data)
+        return JsonResponseFactory().ok().body(obj=file_in).build()
+
+    if request.method == 'DELETE' or _get_media_type(request) == 'application/json':
+        return {
+            'GET': get_by_id,
+            'PUT': metadata_update,
+            'DELETE': delete
+        }[request.method](session_token=session_token, file_hash=file_hash, data=data)
+    else:
+        return binary(file_hash_in=file_hash)
 
 
 @csrf_exempt
 @authenticated
 @method('POST')
-@response(media_type='application/json')
+@zero_exceptions
 def file_add_endpoint(request, session_token=None, data=None):
     files = request.FILES
-    return FileService.add(session_token=session_token, data=data, files=files)
+    new_file = FileService.add(session_token=session_token, data=data, files=files)
+    return JsonResponseFactory().ok(message_id=OkMessage.Type.FILE_UPLOADED).identity(obj=new_file).build()
 
 
 @authenticated
 @method('GET')
-@response(media_type='application/json')
+@zero_exceptions
 def filetype_list(request, **kwargs):
-    return FileTypeService.get()
+    return JsonResponseFactory().ok().body(obj=FileTypeService.get()).build()
 
 
 @authenticated
 @method('GET')
-@response(media_type='application/json')
+@zero_exceptions
 def files_banned_hashes(request, **kwargs):
-    return FileService.get_banned_hashes()
+    return JsonResponseFactory().ok().body(obj=FileService.get_banned_hashes()).build()
 
 
 def _get_media_type(request):

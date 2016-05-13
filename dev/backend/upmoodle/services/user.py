@@ -3,7 +3,7 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.services.utils.randoms import RandomStringsService
-from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
+from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class UserService:
@@ -11,12 +11,12 @@ class UserService:
         pass
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_me(session_token=None, **kwargs):
         return User.objects.get(sessionToken=session_token)
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def delete_me(session_token=None, **kwargs):
         deleting_user = User.objects.get(sessionToken=session_token)
         deleting_user.name = 'RemovedUser ' + str(deleting_user.id)
@@ -30,7 +30,7 @@ class UserService:
         return OkMessage.Type.USER_REMOVED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def update_me(session_token=None, data=None):
         auth_user = User.objects.get(sessionToken=session_token)
         try:
@@ -46,7 +46,7 @@ class UserService:
         return OkMessage.Type.USER_UPDATED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def update_me_subjects(session_token=None, data=None):
         if data['ids']:
             subjects = data['ids']
@@ -58,7 +58,7 @@ class UserService:
         return OkMessage.Type.USER_UPDATED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def update_me_avatar(session_token=None, files=None):
         avatar = files['avatar']
         if "image/" not in avatar.content_type:
@@ -70,11 +70,11 @@ class UserService:
             return OkMessage.Type.USER_UPDATED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_user_by_id(user_id=None):
         return User.objects.get(id=user_id)
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_users_by_rol(rol_id=None):
         return User.objects.filter(rol=rol_id, banned=False)

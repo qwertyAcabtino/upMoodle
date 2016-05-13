@@ -5,9 +5,10 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 from upmoodle.models.utils.requestException import RequestException
+from upmoodle.routers.response.factory import JsonResponseFactory
 
 
-def zero_exceptions(view_func):
+def map_exceptions(view_func):
     def _decorator(*args, **kwargs):
         try:
             return view_func(*args, **kwargs)
@@ -15,4 +16,18 @@ def zero_exceptions(view_func):
             raise MessageBasedException(exception=r)
         except (ValidationError, ObjectDoesNotExist, OverflowError, ValueError, KeyError) as v:
             raise MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA, exception=v)
+    return wraps(view_func)(_decorator)
+
+
+def zero_exceptions(view_func):
+    def _decorator(*args, **kwargs):
+        try:
+            return view_func(*args, **kwargs)
+        except RequestException as r:
+            m = MessageBasedException(exception=r)
+            return JsonResponseFactory().error(message_id=m.message_id, exception=m).build()
+        except (ValidationError, ObjectDoesNotExist, OverflowError, ValueError, KeyError) as v:
+            return JsonResponseFactory().error(message_id=ErrorMessage.Type.INCORRECT_DATA, exception=v)
+        except MessageBasedException as m:
+            return JsonResponseFactory().error(message_id=m.message_id, exception=m).build()
     return wraps(view_func)(_decorator)

@@ -1,8 +1,8 @@
-from upmoodle.models import File, Level, User, FileType, BannedHash, OkMessage
+from upmoodle.models import File, Level, User, FileType, BannedHash
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.services.auth import AuthService
-from upmoodle.services.utils.zero_exception_decorator import zero_exceptions
+from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class FileService:
@@ -11,7 +11,7 @@ class FileService:
         pass
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def add(session_token=None, data=None, files=None):
         uploader_id = User.objects.get(sessionToken=session_token).id
         AuthService.is_authorized_author(session_token=session_token, author_id=uploader_id, level=True)
@@ -21,19 +21,18 @@ class FileService:
         fields = ['uploader_id', 'subject_id', 'name', 'text', 'fileType_id']
         new_file = File.parse(data, fields=fields, optional=True, binary=files['file'])
         new_file.save()
-        return OkMessage.Type.FILE_UPLOADED
+        return new_file
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def delete(session_token=None, file_hash=None, **kwargs):
         model = File.objects.get(hash=file_hash)
         AuthService.is_authorized_author(session_token=session_token, author_id=model.uploader_id, level=True, same=False)
         model.visible = False
         model.save()
-        return OkMessage.Type.FILE_REMOVED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def metadata_update(session_token=None, file_hash=None, data=None):
         file_original = File.objects.get(hash=file_hash)
         AuthService.is_authorized_author(session_token=session_token, author_id=file_original.uploader_id, level=True, same=False)
@@ -44,20 +43,19 @@ class FileService:
         file_original.update(file_updated, fields)
         file_original.lastUpdater_id = User.get_signed_user_id(session_token)
         file_original.save()
-        return OkMessage.Type.FILE_UPDATED
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_by_id(file_hash=None, **kwargs):
         return File.objects.get(hash=file_hash, visible=True)
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_banned_hashes():
         return BannedHash.objects.all()
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get_files_by_level_id(level_id=None):
         level = Level.objects.get(id=level_id)
         if level.is_subject():
@@ -71,7 +69,7 @@ class FileTypeService:
         pass
 
     @staticmethod
-    @zero_exceptions
+    @map_exceptions
     def get():
         return FileTypeService.__get__file_types()
 
