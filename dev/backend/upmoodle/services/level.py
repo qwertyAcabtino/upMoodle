@@ -4,7 +4,6 @@ from upmoodle.models import Level
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
-from upmoodle.models.utils.requestException import RequestException
 
 
 class LevelService:
@@ -39,8 +38,6 @@ class LevelService:
     def get_level_children_ids_list(level_id=None):
         try:
             return LevelService.__get_ids_tree(level_id)
-        except RequestException as r:
-            return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
             return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 

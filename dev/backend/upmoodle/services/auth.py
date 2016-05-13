@@ -10,8 +10,6 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
-from upmoodle.models.utils.newJsonResponse import NewJsonResponse
-from upmoodle.models.utils.requestException import RequestException
 from upmoodle.services.utils.email import EmailService
 from upmoodle.services.utils.randoms import RandomStringsService
 
@@ -47,8 +45,6 @@ class AuthService:
                 return json_response
         except (ObjectDoesNotExist, KeyError):
             return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
-        except RequestException as r:
-            return r.jsonResponse
 
     @staticmethod
     def signup(session_token=None, data=None):
@@ -62,12 +58,10 @@ class AuthService:
             json_response.set_cookie(settings.SESSION_COOKIE_NAME, session_token)
             return json_response
         except MessageBasedException as ex:
-            return NewJsonResponse(exception=ex)
+            return ex.get_json_response()
         except ValidationError as v:
             r = MessageBasedException(exception=v)
             return r.get_json_response()
-        except RequestException as r:
-            return r.jsonResponse
         except Exception as e:
             return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
@@ -94,8 +88,6 @@ class AuthService:
                 user.confirmedEmail = True
                 user.save()
                 return JsonResponse(message_id=OkMessage.Type.ACCOUNT_VALIDATED)
-        except RequestException as r:
-            return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
             return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
@@ -115,8 +107,6 @@ class AuthService:
                 user.password = password
                 user.save()
                 return JsonResponse(message_id=OkMessage.Type.RECOVER_PASS_EMAIL)
-        except RequestException as r:
-            return r.jsonResponse
         except Exception:
             return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 

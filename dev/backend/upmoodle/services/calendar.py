@@ -9,7 +9,6 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
 from upmoodle.models.utils.jsonResponse import JsonResponse
-from upmoodle.models.utils.requestException import RequestException
 
 # TODO. Return only related events.
 from upmoodle.services.auth import AuthService
@@ -36,8 +35,6 @@ class CalendarService:
         try:
             event_dict = Calendar.query_one(id=calendar_id)
             return JsonResponse(body=event_dict)
-        except RequestException as r:
-            return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
             return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
@@ -48,8 +45,6 @@ class CalendarService:
             AuthService.is_authorized_author(session_token=session_token, author_id=event.author_id, level=True)
             event.delete()
             return JsonResponse(message_id=OkMessage.Type.CALENDAR_EVENT_REMOVED)
-        except RequestException as r:
-            return r.jsonResponse
         except ObjectDoesNotExist or OverflowError or ValueError:
             return MessageBasedException(message_id=ErrorMessage.Type.INCORRECT_DATA).get_json_response()
 
@@ -67,8 +62,6 @@ class CalendarService:
             original_calendar.update(calendar_object, fields)
             original_calendar.save()
             return JsonResponse(message_id=OkMessage.Type.CALENDAR_UPDATED)
-        except RequestException as r:
-            return r.jsonResponse
         except ValidationError as v:
             return MessageBasedException(exception=v).get_json_response()
 
@@ -84,8 +77,6 @@ class CalendarService:
             calendar_object.lastUpdate = datetime.now()
             calendar_object.save()
             return JsonResponse(body=calendar_object, message_id=OkMessage.Type.CALENDAR_UPDATED)
-        except RequestException as r:
-            return r.jsonResponse
         except ValidationError as v:
             return MessageBasedException(exception=v).get_json_response()
 
