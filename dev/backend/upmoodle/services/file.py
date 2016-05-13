@@ -1,8 +1,8 @@
 from upmoodle.models import File, Level, User, FileType, BannedHash
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
+from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.auth import AuthService
-from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class FileService:

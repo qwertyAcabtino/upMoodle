@@ -5,7 +5,7 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 from upmoodle.models.utils.requestException import RequestException
-from upmoodle.routers.response.factory import JsonResponseFactory
+from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 
 
 def map_exceptions(view_func):

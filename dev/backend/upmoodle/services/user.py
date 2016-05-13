@@ -2,8 +2,8 @@ from upmoodle.models import User
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.models.message.okMessage import OkMessage
+from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.utils.randoms import RandomStringsService
-from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class UserService:

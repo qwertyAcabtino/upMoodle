@@ -57,7 +57,7 @@
 
  	api.level.getTree()
  	.success(function(data, status, headers, config){
-		$scope.subjectsTree = data[0];
+		$scope.subjectsTree = data[0].data;
 		$scope.navigateTo($scope.subjectsTree.id);
  	})
  	.error(function(data, status, headers, config) {

@@ -1,4 +1,6 @@
 from upmoodle.routers.decorators.routing_decorators import authenticated, method, response
+from upmoodle.routers.decorators.zero_exception_decorator import zero_exceptions
+from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.file import FileService
 from upmoodle.services.level import LevelService
 from upmoodle.services.notes import NoteService
@@ -12,13 +14,15 @@ def level_tree(request, **kwargs):
 
 @authenticated
 @method('GET')
-@response(media_type='application/json')
+@zero_exceptions
 def level_notes_list(request, level_id, data=None, **kwargs):
-    return NoteService.get_notes_by_level_id(level_id=level_id, data=data)
+    notes = NoteService.get_notes_by_level_id(level_id=level_id, data=data)
+    return JsonResponseFactory().ok().body(obj=notes).build()
 
 
 @authenticated
 @method('GET')
-@response(media_type='application/json')
+@zero_exceptions
 def level_files_list(request, level_id, data=None, **kwargs):
-    return FileService.get_files_by_level_id(level_id=level_id)
+    files = FileService.get_files_by_level_id(level_id=level_id)
+    return JsonResponseFactory().ok().body(obj=files).build()

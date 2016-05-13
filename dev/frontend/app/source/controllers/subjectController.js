@@ -6,7 +6,7 @@
  		$scope.getFileTypes = function(){
  			api.filetype.getAll()
  			.success(function(data, status, headers, config){
- 				$scope.fileTypes = data;	
+ 				$scope.fileTypes = data.data;	
  			})
  			.error(function(data, status, headers, config) {
  				console.log(data);
@@ -16,7 +16,7 @@
  		$scope.getSubjectFiles = function(){
  			api.level.getFiles( $scope.subject.id )
  			.success(function(data, status, headers, config){
- 				$scope.subject.files = data;	
+ 				$scope.subject.files = data.data;	
  			})
  			.error(function(data, status, headers, config) {
  				snackbar.error( data );

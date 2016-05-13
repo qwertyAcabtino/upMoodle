@@ -1,7 +1,7 @@
 from upmoodle.models import NoteBoard, Level, User, OkMessage
+from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.auth import AuthService
 from upmoodle.services.level import LevelService
-from upmoodle.services.utils.zero_exception_decorator import map_exceptions
 
 
 class NoteService:
