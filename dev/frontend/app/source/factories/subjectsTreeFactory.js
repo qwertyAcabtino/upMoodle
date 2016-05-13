@@ -8,7 +8,7 @@ angular.module('upmApp').factory('SubjectsTree', ['$location', 'api', function($
 	    		return api.level.getTree()
 				.then(
 					function success(response) { 
-						returno.model = response.data[0];
+						returno.model = response.data.data[0];
 						return returno.model; 
 					},
 					function error(){
