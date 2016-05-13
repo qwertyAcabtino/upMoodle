@@ -7,7 +7,7 @@ from upmoodle.models.exceptions.messageBasedException import MessageBasedExcepti
 from upmoodle.models.message.errorMessage import ErrorMessage
 
 # TODO. Return only related events.
-from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
+from upmoodle.controllers.decorators.exceptions import map_exceptions
 from upmoodle.services.auth import AuthService
 
 

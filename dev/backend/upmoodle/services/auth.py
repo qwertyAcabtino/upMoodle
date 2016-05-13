@@ -4,10 +4,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 
 from backend.settings import SESSION_COOKIE_NAME
+from upmoodle.controllers.decorators.exceptions import map_exceptions
 from upmoodle.models import User
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 from upmoodle.services.utils.email import EmailService
 from upmoodle.services.utils.randoms import RandomStringsService
 

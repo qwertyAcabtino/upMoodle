@@ -1,5 +1,5 @@
-from upmoodle.routers.decorators.routing_decorators import authenticated, method
-from upmoodle.routers.decorators.zero_exception_decorator import zero_exceptions
+from upmoodle.controllers.decorators.exceptions import zero_exceptions
+from upmoodle.controllers.decorators.router import authenticated, method
 from upmoodle.routers.response.jsonfactory import JsonResponseFactory
 from upmoodle.services.rol import RolService
 

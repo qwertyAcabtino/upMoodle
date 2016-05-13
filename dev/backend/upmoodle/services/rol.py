@@ -1,5 +1,5 @@
+from upmoodle.controllers.decorators.exceptions import map_exceptions
 from upmoodle.models import Rol
-from upmoodle.routers.decorators.zero_exception_decorator import map_exceptions
 
 
 class RolService:
