@@ -2,28 +2,34 @@
 <div class="row-offcanvas row-offcanvas-left">
 	<sidebar></sidebar>
 	<div id="main">
+		<div class="row-fluid">
+			<div class="col-md-8">
+				<h1>Edit your subjects</h1>
+			</div>
+			<div class="col-md-2 pull-right top-md-buffer">
+				<button ng-click="updateUserSubjects()" type="button" class="btn btn-success btn-block fa fa-floppy-o fa-lg" aria-label="Left Align"> 
+					Save
+				</button>
+			</div>
+		</div>
 		<div class="col-md-12">
-			Edit Subjects for {{university.name}}
 			<form role="form" name="form">
 				<ul class="nav nav-pills nav-stacked">
 					<li ng-repeat="carrer in university.children">
-						 · [Career] {{ carrer.name }}
+						<h3>{{ carrer.name }}</h3>
 						<ul class="nav nav-pills nav-stacked">
 							<li ng-repeat="course in carrer.children">
-								 ·  · [Course] {{ course.name }}
-								<ul class="nav nav-pills nav-stacked">
-									<li ng-repeat="subject in course.children">
-										 ·  ·  · [Subject] {{ subject.name }}
+								<h4>{{ course.name }}</h4>
+								<ul class="list-group">
+									<li ng-repeat="subject in course.children" class="list-group-item">
 										<input type="checkbox" ng-init="isAUserSubject(subject)" ng-model="subject.signedUp" >
+										{{ subject.name }}
 									</li>
 								</ul>  				
 							</li>
 						</ul>  				
 					</li>
 				</ul>
-				<button type="submit" class="btn btn-default" ng-click="updateUserSubjects()">
-					Save
-				</button>
 			</form>
 		</div>
 	</div>	
