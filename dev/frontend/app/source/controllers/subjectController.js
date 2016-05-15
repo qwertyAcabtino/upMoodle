@@ -7,10 +7,10 @@
  			var bgColor;
  			switch(rol) {
  				case 'Practice':
- 					bgColor = '5BC1DE';
+ 					bgColor = '1993B6';
  					break;
  				case 'Theory':
- 					bgColor = 'FFD063';
+ 					bgColor = '008A2F';
  					break;
  				case 'Exercise':
  					bgColor = '6981E3';
@@ -22,11 +22,12 @@
  			return { "background-color": "#"+bgColor };
 
 		};
+
  		$scope.setRolBadgeColor = function (rol){
  			var bgColor;
  			switch(rol) {
  				case 'Alumno':
- 					bgColor = 'F0AD4E';
+ 					bgColor = 'DE9226';
  					break;
  				default:
  					bgColor = '3A6D9B';
@@ -167,6 +168,25 @@ angular.module('upmApp').controller('ModalNewFileInfo', function ($scope, $uibMo
 
 angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibModalInstance, file, fileTypes, api, snackbar) {
 
+	$scope.setFiletypeBadgeColor = function (rol){
+		var bgColor;
+		switch(rol) {
+			case 'Practice':
+				bgColor = '1993B6';
+				break;
+			case 'Theory':
+				bgColor = '008A2F';
+				break;
+			case 'Exercise':
+				bgColor = '6981E3';
+				break;
+			default:
+				bgColor = 'FF7863';
+				break;
+		}
+		return { "background-color": "#"+bgColor };
+	};
+
 	$scope.getFilesFileTypeIndex = function(){
 		for(var i=0; i<$scope.fileTypes.length; i++){
 			if( $scope.fileTypes[i].id===$scope.file.fileType.id)
@@ -210,7 +230,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 		api.file.get(hash, 'metadata')
 		.success(function (data) {
 			if( previousMessage )
-				snackbar.message( previousMessage.message, 5000);
+				snackbar.message( previousMessage, 3000);
 			$scope.init( data[0] );
 			//TODO. Update main view.
 		})

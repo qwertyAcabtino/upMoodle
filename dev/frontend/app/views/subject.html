@@ -20,11 +20,12 @@
 				<li ng-repeat="file in subject.files | filter:searchText | orderBy:'-lastUpdate'">
 					<a ng-click="openEditFileModal(file)" class="file">
 						<span class="label label-primary">{{file.year.verbose}}</span>
-						<span class="label label-pill label-info" ng-style="setFiletypeBadgeColor(file.fileType.name)">{{file.fileType.name}}</span>
-						<span class="label label-pill label-warning fa fa-user" ng-style="setRolBadgeColor(file.uploader.rol)"> {{file.uploader.rol}} {{file.uploader.nick}}</span>
+						<span class="label label-pill label-info filetype" ng-style="setFiletypeBadgeColor(file.fileType.name)">{{file.fileType.name}}</span>
+						<span class="label label-pill label-warning fa fa-user" ng-style="setRolBadgeColor(file.uploader.rol)"> {{file.uploader.nick}}</span>
 						{{file.name}} 
 				</li>
-				<li ng-show="!subject.files.length">There are not files yet for this subject.</li>
+				<li class="left-md-buffer" ng-show="!subject.files.length">No files in this subject.</li>
+				<li class="left-md-buffer" ng-show="!subject.files.length">Got any? Drag-and-drop it for upload</li>
 			</ul>
 		</div>	
 	</div>
