@@ -43,21 +43,21 @@ body{
   overflow:auto;
 }
 .button {
-    -moz-appearance: button;
-    /* Firefox */
-    -webkit-appearance: button;
-    /* Safari and Chrome */
-    padding: 10px;
-    margin: 10px;
-    width: 70px;
+  -moz-appearance: button;
+  /* Firefox */
+  -webkit-appearance: button;
+  /* Safari and Chrome */
+  padding: 10px;
+  margin: 10px;
+  width: 70px;
 }
 .drop-box {
-    border: 5px dashed #DDD;
-    padding-top: 25px;
-    margin: 10px;
+  border: 2px dashed #aaceec;
+  padding-top: 25px;
+  margin: 10px;
 }
 .dragover {
-    border: 5px dashed blue;
+  border: 4px dashed #aace4e;
 }
 
 @media screen and (max-width: 768px) {
@@ -67,9 +67,9 @@ body{
     -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
     width:calc(100% + 220px);
-}
-    
-.row-offcanvas-left{
+  }
+
+  .row-offcanvas-left{
     left: -220px;
   }
 
@@ -81,4 +81,8 @@ body{
     position: absolute;
     top: 0;
   }
+}
+
+.top-buffer {
+  margin-top: 10px;
 }

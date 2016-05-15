@@ -1,14 +1,11 @@
 <navbar></navbar>
 <div class="container-fluid">
-	<sidebar></sidebar>
-	<div class="col-md-3 ">
+	<div class="col-md-3">
 		<img ng-src="{{avatar}}" class="center-block drop-box" style="max-width: 100%" ng-file-drop ng-model="newAvatar" 
         drag-over-class="dragover" ng-multiple="false" allow-dir="true"
         accept="image/*" ngf-accept=".png,.jpg,.gif"/>
 	</div>
-	<div class="col-md-6">
-		<button ng-click="editMode = !editMode" type="button" class="btn btn-default" aria-label="Left Align"> Edit
-		</button>
+	<div class="col-md-7 col-md-offset-1 top-buffer">
 		<div ng-show="editMode" id="replyForm">
 			<form role="form" name="form">
 				<div class="form-group">
@@ -27,10 +24,19 @@
 					<label for="text">New Password:</label>
 					<input type="password" class="form-control" id="text" placeholder="Write a password" ng-model="user.password">
 				</div>
-				<button type="submit" class="btn btn-default" ng-click="update(user, password)">
-					Submit
-				</button>
 			</form>
+		    <div class="col-md-12 text-center"> 
+			    <div class="col-md-6 text-center"> 
+			      <button type="submit" class="btn btn-primary btn-block fa fa-floppy-o fa-lg" ng-click="update(user, password)">
+			        Save
+			      </button>
+			    </div>
+			    <div class="col-md-6 text-center"> 
+			      <button ng-click="editMode = !editMode" class="btn btn-default btn-block fa fa-times fa-lg">
+			        Cancel
+			      </button>
+		    	</div>
+		    </div>
 		</div>
 		<div ng-show="!editMode">
 			<ul class="list-group">
@@ -39,6 +45,12 @@
 				<li class="list-group-item">{{user.email}}</li>
 				<li class="list-group-item">{{user.joined}}</li>
 			</ul>
+		    <div class="col-md-12 text-center"> 
+				<button ng-click="editMode = !editMode" ng-show="!editMode" type="button" class="btn btn-default btn-block 
+btn-lg fa fa-pencil fa-lg" aria-label="Left Align"> 
+ 					Edit your profile
+				</button>
+			</div>
 		</div>
 	</div>
 </div>

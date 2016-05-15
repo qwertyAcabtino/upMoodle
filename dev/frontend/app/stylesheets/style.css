@@ -57,14 +57,14 @@ body .container-fliud .name:hover {
 
 /* line 54, sass/style.scss */
 .drop-box {
-  border: 5px dashed #DDD;
+  border: 2px dashed #aaceec;
   padding-top: 25px;
   margin: 10px;
 }
 
 /* line 59, sass/style.scss */
 .dragover {
-  border: 5px dashed blue;
+  border: 4px dashed #aace4e;
 }
 
 @media screen and (max-width: 768px) {
@@ -92,4 +92,8 @@ body .container-fliud .name:hover {
     position: absolute;
     top: 0;
   }
+}
+/* line 86, sass/style.scss */
+.top-buffer {
+  margin-top: 10px;
 }
