@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 			},
 			jsShelf:{
 				files: 'app/source/**/*.js',
-				tasks: ['build'],
+				tasks: ['build', 'server'],
 				options: {
 					livereload: true,
 				}			

@@ -19,7 +19,21 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'cfpLoadingB
 		$routeProvider
 		.when('/login', {
 			templateUrl: 'views/login.html',
-			controller: 'loginController'
+			controller: 'loginController',
+			css: [
+		        {
+		          href: 'page4/page4.css',
+		          persist: true
+		        }, {
+		          href: 'page4/page4.mobile.css',
+		          /* Media Query support via window.matchMedia API
+		           * This will only add the stylesheet if the breakpoint matches */
+		          media: 'screen and (max-width : 768px)'
+		        }, {
+		          href: 'page4/page4.print.css',
+		          media: 'print'
+		        }
+		    ]
 		})
 		.when('/signup', {
 			templateUrl: 'views/signup.html',
