@@ -1,31 +1,46 @@
-/* line 5, sass/style.scss */
+/* line 3, sass/style.scss */
+html, body {
+  height: 100vh;
+  margin: 0 auto;
+  padding-top: 00px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* line 11, sass/style.scss */
+.container .row .col-md-6 {
+  height: 100vh;
+  overflow: auto;
+}
+
+/* line 18, sass/style.scss */
 body #map-canvas {
   height: 100%;
   margin: 0px;
   padding: 0px;
 }
-/* line 11, sass/style.scss */
+/* line 24, sass/style.scss */
 body .search-field span {
   display: block;
 }
-/* line 15, sass/style.scss */
+/* line 28, sass/style.scss */
 body #searchResults .name {
   cursor: pointer;
 }
-/* line 19, sass/style.scss */
+/* line 32, sass/style.scss */
 body .active {
   background-color: #8ec16d;
 }
-/* line 23, sass/style.scss */
+/* line 36, sass/style.scss */
 body #searchResultsList .name {
   cursor: pointer;
 }
-/* line 27, sass/style.scss */
-body .container-fliud .name:hover {
+/* line 40, sass/style.scss */
+body .container-fluid .name:hover {
   background-color: #E58079;
 }
 
-/* line 32, sass/style.scss */
+/* line 45, sass/style.scss */
 #sidebar {
   width: inherit;
   min-width: 220px;
@@ -38,12 +53,12 @@ body .container-fliud .name:hover {
   overflow-x: hidden;
 }
 
-/* line 43, sass/style.scss */
+/* line 56, sass/style.scss */
 #main {
   overflow: auto;
 }
 
-/* line 46, sass/style.scss */
+/* line 59, sass/style.scss */
 .button {
   -moz-appearance: button;
   /* Firefox */
@@ -54,20 +69,20 @@ body .container-fliud .name:hover {
   width: 70px;
 }
 
-/* line 55, sass/style.scss */
+/* line 68, sass/style.scss */
 .drop-box {
   border: 2px dashed #aaceec;
   padding-top: 25px;
   margin: 10px;
 }
 
-/* line 60, sass/style.scss */
+/* line 73, sass/style.scss */
 .dragover {
   border: 4px dashed #aace4e;
 }
 
 @media screen and (max-width: 768px) {
-  /* line 65, sass/style.scss */
+  /* line 78, sass/style.scss */
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
@@ -76,64 +91,94 @@ body .container-fliud .name:hover {
     width: calc(100% + 220px);
   }
 
-  /* line 73, sass/style.scss */
+  /* line 86, sass/style.scss */
   .row-offcanvas-left {
     left: -220px;
   }
 
-  /* line 77, sass/style.scss */
+  /* line 90, sass/style.scss */
   .row-offcanvas-left.active {
     left: 0;
   }
 
-  /* line 81, sass/style.scss */
+  /* line 94, sass/style.scss */
   .sidebar-offcanvas {
     position: absolute;
     top: 0;
   }
 }
-/* line 87, sass/style.scss */
+/* line 100, sass/style.scss */
 .top-buffer {
   margin-top: 16px;
 }
 
-/* line 91, sass/style.scss */
+/* line 104, sass/style.scss */
 .top-md-buffer {
   margin-top: 24px;
 }
 
-/* line 95, sass/style.scss */
+/* line 108, sass/style.scss */
 .top-lg-buffer {
   margin-top: 64px;
 }
 
-/* line 99, sass/style.scss */
+/* line 112, sass/style.scss */
 .left-md-buffer {
   margin-left: 24px;
 }
 
-/* line 103, sass/style.scss */
+/* line 116, sass/style.scss */
 .left-lg-buffer {
   margin-left: 64px;
 }
 
-/* line 107, sass/style.scss */
+/* line 120, sass/style.scss */
 .link-filter:hover {
   cursor: pointer;
 }
 
-/* line 111, sass/style.scss */
+/* line 124, sass/style.scss */
 .container {
   padding-left: 24px;
 }
 
-/* line 115, sass/style.scss */
+/* line 128, sass/style.scss */
 div.notes-container {
   margin-left: 12px;
   margin-right: 12px;
 }
 
-/* line 122, sass/style.scss */
+/* line 134, sass/style.scss */
+ul.nav.nav-pills.nav-stacked.files a.file {
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: black;
+  padding-right: 12px;
+  border: none;
+  padding: auto  12px;
+}
+/* line 146, sass/style.scss */
+ul.nav.nav-pills.nav-stacked.files a.file span.label {
+  font-weight: lighter;
+  font-size: 14px;
+  margin-right: 4px;
+}
+/* line 151, sass/style.scss */
+ul.nav.nav-pills.nav-stacked.files a.file i {
+  font-size: 14px;
+  margin-left: 12px;
+}
+/* line 157, sass/style.scss */
+ul.nav.nav-pills.nav-stacked.files a.file:hover {
+  background-color: #ecf4fb !important;
+  cursor: pointer;
+}
+
+/* line 164, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note {
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 20px;
@@ -146,33 +191,33 @@ ul.nav.nav-pills.nav-stacked.notes a.note {
   border: none;
   padding: auto  12px;
 }
-/* line 134, sass/style.scss */
+/* line 176, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note span.label {
   font-weight: lighter;
   font-size: 18px;
   margin-right: 16px;
 }
-/* line 139, sass/style.scss */
+/* line 181, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note i {
   font-size: 14px;
 }
-/* line 144, sass/style.scss */
+/* line 186, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note:hover {
   background-color: #ecf4fb !important;
   cursor: pointer;
 }
 
-/* line 150, sass/style.scss */
+/* line 192, sass/style.scss */
 .navbar {
   margin-bottom: 2px;
 }
 
-/* line 155, sass/style.scss */
+/* line 197, sass/style.scss */
 .subjects li.list-group-item {
   border: none;
 }
 
-/* line 160, sass/style.scss */
+/* line 202, sass/style.scss */
 span.subjects-header {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 18px;
@@ -186,7 +231,12 @@ span.subjects-header {
   cursor: pointer;
 }
 
-/* line 174, sass/style.scss */
+/* line 216, sass/style.scss */
 ul.subjects-list li {
   cursor: pointer;
+}
+
+/* line 221, sass/style.scss */
+.subject-files-box {
+  height: 100%;
 }

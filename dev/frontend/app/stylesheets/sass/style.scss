@@ -1,5 +1,18 @@
 $light-blue: #ecf4fb;
 
+html,body {
+  height:100vh;  
+  margin: 0 auto;
+  padding-top: 00px;  
+  overflow-y: hidden; // hide vertical
+  overflow-x: hidden; // hide horizontal
+}
+
+.container .row .col-md-6 { 
+  height: 100vh;
+  overflow: auto;  
+} 
+
 body{
 
 	#map-canvas {
@@ -24,7 +37,7 @@ body{
 			cursor : pointer;
 		}
 	}	 
-	.container-fliud .name:hover{
+	.container-fluid .name:hover{
 		background-color: #E58079;
 	}
 }
@@ -117,9 +130,38 @@ div.notes-container{
   margin-right: 12px;
 }
 
-ul.nav.nav-pills.nav-stacked.notes {
+ul.nav.nav-pills.nav-stacked.files {
+  a.file {
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+    color: black;
+    padding-right: 12px;
+    border: none;
+    padding: auto  12px;
+    
+    span.label {
+      font-weight:lighter;
+      font-size: 14px;
+      margin-right: 4px;
+    }
+    i {
+      font-size: 14px;
+      margin-left: 12px
+    }
+  }
 
-  a.note {
+  a.file:hover {
+    background-color: $light-blue !important; 
+    cursor: pointer;
+  }
+}
+ul.nav.nav-pills.nav-stacked.notes{
+
+  a.note{
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
     font-size: 20px;
     font-style: normal;
@@ -174,4 +216,8 @@ ul.subjects-list {
   li {
     cursor: pointer;
   }
+}
+
+.subject-files-box {
+  height: 100%;
 }

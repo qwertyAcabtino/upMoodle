@@ -3,6 +3,38 @@
  	['$scope', '$cookies', 'api', 'User', 'userModel', '$location', 'SubjectsTree', '$uibModal', 'snackbar', '$routeParams', '$upload',
  	function($scope, $cookies, api, User, userModel, $location, SubjectsTree, $uibModal, snackbar, $routeParams, $upload){
 
+ 		$scope.setFiletypeBadgeColor = function (rol){
+ 			var bgColor;
+ 			switch(rol) {
+ 				case 'Practice':
+ 					bgColor = '5BC1DE';
+ 					break;
+ 				case 'Theory':
+ 					bgColor = 'FFD063';
+ 					break;
+ 				case 'Exercise':
+ 					bgColor = '6981E3';
+ 					break;
+ 				default:
+ 					bgColor = 'FF7863';
+ 					break;
+ 			}
+ 			return { "background-color": "#"+bgColor };
+
+		};
+ 		$scope.setRolBadgeColor = function (rol){
+ 			var bgColor;
+ 			switch(rol) {
+ 				case 'Alumno':
+ 					bgColor = 'F0AD4E';
+ 					break;
+ 				default:
+ 					bgColor = '3A6D9B';
+ 					break;
+ 			}
+ 			return { "background-color": "#"+bgColor };
+ 		};
+
  		$scope.getFileTypes = function(){
  			api.filetype.getAll()
  			.success(function(data, status, headers, config){
@@ -49,7 +81,7 @@
  			});
 
  			modalInstance.result.then(function (message) {
- 				snackbar.message(message, 5000);
+ 				snackbar.message(message.message, 3000);
  				$scope.getSubjectFiles();
  			}, function () {
  				$scope.getSubjectFiles();
@@ -75,7 +107,7 @@
  			});
 
  			modalInstance.result.then(function (message) {
- 				snackbar.message(message, 5000);
+ 				snackbar.message(message.message, 3000);
  				$scope.getSubjectFiles();
  			}, function () {
  				$scope.getSubjectFiles();
@@ -150,7 +182,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 	$scope.deleteFile = function(file){
 		api.file.delete(file.hash)
 		.success(function (data) {
-			$uibModalInstance.close(data.message);  
+			$uibModalInstance.close(data);  
 		})
  		.error(function(data, status, headers, config) {
 	       snackbar.error(data);
@@ -178,7 +210,7 @@ angular.module('upmApp').controller('ModalEditFileInfo', function ($scope, $uibM
 		api.file.get(hash, 'metadata')
 		.success(function (data) {
 			if( previousMessage )
-				snackbar.message( previousMessage, 5000);
+				snackbar.message( previousMessage.message, 5000);
 			$scope.init( data[0] );
 			//TODO. Update main view.
 		})

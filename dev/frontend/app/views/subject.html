@@ -1,15 +1,31 @@
 <navbar></navbar>
 <div class="row-offcanvas row-offcanvas-left">
 	<sidebar></sidebar>
-	<div id="main" ng-file-drop ng-model="files" class="drop-box" 
-        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
-        accept="image/*,application/pdf">
-        <label>Filter </label><input class="form-control" ng-model="searchText"><br>
-		<ul class="nav nav-pills nav-stacked">
-			<li ng-repeat="file in subject.files | filter:searchText | orderBy:'-lastUpdate'">
-				<a ng-click="openEditFileModal(file)">[{{file.year.verbose}}][{{file.fileType.name}}] {{file.name}} <i> by {{file.uploader.nick}}</i></a>
-			</li>
-			<li ng-show="!subject.files.length">There are not files yet for this subject.</li>
-		</ul>
-	</div>	
+	<div id="main">
+		<div class="row left-md-buffer">
+			<h2>{{subject.name}}</h2>
+		</div>
+		<div class="container-fluid top-md-buffer" name="filter">
+			<div class="form-group row">
+				<label for="filter" class="col-sm-1 form-control-label">Search</label>
+				<div class="col-sm-8">
+					<input class="form-control" id="filter" placeholder="Your search term" ng-model="searchText">
+				</div>
+			</div>
+		</div>
+		<div ng-file-drop ng-model="files" class="drop-box subject-files-box" 
+	        drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+	        accept="image/*,application/pdf">
+			<ul class="nav nav-pills nav-stacked files">
+				<li ng-repeat="file in subject.files | filter:searchText | orderBy:'-lastUpdate'">
+					<a ng-click="openEditFileModal(file)" class="file">
+						<span class="label label-primary">{{file.year.verbose}}</span>
+						<span class="label label-pill label-info" ng-style="setFiletypeBadgeColor(file.fileType.name)">{{file.fileType.name}}</span>
+						<span class="label label-pill label-warning fa fa-user" ng-style="setRolBadgeColor(file.uploader.rol)"> {{file.uploader.rol}} {{file.uploader.nick}}</span>
+						{{file.name}} 
+				</li>
+				<li ng-show="!subject.files.length">There are not files yet for this subject.</li>
+			</ul>
+		</div>	
+	</div>
 </div>
