@@ -1,0 +1,14 @@
+<navbar></navbar>
+<div class="row-offcanvas row-offcanvas-left">
+	<sidebar></sidebar>
+	<div id="main">
+		<div class="col-md-12">
+			<div class="btn-group">
+	            <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar2')">AgendaDay</button>
+	            <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar2')">AgendaWeek</button>
+	            <button class="btn btn-success" ng-click="changeView('month', 'myCalendar2')">Month</button>
+            </div>
+			<div ui-calendar="uiConfig.calendar" class="span8 calendar" calendar="myCalendar2" ng-model="eventSources"></div>
+		</div>
+	</div>	
+</div>

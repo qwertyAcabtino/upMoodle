@@ -1,4 +1,4 @@
-var app = angular.module("upmApp", ['ngRoute', 'ngCookies', 'angular.snackbar', 'ui.bootstrap', 'angular-loading-bar', 'angularFileUpload'])
+var app = angular.module("upmApp", ['ngRoute', 'ngCookies', 'angular.snackbar', 'ui.bootstrap', 'angular-loading-bar', 'angularFileUpload', 'ui.calendar'])
 	.filter('split', function() {
         return function(input, splitChar, splitIndex) {
             // do some bounds checking here to ensure it has that index
@@ -73,6 +73,14 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', 'cfpLoadingB
 		.when('/notes', {
 			templateUrl: 'views/notes.html',
 			controller: 'notesCtrl',
+			resolve : {
+				userModel : userPromise,
+				subjectsNestModel : subjectsPromise,
+			}
+		})
+		.when('/calendar', {
+			templateUrl: 'views/calendar.html',
+			controller: 'calendarController',
 			resolve : {
 				userModel : userPromise,
 				subjectsNestModel : subjectsPromise,

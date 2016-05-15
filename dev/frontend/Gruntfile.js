@@ -11,7 +11,12 @@ module.exports = function(grunt) {
 
 		'meta': {
 			'externalDependencies': [
+				'bower_components/jquery/dist/jquery.js',
+				'bower_components/moment/min/moment.min.js',
 				'bower_components/angular/angular.js',
+				'bower_components/angular-ui-calendar/src/calendar.js',
+				'bower_components/fullcalendar/dist/fullcalendar.js',
+				'bower_components/fullcalendar/dist/gcal.js',
 				'bower_components/angular-cookies/angular-cookies.js',
 				'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
 				'bower_components/angular-route/angular-route.js',
