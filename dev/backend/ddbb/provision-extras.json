@@ -1,0 +1,474 @@
+[
+  {
+    "model": "upmoodle.level",
+    "pk": 1,
+    "fields": {
+      "name": "Ingenieria del software",
+      "type": 1,
+      "visible": true,
+      "parent": 7
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 2,
+    "fields": {
+      "name": "Ingenieria de computadores",
+      "type": 1,
+      "visible": true,
+      "parent": 7
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 3,
+    "fields": {
+      "name": "3ro de software",
+      "type": 2,
+      "visible": true,
+      "parent": 1
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 4,
+    "fields": {
+      "name": "Verificacion y Validacion",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 5,
+    "fields": {
+      "name": "Calidad del software",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 6,
+    "fields": {
+      "name": "Gestion de proyectos",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 7,
+    "fields": {
+      "name": "UPM",
+      "type": 5,
+      "visible": true,
+      "parent": null
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 8,
+    "fields": {
+      "name": "Prácticas externas",
+      "type": 3,
+      "visible": true,
+      "parent": 9
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 9,
+    "fields": {
+      "name": "4º de software",
+      "type": 2,
+      "visible": true,
+      "parent": 1
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 1,
+    "fields": {
+      "rol": 1,
+      "email": "victor.perezr@alumnos.upm.es",
+      "nick": "viperey",
+      "name": "Victor Perez",
+      "password": "qwerqwer",
+      "profilePic": "pics/users/octogon-2_548kLjW.png",
+      "lastTimeActive": "2016-05-15T21:53:55.308Z",
+      "joined": "2015-05-10T15:17:00Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "2831db3f48b04b1cbc52ee40ee016bec",
+      "subjects": [
+        4,
+        6,
+        10
+      ]
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 2,
+    "fields": {
+      "rol": 1,
+      "email": "fool@eui.upm.es",
+      "nick": "fooUser",
+      "name": "foo foo",
+      "password": "password",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-05-12T21:25:42.046Z",
+      "joined": "2016-05-12T21:25:42.046Z",
+      "banned": false,
+      "confirmedEmail": false,
+      "sessionToken": "cb05cfc1b8ab4cb68df3cbdb0498dc9a",
+      "subjects": []
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 3,
+    "fields": {
+      "rol": 1,
+      "email": "fool1@eui.upm.es",
+      "nick": "fooUser1",
+      "name": "foo foo1",
+      "password": "password",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-05-13T12:33:33.704Z",
+      "joined": "2016-05-13T12:33:33.704Z",
+      "banned": false,
+      "confirmedEmail": false,
+      "sessionToken": "e32b9bffb81e4c4e9f384f97ff7564f0",
+      "subjects": []
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 4,
+    "fields": {
+      "rol": 2,
+      "email": "profesor@upm.es",
+      "nick": "profesorBacterio",
+      "name": "Profesor Interino",
+      "password": "qwerqwer",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-05-15T22:08:32Z",
+      "joined": "2016-05-15T22:08:32Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "",
+      "subjects": []
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 5,
+    "fields": {
+      "rol": 1,
+      "email": "delegado@upm.es",
+      "nick": "delegaldin",
+      "name": "Delegado De La Clase",
+      "password": "qwerqwer",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-05-15T22:09:29Z",
+      "joined": "2016-05-15T22:09:29Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "none",
+      "subjects": []
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 6,
+    "fields": {
+      "rol": 3,
+      "email": "coordinador@eui.upm.es",
+      "nick": "coordinatorTotal",
+      "name": "Coordinador De Asignatura",
+      "password": "12341234",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-05-15T22:10:12Z",
+      "joined": "2016-05-15T22:10:12Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "qwerqwer",
+      "subjects": []
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 7,
+    "fields": {
+      "rol": 5,
+      "email": "secretaria@eui.upm.es",
+      "nick": "secretaria",
+      "name": "Secretaria De Alumnos",
+      "password": "12341234",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-05-15T22:11:01Z",
+      "joined": "2016-05-15T22:11:01Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "123412341234",
+      "subjects": []
+    }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 8,
+    "fields": {
+      "rol": 2,
+      "email": "profesor.concurrente@eui.upm.es",
+      "nick": "monitor",
+      "name": "Profesor De Concurrencia",
+      "password": "qwerqwerqwer",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-05-15T22:11:55Z",
+      "joined": "2016-05-15T22:11:55Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "tr",
+      "subjects": []
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 1,
+    "fields": {
+      "topic": "asdfasd",
+      "text": "fasdfa",
+      "level": 4,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-10T12:22:12.993Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 2,
+    "fields": {
+      "topic": "asdf",
+      "text": "asdfasdf",
+      "level": 4,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-12T14:23:09.802Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 3,
+    "fields": {
+      "topic": "Variable",
+      "text": "Think of variables as a way to store information that you want to reuse throughout your stylesheet. You can store things like colors, font stacks, or any CSS value you think you'll want to reuse. Sass uses the $ symbol to make something a variable. Here's an example:",
+      "level": 1,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-12T20:48:21.074Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 4,
+    "fields": {
+      "topic": "asdfa",
+      "text": "sadfasdf",
+      "level": 3,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-13T02:01:50.219Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 5,
+    "fields": {
+      "topic": "Nuevos de Grado curso 2016/17",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "level": 3,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-15T15:49:50.610Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 6,
+    "fields": {
+      "topic": "Components",
+      "text": "Over a dozen reusable components built to provide iconography, dropdowns, input groups, navigation, alerts, and much more.",
+      "level": 4,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-15T18:33:56.812Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 7,
+    "fields": {
+      "topic": "Lists",
+      "text": "List groups are a flexible and powerful component for displaying not only simple lists of elements, but complex ones with custom content.",
+      "level": 6,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-15T18:34:37.909Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 8,
+    "fields": {
+      "topic": "áaskdlfkasdlf",
+      "text": "áaksdlfkasdjfl",
+      "level": 1,
+      "author": 1,
+      "visible": false,
+      "authorized": true,
+      "created": "2016-05-15T21:38:49.998Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 9,
+    "fields": {
+      "topic": "Nuevos títulos de Grado curso 2016/17",
+      "text": "El próximo curso académico 2016/17, en nuestro Centro se ponen en marcha nuevos títulos de Grado, todos ellos en el ámbito de la Ingeniería Informática:- Grado en Tecnologías para la Sociedad de la Información- Doble título de Grado en Ingeniería de Computadores y Tecnologías para la Sociedad de la Información- Doble título de Grado en Ingeniería del Software y Tecnologías para la Sociedad de la InformaciónSi quieres acceder a la información completa de nuestra oferta académica para el próximo curso, puedes consultar la página de Futuros Alumnos.",
+      "level": 7,
+      "author": 7,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:51:16Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 10,
+    "fields": {
+      "topic": "Viernes 13 de mayo de 2016 Seminario AgendaFG",
+      "text": "El próximo viernes 13 de mayo a las 18:00 el Máster en Diseño y Desarrollo de Videojuegos PlayStation First de la UPM impartirá en la Sala de Grados un seminario de la mano de AgendaFG en el que se darán a conocer todas las claves para el desarrollo de un juego de lucha (fighting game).En el seminario se expondrán todos los entresijos de los juegos de lucha, ejemplificados con el reciente Street Fighter V, con el objetivo de que los asistentes dispongan de toda la información posible para poder aventurarse en la creación de este fascinante género de videojuegos.AgendaFG es uno de las máximos exponentes de la comunidad de los juegos de lucha en España. En sus diferentes medios web, youtube, twitter o facebook está realizando un gran esfuerzo por promover esta comunidad mediante entrevistas a los mejores jugadores, tutoriales sobre los diferentes juegos (Street Fighter IV y V, Super Smash Bros 4, ...), organización de torneos, etc.",
+      "level": 7,
+      "author": 7,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:51:43Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 11,
+    "fields": {
+      "topic": "Plazo para solicitar cambio de plan de estudios curso 2016_17",
+      "text": "http://www.etsisi.upm.es/sites/default/files/alumnos/plazo_cambio_plan_de_estudios_curso_2016-17.pdf",
+      "level": 1,
+      "author": 5,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:52:15Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 12,
+    "fields": {
+      "topic": "Prácticas en la Cátedra Accenture Digital-UPM",
+      "text": "Buenas tardes:El próximo miércoles 11 de mayo, a las 13:00 horas en el aula 8101, se presentará esta nueva Cátedra Universidad-Empresa de la Escuela, centrada en uno de los retos tecnológicos más actuales e importantes de la Ingeniería Informática: Big Data.La Cátedra Accenture Digital-UPM de Big Data ofrece becas de formación a los estudiantes de la UPM, preferentemente a los de la ETSISI, desde el primer curso de grado. También tiene prevista una visita al Departamento de Innovación de Accenture y la concesión de un premio al mejor Proyecto Fin de Grado en Big Data.Se adjunta cartel informativo y contamos con tu asistencia a la presentación de la Cátedra.Un saludo",
+      "level": 8,
+      "author": 4,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:54:14Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 13,
+    "fields": {
+      "topic": "Programa de Prácticas IBM Cloud",
+      "text": "Nos ha llegado la siguiente oferta de Prácticas en IBM por si fuera de vuestro interés.https://moodle.upm.es/titulaciones/oficiales/pluginfile.php/568754/mod_forum/attachment/476335/Practicas%20IBM.pdf",
+      "level": 8,
+      "author": 4,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:56:01Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 14,
+    "fields": {
+      "topic": "Presentación Grupo Oesía",
+      "text": "Presentación del Grupo Oesía, el próximo miércoles 20 de abril, a las 13:00 horas, en la Sala de GradosSe trata de un grupo español muy importante (unos 2600 trabajadores), formado por cuatro empresas de Ingeniería Informática.Te ofrecen, como estudiantes de la Escuela, la posibilidad de incorporarte a su Escuela de Formación, con una posible beca remunerada, y de integrarte posteriormente en su plantilla de ingenieros.Además, puedes compatibilizar la formación que te ofrecen con la realización de prácticas externas.Si estás decidido no esperes al 20 de abril, ¡reserva tu plaza ya! Envía tu CV a escuelaoesia@oesia.com",
+      "level": 8,
+      "author": 4,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:56:19Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 15,
+    "fields": {
+      "topic": "Entrega de documentación de los trabajos finales",
+      "text": "La documentación correspondiente al trabajo de exposición deberá entregarse a través de la actividad presente en el tema \"Exposición de Trabajos\" por parte de un UNICO alumno del grupo de exposición antes de las 12:00 del martes 17 de Mayo de 2016.La documentación a entregar constará al menos de la memoria y las diapositivas de la presentación y, opcionalmente, los ficheros fuente de la aplicación desarrollada. Todo ello comprimido en un único fichero.",
+      "level": 10,
+      "author": 8,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:57:32Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 16,
+    "fields": {
+      "topic": "Fecha límite de grupos de trabajos finales",
+      "text": "La fecha límite para formar los grupos y elegir el tema del trabajo final de PC es el viernes 1 de Abril de 2016.Para ello, hay que cumplimentar la correspondiente tarea del tema Exposición de Trabajos de la plataforma.",
+      "level": 10,
+      "author": 8,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T21:58:35Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 17,
+    "fields": {
+      "topic": "Cierre del área 32XX",
+      "text": "Con motivo de un escape de uranio comestible, la planta 2 del bloque 3 permanecerá cerrada durante los próximos 15 días.",
+      "level": 1,
+      "author": 7,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T22:01:58Z"
+    }
+  },
+  {
+    "model": "upmoodle.noteboard",
+    "pk": 18,
+    "fields": {
+      "topic": "Evaluación de Trabajos de Exposición",
+      "text": "Se ha publicado en el Moodle, en el tema correspondiente a la Exposición de Trabajos, los criterios de evaluación de los mismos.",
+      "level": 10,
+      "author": 8,
+      "visible": true,
+      "authorized": true,
+      "created": "2016-05-15T22:02:46Z"
+    }
+  }
+]
