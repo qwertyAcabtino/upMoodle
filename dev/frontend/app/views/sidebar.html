@@ -2,16 +2,18 @@
   <div id="sidebar" class="sidebar-offcanvas">
   	<div class="col-md-12">
   		<h4>
-  			<a href="#/editSubjects" class="fa fa-edit"></a>
-  			Mis asignaturas {{user.name}}
+  			My subjects
   		</h4>
   		<ul class="nav nav-pills nav-stacked">
   			<li ng-repeat="subject in user.subjects">
   				<a href="#/subject/{{subject.id}}">{{ subject.name }}</a>
   			</li>
-			<li ng-show="!user.subjects.length">No tienes asignaturas.</li>
+			<li ng-show="!user.subjects.length">Currently, you are not registered at any subject</li>
   		</ul>
-  	<h3>Calendario</h3>
-  	<h3><a href="#/notes/">Noticias</a></h3>
+  </div>
+  <div class="col-md-10 top-buffer">
+    <a role="button" ng-href="#/editSubjects" type="button" class="btn btn-default btn-block btn fa fa-pencil fa" aria-label="Left Align"> 
+      Edit
+    </a>
   </div>
 </div>
