@@ -36,7 +36,7 @@
  			snackbar.message(message.message);
  			api.userMe.get().
  			success(function(data, status, headers, config) {
- 				User.set(data);
+ 				User.set(data.data);
  				$location.path('/subjects');
  			});
  		};

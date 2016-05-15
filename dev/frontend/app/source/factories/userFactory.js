@@ -26,6 +26,7 @@ angular.module('upmApp').factory('User', ['$location', 'api', function($location
 
 	    set : function(model){
 	    	this.model = model;
+	    	this.model.profilePic = 'http://127.0.0.1:8000/' + model.profilePic;
 	    },
 
 	    isSignedInSubject : function(id){
