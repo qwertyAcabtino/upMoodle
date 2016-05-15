@@ -13,6 +13,7 @@ dev/backend/ddbb/db.sqlite3
 dev/backend/.idea/
 dev/backend/data/files/
 dev/backend/data/pics/
+dev/frontend/.sass-cache/
 dev/frontend/node_modules
 dev/frontend/bower_components
 dev/frontend/app/dist/
