@@ -20,7 +20,7 @@
 						<ul class="nav nav-pills nav-stacked">
 							<li ng-repeat="course in carrer.children">
 								<h4>{{ course.name }}</h4>
-								<ul class="list-group">
+								<ul class="list-group subjects">
 									<li ng-repeat="subject in course.children" class="list-group-item">
 										<input type="checkbox" ng-init="isAUserSubject(subject)" ng-model="subject.signedUp" >
 										{{ subject.name }}

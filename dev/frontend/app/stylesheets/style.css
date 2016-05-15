@@ -156,3 +156,8 @@ ul.nav.nav-pills.nav-stacked.notes a.note:hover {
 .navbar {
   margin-bottom: 2px;
 }
+
+/* line 147, sass/style.scss */
+.subjects li.list-group-item {
+  border: none;
+}
