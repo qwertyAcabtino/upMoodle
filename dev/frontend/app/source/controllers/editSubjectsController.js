@@ -33,7 +33,7 @@
  		};
 
  		$scope.updateUserSubjectsCallback = function(message){
- 			snackbar.message(message);
+ 			snackbar.message(message.message);
  			api.userMe.get().
  			success(function(data, status, headers, config) {
  				User.set(data);
