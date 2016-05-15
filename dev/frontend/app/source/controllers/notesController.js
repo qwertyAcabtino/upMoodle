@@ -46,7 +46,7 @@
     });
 
     modalInstance.result.then(function (message) {
-      snackbar.message(message, 5000);
+      snackbar.message(message, 3000);
       $scope.getNotesByLevelId($scope.subjectsTree.id, true);
     }, function () {
     });
