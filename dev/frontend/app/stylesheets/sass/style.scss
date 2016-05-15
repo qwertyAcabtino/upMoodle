@@ -96,6 +96,14 @@ body{
   margin-top: 64px;
 }
 
+.left-md-buffer {
+  margin-left: 24px;
+}
+
+.left-lg-buffer {
+  margin-left: 64px;
+}
+
 .link-filter:hover {
     cursor: pointer;
 }
@@ -146,5 +154,24 @@ ul.nav.nav-pills.nav-stacked.notes {
 .subjects {
   li.list-group-item {
     border: none;
+  }
+}
+
+span.subjects-header {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: auto;
+  line-height: 19.8px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul.subjects-list {
+  li {
+    cursor: pointer;
   }
 }

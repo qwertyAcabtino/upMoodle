@@ -108,22 +108,32 @@ body .container-fliud .name:hover {
 }
 
 /* line 99, sass/style.scss */
+.left-md-buffer {
+  margin-left: 24px;
+}
+
+/* line 103, sass/style.scss */
+.left-lg-buffer {
+  margin-left: 64px;
+}
+
+/* line 107, sass/style.scss */
 .link-filter:hover {
   cursor: pointer;
 }
 
-/* line 103, sass/style.scss */
+/* line 111, sass/style.scss */
 .container {
   padding-left: 24px;
 }
 
-/* line 107, sass/style.scss */
+/* line 115, sass/style.scss */
 div.notes-container {
   margin-left: 12px;
   margin-right: 12px;
 }
 
-/* line 114, sass/style.scss */
+/* line 122, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note {
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 20px;
@@ -136,28 +146,47 @@ ul.nav.nav-pills.nav-stacked.notes a.note {
   border: none;
   padding: auto  12px;
 }
-/* line 126, sass/style.scss */
+/* line 134, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note span.label {
   font-weight: lighter;
   font-size: 18px;
   margin-right: 16px;
 }
-/* line 131, sass/style.scss */
+/* line 139, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note i {
   font-size: 14px;
 }
-/* line 136, sass/style.scss */
+/* line 144, sass/style.scss */
 ul.nav.nav-pills.nav-stacked.notes a.note:hover {
   background-color: #ecf4fb !important;
   cursor: pointer;
 }
 
-/* line 142, sass/style.scss */
+/* line 150, sass/style.scss */
 .navbar {
   margin-bottom: 2px;
 }
 
-/* line 147, sass/style.scss */
+/* line 155, sass/style.scss */
 .subjects li.list-group-item {
   border: none;
+}
+
+/* line 160, sass/style.scss */
+span.subjects-header {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: auto;
+  line-height: 19.8px;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* line 174, sass/style.scss */
+ul.subjects-list li {
+  cursor: pointer;
 }

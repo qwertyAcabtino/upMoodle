@@ -2,15 +2,19 @@
 <div class="row-offcanvas row-offcanvas-left">
 	<sidebar></sidebar>
 	<div id="main">
-		<ul class="nav nav-pills nav-stacked">
-			<span ng-repeat="node in returnStack">
-				<a ng-click="navigateTo(node.id)">{{ node.name }}</a> // 
-			</span>
-		</ul>
-		<ul class="nav nav-pills nav-stacked">
-			<li ng-repeat="node in showingSubjectsTree.children">
-				<a ng-click="navigateTo(node.id)">[{{node.type}}] {{ node.name }}</a>
-			</li>
-		</ul>
+		<div class="left-md-buffer top-md-buffer">
+			<ul class="nav nav-pills nav-stacked">
+				<span class="subjects-header" ng-repeat="node in returnStack">
+					<a ng-click="navigateTo(node.id)">{{ node.name }}</a> >  
+				</span>
+			</ul>
+		</div>
+		<div class="left-lg-buffer top-buffer">
+			<ul class="nav nav-pills nav-stacked subjects-list">
+				<li ng-repeat="node in showingSubjectsTree.children">
+					<a ng-click="navigateTo(node.id)">{{ node.name }}</a>
+				</li>
+			</ul>
+		</div>
 	</div>	
 </div>
