@@ -4,9 +4,9 @@ from upmoodle.models._base_model import BaseModel
 
 
 class Rol(BaseModel):
-    id = models.AutoField(primary_key=True)
+    id = models.CharField(primary_key=True, max_length=32)
     name = models.CharField(max_length=100)
-    priority = models.IntegerField(default=0)  # The more high is the value, the more priority.
+    priority = models.IntegerField(default=0)  # The higher the value, the bigger the priority.
 
     def __init__(self, *args, **kwargs):
         from upmoodle.models.serializers import RolSerializer

@@ -7,13 +7,12 @@ from upmoodle.models._base_model import BaseModel
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.level import Level
 from upmoodle.models.message.errorMessage import ErrorMessage
-from upmoodle.models.utils.finals import STUDENT
 from upmoodle.models.utils.validators import validate_length
 
 
 class User(BaseModel):
     id = models.AutoField(primary_key=True)
-    rol = models.ForeignKey('Rol', default=STUDENT)
+    rol = models.ForeignKey('Rol', default="student")
     email = models.EmailField(max_length=100, unique=True)
     nick = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=100, blank=True)

@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from upmoodle.models import User
 from upmoodle.models.serializers import LevelSerializer
+from upmoodle.models.serializers.rol import RolSerializer
 
 
 class UserLoginSerializer(serializers.ModelSerializer):
@@ -20,7 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSimpleSerializer(serializers.ModelSerializer):
-    rol = serializers.SlugRelatedField(many=False, read_only=True, slug_field='name')
+    rol = RolSerializer(many=False, read_only=True)
 
     class Meta:
         model = User

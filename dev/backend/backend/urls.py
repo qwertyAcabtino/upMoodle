@@ -24,7 +24,7 @@ urlpatterns = [
 
     # Rol
     url(r'^rol/_all$', roles_list),
-    url(r'^rol/(?P<pk>[0-9]+)/users$', users_by_rol),
+    url(r'^rol/(?P<pk>(\w|-)+)/users$', users_by_rol),
 
     # Notes
     url(r'^note/(?P<note_id>[0-9]+)/$', note_by_id),

@@ -15,7 +15,7 @@ class RolUsersTestCase(AuthenticationTestBase):
     def test_basic_usersRol(self):
         self.login()
         rol = Rol.objects.get(name='Alumno')
-        response = self.client.get('/rol/' + str(rol.id) + '/users')
+        response = self.client.get('/rol/student/users')
         self.assertEqual(response.status_code, 200)
 
     def test_usersRol_not_signedIn(self):
@@ -23,9 +23,3 @@ class RolUsersTestCase(AuthenticationTestBase):
         rol = Rol.objects.get(name='Alumno')
         response = self.client.get('/rol/' + str(rol.id) + '/users')
         assert_error_response(response, ErrorMessage.Type.NOT_SIGNED_IN)
-
-    def test_userRol_id_overflow(self):
-        self.login()
-        rol = '191289347901271234123412341234'
-        response = self.client.get('/rol/' + rol + '/users')
-        assert_error_response(response, ErrorMessage.Type.INCORRECT_DATA)

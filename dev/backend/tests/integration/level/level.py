@@ -15,7 +15,7 @@ class LevelTestCase(TestCase):
         load_fixture("provision-data")
 
     def test_level_exits_in_db(self):
-        self.assertEqual(len(Level.objects.all()), 7)
+        self.assertEqual(len(Level.objects.all()), 10)
 
 
 class LevelNotesTestCase(AuthenticationTestBase):

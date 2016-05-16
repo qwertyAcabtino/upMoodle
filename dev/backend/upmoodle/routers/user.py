@@ -65,5 +65,5 @@ def user_by_id(request, pk, **kwargs):
 @authenticated
 @method('GET')
 def users_by_rol(request, pk, **kwargs):
-    users = UserService.get_user_by_id(user_id=pk)
+    users = UserService.get_users_by_rol(rol_id=pk)
     return ResponseFactory().ok().body(obj=users).build()
