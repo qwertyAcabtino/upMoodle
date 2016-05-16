@@ -153,6 +153,24 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 				});
 			},
 		},
+
+		notes : {
+			latest : function(){
+				return $http({
+					method: 'GET',
+					url: base_url + 'note/_latest'
+				});
+			},
+		},
+
+		files : {
+			latest : function(){
+				return $http({
+					method: 'GET',
+					url: base_url + 'file/_latest'
+				});
+			},
+		},
 		
 		level : {
 			getTree : function(){
