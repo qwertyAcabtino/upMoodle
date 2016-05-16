@@ -15,7 +15,7 @@ from upmoodle.models.user import User
 
 class File(BaseModel):
     id = models.AutoField(primary_key=True)
-    subject = models.ForeignKey(Level)
+    subject = models.ForeignKey('Level')
     hash = models.CharField(max_length=512, unique=True)
     name = models.CharField(max_length=256, blank=False)
     filename = models.CharField(max_length=256, blank=False)

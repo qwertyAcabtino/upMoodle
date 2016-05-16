@@ -3,6 +3,7 @@ from upmoodle.models import File, Level, User, FileType, BannedHash
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
 from upmoodle.services.auth import AuthService
+from upmoodle.services.level import LevelService
 
 
 class FileService:
@@ -62,6 +63,13 @@ class FileService:
             return File.objects.filter(subject=level_id, visible=True)
         elif not level.is_subject():
             raise MessageBasedException(message_id=ErrorMessage.Type.INVALID_LEVEL)
+
+    @staticmethod
+    @map_exceptions
+    def get_user_latest(session_token=None, data=None):
+        user = User.objects.get(sessionToken=session_token)
+        related_ids = LevelService.get_ids_tree_from_childrens(subjects=user.subjects.iterator())
+        return File.objects.filter(subject__in=related_ids, visible=True).order_by('-lastUpdate')[:5]
 
 
 class FileTypeService:

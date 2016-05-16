@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from upmoodle.models import FileType, File
 from upmoodle.models.serializers import YearSerializer, UserSimpleSerializer
+from upmoodle.models.serializers.level import LevelSerializer
 
 
 class FileTypeSerializer(serializers.ModelSerializer):
@@ -15,6 +16,7 @@ class FileSerializer(serializers.ModelSerializer):
     uploader = UserSimpleSerializer(many=False)
     lastUpdater = UserSimpleSerializer(many=False)
     fileType = FileTypeSerializer(many=False)
+    subject = LevelSerializer(many=False)
 
     class Meta:
         model = File
