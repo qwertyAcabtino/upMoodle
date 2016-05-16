@@ -57,3 +57,23 @@ class LevelService:
                 ids.append(subject.id)
                 ids.extend(LevelService.__get_ids_tree(subject.id))
             return list(set(ids))
+
+    @staticmethod
+    def __get_child_parents(level_id=None):
+        if not level_id:
+            return None
+        else:
+            parent_id = Level.objects.get(id=level_id).parent_id
+            ids = []
+            if parent_id:
+                ids = LevelService.__get_child_parents(parent_id)
+                ids.append(parent_id)
+            return ids
+
+    @staticmethod
+    def get_ids_tree_from_childrens(subjects=None):
+        ids = []
+        for subject in subjects:
+            ids.append(subject.id)
+            ids.extend(LevelService.__get_child_parents(subject.id))
+        return tuple(ids)

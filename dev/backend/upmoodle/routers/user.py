@@ -4,6 +4,7 @@ from upmoodle.controllers.decorators.exceptions import zero_exceptions
 from upmoodle.controllers.decorators.router import authenticated, methods, method
 from upmoodle.models import OkMessage
 from upmoodle.routers.response.factory import ResponseFactory
+from upmoodle.services.notes import NoteService
 from upmoodle.services.user import UserService
 
 
@@ -67,3 +68,11 @@ def user_by_id(request, pk, **kwargs):
 def users_by_rol(request, pk, **kwargs):
     users = UserService.get_users_by_rol(rol_id=pk)
     return ResponseFactory().ok().body(obj=users).build()
+
+
+@zero_exceptions
+@authenticated
+@method('GET')
+def user_related_notes(request, session_token=None, **kwargs):
+    notes = NoteService.get_user_latest(session_token=session_token, **kwargs)
+    return ResponseFactory().ok().body(obj=notes).build()

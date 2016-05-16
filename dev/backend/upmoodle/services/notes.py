@@ -54,3 +54,10 @@ class NoteService:
         else:
             level_group = (level_id,)
         return NoteBoard.objects.filter(level_id__in=level_group, visible=True)
+
+    @staticmethod
+    @map_exceptions
+    def get_user_latest(session_token=None, data=None):
+        user = User.objects.get(sessionToken=session_token)
+        related_ids = LevelService.get_ids_tree_from_childrens(subjects=user.subjects.iterator())
+        return NoteBoard.objects.filter(level__in=related_ids, visible=True).order_by('-created')[:5]

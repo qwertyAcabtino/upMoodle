@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^user/subjects/$', user_subjects),
     url(r'^user/avatar/$', user_avatar),
     url(r'^user/(?P<pk>[0-9]+)/$', user_by_id),
+    url(r'^note/_latest$', user_related_notes),
 
     # Rol
     url(r'^rol/_all$', roles_list),
