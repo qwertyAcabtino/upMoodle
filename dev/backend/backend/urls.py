@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^note/$', note_endpoint),
 
     # Calendar
-    url(r'^calendar/(?P<period>(month|day))/(?P<init_date>([0-9]|-)*)/$', calendar_by_period),
+    url(r'^calendar/(?P<period>(month|day))/(?P<init_date>([0-9]|-)*)/(?P<user>(_user))$', calendar_by_period),
     url(r'^calendar/(?P<pk>[0-9]+)/$', calendar_by_id),
     url(r'^calendar/$', calendar_endpoint),
 

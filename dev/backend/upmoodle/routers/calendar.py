@@ -4,7 +4,7 @@ from upmoodle.controllers.decorators.exceptions import zero_exceptions
 from upmoodle.controllers.decorators.router import authenticated, methods, method
 from upmoodle.models import OkMessage
 from upmoodle.routers.response.factory import ResponseFactory
-from upmoodle.services.calendar import CalendarService
+from upmoodle.services.calendars import CalendarService
 
 
 @zero_exceptions
@@ -24,7 +24,6 @@ def calendar_by_id(request, calendar_id, session_token=None, data=None):
     def get(session_token=session_token, calendar_id=calendar_id, data=data, **kwargs):
         calendar_in = CalendarService.get_calendar_by_id(session_token=session_token, calendar_id=calendar_id, data=data, **kwargs)
         return ResponseFactory().ok().body(obj=calendar_in).build()
-
     service_methods = {
         'GET': get,
         'PUT': update,
@@ -37,8 +36,12 @@ def calendar_by_id(request, calendar_id, session_token=None, data=None):
 @csrf_exempt
 @authenticated
 @method('GET')
-def calendar_by_period(request, period, init_date, **kwargs):
-    calendar_in = CalendarService.get_calendar_by_period(period, init_date)
+def calendar_by_period(request, period, init_date, user, **kwargs):
+    global calendar_in
+    if not user:
+        calendar_in = CalendarService.get_calendar_by_period(period, init_date)
+    else:
+        calendar_in = CalendarService.get_calendar_by_period_user_related(period, init_date,session_token=kwargs.get('session_token'))
     return ResponseFactory().ok().body(obj=calendar_in).build()
 
 

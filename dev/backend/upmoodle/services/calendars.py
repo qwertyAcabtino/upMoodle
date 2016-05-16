@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from sets import Set
 
 import calendar
@@ -9,6 +9,7 @@ from upmoodle.models.message.errorMessage import ErrorMessage
 # TODO. Return only related events.
 from upmoodle.controllers.decorators.exceptions import map_exceptions
 from upmoodle.services.auth import AuthService
+from upmoodle.services.level import LevelService
 
 
 class CalendarService:
@@ -26,6 +27,14 @@ class CalendarService:
                 ids.add(event.calendarId.id)
 
             return Calendar.objects.filter(id__in=list(ids))
+
+    @staticmethod
+    @map_exceptions
+    def get_calendar_by_period_user_related(period=None, init_date=None, session_token=None):
+        user = User.objects.get(sessionToken=session_token)
+        related_ids = LevelService.get_ids_tree_from_childrens(subjects=user.subjects.iterator())
+        calendar_events = CalendarService.get_calendar_by_period(period=period, init_date=init_date)
+        return calendar_events.filter(level__in=related_ids)
 
     @staticmethod
     @map_exceptions
@@ -100,12 +109,12 @@ def get_date_range(period, init_date):
     date_format = '%Y-%m-%d'
     values = init_date.split('-')
     day = int(values[2]) if period == "day" else 1
-    date = datetime.datetime(int(values[0]), int(values[1]), day)
+    date = datetime(int(values[0]), int(values[1]), day)
     start_range = date.strftime(date_format)
     if period == "day":
         return [start_range, start_range]
     else:
         month_days = calendar.monthrange(date.year, date.month)[1] - 1
-        end_range = (date + datetime.timedelta(month_days)).strftime(date_format)
+        end_range = (date + timedelta(month_days)).strftime(date_format)
     return [start_range, end_range]
 

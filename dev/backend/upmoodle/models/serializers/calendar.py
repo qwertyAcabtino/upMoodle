@@ -16,4 +16,4 @@ class CalendarEventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Calendar
-        fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level', 'dates')
+        fields = ('id', 'title', 'text', 'created', 'lastUpdate', 'author', 'lastUpdated', 'level', 'dates', 'allDay', 'hourStart', 'hourEnd')
