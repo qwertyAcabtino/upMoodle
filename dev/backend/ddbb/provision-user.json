@@ -3,7 +3,7 @@
     "model": "upmoodle.user",
     "pk": 1,
     "fields": {
-      "rol": 1,
+      "rol": "student",
       "email": "victor.perezr@alumnos.upm.es",
       "nick": "vipvip",
       "name": "vip vip",

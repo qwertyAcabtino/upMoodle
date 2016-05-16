@@ -112,6 +112,36 @@
     }
   },
   {
+    "model": "upmoodle.level",
+    "pk": 8,
+    "fields": {
+      "name": "Prácticas externas",
+      "type": 3,
+      "visible": true,
+      "parent": 9
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 9,
+    "fields": {
+      "name": "4º de software",
+      "type": 2,
+      "visible": true,
+      "parent": 1
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 10,
+    "fields": {
+      "name": "Programación concurrente",
+      "type": 3,
+      "visible": true,
+      "parent": 9
+    }
+  },
+  {
     "model": "upmoodle.leveltype",
     "pk": 1,
     "fields": {
@@ -148,7 +178,7 @@
   },
   {
     "model": "upmoodle.rol",
-    "pk": 1,
+    "pk": "student",
     "fields": {
       "name": "Alumno",
       "priority": 0
@@ -156,7 +186,7 @@
   },
   {
     "model": "upmoodle.rol",
-    "pk": 2,
+    "pk": "teacher",
     "fields": {
       "name": "Profesor",
       "priority": 1
@@ -164,7 +194,7 @@
   },
   {
     "model": "upmoodle.rol",
-    "pk": 3,
+    "pk": "subject-coordinator",
     "fields": {
       "name": "Coordinador de asignatura",
       "priority": 2
@@ -172,7 +202,7 @@
   },
   {
     "model": "upmoodle.rol",
-    "pk": 4,
+    "pk": "course-admin",
     "fields": {
       "name": "Delegado de curso",
       "priority": 3
@@ -180,7 +210,7 @@
   },
   {
     "model": "upmoodle.rol",
-    "pk": 5,
+    "pk": "admin",
     "fields": {
       "name": "Administrador",
       "priority": 4
@@ -188,7 +218,7 @@
   },
   {
     "model": "upmoodle.rol",
-    "pk": 6,
+    "pk": "god",
     "fields": {
       "name": "g0d",
       "priority": 5

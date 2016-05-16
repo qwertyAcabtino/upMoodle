@@ -93,7 +93,7 @@
     "model": "upmoodle.user",
     "pk": 1,
     "fields": {
-      "rol": 1,
+      "rol": "student",
       "email": "victor.perezr@alumnos.upm.es",
       "nick": "viperey",
       "name": "Victor Perez",
@@ -115,7 +115,7 @@
     "model": "upmoodle.user",
     "pk": 2,
     "fields": {
-      "rol": 1,
+      "rol": "student",
       "email": "fool@eui.upm.es",
       "nick": "fooUser",
       "name": "foo foo",
@@ -133,7 +133,7 @@
     "model": "upmoodle.user",
     "pk": 3,
     "fields": {
-      "rol": 1,
+      "rol": "student",
       "email": "fool1@eui.upm.es",
       "nick": "fooUser1",
       "name": "foo foo1",
@@ -151,7 +151,7 @@
     "model": "upmoodle.user",
     "pk": 4,
     "fields": {
-      "rol": 2,
+      "rol": "teacher",
       "email": "profesor@upm.es",
       "nick": "profesorBacterio",
       "name": "Profesor Interino",
@@ -169,7 +169,7 @@
     "model": "upmoodle.user",
     "pk": 5,
     "fields": {
-      "rol": 1,
+      "rol": "course-admin",
       "email": "delegado@upm.es",
       "nick": "delegaldin",
       "name": "Delegado De La Clase",
@@ -187,7 +187,7 @@
     "model": "upmoodle.user",
     "pk": 6,
     "fields": {
-      "rol": 3,
+      "rol": "subject-coordinator",
       "email": "coordinador@eui.upm.es",
       "nick": "coordinatorTotal",
       "name": "Coordinador De Asignatura",
@@ -205,7 +205,7 @@
     "model": "upmoodle.user",
     "pk": 7,
     "fields": {
-      "rol": 5,
+      "rol": "admin",
       "email": "secretaria@eui.upm.es",
       "nick": "secretaria",
       "name": "Secretaria De Alumnos",
@@ -223,7 +223,7 @@
     "model": "upmoodle.user",
     "pk": 8,
     "fields": {
-      "rol": 2,
+      "rol": "teacher",
       "email": "profesor.concurrente@eui.upm.es",
       "nick": "monitor",
       "name": "Profesor De Concurrencia",
