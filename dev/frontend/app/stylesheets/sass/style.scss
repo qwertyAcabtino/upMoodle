@@ -242,3 +242,16 @@ ul.subjects-list {
 .subject-files-box {
   height: 100%;
 }
+
+div.btn-group#calendar-views {
+  button {
+    margin-left: 10px;
+  }
+
+  label {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    height: auto;
+  }
+}

@@ -259,3 +259,15 @@ ul.subjects-list li {
 .subject-files-box {
   height: 100%;
 }
+
+/* line 247, sass/style.scss */
+div.btn-group#calendar-views button {
+  margin-left: 10px;
+}
+/* line 251, sass/style.scss */
+div.btn-group#calendar-views label {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: auto;
+}

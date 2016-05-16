@@ -79,7 +79,7 @@ angular.module('upmApp').controller( 'calendarController', ['$scope', '$cookies'
       header:{
         left: 'title',
         center: '',
-        right: 'today prev,next'
+        right: 'month, agendaWeek, agendaDay, prev,next'
       },
       eventClick: $scope.alertOnEventClick,
       eventDrop: $scope.alertOnDrop,
@@ -87,7 +87,6 @@ angular.module('upmApp').controller( 'calendarController', ['$scope', '$cookies'
       eventRender: $scope.eventRender,
       viewRender: function(view, element) {
         $scope.addMonthEvents(view.intervalStart.month());
-        console.log('View Changed');
       }
     }
   };
