@@ -27,25 +27,25 @@
 		<p ng-show="!note.text"><i>This file has no description</i>.</p>
 	</div>
 </div>
-	<div class="modal-footer" ng-show="!editMode" > 
-		<div class="pull-right col-md-6">
-		    <div class="col-md-6"> 
-				<button ng-click="editMode = !editMode" ng-show="!editMode" type="button" class="btn btn-primary btn-block fa fa-pencil fa-lg" aria-label="Left Align"> 
-					Edit
-			</div>
-		    <div class="col-md-6"> 
-				<button ng-click="deleteNote()" type="button" class="btn btn-danger btn-block fa fa-trash fa-lg" aria-label="Left Align"> 
-					Delete
-				</button>
-			</div>
+<div class="modal-footer" ng-show="!editMode" > 
+	<div class="pull-right col-md-6">
+	    <div class="col-md-6"> 
+			<button ng-click="editMode = !editMode" ng-show="!editMode" type="button" class="btn btn-primary btn-block fa fa-pencil fa-lg" aria-label="Left Align"> 
+				Edit
+		</div>
+	    <div class="col-md-6"> 
+			<button ng-click="deleteNote()" type="button" class="btn btn-danger btn-block fa fa-trash fa-lg" aria-label="Left Align"> 
+				Delete
+			</button>
 		</div>
 	</div>
-	<div class="modal-footer" ng-show="editMode" > 
-		<div class="pull-right col-md-6">
-		    <div class="col-md-6 col-md-offset2"> 
-				<button ng-click="saveNewNote(newNote)" type="button" class="btn btn-success btn-block fa fa-floppy-o fa-lg" aria-label="Left Align"> 
-					Save
-				</button>
-			</div>
+</div>
+<div class="modal-footer" ng-show="editMode" > 
+	<div class="pull-right col-md-6">
+	    <div class="col-md-6 col-md-offset2"> 
+			<button ng-click="saveNewNote(newNote)" type="button" class="btn btn-success btn-block fa fa-floppy-o fa-lg" aria-label="Left Align"> 
+				Save
+			</button>
 		</div>
 	</div>
+</div>
