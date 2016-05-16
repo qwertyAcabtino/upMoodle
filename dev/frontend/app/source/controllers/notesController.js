@@ -185,7 +185,7 @@ angular.module('upmApp').controller('ModalNewNote', function ($scope, $uibModalI
   };
 
   $scope.getLevelsDropdown = function(node, depthParam){
-    var depth = depthParam || 0; 
+    var depth = depthParam || 1; 
     node.depth = depth;
     var returningNode = {};
     returningNode.name = repeat(' · ', depth) + node.name;

@@ -12,7 +12,7 @@ class LevelService:
 
     @staticmethod
     def __get_level_json_object(level_id=None):
-        levels = Level.objects.filter(parent=level_id, visible=True)
+        levels = Level.objects.filter(parent=level_id, visible=True).order_by('name')
         return Level.get_flatten_object(data=levels, collection=True)
 
     @staticmethod
