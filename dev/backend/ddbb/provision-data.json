@@ -45,7 +45,7 @@
     "model": "upmoodle.level",
     "pk": 1,
     "fields": {
-      "name": "Ingenieria del software",
+      "name": "Ingeniería del software",
       "type": 1,
       "visible": true,
       "parent": 7
@@ -55,9 +55,9 @@
     "model": "upmoodle.level",
     "pk": 2,
     "fields": {
-      "name": "Ingenieria de computadores",
+      "name": "Ingeniería de computadores",
       "type": 1,
-      "visible": true,
+      "visible": false,
       "parent": 7
     }
   },
@@ -65,7 +65,7 @@
     "model": "upmoodle.level",
     "pk": 3,
     "fields": {
-      "name": "3ro de software",
+      "name": "3º de software",
       "type": 2,
       "visible": true,
       "parent": 1
@@ -75,7 +75,7 @@
     "model": "upmoodle.level",
     "pk": 4,
     "fields": {
-      "name": "Verificacion y Validacion",
+      "name": "Verificación y Validacion",
       "type": 3,
       "visible": true,
       "parent": 3
@@ -95,7 +95,7 @@
     "model": "upmoodle.level",
     "pk": 6,
     "fields": {
-      "name": "Gestion de proyectos",
+      "name": "Gestión de proyectos",
       "type": 3,
       "visible": true,
       "parent": 3
@@ -139,6 +139,86 @@
       "type": 3,
       "visible": true,
       "parent": 9
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 11,
+    "fields": {
+      "name": "Inglés nivel medio",
+      "type": 3,
+      "visible": true,
+      "parent": 9
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 12,
+    "fields": {
+      "name": "2º de software",
+      "type": 2,
+      "visible": true,
+      "parent": 1
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 13,
+    "fields": {
+      "name": "Estadística",
+      "type": 3,
+      "visible": true,
+      "parent": 12
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 14,
+    "fields": {
+      "name": "Arquitectura y diseño",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 15,
+    "fields": {
+      "name": "Construcción y evolución",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 16,
+    "fields": {
+      "name": "Integración de sistemas",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 17,
+    "fields": {
+      "name": "Redes de computadores",
+      "type": 3,
+      "visible": true,
+      "parent": 3
+    }
+  },
+  {
+    "model": "upmoodle.level",
+    "pk": 18,
+    "fields": {
+      "name": "Computación ubicua",
+      "type": 3,
+      "visible": true,
+      "parent": 3
     }
   },
   {
