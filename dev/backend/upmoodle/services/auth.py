@@ -55,7 +55,7 @@ class AuthService:
     def logout(session_token=None):
         session_token = AuthService.get_cookie(session_token)
         user = User.objects.get(sessionToken=session_token)
-        user.sessionToken = ''
+        user.sessionToken = "logout_" + AuthService.get_cookie(session_token)
         user.save()
         return {SESSION_COOKIE_NAME: ''}
 

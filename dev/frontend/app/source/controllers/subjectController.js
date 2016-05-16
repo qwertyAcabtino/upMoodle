@@ -22,11 +22,10 @@
  			return { "background-color": "#"+bgColor };
 
 		};
-
  		$scope.setRolBadgeColor = function (rol){
  			var bgColor;
- 			switch(rol) {
- 				case 'Alumno':
+ 			switch(rol.id) {
+ 				case 'student':
  					bgColor = 'DE9226';
  					break;
  				default:

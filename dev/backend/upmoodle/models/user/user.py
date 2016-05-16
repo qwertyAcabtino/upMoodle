@@ -22,7 +22,7 @@ class User(BaseModel):
     joined = models.DateTimeField(default=timezone.now, editable=True, null=False)
     banned = models.BooleanField(default=False)
     confirmedEmail = models.BooleanField(default=False)
-    sessionToken = models.CharField(max_length=256, blank=True, unique=True)
+    sessionToken = models.CharField(max_length=256, blank=True, null=True, unique=True, default=None)
     subjects = models.ManyToManyField(Level, blank=True)
 
     def __init__(self, *args, **kwargs):
