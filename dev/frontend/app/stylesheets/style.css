@@ -218,16 +218,25 @@ ul.nav.nav-pills.nav-stacked.notes a.note:hover {
 }
 
 /* line 204, sass/style.scss */
+span.level-label {
+  min-width: 200px;
+  display: inline-block;
+  font-weight: lighter;
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+/* line 213, sass/style.scss */
 .navbar {
   margin-bottom: 2px;
 }
 
-/* line 209, sass/style.scss */
+/* line 218, sass/style.scss */
 .subjects li.list-group-item {
   border: none;
 }
 
-/* line 214, sass/style.scss */
+/* line 223, sass/style.scss */
 span.subjects-header {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 18px;
@@ -241,12 +250,12 @@ span.subjects-header {
   cursor: pointer;
 }
 
-/* line 228, sass/style.scss */
+/* line 237, sass/style.scss */
 ul.subjects-list li {
   cursor: pointer;
 }
 
-/* line 233, sass/style.scss */
+/* line 242, sass/style.scss */
 .subject-files-box {
   height: 100%;
 }
