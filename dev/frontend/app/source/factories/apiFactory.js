@@ -154,6 +154,15 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 			},
 		},
 
+		calendar : {
+			month : function(month){
+				return $http({
+					method: 'GET',
+					url: base_url + 'calendar/month/' + new Date().getFullYear() +'-' + month + '/_user'
+				});
+			}
+		},
+
 		notes : {
 			latest : function(){
 				return $http({
