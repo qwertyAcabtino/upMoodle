@@ -2,7 +2,10 @@
 <div class="row-offcanvas row-offcanvas-left">
 	<sidebar></sidebar>
 	<div id="main">
-		<div class="col-md-3 text-center pull-right top-buffer"> 
+		<div class="row-fluid top-md-buffer left-md-buffer">
+			<h2>{{subjectsTree.name}} bulletin's board</h2>
+		</div>
+		<div class="col-md-3 text-center pull-right "> 
 			<button type="submit" class="btn btn-success btn-block fa fa-plus" ng-click="openNewNoteModal()">
 				Publish
 			</button>
@@ -27,13 +30,12 @@
 			<ul class="nav nav-pills nav-stacked notes">
 				<li ng-repeat="note in notes | filter:searchText | orderBy:'-created'">
 					<a ng-click="openEditNoteModal(note)" class="note">
-						<span class="label label-default">{{note.level.name}}</span>
-						{{ note.topic }} 
-						<i>by {{note.author.name}}</i> 
+						<span class="label label-primary">{{note.level.name}}</span>
+						<span ng-maxlength="10" class="text">{{ note.topic }}</span> 
 					</a>
 				</li>
 				<li ng-show="!notes.length">No results</li>
 			</ul>
 		</div>
 	</div>	
-</div>
+</div>	
