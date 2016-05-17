@@ -79,7 +79,7 @@ angular.module('upmApp').controller( 'calendarController', ['$scope', '$cookies'
       header:{
         left: 'title',
         center: '',
-        right: 'month, agendaWeek, agendaDay, prev,next'
+        right: 'month, agendaWeek, agendaDay, today, prev,next'
       },
       eventClick: $scope.alertOnEventClick,
       eventDrop: $scope.alertOnDrop,
@@ -100,7 +100,7 @@ angular.module('upmApp').controller( 'calendarController', ['$scope', '$cookies'
         calendarDates = calendar.dates;
         angular.forEach(calendarDates, function (value, key) {
           date = new Date(value);
-          dateEnd = date;
+          dateEnd = new Date(date);
           date.setHours(parseInt(calendar.hourStart.split(":")[0]));
           dateEnd.setHours(parseInt(calendar.hourEnd.split(":")[0]));
           if( date.getFullYear() == y && date.getMonth() == month){

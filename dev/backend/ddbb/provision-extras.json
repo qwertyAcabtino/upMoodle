@@ -471,4 +471,175 @@
       "created": "2016-05-15T22:02:46Z"
     }
   }
+  {
+    "model": "upmoodle.calendar",
+    "pk": 1,
+    "fields": {
+      "title": "Estadistica",
+      "text": "text",
+      "created": "2016-05-16",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 13,
+      "hourStart": "09:00:00",
+      "hourEnd": "11:00:00",
+      "firstDate": "2016-02-01",
+      "lastDate": "2016-05-24",
+      "allDay": false,
+      "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 2,
+    "fields": {
+      "title": "Fin del curso escolar",
+      "text": "Final de las clases",
+      "created": "2016-05-16",
+      "lastUpdate": "2016-05-16",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 1,
+      "hourStart": "17:31:46",
+      "hourEnd": "17:31:47",
+      "firstDate": "2016-05-31",
+      "lastDate": "2016-05-31",
+      "allDay": true,
+      "frequency": 4
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 3,
+    "fields": {
+      "title": "Arquitectura y diseño del software",
+      "text": "Aula 3302",
+      "created": "2016-05-17",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 14,
+      "hourStart": "18:00:00",
+      "hourEnd": "20:00:00",
+      "firstDate": "2016-02-01",
+      "lastDate": "2016-05-31",
+      "allDay": false,
+      "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 4,
+    "fields": {
+      "title": "Calidad del software",
+      "text": "Aula 3203",
+      "created": "2016-05-17",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 5,
+      "hourStart": "11:00:00",
+      "hourEnd": "12:00:00",
+      "firstDate": "2016-02-01",
+      "lastDate": "2016-05-15",
+      "allDay": false,
+      "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 5,
+    "fields": {
+      "title": "Calidad del software",
+      "text": "Aula 3203",
+      "created": "2016-05-17",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 5,
+      "hourStart": "11:00:00",
+      "hourEnd": "13:00:00",
+      "firstDate": "2016-02-04",
+      "lastDate": "2016-05-15",
+      "allDay": false,
+      "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 6,
+    "fields": {
+      "title": "Computación ubicua",
+      "text": "Aula 3302",
+      "created": "2016-05-17",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 18,
+      "hourStart": "16:00:00",
+      "hourEnd": "18:00:00",
+      "firstDate": "2016-02-02",
+      "lastDate": "2016-05-22",
+      "allDay": false,
+      "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 7,
+    "fields": {
+      "title": "Inglés nivel medio",
+      "text": "Aula 3302",
+      "created": "2016-05-17",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 11,
+      "hourStart": "09:00:00",
+      "hourEnd": "11:00:00",
+      "firstDate": "2016-01-31",
+      "lastDate": "2016-05-22",
+      "allDay": false,
+      "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 8,
+    "fields": {
+      "title": "Programación concurrente",
+      "text": "Aula 3302",
+      "created": "2016-05-17",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 10,
+      "hourStart": "18:00:00",
+      "hourEnd": "20:00:00",
+      "firstDate": "2016-02-01",
+      "lastDate": "2016-05-22",
+      "allDay": false,
+      "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendar",
+    "pk": 9,
+    "fields": {
+      "title": "Programación concurrente",
+      "text": "Aula 3302",
+      "created": "2016-05-17",
+      "lastUpdate": "2016-05-17",
+      "author": 7,
+      "lastUpdated": 7,
+      "level": 10,
+      "hourStart": "20:00:00",
+      "hourEnd": "21:00:00",
+      "firstDate": "2016-02-04",
+      "lastDate": "2016-05-22",
+      "allDay": false,
+      "frequency": 2
+    }
+  }
 ]
