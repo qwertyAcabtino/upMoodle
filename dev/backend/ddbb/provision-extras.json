@@ -470,7 +470,7 @@
       "authorized": true,
       "created": "2016-05-15T22:02:46Z"
     }
-  }
+  },
   {
     "model": "upmoodle.calendar",
     "pk": 1,
@@ -640,6 +640,1054 @@
       "lastDate": "2016-05-22",
       "allDay": false,
       "frequency": 2
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 1,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-02-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 2,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-02-11T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 3,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-02-18T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 4,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-02-25T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 5,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-03-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 6,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-03-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 7,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-03-17T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 8,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-03-24T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 9,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-03-31T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 10,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-04-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 11,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-04-14T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 12,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-04-21T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 13,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-04-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 14,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-05-05T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 15,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-05-12T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 16,
+    "fields": {
+      "calendarId": 9,
+      "date": "2016-05-19T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 17,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-02-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 18,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-02-08T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 19,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-02-15T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 20,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-02-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 21,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-02-29T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 22,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-03-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 23,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-03-14T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 24,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-03-21T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 25,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-03-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 26,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-04-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 27,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-04-11T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 28,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-04-18T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 29,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-04-25T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 30,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-05-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 31,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-05-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 32,
+    "fields": {
+      "calendarId": 8,
+      "date": "2016-05-16T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 33,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-01-31T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 34,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-02-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 35,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-02-14T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 36,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-02-21T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 37,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-02-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 38,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-03-06T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 39,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-03-13T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 40,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-03-20T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 41,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-03-27T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 42,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-04-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 43,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-04-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 44,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-04-17T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 45,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-04-24T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 46,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-05-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 47,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-05-08T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 48,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-05-15T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 49,
+    "fields": {
+      "calendarId": 7,
+      "date": "2016-05-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 50,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-02-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 51,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-02-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 52,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-02-16T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 53,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-02-23T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 54,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-03-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 55,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-03-08T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 56,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-03-15T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 57,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-03-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 58,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-03-29T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 59,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-04-05T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 60,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-04-12T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 61,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-04-19T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 62,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-04-26T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 63,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-05-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 64,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-05-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 65,
+    "fields": {
+      "calendarId": 6,
+      "date": "2016-05-17T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 66,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-02-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 67,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-02-11T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 68,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-02-18T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 69,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-02-25T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 70,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-03-03T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 71,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-03-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 72,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-03-17T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 73,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-03-24T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 74,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-03-31T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 75,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-04-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 76,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-04-14T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 77,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-04-21T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 78,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-04-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 79,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-05-05T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 80,
+    "fields": {
+      "calendarId": 5,
+      "date": "2016-05-12T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 81,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-02-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 82,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-02-08T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 83,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-02-15T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 84,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-02-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 85,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-02-29T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 86,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-03-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 87,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-03-14T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 88,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-03-21T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 89,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-03-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 90,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-04-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 91,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-04-11T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 92,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-04-18T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 93,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-04-25T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 94,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-05-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 95,
+    "fields": {
+      "calendarId": 4,
+      "date": "2016-05-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 96,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-02-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 97,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-02-08T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 98,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-02-15T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 99,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-02-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 100,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-02-29T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 101,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-03-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 102,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-03-14T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 103,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-03-21T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 104,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-03-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 105,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-04-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 106,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-04-11T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 107,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-04-18T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 108,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-04-25T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 109,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-05-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 110,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-05-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 111,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-05-16T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 112,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-05-23T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 113,
+    "fields": {
+      "calendarId": 3,
+      "date": "2016-05-30T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 114,
+    "fields": {
+      "calendarId": 2,
+      "date": "2016-05-31T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 115,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-02-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 116,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-02-08T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 117,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-02-15T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 118,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-02-22T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 119,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-02-29T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 120,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-03-07T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 121,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-03-14T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 122,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-03-21T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 123,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-03-28T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 124,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-04-04T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 125,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-04-11T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 126,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-04-18T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 127,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-04-25T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 128,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-05-02T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 129,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-05-09T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 130,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-05-16T00:00:00Z"
+    }
+  },
+  {
+    "model": "upmoodle.calendardate",
+    "pk": 131,
+    "fields": {
+      "calendarId": 1,
+      "date": "2016-05-23T00:00:00Z"
     }
   }
 ]

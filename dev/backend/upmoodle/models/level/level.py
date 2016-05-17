@@ -5,6 +5,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from upmoodle.models._base_model import BaseModel
 from upmoodle.models.exceptions.messageBasedException import MessageBasedException
 from upmoodle.models.message.errorMessage import ErrorMessage
+from upmoodle.models.level.group import ClassGroup
 
 
 class Level(BaseModel):
@@ -13,6 +14,7 @@ class Level(BaseModel):
     type = models.ForeignKey('LevelType')
     visible = models.BooleanField(default=True)
     parent = models.ForeignKey('Level', default=None, null=True, blank=True)
+    classGroup = models.ManyToManyField(ClassGroup, blank=True)
 
     def __init__(self, *args, **kwargs):
         from upmoodle.models.serializers import LevelSerializer

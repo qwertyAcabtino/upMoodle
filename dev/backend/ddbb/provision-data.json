@@ -653,5 +653,45 @@
       "msg_key": "bad_method",
       "http_code": 405
     }
+  },
+  {
+    "model": "upmoodle.classgroup",
+    "pk": "gsm21",
+    "fields": {
+      "name": "Grupo mañana software de 2ª",
+      "classroom": "3101"
+    }
+  },
+  {
+    "model": "upmoodle.classgroup",
+    "pk": "gsm31",
+    "fields": {
+      "name": "Grupo mañana software de 3º",
+      "classroom": "3301"
+    }
+  },
+  {
+    "model": "upmoodle.classgroup",
+    "pk": "gsm41",
+    "fields": {
+      "name": "Grupo de mañana de software de 4º",
+      "classroom": "3401"
+    }
+  },
+  {
+    "model": "upmoodle.classgroup",
+    "pk": "gst21",
+    "fields": {
+      "name": "Grupo tarde software de 2ª",
+      "classroom": "301"
+    }
+  },
+  {
+    "model": "upmoodle.classgroup",
+    "pk": "gst31",
+    "fields": {
+      "name": "Grupo tarde software de 3º",
+      "classroom": "3301"
+    }
   }
 ]

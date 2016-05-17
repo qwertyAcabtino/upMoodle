@@ -1,6 +1,7 @@
 from django.contrib import admin
 from upmoodle.models import *
 
+admin.site.register(ClassGroup)
 admin.site.register(Level)
 admin.site.register(LevelType)
 admin.site.register(NoteBoard)
