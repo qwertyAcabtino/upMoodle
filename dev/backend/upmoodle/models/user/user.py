@@ -71,8 +71,8 @@ class User(BaseModel):
             for field in fields:
                 setattr(self, field, getattr(updated_user, field))
 
-    def add_subject(self, subject_id):
-        level = Level.objects.get(id=subject_id)
+    def add_subject(self, subject_class_dict):
+        level = Level.objects.get(id=subject_class_dict.get('subject'))
         if level.is_subject():
             self.subjects.add(level)
         else:
