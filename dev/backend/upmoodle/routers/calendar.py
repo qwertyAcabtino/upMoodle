@@ -36,12 +36,13 @@ def calendar_by_id(request, calendar_id, session_token=None, data=None):
 @csrf_exempt
 @authenticated
 @method('GET')
-def calendar_by_period(request, period, init_date, user, **kwargs):
+def calendar_by_period(request, period, init_date, data=None, session_token=None, **kwargs):
     global calendar_in
-    if not user:
+    feed = data.get('feed', 'false')
+    if feed == 'false':
         calendar_in = CalendarService.get_calendar_by_period(period, init_date)
     else:
-        calendar_in = CalendarService.get_calendar_by_period_user_related(period, init_date,session_token=kwargs.get('session_token'))
+        calendar_in = CalendarService.get_calendar_by_period_user_related(period, init_date, session_token=session_token)
     return ResponseFactory().ok().body(obj=calendar_in).build()
 
 

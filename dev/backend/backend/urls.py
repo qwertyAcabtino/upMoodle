@@ -1,4 +1,4 @@
-from django.conf.urls import include, url, patterns
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
@@ -21,8 +21,6 @@ urlpatterns = [
     url(r'^user/subjects/$', user_subjects),
     url(r'^user/avatar/$', user_avatar),
     url(r'^user/(?P<pk>[0-9]+)/$', user_by_id),
-    url(r'^note/_latest$', user_related_notes),
-    url(r'^file/_latest$', user_related_files),
 
     # Rol
     url(r'^rol/_all$', roles_list),
@@ -31,9 +29,10 @@ urlpatterns = [
     # Notes
     url(r'^note/(?P<note_id>[0-9]+)/$', note_by_id),
     url(r'^note/$', note_endpoint),
+    url(r'^notes/user/_feed$', user_related_notes),
 
     # Calendar
-    url(r'^calendar/(?P<period>(month|day))/(?P<init_date>([0-9]|-)*)/(?P<user>(_user))$', calendar_by_period),
+    url(r'^calendar/(?P<period>(month|day))/(?P<init_date>([0-9]|-)*)$', calendar_by_period),
     url(r'^calendar/(?P<pk>[0-9]+)/$', calendar_by_id),
     url(r'^calendar/$', calendar_endpoint),
 
@@ -41,6 +40,7 @@ urlpatterns = [
     # url(r'^file/banned$', files_banned_hashes), Disabled
     url(r'^file/(?P<file_hash>(\w|_)+)/?$', file_by_hash_endpoint),
     url(r'^file/$', file_add_endpoint),
+    url(r'^files/user/_feed', user_related_files),
 
     url(r'^filetype/_all$', filetype_list),
 

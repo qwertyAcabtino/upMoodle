@@ -151,32 +151,33 @@ angular.module('upmApp').factory('api', function($http, $cookies, $upload, $wind
 						level_id: data.level_id
 					}
 				});
-			},
+		},
 		},
 
 		calendar : {
-			month : function(month){
+			month : function(month, feed){
+				feed = feed || true;
 				return $http({
 					method: 'GET',
-					url: base_url + 'calendar/month/' + new Date().getFullYear() +'-' + month + '/_user'
+					url: base_url + 'calendar/month/' + new Date().getFullYear() +'-' + month + '?feed=' + feed
 				});
 			}
 		},
 
 		notes : {
-			latest : function(){
+			userFeed : function(){
 				return $http({
 					method: 'GET',
-					url: base_url + 'note/_latest'
+					url: base_url + 'notes/user/_feed'
 				});
 			},
 		},
 
 		files : {
-			latest : function(){
+			userFeed : function(){
 				return $http({
 					method: 'GET',
-					url: base_url + 'file/_latest'
+					url: base_url + 'files/user/_feed'
 				});
 			},
 		},

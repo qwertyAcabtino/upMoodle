@@ -65,6 +65,14 @@ def files_banned_hashes(request, **kwargs):
     return ResponseFactory().ok().body(obj=FileService.get_banned_hashes()).build()
 
 
+@zero_exceptions
+@authenticated
+@method('GET')
+def user_related_files(request, session_token=None, **kwargs):
+    files = FileService.get_user_latest(session_token=session_token, **kwargs)
+    return ResponseFactory().ok().body(obj=files).build()
+
+
 def _get_media_type(request):
     try:
         return request.META['HTTP_ACCEPT'].split(',')[0].lower()

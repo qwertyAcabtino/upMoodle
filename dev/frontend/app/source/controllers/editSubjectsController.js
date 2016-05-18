@@ -14,7 +14,11 @@
  				angular.forEach(career.children, function(course, index){
  					angular.forEach(course.children, function(subject, index){
  						if(subject.signedUp)
- 							subjectsCheck.push(subject.id); 
+ 							key = subject.id;
+ 							subjectsCheck.push({ 
+ 								'subject': subject.id,
+ 								'classRoom': 0
+ 							});
  					});
  				});
  			});

@@ -41,3 +41,10 @@ def note_endpoint(request, session_token=None, data=None, **kwargs):
     new_note = NoteService.add(session_token=session_token, data=data)
     return ResponseFactory().ok(message_id=OkMessage.Type.NOTE_CREATED).identity(obj=new_note).build()
 
+
+@zero_exceptions
+@authenticated
+@method('GET')
+def user_related_notes(request, session_token=None, **kwargs):
+    notes = NoteService.get_user_latest(session_token=session_token, **kwargs)
+    return ResponseFactory().ok().body(obj=notes).build()

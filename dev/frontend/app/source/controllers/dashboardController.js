@@ -4,14 +4,14 @@
  	function($scope, $cookies, api, User, userModel, $uibModal, snackbar, SubjectsTree){
 
  		$scope.getLastestNotes = function(){
- 			api.notes.latest()
+ 			api.notes.userFeed()
  			.success(function(data, status, headers, config){
  				$scope.latestNotes = data.data;
  			});
  		};
 
  		$scope.getLastestFiles = function(){
- 			api.files.latest()
+ 			api.files.userFeed()
  			.success(function(data, status, headers, config){
  				$scope.latestFiles = data.data;
  			});
