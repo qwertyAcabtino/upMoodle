@@ -92,7 +92,7 @@ angular.module('upmApp').controller( 'calendarController', ['$scope', '$cookies'
   };
 
   $scope.addMonthEvents = function(month){
-    api.calendar.month(month+1)
+    api.calendar.month(month+1, true)
     .success(function(data, status, headers, config){
       var finalCalendarEvents = [];
       var calendarEvents = data.data; 
