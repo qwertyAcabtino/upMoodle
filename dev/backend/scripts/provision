@@ -1,9 +1,4 @@
 #!/bin/bash
-#install python dependencies, this is more about deployment
-sudo pip install -r requirements.txt
-#init migrate needed database data
-bash scripts/model-migration
-python scripts/provision-create-super-user.py
 #provision database with minimum structure
 python manage.py loaddata ddbb/provision-data.json
 python manage.py loaddata ddbb/provision-user.json
