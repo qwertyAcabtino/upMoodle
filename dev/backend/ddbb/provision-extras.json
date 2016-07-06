@@ -247,15 +247,17 @@
       "name": "Maria Estudiante",
       "password": "12341234",
       "profilePic": "static/default_update_avatar_pic.jpeg",
-      "lastTimeActive": "2016-04-21T17:09:03.610Z",
+      "lastTimeActive": "2016-07-06T17:08:51.822Z",
       "joined": "2015-05-10T15:17:00Z",
       "banned": false,
       "confirmedEmail": true,
-      "sessionToken": "4661d46eb74647f1909cec598026920888",
+      "sessionToken": "e36fe0fa4c8e461d81c1d6c443384b67",
       "subjects": [
         4,
         5,
-        6
+        6,
+        10,
+        18
       ]
     }
   },
