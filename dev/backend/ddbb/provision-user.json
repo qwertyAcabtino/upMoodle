@@ -20,5 +20,27 @@
         6
       ]
     }
+  },
+  {
+    "model": "upmoodle.user",
+    "pk": 2,
+    "fields": {
+      "rol": "student",
+      "email": "maria@alumnos.upm.es",
+      "nick": "Maria",
+      "name": "Maria Estudiante",
+      "password": "12341234",
+      "profilePic": "static/default_update_avatar_pic.jpeg",
+      "lastTimeActive": "2016-04-21T17:09:03.610Z",
+      "joined": "2015-05-10T15:17:00Z",
+      "banned": false,
+      "confirmedEmail": true,
+      "sessionToken": "4661d46eb74647f1909cec5980269208",
+      "subjects": [
+        4,
+        5,
+        6
+      ]
+    }
   }
 ]
