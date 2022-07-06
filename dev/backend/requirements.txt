@@ -40,7 +40,7 @@ importlib==1.0.3
 ipaddress==1.0.16
 linecache2==1.0.0
 lockfile==0.12.2
-lxml==3.4.2
+lxml==4.9.1
 Markdown==2.6.5
 mechanize==0.2.5
 meld==3.12.3
